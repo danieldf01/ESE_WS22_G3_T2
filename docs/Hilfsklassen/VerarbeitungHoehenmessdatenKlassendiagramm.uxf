@@ -7,44 +7,44 @@
       <x>540</x>
       <y>150</y>
       <w>320</w>
-      <h>570</h>
+      <h>600</h>
     </coordinates>
     <panel_attributes>VerarbeitungHoehenmessdaten
 --
-+hoehe_hoehes_ws_mm: double
-+hoehe_flaches_ws_mm: double
-+tiefe_loch_mm: double
-+hoehe_hoehes_ws: int
-+hoehe_laufband: int
-+hysterese_mm: double
-+toleranz_mm: double: double
-+lookup_mm: double
-+lookup_ADC_Value: double
-+wsListen: WsListen
-+anlage: int
 +qnetHandler: QnetHandler
-+attach: name_attach_t
-+hoechster_adc_wert
-+keinster_adc_wert
++*attach: name_attach_t
 
+-*wsListen: WsListen
+-anlagen_nr: int
+-hoechster_adc_wert: int
+-keinster_adc_wert: int
+-hoehe_hoehes_ws_mm: double
+-hoehe_flaches_ws_mm: double
+-hoehe_hoehes_ws_adc: int
+-hoehe_laufband_adc: int
+-tiefe_loch_mm: double
+-hysterese_mm: double 
+-toleranz_mm: double
+-tiefe_loch_klein_mm: double
 -receivingRunning: bool
 -stopAn: bool
--ws_erkannt: bool
--loch_Hysterese: bool
 -logikID: int
+-ws_erkannt: bool
 -WS_Typ: int
 -loch_tief_cnt: int
+-loch_Hysterese: bool
 -hoechste_messung: double
 -HoheMitteWs: double
 -mittlereHohe: double
--mlist: list&lt;double&gt;
---
-+receivingADCValueFromHAL(wsListen): void
+-mlist:list(double)
 
--erkenneWS(messung_mm: double): void
--adc_value_to_mm(dig: int): double
--slidingwindow(messung: int): int
--void clear_HS_daten(): void</panel_attributes>
+--
++VerarbeitungHoehenmessdaten(anlage:int, *wsListen:WsListen ,hoehe_hoehes_ws_adc:int, hoehe_laufband_adc:int)
++receivingADCValueFromHAL(): void
+-erkenneWS(double messung_mm): void
+-adc_value_to_mm(int dig): double
+-slidingwindow(const int messung): int
+-clear_HS_daten(): void </panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

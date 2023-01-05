@@ -37,13 +37,13 @@ public:
 	QnetHandler qnetHandler;
 	name_attach_t *attach;
 private:
-	WsListen *wsListen;
-	int anlagen_nr;
 	void erkenneWS(double messung_mm);
 	double adc_value_to_mm(int dig);
 	int slidingwindow(const int messung);
 	void clear_HS_daten();
 
+	WsListen *wsListen;
+	int anlagen_nr;
 	int hoechster_adc_wert;//kalibrirung
 	int keinster_adc_wert;//kalibrirung
 	double hoehe_hoehes_ws_mm;
