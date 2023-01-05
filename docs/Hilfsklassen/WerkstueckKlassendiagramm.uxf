@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>15</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>405</y>
+      <w>270</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Werkstueck
+--
+-timestamp: unsigned int
+-iD: int
+-mittlereHoehe: double
+-hoehehnmesswert: double
+-ueberschlagen: bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>255</y>
+      <w>450</w>
+      <h>435</h>
+    </coordinates>
+    <panel_attributes>WsListen
+--
+-sortierReihenfolge: list&lt;Werkstueck&gt;
+
+-ws_LSAnfang: Werkstueck
+-ws_Hoehensensor_1: Werkstueck
+-ws_list_LSAnfang_bis_HS: list&lt;Werkstueck&gt;
+-ws_list_HS_bis_Seperator: list&lt;Werkstueck&gt;
+-ws_list_passieren: list&lt;Werkstueck&gt;
+-ws_list_aussortieren: list&lt;Werkstueck&gt;
+
+-ws_Hoehensensor_2: Werkstueck
+-ws_ls_anfang_2: Werkstueck
+-ws_ls_anfang_bis_hs_2: Werkstueck
+-ws_hs_bis_seperator_2: Werkstueck
+-ws_passieren_2: Werkstueck
+-ws_aussortieren_2: Werkstueck</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>435</x>
+      <y>480</y>
+      <w>255</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>225</x>
+      <y>180</y>
+      <w>150</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>WsTyp
+--
+FLACH
+HOCH_OB
+HOCH_MB
+HOCH_MBM
+UNBEKANNT</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>285</x>
+      <y>330</y>
+      <w>45</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>

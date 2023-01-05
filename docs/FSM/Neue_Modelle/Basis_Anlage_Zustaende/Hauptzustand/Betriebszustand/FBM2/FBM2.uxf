@@ -1,0 +1,2663 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>2</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>626</x>
+      <y>18</y>
+      <w>364</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>FBM2_LS_Anfang
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>132</y>
+      <w>58</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+FBM1_BEREIT 
+FBM2_BEREIT
+LS_A_AN_2
+LS_A_AUS_2
+QUITTIERT
+KEIN_FEHLER
+FBM1_WS_UEBERGEBEN
+
+
+
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>170</y>
+      <w>58</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+FBM2_BEREIT
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+WS_IN_LS_A_BIS_HS_2
+FBM2_SCHELL_UP
+SCHNELL_RUNTER_2
+
+
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>198</y>
+      <w>58</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+ws_ls_anfang_2 :ws_pointer
+ws_ls_anfang_bis_hs_2 :ws_pointer
+FBM2_Time :zeit
+FBM2_laengste_zeit_ls_anfang :zeit
+
+
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>758</x>
+      <y>78</y>
+      <w>40</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Warte_auf_FBM2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>66</y>
+      <w>42</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FBM1_BEREIT/ FBM2_BEREIT</panel_attributes>
+    <additional_attributes>80.0;60.0;80.0;20.0;120.0;20.0;120.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>56</y>
+      <w>6</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>760</x>
+      <y>54</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>92</y>
+      <w>70</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FBM1_WS_LOSGESCHICKT / SCHNELL_HOCH_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>744</x>
+      <y>114</y>
+      <w>40</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>Warte_WS_Verlaesst_FBM1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>126</y>
+      <w>40</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FBM1_WS_UEBERGEBEN</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>732</x>
+      <y>156</y>
+      <w>40</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>WS_zwischen_FBM1_FMB2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>162</y>
+      <w>34</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AN_2 /
+SCHNELL_RUNTER_1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>662</x>
+      <y>80</y>
+      <w>90</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AUS_2 / &amp;ws_ls_anfang_2.setTimeStamp(),
+ws_ls_anfang_bis_hs_2 = ws_ls_anfang_2,
+ws_ls_anfang_2 = NULL,
+WS_IN_LS_A_BIS_HS_2
+</panel_attributes>
+    <additional_attributes>430.0;480.0;10.0;480.0;10.0;10.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>748</x>
+      <y>172</y>
+      <w>30</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>WS_in_LS_Anfang_2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>706</x>
+      <y>72</y>
+      <w>26</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>Warte_FBM2_Frei</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>730</x>
+      <y>78</y>
+      <w>32</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FBM2_BEREIT</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>782</x>
+      <y>114</y>
+      <w>126</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AN_2</panel_attributes>
+    <additional_attributes>10.0;20.0;610.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>904</x>
+      <y>74</y>
+      <w>72</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP,
+printf("Entferne alle WS zwischen LS_Anfang und HS")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>796</x>
+      <y>78</y>
+      <w>112</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AN_2</panel_attributes>
+    <additional_attributes>10.0;20.0;540.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>156</y>
+      <w>138</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM2_Time &gt; FBM2_laengste_zeit_ls_anfang + ws_ls_anfang_2.getTimeStamp()</panel_attributes>
+    <additional_attributes>10.0;20.0;670.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>710</x>
+      <y>306</y>
+      <w>76</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>WS_auf_Weg_zum_HS</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>320</y>
+      <w>22</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+HS_AKTIV_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>948</x>
+      <y>298</y>
+      <w>82</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_verschwunden 
+--
+entry/ FEHLER_CNT_UP,
+Destrukt(&amp;ws_ls_anfang_bis_hs_2),
+ws_ls_anfang_bis_hs_2 = NULL,
+printf("Nehme alle WS von FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>934</x>
+      <y>352</y>
+      <w>80</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_frueh
+--
+entry/ FEHLER_CNT_UP, HS_LEEREN,
+printf("Wen 2 auf FBM2 entferne WS am nächsten an HS")
+
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>756</x>
+      <y>368</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>338</y>
+      <w>122</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+[else] /ws_hohensensor_2 = ws_ls_anfang_bis_hs_2,
+ws_ls_anfang_bis_hs_2 = NULL,
+&amp;WS_Hohensensor.setTimeStamp(),
+WS_IN_HS_2,
+LANGSAM_HOCH_2</panel_attributes>
+    <additional_attributes>590.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>762</x>
+      <y>368</y>
+      <w>176</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[FBM2_Time &lt; FBM2_kuerzeste_zeit_bis_HS + ws_ls_anfang_bis_hs_2.getTimeStamp()]</panel_attributes>
+    <additional_attributes>10.0;20.0;860.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>626</x>
+      <y>234</y>
+      <w>410</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>FBM2_LS_Anfang_bis_HS
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>758</x>
+      <y>246</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>784</x>
+      <y>306</y>
+      <w>168</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM2_Time &gt; FBM2_laengste_zeit_bis_HS + ws_ls_anfang_bis_hs_2.getTimeStamp()</panel_attributes>
+    <additional_attributes>10.0;20.0;820.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>314</y>
+      <w>58</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+HS_AKTIV_2
+QUITTIERT
+KEIN_FEHLER
+WS_IN_LS_A_BIS_HS_2
+
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>342</y>
+      <w>58</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+WS_IN_HS_2
+LANGSAM_HOCH_2
+FBM2_BEREIT
+SCHNELL_RUNTER_2
+
+
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>370</y>
+      <w>58</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+ws_ls_anfang_bis_hs_2 :ws_pointer
+ws_hohensensor_2 :ws_pointer
+FBM2_Time :zeit
+FBM2_laengste_zeit_bis_HS :zeit
+FBM2_kuerzeste_zeit_bis_HS :zeit
+
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>750</x>
+      <y>260</y>
+      <w>18</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Warten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>278</y>
+      <w>38</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_IN_LS_A_BIS_HS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>936</x>
+      <y>258</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP, HS_LEEREN,
+printf("Entferne alle WS zwischen LS_Anfang und HS FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>766</x>
+      <y>272</y>
+      <w>174</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+HS_AKTIV_2</panel_attributes>
+    <additional_attributes>10.0;20.0;850.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>266</y>
+      <w>116</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;330.0;10.0;10.0;560.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>854</x>
+      <y>260</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>766</x>
+      <y>260</y>
+      <w>92</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>440.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>892</x>
+      <y>260</y>
+      <w>48</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>314</y>
+      <w>216</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER / FBM2_BEREIT</panel_attributes>
+    <additional_attributes>1060.0;10.0;840.0;10.0;840.0;110.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>854</x>
+      <y>312</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>892</x>
+      <y>312</y>
+      <w>60</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT/SCHNELL_RUNTER_2</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>778</x>
+      <y>320</y>
+      <w>80</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>380.0;200.0;10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>854</x>
+      <y>356</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>892</x>
+      <y>356</y>
+      <w>46</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>248</y>
+      <w>6</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>636</x>
+      <y>332</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>626</x>
+      <y>414</y>
+      <w>424</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>FBM2_WS_Erkennung
+--
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>964</x>
+      <y>458</y>
+      <w>46</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>F_Hoehen_Messung
+--
+enty/ FEHLER_CNT_UP,
+Destrukt(&amp;WS_Hohensensor),
+ws_hoehensensor_2 = NULL,
+printf("Nehme alle WS von FBM2")
+
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>814</x>
+      <y>464</y>
+      <w>154</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM2_Time &gt; FBM2_laengste_Messzeit + ws_hohensensor_2.getTimeStamp() / LANGSAM_RUNTER_2</panel_attributes>
+    <additional_attributes>10.0;20.0;750.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>796</x>
+      <y>484</y>
+      <w>172</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[FBM2_Time &lt; FBM2_kuerzeste_Messzeit + ws_hohensensor_2.getTimeStamp()]</panel_attributes>
+    <additional_attributes>10.0;20.0;840.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>798</x>
+      <y>422</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>786</x>
+      <y>464</y>
+      <w>30</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Warte_Messung_fertig</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>470</y>
+      <w>86</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_TYP_2 / LANGSAM_RUNTER_2, checkWSueberschlagen()</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>432</y>
+      <w>58</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+WS_IN_HS_2
+WS_TYP_2
+QUITTIERT
+KEIN_FEHLER
+
+
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>458</y>
+      <w>58</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+LANGSAM_RUNTER_2
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+FBM2_BEREIT
+SCHNELL_RUNTER_2
+
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>566</x>
+      <y>484</y>
+      <w>58</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+ws_hohensensor_2 :ws_pointer
+ws_hs_seperator_2 :ws_pointer
+FBM2_Time :zeit
+FBM2_laengste_Messzeit :zeit
+FBM2_kuerzeste_Messzeit :zeit
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>790</x>
+      <y>484</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>792</x>
+      <y>436</y>
+      <w>18</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Warten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>442</y>
+      <w>54</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_IN_HS_2 / speicherWSTypFBM1()</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>798</x>
+      <y>424</y>
+      <w>6</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>632</x>
+      <y>438</y>
+      <w>164</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[else] / &amp;ws_hohensensor_2.setTimeStamp(),
+ws_hs_seperator_2 = ws_hohensensor_2,
+ws_hohensensor_2 = NULL,
+WS_IN_HS_BIS_SEP_2</panel_attributes>
+    <additional_attributes>790.0;250.0;10.0;250.0;10.0;10.0;800.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>808</x>
+      <y>436</y>
+      <w>176</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER / FBM2_BEREIT</panel_attributes>
+    <additional_attributes>860.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>980</x>
+      <y>436</y>
+      <w>44</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>444</y>
+      <w>50</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT/SCHNELL_RUNTER_2</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>832</x>
+      <y>86</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>86</y>
+      <w>38</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>796</x>
+      <y>86</y>
+      <w>40</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>800</x>
+      <y>142</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>730</x>
+      <y>88</y>
+      <w>74</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>350.0;290.0;10.0;290.0;10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>838</x>
+      <y>142</y>
+      <w>70</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT 
+/ SCHNELL_RUNTER_2, SCHNELL_RUNTER_1</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>904</x>
+      <y>112</y>
+      <w>82</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_frueh
+--
+entry/ FEHLER_CNT_UP,
+printf("Wen 2 auf FBM2 entferne WS am nächsten an LS_Anfang")
+
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>904</x>
+      <y>140</y>
+      <w>82</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_verschwunden 
+--
+entry/ FEHLER_CNT_UP,
+Destrukt(&amp;ws_ls_anfang_2),
+ws_ls_anfang_2 = NULL,
+printf("Nehme alle WS von FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>848</x>
+      <y>120</y>
+      <w>60</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>810</x>
+      <y>120</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>782</x>
+      <y>120</y>
+      <w>32</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>696</x>
+      <y>38</y>
+      <w>32</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AN_2</panel_attributes>
+    <additional_attributes>140.0;170.0;140.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>634</x>
+      <y>28</y>
+      <w>72</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP,
+printf("Entferne alle WS zwischen LS_Anfang und HS")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>38</y>
+      <w>20</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>644</x>
+      <y>58</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>662</x>
+      <y>66</y>
+      <w>48</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;220.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>546</y>
+      <w>6</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>672</x>
+      <y>606</y>
+      <w>64</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>WS_auf_Weg_zum_Seperator</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>688</x>
+      <y>634</y>
+      <w>32</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Im_Metallsensor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>698</x>
+      <y>612</y>
+      <w>72</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+METSEN_AN_2 / ws_hs_seperator_2.setMetall(true)</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>640</y>
+      <w>24</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_SEP_AN_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>692</y>
+      <w>6</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>678</x>
+      <y>612</y>
+      <w>24</w>
+      <h>82</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_SEP_AN_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;390.0;100.0;390.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>734</x>
+      <y>606</y>
+      <w>126</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM2_Time &gt; FBM2_laengste_zeit_bis_Sep + ws_hs_seperator_2.getTimeStamp()</panel_attributes>
+    <additional_attributes>10.0;20.0;610.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>712</y>
+      <w>160</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[FBM2_Time &lt; FBM2_kuerzeste_zeit_bis_Sep + ws_hs_seperator_2.getTimeStamp()]</panel_attributes>
+    <additional_attributes>10.0;20.0;780.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>700</x>
+      <y>544</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>718</x>
+      <y>634</y>
+      <w>142</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM1_Time &gt; FBM1_laengste_zeit_bis_Sep+ ws_hs_seperator_2.getTimeStamp()</panel_attributes>
+    <additional_attributes>10.0;20.0;690.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>698</x>
+      <y>712</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>714</y>
+      <w>38</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[else]</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0;10.0;370.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>752</y>
+      <w>58</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+METSEN_AN_2 
+LS_SEP_AN_2
+QUITTIERT
+KEIN_FEHLER
+WS_IN_HS_BIS_SEP_2
+
+
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>786</y>
+      <w>58</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+LS_SEP_AN_2
+SCHNELL_RUNTER_2
+FBM2_BEREIT
+WS_NICHT_AUSSORTIERBAR
+
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>824</y>
+      <w>58</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+W_Rutsche_2_voll :bool
+ws_hs_seperator_2 :ws_pointer
+ws_passieren_2 :ws_pointer
+ws_aussortieren_2 :ws_pointer
+FBM2_Time :zeit
+FBM2_laengste_zeit_bis_Sep :zeit
+FBM2_kuerzeste_zeit_bis_Sep :zeit
+geforderterWerkstueckTyp :enum
+W_Rutsche_1_voll :bool
+W_Rutsche_2_voll :bool
+
+
+
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>692</x>
+      <y>556</y>
+      <w>18</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Warten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>574</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_IN_HS_BIS_SEP_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>572</x>
+      <y>520</y>
+      <w>478</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>FBM2_HS_bis_Seperator
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>604</x>
+      <y>852</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>702</y>
+      <w>26</w>
+      <h>158</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>110.0;770.0;10.0;770.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>564</y>
+      <w>114</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;660.0;10.0;10.0;550.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>756</x>
+      <y>852</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>854</y>
+      <w>150</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>730.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>616</x>
+      <y>846</y>
+      <w>28</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Note..
+WS passieren lassen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>728</x>
+      <y>846</y>
+      <w>28</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Note..
+WS aussortieren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>838</x>
+      <y>554</y>
+      <w>82</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP,
+printf("Entferne alle WS zwischen HS und Seperator FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>770</x>
+      <y>556</y>
+      <w>38</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>806</x>
+      <y>556</y>
+      <w>36</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>556</y>
+      <w>66</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>856</x>
+      <y>604</y>
+      <w>50</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>F_WS_verschwunden 
+--
+entry/ FEHLER_CNT_UP,
+Destrukt(&amp;ws_hs_seperator_2),
+ws_hs_seperator_2 = NULL,
+printf("Nehme alle WS von FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>778</x>
+      <y>644</y>
+      <w>106</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT/SCHNELL_RUNTER_2</panel_attributes>
+    <additional_attributes>510.0;10.0;510.0;280.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>742</x>
+      <y>696</y>
+      <w>38</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>586</x>
+      <y>696</y>
+      <w>160</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER / FBM2_BEREIT</panel_attributes>
+    <additional_attributes>780.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>860</x>
+      <y>704</y>
+      <w>100</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_frueh
+--
+entry/ FEHLER_CNT_UP,
+printf("Wen 2 auf FBM2 entferne WS am nächsten am Seperator")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>958</x>
+      <y>714</y>
+      <w>44</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>998</x>
+      <y>714</y>
+      <w>38</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>718</x>
+      <y>592</y>
+      <w>304</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>1500.0;610.0;1500.0;20.0;10.0;20.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>580</x>
+      <y>696</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>662</x>
+      <y>788</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>668</x>
+      <y>788</y>
+      <w>92</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[ws_hs_seperator_2.getTyp() != geforderterWerkstueckTyp]</panel_attributes>
+    <additional_attributes>10.0;20.0;440.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>756</x>
+      <y>788</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>762</x>
+      <y>788</y>
+      <w>122</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[W_Rutsche_2_voll] / WS_NICHT_AUSSORTIERBAR</panel_attributes>
+    <additional_attributes>10.0;20.0;590.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>880</x>
+      <y>788</y>
+      <w>42</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Warte_auf_Rutsche_frei</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>770</y>
+      <w>144</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FEHLER_CNT_DOWN [!W_Rutsche_2_voll]</panel_attributes>
+    <additional_attributes>700.0;90.0;700.0;20.0;10.0;20.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>758</x>
+      <y>794</y>
+      <w>60</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[!W_Rutsche_2_voll]
+/ ws_aussortieren_2 = ws_hs_seperator_2,
+ws_hs_seperator_2 = NULL,
+&amp;ws_aussortieren_2.setTimeStamp()
+WS_AUSSORTIEREN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>802</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/ geforderterWerkstueckTyp = Reihung_FBM2.next(),
+ws_passieren_2 = ws_hs_seperator_2,
+ws_hs_seperator_2 = NULL,
+&amp;ws_passieren_2.setTimeStamp()
+WS_PASSIEREN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>788</y>
+      <w>80</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[ws_hs_seperator_2.getTyp() == geforderterWerkstueckTyp]
+</panel_attributes>
+    <additional_attributes>340.0;20.0;70.0;20.0;70.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>604</x>
+      <y>796</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>976</x>
+      <y>1064</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer_2 == true]
+/SEP_AN_2</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>996</x>
+      <y>1064</y>
+      <w>40</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer_2 == false]</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>500</x>
+      <y>1018</y>
+      <w>26</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Weiche_Geoeffnet</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>988</y>
+      <w>54</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer_2 == false]
+/SEP_AN</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>988</y>
+      <w>32</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer_2 == true]</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>466</x>
+      <y>1044</y>
+      <w>52</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>WS_auf_Weg_zu_LS_Ende</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>508</x>
+      <y>1024</y>
+      <w>68</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+after(FBM2_zeit_ws_passiert_weiche) /SEP_AUS</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>464</x>
+      <y>1106</y>
+      <w>56</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Warte_auf_entnehmen_von_WS</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>1050</y>
+      <w>22</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_E_AN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>956</x>
+      <y>1092</y>
+      <w>32</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Auswerfer ausgefahren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>956</x>
+      <y>1116</y>
+      <w>66</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Auswerfer eingefahren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>976</x>
+      <y>1098</y>
+      <w>32</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+after(auswerfer_time)
+/SEP_AUS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>988</x>
+      <y>1122</y>
+      <w>24</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AN_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>892</x>
+      <y>1040</y>
+      <w>102</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/SCHNELL_RUNTER_2,
+Destrukt(&amp;ws_aussortieren_2),
+ws_aussortieren_2 = NULL,
+FBM2_BEREIT</panel_attributes>
+    <additional_attributes>490.0;520.0;490.0;550.0;10.0;550.0;10.0;10.0;460.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>872</x>
+      <y>1016</y>
+      <w>362</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>FBM2_Seperator_bis_Rutsche
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>324</x>
+      <y>920</y>
+      <w>462</w>
+      <h>246</h>
+    </coordinates>
+    <panel_attributes>FBM2_Seperator_bis_LS_Ende
+--
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>992</x>
+      <y>1024</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>484</x>
+      <y>948</y>
+      <w>4</w>
+      <h>4</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>484</x>
+      <y>972</y>
+      <w>30</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_PASSIEREN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>1026</y>
+      <w>6</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>1116</y>
+      <w>106</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+after(FBM2_laengste_zeit_bis_Rut + ws_aussortieren_2.getTimeStamp())</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1122</x>
+      <y>1112</y>
+      <w>106</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>F_WS_verschwunden 
+--
+entry/ FEHLER_CNT_UP,
+printf("Nehme alle WS von FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>488</x>
+      <y>1084</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>494</x>
+      <y>1084</y>
+      <w>150</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[FBM2_Time &lt; FBM2_kuerzeste_zeit_bis_LS_ENDE + ws_passieren_2.getTimeStamp(]</panel_attributes>
+    <additional_attributes>10.0;20.0;730.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>1090</y>
+      <w>114</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[else]/ SCHNELL_RUNTER_2  / Werkstückdaten per MQTT senden, Ausgabe Konsole</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>1044</y>
+      <w>128</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+when FBM2_Time &gt; FBM2_laengste_zeit_bis_LS_ENDE + ws_passieren_2.getTimeStamp()</panel_attributes>
+    <additional_attributes>10.0;20.0;620.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>1068</y>
+      <w>58</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+LS_E_AN_2
+LS_E_AUS_2
+QUITTIERT
+KEIN_FEHLER
+WS_PASSIEREN_2
+
+
+
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>1098</y>
+      <w>58</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+SEP_AN_2
+SEP_AUS_2
+FBM2_BEREIT
+SCHNELL_RUNTER_2
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>1134</y>
+      <w>58</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+ws_passieren_2 :ws_pointer
+Auswerfer_2 :bool
+FBM2_Time :zeit
+FBM2_laengste_zeit_bis_LS_ENDE :zeit
+FBM2_kuerzeste_zeit_bis_LS_ENDE :zeit
+
+
+
+
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>1094</y>
+      <w>58</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+LS_RUT_AN_2
+QUITTIERT
+KEIN_FEHLER
+WS_AUSSORTIEREN_2
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>1116</y>
+      <w>58</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+FEHLER_CNT_UP
+FEHLER_CNT_DOWN
+SEP_AN_2
+SEP_AUS_2
+SCHNELL_RUNTER_2
+FBM2_BEREIT
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>1146</y>
+      <w>58</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+ws_aussortieren_2
+Auswerfer_2 :bool
+
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>984</x>
+      <y>1034</y>
+      <w>18</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Warte</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>1048</y>
+      <w>36</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_AUSSORTIEREN_2 
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>1042</y>
+      <w>94</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AN_2</panel_attributes>
+    <additional_attributes>10.0;20.0;450.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>476</x>
+      <y>956</y>
+      <w>20</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Warte</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>484</x>
+      <y>950</y>
+      <w>6</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>592</x>
+      <y>952</y>
+      <w>86</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP,
+printf("Entferne alle WS zwischen Seperator und LS_Ende FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>528</x>
+      <y>954</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>494</x>
+      <y>966</y>
+      <w>102</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_E_AN_2</panel_attributes>
+    <additional_attributes>10.0;20.0;490.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>566</x>
+      <y>954</y>
+      <w>30</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>494</x>
+      <y>954</y>
+      <w>38</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>640</x>
+      <y>1042</y>
+      <w>60</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>F_WS_verschwunden 
+--
+entry/ FEHLER_CNT_UP,
+Destrukt(&amp;ws_passieren_2),
+ws_passieren_2 = NULL,
+printf("Nehme alle WS von FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>566</x>
+      <y>1052</y>
+      <w>78</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT/SCHNELL_RUNTER_2</panel_attributes>
+    <additional_attributes>370.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>528</x>
+      <y>1050</y>
+      <w>40</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>346</x>
+      <y>1052</y>
+      <w>186</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>910.0;20.0;280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>640</x>
+      <y>1072</y>
+      <w>100</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_frueh
+--
+entry/ FEHLER_CNT_UP,
+printf("Wen 2 auf FBM2 entferne WS am nächsten an LS_Ende")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>572</x>
+      <y>1072</y>
+      <w>72</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>542</x>
+      <y>1072</y>
+      <w>32</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>quittiert
+--
+entry/Fehler_cnt_down
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>1050</y>
+      <w>46</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>210.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>340</x>
+      <y>1052</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>962</y>
+      <w>138</w>
+      <h>94</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/ FBM2_BEREIT</panel_attributes>
+    <additional_attributes>10.0;450.0;10.0;20.0;670.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1090</x>
+      <y>1032</y>
+      <w>92</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>F_WS_zu_viel
+--
+entry/ FEHLER_CNT_UP,
+printf("Entferne alle WS zwischen Seperator und LS_Rutsche FBM2")
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1030</x>
+      <y>1032</y>
+      <w>38</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1066</x>
+      <y>1032</y>
+      <w>28</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>1032</y>
+      <w>34</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1050</x>
+      <y>1136</y>
+      <w>38</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>Quittiert
+--
+entry/FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1086</x>
+      <y>1130</y>
+      <w>86</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+QUITTIERT</panel_attributes>
+    <additional_attributes>410.0;10.0;410.0;50.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>1136</y>
+      <w>62</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+KEIN_FEHLER</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>1058</y>
+      <w>154</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_E_AUS_2</panel_attributes>
+    <additional_attributes>750.0;280.0;750.0;370.0;10.0;370.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>986</x>
+      <y>1136</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>698</x>
+      <y>686</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>570</y>
+      <w>134</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_SEP_AN_2</panel_attributes>
+    <additional_attributes>10.0;20.0;650.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>482</x>
+      <y>986</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>990</x>
+      <y>1062</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
