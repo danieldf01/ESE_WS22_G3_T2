@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>400</y>
+      <w>310</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>KonfigurationsdateiManager
+--
+lkonf: list(tupel(string, int))
+filename: string 
+--
++KonfigurattionsdateiManager(filename: string)
++ dateieinlesen(): int
++speicherInKonfigurationsdatei(): void
++get_value_of(name:Konfi_Codes): int
++set_value_of(name:Konfi_Codes): int
+-erstelleKonfigurationsdatei(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>200</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Konfi_Codes
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>310</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
