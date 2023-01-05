@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
+<diagram program="umlet" version="15.0.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -24,24 +24,13 @@
       <w>250</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>QnetHandler
+    <panel_attributes>SensorikQnet
 --
 +createConnection(): int
 +openConnection(chanID: int): int
 +closeConnection(conID: int): void
 +destroyConnection(chanID: int): void
 </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>550</x>
-      <y>90</y>
-      <w>150</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>HALSensorikDemo</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -52,7 +41,7 @@
       <w>160</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>Alle Pins durch gehen
+    <panel_attributes>Alle Pins durchgehen
 bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
@@ -78,7 +67,7 @@ bg=blue</panel_attributes>
     <panel_attributes>Liest Werte aus und schickt die
 ADC Werte in einem 
 dauerhaften Stream
-am  die Auswertung
+an die Auswertung
 bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
@@ -126,16 +115,19 @@ bg=blue</panel_attributes>
     </coordinates>
     <panel_attributes>SensorikSteuerung
 --
-connector: QnetHandler
+connector: SensorikQnet
 gpioSetup: GPIOSetup
 tsc: TSCADC
 adc: ADC
+outputDispatcher: OutputDispatcher
 --
 runHALSteuerung(void): void
 attachInterrupts(conID: int): ADCptr
 detachInterrupts(adc: ADCptr): void
 receivingRoutine(channelID: int, adc: ADCptr): void
-handleInterrupt(void): void</panel_attributes>
+handleInterrupt(void): void
+handleADCInterrupt(*msg: _pulse): void
+window(messung: const int): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -185,16 +177,5 @@ handleInterrupt(void): void</panel_attributes>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;60.0;30.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>620</x>
-      <y>110</y>
-      <w>30</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
