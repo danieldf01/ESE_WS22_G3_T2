@@ -13,12 +13,21 @@ LogikMain::LogikMain() {
 	qnetHandler = new QnetHandler();
 	wsListen = new WsListen();
 	state = new Ruhezustand();
+	state->dateiManager = new KonfigurationsdateiManager("/Team3_2_conf.txt"); //Starte KonfigurationsdateiManager
 	state->wsListen = wsListen;
 	state->fehlerCount=0;
 	state->warnungsCount=0;
 	attach = qnetHandler->openServer(LOGIK);
-	state->hoehenauswertung1 = new VerarbeitungHoehenmessdaten(1);
-	state->hoehenauswertung2 = new VerarbeitungHoehenmessdaten(2);
+
+	state->hoehenauswertung1 = new VerarbeitungHoehenmessdaten(1,
+			wsListen,
+			state->dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1),
+			state->dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_1));
+
+	state->hoehenauswertung2 = new VerarbeitungHoehenmessdaten(2,
+			wsListen,
+			state->dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2),
+			state->dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_2));
 }
 
 LogikMain::~LogikMain() {
@@ -34,11 +43,10 @@ void LogikMain::init(){
 
 void LogikMain::receiveSignal(){
 
-	state->dateiManager = new KonfigurationsdateiManager("/Team3_2_conf.txt"); //Starte KonfigurationsdateiManager
 	state->updateAuswertung();												//Update die Werte fuer die Hoehenauswertung
 
-	thread auswertung1(&VerarbeitungHoehenmessdaten::receivingADCValueFromHAL, ref(state->hoehenauswertung1), ref(wsListen)); //Hoehenauswertung1 thread
-	thread auswertung2(&VerarbeitungHoehenmessdaten::receivingADCValueFromHAL, ref(state->hoehenauswertung2), ref(wsListen)); //Hoehenauswertung2 thread
+	thread auswertung1(&VerarbeitungHoehenmessdaten::receivingADCValueFromHAL, ref(state->hoehenauswertung1)); //Hoehenauswertung1 thread
+	thread auswertung2(&VerarbeitungHoehenmessdaten::receivingADCValueFromHAL, ref(state->hoehenauswertung2)); //Hoehenauswertung2 thread
 
 	_pulse pulse;
 

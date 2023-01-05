@@ -7,14 +7,27 @@
 
 #include "VerarbeitungHoehenmessdaten.h"
 
-VerarbeitungHoehenmessdaten::VerarbeitungHoehenmessdaten(int anlage) {
+VerarbeitungHoehenmessdaten::VerarbeitungHoehenmessdaten(int anlage, WsListen *wsListen,int hoehe_hoehes_ws_adc, int hoehe_laufband_adc) {
 	qnetHandler = QnetHandler();
 	if (anlage == 1) {
 		attach = qnetHandler.openServer(AUSWERTUNG_1);
 	} else {
 		attach = qnetHandler.openServer(AUSWERTUNG_2);
 	}
-	this->anlage = anlage;
+	this->anlagen_nr = anlage;
+	this->wsListen = wsListen;
+
+	this->hoehe_hoehes_ws_adc=hoehe_hoehes_ws_adc;
+	this->hoehe_laufband_adc=hoehe_laufband_adc;
+
+	this->hoehe_hoehes_ws_mm = 25.0;
+	this->hoehe_flaches_ws_mm = 21.0;
+
+	this->tiefe_loch_mm = 16;
+	this->hysterese_mm = 8.0;
+	this->toleranz_mm = 1.0;
+	this->tiefe_loch_klein_mm = 3.0;
+
 
 	receivingRunning = true;
 	stopAn = true;
@@ -38,8 +51,7 @@ VerarbeitungHoehenmessdaten::~VerarbeitungHoehenmessdaten() {
 }
 
 //als Thread starten
-void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL(WsListen *wsListen) { //TODO Unterscheidung Wert von Anlage 1 oder 2
-	this->wsListen = wsListen;
+void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterscheidung Wert von Anlage 1 oder 2
 	bool fehlergeworfen = false;
 
 	_pulse msg;
@@ -84,9 +96,9 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL(WsListen *wsListen) {
 				if(!stopAn){
 					this->erkenneWS(messung_mm);
 				}else{ //TODO Multiplikator HW:3 SIM:10
-					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband) + (toleranz_mm*10) && !fehlergeworfen) {
+					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband_adc) + (toleranz_mm*10) && !fehlergeworfen) {
 						fehlergeworfen = true;
-						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlage, HS_AKTIV);
+						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
 						cout << "HS_AKTIV STOERFAKTOR" << endl;
 						fflush(stdout);
 					}
@@ -103,7 +115,7 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 	if (ws_erkannt == false && (messung_mm >= (hoehe_flaches_ws_mm - toleranz_mm))) {
 		ws_erkannt = true;
 		WS_Typ = FLACH;
-		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlage, HS_AKTIV);
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
 		cout << "HS_AKTIV geschickt" << endl;
 	}
 	//WS in Höhenmessung
@@ -162,7 +174,7 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 					WS_Typ, mittlereHohe, HoheMitteWs,loch_tief_cnt, hoechste_messung, messung_mm, hoechster_adc_wert, keinster_adc_wert);
 			if (WS_Typ == FLACH) {
 				printf("FLACH\n");
-				if (anlage == 1) {
+				if (anlagen_nr == 1) {
 					wsListen->ws_Hoehensensor_1->setWsTyp(FLACH);
 				} else {
 					wsListen->ws_Hoehensensor_2->setWsTyp(FLACH);
@@ -170,7 +182,7 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			}
 			if (WS_Typ == HOCH_OB) {
 				printf("HOCH_OHNE_BOHRUNG\n");
-				if (anlage == 1) {
+				if (anlagen_nr == 1) {
 					wsListen->ws_Hoehensensor_1->setWsTyp(HOCH_OB);
 				} else {
 					wsListen->ws_Hoehensensor_2->setWsTyp(HOCH_OB);
@@ -178,7 +190,7 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			}
 			if (WS_Typ == HOCH_MB) {
 				printf("HOCH_MIT_BOHRUNG\n");
-				if (anlage == 1) {
+				if (anlagen_nr == 1) {
 					wsListen->ws_Hoehensensor_1->setWsTyp(HOCH_MB);
 				} else {
 					wsListen->ws_Hoehensensor_2->setWsTyp(HOCH_MB);
@@ -186,14 +198,14 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			}
 			if (WS_Typ == UNBEKANNT) {
 				printf("UNBEKANNT\n");
-				if (anlage == 1) {
+				if (anlagen_nr == 1) {
 					wsListen->ws_Hoehensensor_1->setWsTyp(UNBEKANNT);
 				} else {
 					wsListen->ws_Hoehensensor_2->setWsTyp(UNBEKANNT);
 				}
 			}
 			cout << "BEFORE WS_TYP SEND " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
-			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlage, WS_TYP);
+			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlagen_nr, WS_TYP);
 			fflush(stdout);
 
 			//aufräumen für nächstes werkstück
@@ -216,18 +228,16 @@ void VerarbeitungHoehenmessdaten::clear_HS_daten(){
 
 
 double VerarbeitungHoehenmessdaten::adc_value_to_mm(int dig) {
+	double entfernung = 0.0;
+	double laufband_hoehe_mm = 0.0;
 
-	double entfernung = 0;
-	int i = 0;
+	if (dig < hoehe_laufband_adc) {
 
-	if (dig < hoehe_laufband) {
-
-		double v_delta = dig - lookup_ADC_Value[i];
-		double steigung = ((lookup_mm[i + 1] - lookup_mm[i]) / (lookup_ADC_Value[i + 1] - lookup_ADC_Value[i]));
-		entfernung = lookup_mm[i] + v_delta * steigung;
+		double v_delta = dig - hoehe_laufband_adc;
+		double steigung = ((hoehe_hoehes_ws_mm - laufband_hoehe_mm) / (hoehe_hoehes_ws_adc - hoehe_laufband_adc));
+		entfernung = laufband_hoehe_mm + v_delta * steigung;
 		return entfernung;
 	}
-
 	return entfernung;
 }
 
@@ -240,7 +250,7 @@ int VerarbeitungHoehenmessdaten::slidingwindow(const int messung) {
 	//inti Array first time
 	if (init) {
 		for (int var = 0; var < SLIDING_WINDOW_SIZE; var++) {
-			messung_array[var] = hoehe_laufband;
+			messung_array[var] = hoehe_laufband_adc;
 		}
 		init = false;
 	}
