@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>435</x>
+      <y>120</y>
+      <w>510</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Component&gt;
+Dispatcher
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>190</y>
+      <w>165</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt; InputDispatcher
+--
+-Sensorik sensorik
+-Aktorik aktorik 
+-QnetHandler qnetHandler
+--
++receiveSignal()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>415</x>
+      <y>175</y>
+      <w>125</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>995</x>
+      <y>195</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Methodenaufruf von der HAL
+arbeitet mithilfee des pins in einem switch case
+ruft entweder Methoden der Logik auf oder schickt
+eine Pulse Message
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>725</x>
+      <y>190</y>
+      <w>145</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt; OutputDispatcher
+--
+-Logik logik
+-QnetHandler qnetHandler
+--
++dispatchOutput(int pin, int currentlevel)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>285</x>
+      <y>275</y>
+      <w>160</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+Methoden Aktorik&amp;Sensorik</panel_attributes>
+    <additional_attributes>300.0;20.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>285</x>
+      <y>230</y>
+      <w>160</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+Methoden OutputDispatcher</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>0</y>
+      <w>135</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+Methoden Logik &amp; Channel(s?) Logik</panel_attributes>
+    <additional_attributes>20.0;240.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>0</y>
+      <w>90</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+Channel InputDispatcher</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>645</x>
+      <y>400</y>
+      <w>100</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+Channel InputDispatcher
+Methode OutputDispatcher
+</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>785</x>
+      <y>400</y>
+      <w>25</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+</panel_attributes>
+    <additional_attributes>20.0;10.0;20.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>295</x>
+      <y>165</y>
+      <w>125</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>erhält ein Signal und verarbeitet
+dieses (Methodenaufruf an die HAL / 
+Pulse Message an Kommunikation
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>210</y>
+      <w>155</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>785</x>
+      <y>640</y>
+      <w>160</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+Watchdog
+--
+-sendTimer: Timer
+-receiveTimer: Timer
+-Communication communication
+--
++notify()
++sendSignal()
++eStopp()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>665</x>
+      <y>690</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>führt einen timer reset 
+durch (sollte alle 200ms
+aufgerufen werden)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>685</y>
+      <w>55</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;50.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>640</x>
+      <y>625</y>
+      <w>105</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>ruft alle 200ms 
+sendSignal(InputDispatcher) auf</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>665</x>
+      <y>655</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>ruft nach Ablauf
+von 200ms eStopp() auf</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1000</x>
+      <y>695</y>
+      <w>95</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>sendet Signal an Watchdog 
+des anderen FBMs</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1000</x>
+      <y>725</y>
+      <w>85</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>sendet Signal, dass 
+E-Stopp-Zustand betreten 
+werden soll</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>705</y>
+      <w>200</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>380.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>695</y>
+      <w>185</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>350.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>665</y>
+      <w>55</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>635</y>
+      <w>55</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>580</y>
+      <w>510</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Component&gt;
+Communication
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>300</x>
+      <y>615</y>
+      <w>105</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>Sendet Pulse  an das FBM2 
+&amp; den Dispatcher
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>645</y>
+      <w>130</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt; Communication
+--
+-Watchdog watchdog
+-QnetHandler qnetHandler
+--
+-sendSignal()
+-receiveSignal()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>580</y>
+      <w>90</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>160.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>635</y>
+      <w>150</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>685</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;60.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>265</x>
+      <y>705</y>
+      <w>160</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>Bekommt Signal von dem FBM2 und verarbeitet
+mithilfe eines switch cases den Inhalt des Pulse
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>375</x>
+      <y>550</y>
+      <w>70</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Um einen GNS
+Server zu erstellen /
+Sich mit einem
+Server verbinden
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>790</x>
+      <y>500</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+Channel Communication
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>495</y>
+      <w>25</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+
+</panel_attributes>
+    <additional_attributes>20.0;170.0;20.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>785</x>
+      <y>860</y>
+      <w>90</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+Channel Communication
+
+</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>860</y>
+      <w>115</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-(
+Channel FBM2 Communication
+</panel_attributes>
+    <additional_attributes>20.0;10.0;20.0;180.0</additional_attributes>
+  </element>
+</diagram>

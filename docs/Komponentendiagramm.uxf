@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>336</x>
-      <y>413</y>
-      <w>119</w>
-      <h>77</h>
+      <x>288</x>
+      <y>216</y>
+      <w>102</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 HAL</panel_attributes>
@@ -16,10 +16,10 @@ HAL</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>644</x>
-      <y>420</y>
-      <w>182</w>
-      <h>70</h>
+      <x>552</x>
+      <y>222</y>
+      <w>156</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>symbol=component
 Dispatcher</panel_attributes>
@@ -28,10 +28,10 @@ Dispatcher</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>721</x>
-      <y>252</y>
-      <w>140</w>
-      <h>56</h>
+      <x>618</x>
+      <y>78</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Logik</panel_attributes>
@@ -40,10 +40,10 @@ Logik</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>658</x>
-      <y>749</y>
-      <w>168</w>
-      <h>77</h>
+      <x>564</x>
+      <y>594</y>
+      <w>144</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 Dispatcher
@@ -53,10 +53,10 @@ Dispatcher
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>539</x>
-      <y>462</y>
-      <w>119</w>
-      <h>35</h>
+      <x>462</x>
+      <y>258</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
@@ -66,10 +66,10 @@ m1=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>462</y>
-      <w>105</w>
-      <h>35</h>
+      <x>384</x>
+      <y>258</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 Methoden
@@ -80,10 +80,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>427</y>
-      <w>105</w>
-      <h>35</h>
+      <x>384</x>
+      <y>228</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
@@ -93,10 +93,10 @@ m1=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>539</x>
-      <y>427</y>
-      <w>119</w>
-      <h>35</h>
+      <x>462</x>
+      <y>228</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 Methoden
@@ -107,10 +107,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>784</x>
-      <y>301</y>
-      <w>21</w>
-      <h>84</h>
+      <x>672</x>
+      <y>120</y>
+      <w>18</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=
@@ -120,10 +120,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>805</x>
-      <y>301</y>
-      <w>35</w>
-      <h>84</h>
+      <x>690</x>
+      <y>120</y>
+      <w>30</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
@@ -133,63 +133,63 @@ m1=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>483</y>
-      <w>84</w>
-      <h>119</h>
+      <x>648</x>
+      <y>276</y>
+      <w>72</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-()
 Pulse Message
 m2=</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>749</x>
-      <y>588</y>
-      <w>35</w>
-      <h>175</h>
+      <x>642</x>
+      <y>306</y>
+      <w>30</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
 </panel_attributes>
-    <additional_attributes>20.0;20.0;20.0;230.0</additional_attributes>
+    <additional_attributes>20.0;20.0;20.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>714</x>
-      <y>581</y>
-      <w>84</w>
-      <h>182</h>
+      <x>612</x>
+      <y>306</y>
+      <w>72</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=-()
 Pulse Message
 m2=
 </panel_attributes>
-    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>707</x>
-      <y>483</y>
-      <w>35</w>
-      <h>112</h>
+      <x>606</x>
+      <y>276</y>
+      <w>30</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
 </panel_attributes>
-    <additional_attributes>20.0;130.0;20.0;10.0</additional_attributes>
+    <additional_attributes>20.0;40.0;20.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1036</x>
-      <y>238</y>
-      <w>140</w>
-      <h>56</h>
+      <x>888</x>
+      <y>66</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Kalibrierungsdatei
@@ -199,10 +199,10 @@ Kalibrierungsdatei
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>854</x>
-      <y>266</y>
-      <w>98</w>
-      <h>35</h>
+      <x>732</x>
+      <y>90</y>
+      <w>84</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -211,10 +211,10 @@ Kalibrierungsdatei
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>812</x>
-      <y>371</y>
-      <w>21</w>
-      <h>63</h>
+      <x>696</x>
+      <y>180</y>
+      <w>18</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=()-
 
@@ -224,10 +224,10 @@ Kalibrierungsdatei
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>938</x>
-      <y>266</y>
-      <w>112</w>
-      <h>28</h>
+      <x>804</x>
+      <y>90</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=()-
 Datei lesen</panel_attributes>
@@ -236,10 +236,10 @@ Datei lesen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>777</x>
-      <y>371</y>
-      <w>35</w>
-      <h>63</h>
+      <x>666</x>
+      <y>180</y>
+      <w>30</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -248,10 +248,10 @@ Datei lesen</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>266</x>
-      <y>651</y>
-      <w>1099</w>
-      <h>224</h>
+      <x>228</x>
+      <y>426</y>
+      <w>570</w>
+      <h>276</h>
     </coordinates>
     <panel_attributes>Slave
 fg=blue</panel_attributes>
@@ -260,10 +260,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>364</x>
-      <y>742</y>
-      <w>119</w>
-      <h>77</h>
+      <x>312</x>
+      <y>588</y>
+      <w>102</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 HAL</panel_attributes>
@@ -272,10 +272,10 @@ HAL</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>791</y>
-      <w>91</w>
-      <h>35</h>
+      <x>408</x>
+      <y>630</y>
+      <w>78</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 Methoden
@@ -286,10 +286,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>756</y>
-      <w>91</w>
-      <h>35</h>
+      <x>408</x>
+      <y>600</y>
+      <w>78</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 
@@ -300,10 +300,10 @@ m1=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>553</x>
-      <y>756</y>
-      <w>119</w>
-      <h>35</h>
+      <x>474</x>
+      <y>600</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 Methoden
@@ -314,10 +314,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>553</x>
-      <y>791</y>
-      <w>119</w>
-      <h>35</h>
+      <x>474</x>
+      <y>630</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 m1=
@@ -327,10 +327,10 @@ m1=
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>266</x>
-      <y>210</y>
-      <w>1099</w>
-      <h>434</h>
+      <x>228</x>
+      <y>42</y>
+      <w>942</w>
+      <h>372</h>
     </coordinates>
     <panel_attributes>Master
 
@@ -340,10 +340,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>49</x>
-      <y>602</y>
-      <w>147</w>
-      <h>133</h>
+      <x>42</x>
+      <y>378</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Sicherheitskritisches direkt
 in der HAL, wie:
@@ -355,10 +355,10 @@ E-Stopp
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>483</y>
-      <w>196</w>
-      <h>154</h>
+      <x>162</x>
+      <y>276</y>
+      <w>168</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;200.0;260.0;10.0</additional_attributes>
@@ -366,83 +366,21 @@ E-Stopp
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>630</y>
-      <w>189</w>
-      <h>154</h>
+      <x>162</x>
+      <y>402</y>
+      <w>162</w>
+      <h>222</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;250.0;200.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>798</x>
-      <y>119</y>
-      <w>91</w>
-      <h>49</h>
-    </coordinates>
-    <panel_attributes>symbol=component
-Kosnsole</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;10.0;250.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>833</x>
-      <y>161</y>
-      <w>49</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>lt=()-
-stdout
-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>266</x>
-      <y>49</y>
-      <w>1099</w>
-      <h>154</h>
-    </coordinates>
-    <panel_attributes>Außerhalb (PC/Roboter)
-fg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>574</x>
-      <y>119</y>
-      <w>91</w>
-      <h>49</h>
-    </coordinates>
-    <panel_attributes>symbol=component
-Roboter</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>644</x>
-      <y>161</y>
-      <w>49</w>
-      <h>245</h>
-    </coordinates>
-    <panel_attributes>lt=()-
-MQTT
-</panel_attributes>
-    <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>854</x>
-      <y>238</y>
-      <w>105</w>
-      <h>35</h>
+      <x>732</x>
+      <y>66</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=()-
 Datei schreiben
@@ -452,10 +390,10 @@ Datei schreiben
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>238</y>
-      <w>105</w>
-      <h>35</h>
+      <x>810</x>
+      <y>66</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -464,114 +402,34 @@ Datei schreiben
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>637</x>
-      <y>392</y>
-      <w>35</w>
-      <h>42</h>
+      <x>546</x>
+      <y>12</y>
+      <w>48</w>
+      <h>222</h>
     </coordinates>
     <panel_attributes>lt=)-
-</panel_attributes>
-    <additional_attributes>20.0;20.0;20.0;40.0</additional_attributes>
+MQTT</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>224</y>
-      <w>35</w>
-      <h>42</h>
+      <x>708</x>
+      <y>12</y>
+      <w>48</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=)-
-</panel_attributes>
-    <additional_attributes>20.0;20.0;20.0;40.0</additional_attributes>
+stdout</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;110.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>952</x>
-      <y>749</y>
-      <w>168</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>symbol=component
-Watchdog
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>952</x>
-      <y>413</y>
-      <w>168</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>symbol=component
-Watchdog
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>819</x>
-      <y>763</y>
-      <w>70</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=)-
-m1=
-</panel_attributes>
-    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>875</x>
-      <y>763</y>
-      <w>91</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=-()
-Methoden
-m2=
-</panel_attributes>
-    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>819</x>
-      <y>455</y>
-      <w>77</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=)-
-m1=
-</panel_attributes>
-    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>882</x>
-      <y>455</y>
-      <w>84</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=-()
-Methoden
-m2=
-</panel_attributes>
-    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1036</x>
-      <y>294</y>
-      <w>140</w>
-      <h>56</h>
+      <x>888</x>
+      <y>114</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Konfigurationsdatei
@@ -581,10 +439,10 @@ Konfigurationsdatei
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>959</x>
-      <y>294</y>
-      <w>91</w>
-      <h>35</h>
+      <x>822</x>
+      <y>114</y>
+      <w>78</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=()-
 Datei lesen
@@ -594,64 +452,10 @@ Datei lesen
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>791</y>
-      <w>84</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=)-
-m1=
-</panel_attributes>
-    <additional_attributes>20.0;20.0;100.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>819</x>
-      <y>791</y>
-      <w>77</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=-()
-Methoden
-m2=
-</panel_attributes>
-    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>819</x>
-      <y>420</y>
-      <w>84</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=-()
-Methoden
-m2=
-</panel_attributes>
-    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>889</x>
-      <y>420</y>
-      <w>77</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=)-
-m1=
-</panel_attributes>
-    <additional_attributes>20.0;20.0;90.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>854</x>
-      <y>294</y>
-      <w>119</w>
-      <h>35</h>
+      <x>732</x>
+      <y>114</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -660,10 +464,10 @@ m1=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>245</x>
-      <y>434</y>
-      <w>105</w>
-      <h>35</h>
+      <x>210</x>
+      <y>234</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=IHardware
@@ -673,10 +477,10 @@ m2=IHardware
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>245</x>
-      <y>770</y>
-      <w>133</w>
-      <h>35</h>
+      <x>210</x>
+      <y>612</y>
+      <w>114</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=IHardware
@@ -684,17 +488,133 @@ m2=IHardware
     <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLUseCase</id>
+    <id>UMLGeneric</id>
     <coordinates>
-      <x>14</x>
-      <y>14</y>
-      <w>84</w>
-      <h>28</h>
+      <x>558</x>
+      <y>336</y>
+      <w>156</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>lt=.
-Collaboration
-fg=red
-bg=yellow</panel_attributes>
+    <panel_attributes>symbol=component
+Kommunikation</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>558</x>
+      <y>456</y>
+      <w>156</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Kommunikation</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>510</y>
+      <w>30</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=
+</panel_attributes>
+    <additional_attributes>20.0;60.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>552</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+Pulse Message
+m2=
+</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>552</y>
+      <w>30</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=
+</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>510</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+Pulse Message
+m2=</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>390</y>
+      <w>72</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+Pulse Message
+m2=</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>420</y>
+      <w>30</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=
+</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>390</y>
+      <w>30</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=
+</panel_attributes>
+    <additional_attributes>20.0;40.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>420</y>
+      <w>72</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+Pulse Message
+m2=
+</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

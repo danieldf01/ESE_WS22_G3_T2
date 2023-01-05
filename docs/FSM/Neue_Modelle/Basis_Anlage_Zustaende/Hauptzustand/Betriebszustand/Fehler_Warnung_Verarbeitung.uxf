@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>540</x>
+      <y>600</y>
+      <w>12</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>564</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>492</x>
+      <y>546</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Rutsche_1 leer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>414</y>
+      <w>114</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>W_Rutsche_1_voll </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>540</x>
+      <y>882</y>
+      <w>600</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>F_Rutsche_2_voll 
+--
+entry/ FEHLER_CNT_UP
+exit// FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>540</x>
+      <y>1050</y>
+      <w>600</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>F_Rutsche_1_2_voll 
+--
+entry/ FEHLER_CNT_UP
+exit/ FEHLER_CNT_DOWN
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1008</x>
+      <y>198</y>
+      <w>240</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>gegangen unquittiert
+--
+entry/ AMPEL_RO_LANGSAM_1, AMPEL_RO_LANGSAM_2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>678</x>
+      <y>192</y>
+      <w>222</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>anstehend quittiert
+--
+/QUITTIERT, AMPEL_RO_AN_1, AMPEL_RO_AN_2
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>630</x>
+      <y>78</y>
+      <w>234</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>anstehend unquittiert
+--
+entry/ AMPEL_RO_SCHNELL_1,AMPEL_RO_SCHNELL_2
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>498</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AN_1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>492</x>
+      <y>480</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Rutsche_1_pruefen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>498</y>
+      <w>78</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_1 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>432</y>
+      <w>294</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+after(t_rusche_voll) / W_Rutsche_1_voll = true, AMPEL_GE_ SCHNELL_1 </panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>432</y>
+      <w>324</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_1 / W_Rutsche_1_voll = false, AMPEL_GE_AUS_1</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>540</x>
+      <y>822</y>
+      <w>12</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>792</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>492</x>
+      <y>774</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Rutsche_2 leer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>642</y>
+      <w>114</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>W_Rutsche_2_voll </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>726</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AN_2</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>492</x>
+      <y>708</y>
+      <w>102</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Rutsche_2_pruefen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>726</y>
+      <w>78</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_2 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>660</y>
+      <w>294</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+after(t_rusche_voll) / W_Rutsche_2_voll = true, AMPEL_GE_ SCHNELL_2</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>660</y>
+      <w>324</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_2 / W_Rutsche_2_voll = false,AMPEL_GE_AUS_2 </panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>492</x>
+      <y>972</y>
+      <w>12</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>534</x>
+      <y>960</y>
+      <w>606</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Warten</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>972</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1086</x>
+      <y>912</y>
+      <w>300</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_NICHT_AUSSORTIERBAR [!W_Rutsche_1_voll &amp;&amp; W_Rutsche_2_voll]
+</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1086</x>
+      <y>990</y>
+      <w>300</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+WS_NICHT_AUSSORTIERBAR [W_Rutsche_1_voll &amp;&amp; W_Rutsche_2_voll]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>912</y>
+      <w>78</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_2 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>990</y>
+      <w>78</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_1</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>678</x>
+      <y>264</y>
+      <w>192</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>OK
+--
+entry/ AMPEL_RO_AUS_1,AMPEL_RO_AUS_2
+
+
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>714</x>
+      <y>306</y>
+      <w>12</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>288</y>
+      <w>18</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>216</y>
+      <w>360</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET _1</panel_attributes>
+    <additional_attributes>580.0;10.0;580.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>144</y>
+      <w>66</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET _2 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>216</y>
+      <w>438</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_START_AN_1 || T_START_AN_2 [Fehler_cnt &lt;= 0 ] / STOP_RUNTER_1, STOP_RUNTER_2, KEIN_FEHLER</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>84</y>
+      <w>246</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Fehler_cnt &lt;= 0]/ STOP_RUNTER_1, STOP_RUNTER_2
+</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0;260.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>132</y>
+      <w>282</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FEHLER_CNT_UP / Fehler_cnt +1, STOP_HOCH_1, STOP_HOCH_2</panel_attributes>
+    <additional_attributes>330.0;240.0;10.0;240.0;10.0;10.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>126</y>
+      <w>276</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FEHLER_CNT_UP / Fehler_cnt +1, FBM1_stop_up,FBM2_stop_up</panel_attributes>
+    <additional_attributes>360.0;120.0;360.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>474</x>
+      <y>18</y>
+      <w>840</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>Fehler_Signaleingang
+--
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>474</x>
+      <y>846</y>
+      <w>972</w>
+      <h>258</h>
+    </coordinates>
+    <panel_attributes>F_WS_nicht_aussortierbar
+--
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>474</x>
+      <y>384</y>
+      <w>438</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>W_Rutsche1
+--
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>474</x>
+      <y>624</y>
+      <w>438</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>W_Rutsche2
+--
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>780</y>
+      <w>144</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+
+bg=green
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>888</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+
+
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>1014</y>
+      <w>144</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>144</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FEHLER_CNT_UP / Fehler_cnt +1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1026</x>
+      <y>84</y>
+      <w>24</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>84</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FEHLER_CNT_DOWN / Fehler_cnt -1</panel_attributes>
+    <additional_attributes>10.0;20.0;280.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>96</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[else]</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>678</x>
+      <y>144</y>
+      <w>66</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET _1 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>216</y>
+      <w>384</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET _2 </panel_attributes>
+    <additional_attributes>620.0;10.0;620.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>990</y>
+      <w>78</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AUS_2 </panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

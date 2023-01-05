@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="15.0.0">
-  <zoom_level>11</zoom_level>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>0</y>
-      <w>902</w>
-      <h>297</h>
+      <x>324</x>
+      <y>9</y>
+      <w>738</w>
+      <h>243</h>
     </coordinates>
     <panel_attributes>Logik
 bg=orange</panel_attributes>
@@ -16,10 +16,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>297</y>
-      <w>902</w>
-      <h>308</h>
+      <x>324</x>
+      <y>252</y>
+      <w>738</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>Kommunikationsschicht
 bg=orange</panel_attributes>
@@ -28,10 +28,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>605</y>
-      <w>902</w>
-      <h>242</h>
+      <x>324</x>
+      <y>504</y>
+      <w>738</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>HAL
 bg=orange</panel_attributes>
@@ -40,12 +40,12 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1034</x>
-      <y>649</y>
-      <w>242</w>
-      <h>44</h>
+      <x>837</x>
+      <y>531</y>
+      <w>198</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>FSM E-Stop
+    <panel_attributes>E-Stop
 (Sicherheitskritisch)
 bg=blue
 layer=1</panel_attributes>
@@ -54,10 +54,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>638</y>
-      <w>286</w>
-      <h>176</h>
+      <x>342</x>
+      <y>531</y>
+      <w>234</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Sensorik
 bg=blue
@@ -67,10 +67,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>825</x>
-      <y>341</y>
-      <w>462</w>
-      <h>121</h>
+      <x>657</x>
+      <y>288</y>
+      <w>378</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Kommunikationverwalten
 bg=blue
@@ -80,10 +80,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>132</y>
-      <w>352</w>
-      <h>121</h>
+      <x>342</x>
+      <y>117</y>
+      <w>288</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Datenverwaltung
 bg=blue
@@ -93,10 +93,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>715</x>
-      <y>55</y>
-      <w>286</w>
-      <h>55</h>
+      <x>684</x>
+      <y>117</y>
+      <w>234</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>FSMs zur System Steuerung
 bg=blue
@@ -106,10 +106,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>847</x>
-      <y>385</y>
-      <w>121</w>
-      <h>55</h>
+      <x>675</x>
+      <y>324</y>
+      <w>99</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Dispatcher
 bg=green
@@ -119,10 +119,10 @@ layer=2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>979</x>
-      <y>385</y>
-      <w>110</w>
-      <h>55</h>
+      <x>783</x>
+      <y>324</y>
+      <w>90</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Watchdog
 bg=green
@@ -132,10 +132,10 @@ layer=2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>176</y>
-      <w>132</w>
-      <h>44</h>
+      <x>360</x>
+      <y>153</y>
+      <w>108</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Werkstück Liste
 bg=green
@@ -145,10 +145,10 @@ layer=2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>627</x>
-      <y>209</y>
-      <w>143</w>
-      <h>33</h>
+      <x>495</x>
+      <y>180</y>
+      <w>117</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Konfigurationsdatei
 bg=green
@@ -158,10 +158,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>627</x>
-      <y>165</y>
-      <w>143</w>
-      <h>33</h>
+      <x>495</x>
+      <y>144</y>
+      <w>117</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Kalibrationsdatei
 bg=green
@@ -171,10 +171,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>737</x>
-      <y>638</y>
-      <w>286</w>
-      <h>176</h>
+      <x>585</x>
+      <y>531</y>
+      <w>234</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Aktorik
 bg=blue
@@ -184,10 +184,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>671</y>
-      <w>121</w>
-      <h>33</h>
+      <x>360</x>
+      <y>558</y>
+      <w>99</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Lichtschanken
 
@@ -198,10 +198,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>605</x>
-      <y>671</y>
-      <w>88</w>
-      <h>33</h>
+      <x>477</x>
+      <y>558</y>
+      <w>72</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Taster
 
@@ -212,10 +212,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>506</x>
-      <y>759</y>
-      <w>165</w>
-      <h>33</h>
+      <x>396</x>
+      <y>630</y>
+      <w>135</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>HöhenmessSensor
 
@@ -226,10 +226,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>715</y>
-      <w>110</w>
-      <h>33</h>
+      <x>693</x>
+      <y>144</y>
+      <w>90</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Timer
 
@@ -240,10 +240,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>858</x>
-      <y>682</y>
-      <w>88</w>
-      <h>33</h>
+      <x>684</x>
+      <y>567</y>
+      <w>72</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Motor
 
@@ -254,10 +254,10 @@ layer=3</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>748</x>
-      <y>682</y>
-      <w>88</w>
-      <h>33</h>
+      <x>594</x>
+      <y>567</y>
+      <w>72</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>Seperator
 

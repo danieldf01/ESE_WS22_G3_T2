@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>480</x>
+      <y>696</y>
+      <w>144</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>E_Stop_2
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>880</x>
+      <y>424</y>
+      <w>152</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Warte_auf_Reset</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>480</x>
+      <y>264</y>
+      <w>144</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>E_Stop_1
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>480</x>
+      <y>472</y>
+      <w>144</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>E_Stop_12
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>304</y>
+      <w>104</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>520</y>
+      <w>112</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AUS_1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>304</y>
+      <w>112</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AUS_2</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>520</y>
+      <w>104</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AN_1</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>272</y>
+      <w>416</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AN_1</panel_attributes>
+    <additional_attributes>500.0;190.0;500.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>560</y>
+      <w>416</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AN_2</panel_attributes>
+    <additional_attributes>500.0;10.0;500.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>560</y>
+      <w>312</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AUS_2</panel_attributes>
+    <additional_attributes>10.0;190.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>288</y>
+      <w>312</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+E_STOP_AUS_1</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1024</x>
+      <y>432</y>
+      <w>488</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET_1 / HAL_E_STOP_INAKTIV_1,  HAL_E_STOP_INAKTIV_2 </panel_attributes>
+    <additional_attributes>10.0;20.0;590.0;20.0;590.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1552</x>
+      <y>488</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>280</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>720</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>312</x>
+      <y>208</y>
+      <w>1280</w>
+      <h>592</h>
+    </coordinates>
+    <panel_attributes>E_Stop
+--
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1024</x>
+      <y>504</y>
+      <w>488</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+T_RESET_2 / HAL_E_STOP_INAKTIV_1,  HAL_E_STOP_INAKTIV_2 </panel_attributes>
+    <additional_attributes>10.0;50.0;590.0;50.0;590.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1480</x>
+      <y>480</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1504</x>
+      <y>488</y>
+      <w>64</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>456</y>
+      <w>192</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+E_STOP_AN_1
+E_STOP_AUS_1
+E_STOP_AN_2
+E_STOP_AUS_2
+
+T_RESET_1 
+T_RESET_2 
+
+bg=orange
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>592</y>
+      <w>192</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+HAL_E_STOP_INAKTIV_2 
+HAL_E_STOP_INAKTIV_2
+
+bg=orange
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>680</y>
+      <w>192</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+
+bg=orange
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
