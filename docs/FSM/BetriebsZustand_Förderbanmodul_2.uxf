@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>636</x>
+      <y>176</y>
+      <w>64</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Warte auf Werkstück</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>188</y>
+      <w>44</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AN_2 </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>636</x>
+      <y>216</y>
+      <w>80</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück in LS_ANFANG</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>616</x>
+      <y>252</y>
+      <w>104</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück auf weg zur Höhenmessung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>228</y>
+      <w>44</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_A_AUS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>612</x>
+      <y>296</y>
+      <w>112</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Höhenmessung Werkstück Typ erkennung
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>264</y>
+      <w>104</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+HOEHE_AN_2 / FSM_langsam_up_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>308</y>
+      <w>116</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+HOEHE_AUS_2 / FSM_langsam_down_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1304</x>
+      <y>100</y>
+      <w>120</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=blue
+Forderbandmodul_2
+
+Eingangsignale:
+LS_A_AN_2 
+LS_A_AUS_2
+LS_E_AN_2 
+LS_E_AUS_2
+LS_SEP_AN_2 
+LS_SEP_AUS_2 
+LS_RUT_AN_2 
+LS_RUT_AUS_2 
+METSEN_AN_2 
+METSEN_AUS_2 
+
+
+HÖHENMESSUNG:
+HOEHE_AN_2 
+HOEHE_AUS_2
+Messdaten
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1304</x>
+      <y>380</y>
+      <w>240</w>
+      <h>164</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=green
+Variablen:
+bool: Auswerfer
+
+
+geforderterWerkstueckTyp (das Werkstück welches gerade der Reihung entspricht)
+
+
+-ID:int
+-Typ:WerkstueckTyp
+         HOCHMITBOHRUNGOHNEMETALLEINSATZ
+         HOCHMITBOHRUNGMITMETALLEINSATZ
+         HOCHOHNEBOHRUNG
+         FLACH
+         UNBEKANNT
+-hatMetalleinsatz: bool
+-WerkstueckOberflaeche
+-Gedreht: bool
+-mittlere Hoehe
+-Höhenmesswert
+	
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>616</x>
+      <y>344</y>
+      <w>128</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück auf weg zum Metalsensor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>648</x>
+      <y>392</y>
+      <w>64</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Im MetallSensor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>668</x>
+      <y>356</y>
+      <w>84</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+METSEN_AN_2/Metall = true</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>404</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_SEP_AN_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>632</x>
+      <y>432</y>
+      <w>100</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Überprüfe ob Werkstück auszusortieren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>804</x>
+      <y>536</y>
+      <w>68</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück aussortieren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>668</x>
+      <y>464</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>444</y>
+      <w>12</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>504</x>
+      <y>500</y>
+      <w>88</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück passieren lassen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>464</y>
+      <w>140</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Werkstück == geforderterWerkstueckTyp]
+</panel_attributes>
+    <additional_attributes>330.0;20.0;20.0;20.0;20.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>464</y>
+      <w>156</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Werkstück != geforderterWerkstueckTyp]</panel_attributes>
+    <additional_attributes>10.0;20.0;330.0;20.0;370.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>796</x>
+      <y>568</y>
+      <w>36</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Auswerfer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>808</x>
+      <y>548</y>
+      <w>60</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer == true]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>548</y>
+      <w>60</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer == false]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>564</x>
+      <y>532</y>
+      <w>40</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Weiche Öffnen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>512</y>
+      <w>60</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer == false]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>512</x>
+      <y>512</y>
+      <w>60</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[Auswerfer == true]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>500</x>
+      <y>628</y>
+      <w>104</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>WERKSTÜCK auf Weg zu LS_ENDE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>544</y>
+      <w>40</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/SEP_AN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>568</x>
+      <y>572</y>
+      <w>52</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Weiche Schließen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>584</y>
+      <w>64</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Time(?) /SEP_AUS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>496</x>
+      <y>668</y>
+      <w>112</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>warte auf freiwerden von Fördermodul_2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>548</x>
+      <y>640</y>
+      <w>192</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_E_AN_2 / FSM_schnell_down_2,  Werkstückdaten per MQTT senden</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>548</x>
+      <y>680</y>
+      <w>44</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_E_AUS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>768</x>
+      <y>612</y>
+      <w>64</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Auswerfer ausgefahren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>808</x>
+      <y>580</y>
+      <w>40</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/SEP_AN_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>768</x>
+      <y>644</y>
+      <w>132</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Auswerfer Eingefahren</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>808</x>
+      <y>624</y>
+      <w>44</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/SEP_AUS_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>772</x>
+      <y>684</y>
+      <w>128</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück in Rutsche</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>656</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_RUT_AN_2
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>696</y>
+      <w>236</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/ FSM_schnell_down_2</panel_attributes>
+    <additional_attributes>570.0;10.0;570.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>868</x>
+      <y>704</y>
+      <w>164</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Erkennung einer vollen Rutsche mit anderem Automat
+bg=blue
+layer=2
+
+
+FBMD2_Frei
+FDBM_2_WS_Senden
+FBM1_Ready</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>696</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1304</x>
+      <y>248</y>
+      <w>120</w>
+      <h>116</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=blue
+Ausgangsignale:
+
+FSM_stop_up_2
+FSM_stop_down_2
+
+FSM_langsam_up_2
+FSM_langsam_down_2
+
+FSM_schnell_up_2
+FSM_schnell_down_2
+
+
+SEP_AN_1 
+SEP_AUS_1
+
+FSM_WSK_nicht_aussortierbar
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>356</y>
+      <w>84</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+LS_SEP_AN_2 /Metall = false
+</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;30.0;10.0;30.0;10.0;160.0;190.0;160.0;190.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>828</x>
+      <y>464</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>464</y>
+      <w>172</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[W_Rutsche_2_voll] / FSM_WSK_nicht_aussortierbar</panel_attributes>
+    <additional_attributes>10.0;20.0;410.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1004</x>
+      <y>464</y>
+      <w>72</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>WSK_nicht_aussortierbar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>476</y>
+      <w>24</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[else]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>836</x>
+      <y>288</y>
+      <w>232</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Hier muss erkannt werden ob das Werkstück geflipt wurde oder ob es ausgetauscht wurde</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>296</y>
+      <w>124</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>312</y>
+      <w>132</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;320.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>664</x>
+      <y>68</y>
+      <w>8</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>72</y>
+      <w>12</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>436</y>
+      <w>224</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+[W_Rutsche_2_voll = false]</panel_attributes>
+    <additional_attributes>540.0;70.0;540.0;20.0;10.0;20.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>504</x>
+      <y>744</y>
+      <w>108</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>Werkstück wurde entnommen 
+oder Aussortiert</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>108</y>
+      <w>200</w>
+      <h>652</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/FBMD2_Frei
+</panel_attributes>
+    <additional_attributes>120.0;1610.0;20.0;1610.0;10.0;10.0;480.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>648</x>
+      <y>104</y>
+      <w>56</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>warte auf FBMD_1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>116</y>
+      <w>44</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+FBM1_Ready
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>596</x>
+      <y>140</y>
+      <w>132</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>signal an FBMD1 Werkstück wird übergeben</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>152</y>
+      <w>120</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+/FDBM_2_WS_Senden, FSM_schnell_up_2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

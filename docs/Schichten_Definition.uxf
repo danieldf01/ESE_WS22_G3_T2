@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>418</x>
+      <y>0</y>
+      <w>902</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>Logik
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>418</x>
+      <y>297</y>
+      <w>902</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>Kommunikationsschicht
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>418</x>
+      <y>605</y>
+      <w>902</w>
+      <h>242</h>
+    </coordinates>
+    <panel_attributes>HAL
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1034</x>
+      <y>649</y>
+      <w>242</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>FSM E-Stop
+(Sicherheitskritisch)
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>638</y>
+      <w>286</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Sensorik
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>341</y>
+      <w>462</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Kommunikationverwalten
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>132</y>
+      <w>352</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Datenverwaltung
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>715</x>
+      <y>55</y>
+      <w>286</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>FSMs zur System Steuerung
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>385</y>
+      <w>121</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Dispatcher
+bg=green
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>979</x>
+      <y>385</y>
+      <w>110</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Watchdog
+bg=green
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>176</y>
+      <w>132</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Werkstück Liste
+bg=green
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>627</x>
+      <y>209</y>
+      <w>143</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Konfigurationsdatei
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>627</x>
+      <y>165</y>
+      <w>143</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Kalibrationsdatei
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>737</x>
+      <y>638</y>
+      <w>286</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Aktorik
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>671</y>
+      <w>121</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Lichtschanken
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>605</x>
+      <y>671</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Taster
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>506</x>
+      <y>759</y>
+      <w>165</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>HöhenmessSensor
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>715</y>
+      <w>110</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Timer
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>682</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Motor
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>748</x>
+      <y>682</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Seperator
+
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

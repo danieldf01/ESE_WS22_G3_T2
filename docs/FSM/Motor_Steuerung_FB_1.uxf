@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>728</x>
+      <y>368</y>
+      <w>360</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>R_Schnell
+--
+Entry: /MOT_R _AN_1 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>728</x>
+      <y>528</y>
+      <w>360</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>R_Langsamm
+--
+Entry: /MOT_LANGSAM_AN_1, MOT_R _AN_1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>728</x>
+      <y>704</y>
+      <w>360</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Stop
+--
+Entry: MOT_STOP_AN_1
+Exit: MOT_STOP_AUS_1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>328</x>
+      <y>376</y>
+      <w>192</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>Input Signale:
+FSM_stop_up_1
+FSM_stop_down_1
+FSM_langsam_up_1
+FSM_langsam_down_1
+FSM_schnell_up_1
+FSM_schnell_down_1
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>328</x>
+      <y>536</y>
+      <w>192</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Output Signale:
+
+MOT_R _AN_1 
+MOT_R_AUS_1 
+MOT_LANGSAM_AN_1 
+MOT_LANGSAM_AUS_1
+MOT_STOP_AN_1
+MOT_STOP_AUS_1
+MOT_AUS_1 
+
+
+bg=blue
+layer=2
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>328</x>
+      <y>712</y>
+      <w>112</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Variablen:
+cnt_stop = 0
+cnt_langsam = 0
+cnt_schnell = 0
+bg=green
+layer=3
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>576</y>
+      <w>304</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_stop &gt; 0 /MOT_LANGSAM_Aus_1, MOT_R _AUS_1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1032</x>
+      <y>400</y>
+      <w>288</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_schnell &gt; 0 [cnt_stop &lt;= 0 &amp;&amp; cnt_langsam &lt;= 0]</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>384</y>
+      <w>192</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_stop &gt; 0 / MOT_R _AUS_1</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0;10.0;430.0;220.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1032</x>
+      <y>576</y>
+      <w>184</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_langsam &gt; 0 [cnt_stop &lt;= 0]
+</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>384</y>
+      <w>384</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_schnell &gt; 0 [cnt_stop &lt;= 0 &amp;&amp; cnt_langsam &lt;= 0]</panel_attributes>
+    <additional_attributes>10.0;430.0;130.0;430.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>752</x>
+      <y>400</y>
+      <w>184</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_langsam &gt; 0 [cnt_stop &lt;= 0]</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>240</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_stop +1</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>272</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_langstam +1</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>304</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_schnell +1</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>240</y>
+      <w>200</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_stop -1 [cnt_stop &gt; 0]</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>272</y>
+      <w>200</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_langstam -1[cnt_langsam &gt; 0]</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>304</y>
+      <w>200</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+cnt_schnell -1 [cnt_schnell &gt; 0]</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>192</y>
+      <w>472</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>NIht UML Komform hier werden Methoden zum hoch und runterzählen aufgerufen
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>896</x>
+      <y>808</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>744</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

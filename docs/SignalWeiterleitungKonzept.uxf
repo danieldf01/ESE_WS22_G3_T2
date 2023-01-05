@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>54</x>
+      <y>495</y>
+      <w>252</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>HAL
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>765</x>
+      <y>495</y>
+      <w>468</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Kommunikation
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>522</y>
+      <w>162</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Output-Dispatcher
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>621</y>
+      <w>162</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Input-Dispatcher
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>522</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Signale
+layer=1
+bg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>621</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Methoden
+bg=BLUE
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>765</x>
+      <y>531</y>
+      <w>270</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>InterruptHandler
+layer=1
+bg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>765</x>
+      <y>630</y>
+      <w>270</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Taskmanager
+layer=1
+bg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>54</x>
+      <y>216</y>
+      <w>252</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>HAL
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>765</x>
+      <y>198</y>
+      <w>270</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>Kommunikation
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>243</y>
+      <w>162</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Output-Dispatcher
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>342</y>
+      <w>162</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Input-Dispatcher
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>342</y>
+      <w>189</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Methodenanfrage in
+lt=&lt;-
+Pulse mit Priorität
+</panel_attributes>
+    <additional_attributes>10.0;20.0;190.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>342</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Umwandlung in
+Methodenaufruf</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>243</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Interrupt mit
+Level</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>243</y>
+      <w>189</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Interrupt mit höchster
+Priorität wird in Pulse 
+konvertiert</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>243</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Signale
+layer=1
+bg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>342</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Methoden
+bg=BLUE
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>765</x>
+      <y>252</y>
+      <w>270</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>InterruptHandler
+layer=1
+bg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>765</x>
+      <y>351</y>
+      <w>270</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Taskmanager
+layer=1
+bg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>342</y>
+      <w>261</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+FSM schickt Methodenanfragen</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>243</y>
+      <w>261</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Passende FSM wird gestartet/
+angesprochen</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1269</x>
+      <y>207</y>
+      <w>270</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>Logik
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>855</x>
+      <y>396</y>
+      <w>189</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>Methodenanfragen
+der FSM / Werkstückanfrage/
+E-Stopp Signal
+lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>477</y>
+      <w>1323</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>FBM2
+bg=gray
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>180</y>
+      <w>1530</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>FBM1
+bg=gray
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1269</x>
+      <y>252</y>
+      <w>126</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>FSM
+layer=2
+bg=CYAN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>522</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Interrupt mit
+Level</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>621</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Umwandlung in
+Methodenaufruf</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>522</y>
+      <w>189</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Interrupt mit höchster
+Priorität wird in Pulse 
+konvertiert</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>621</y>
+      <w>189</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Methodenanfrage in
+lt=&lt;-
+Pulse mit Priorität
+</panel_attributes>
+    <additional_attributes>10.0;20.0;190.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>396</y>
+      <w>126</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Pulse mit
+Interrupt der HAL
+</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
