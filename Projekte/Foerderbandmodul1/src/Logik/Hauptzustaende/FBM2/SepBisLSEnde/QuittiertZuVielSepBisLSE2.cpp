@@ -19,6 +19,10 @@ void QuittiertZuVielSepBisLSE2::LsEAn(){
 
 }
 
+void QuittiertZuVielSepBisLSE2::LsEAus() {
+
+}
+
 void QuittiertZuVielSepBisLSE2::WsPassieren(){
 
 }

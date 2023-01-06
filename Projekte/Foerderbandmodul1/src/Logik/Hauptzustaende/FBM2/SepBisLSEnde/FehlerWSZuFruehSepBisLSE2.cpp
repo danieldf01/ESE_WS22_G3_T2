@@ -21,6 +21,10 @@ void FehlerWSZuFruehSepBisLSE2::LsEAn(){
 
 }
 
+void FehlerWSZuFruehSepBisLSE2::LsEAus() {
+
+}
+
 void FehlerWSZuFruehSepBisLSE2::WsPassieren(){
 
 }

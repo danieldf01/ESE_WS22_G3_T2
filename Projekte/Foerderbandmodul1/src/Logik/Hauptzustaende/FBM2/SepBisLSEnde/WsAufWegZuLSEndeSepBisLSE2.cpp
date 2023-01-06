@@ -22,13 +22,19 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 	exit();
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?
-	if(zeitmanager->getTime() < (1500 + wsListen->ws_list_passieren.front().getTimestamp())){
+	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
-		actions->stopHoch();
-		actions->FBM1bereit();
+		// TODO MQTT missing
+		cout << "TODO Send per MQTT here WsAufWegZuLSEndeSepBisLSE2" << endl;
+		cout << "TODO Konsolenausgabe" << endl;
+		actions->schnellRunter();
+		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
 	entry();
+}
+
+void WsAufWegZuLSEndeSepBisLSE2::LsEAus() {
 }
 
 void WsAufWegZuLSEndeSepBisLSE2::WsPassieren(){

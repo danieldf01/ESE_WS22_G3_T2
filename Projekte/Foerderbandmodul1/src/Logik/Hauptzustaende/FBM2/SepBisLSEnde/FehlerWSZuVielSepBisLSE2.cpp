@@ -23,6 +23,10 @@ void FehlerWSZuVielSepBisLSE2::LsEAn(){
 
 }
 
+void FehlerWSZuVielSepBisLSE2::LsEAus() {
+
+}
+
 void FehlerWSZuVielSepBisLSE2::WsPassieren(){
 
 }

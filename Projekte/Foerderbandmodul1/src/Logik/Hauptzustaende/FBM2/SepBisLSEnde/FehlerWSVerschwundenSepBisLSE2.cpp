@@ -23,6 +23,10 @@ void FehlerWSVerschwundenSepBisLSE2::LsEAn(){
 
 }
 
+void FehlerWSVerschwundenSepBisLSE2::LsEAus() {
+
+}
+
 void FehlerWSVerschwundenSepBisLSE2::WsPassieren(){
 
 }
@@ -57,3 +61,5 @@ void FehlerWSVerschwundenSepBisLSE2::eStop(){
 	actions->eStop();
 	new (this) WarteSepBisLSE2;
 }
+
+

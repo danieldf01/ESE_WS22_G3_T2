@@ -1,19 +1,16 @@
 /*
- * WarteSepBisLSEnde.h
+ * Warteaufentnehmen.h
  *
- *  Created on: 22.12.2022
- *      Author: tobias
+ *  Created on: 06.01.2023
+ *      Author: tobi
  */
 
-#ifndef LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTESEPBISLSE2_H_
-#define LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTESEPBISLSE2_H_
+#ifndef LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTEAUFENTNEHMENSEPBISLSE2_H_
+#define LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTEAUFENTNEHMENSEPBISLSE2_H_
 
 #include "BaseStateSepBisLSE2.h"
-#include "FehlerWSZuVielSepBisLSE2.h"
-#include "WeicheGeoeffnetSepBisLSE2.h"
-#include "WsAufWegZuLSEndeSepBisLSE2.h"
 
-class WarteSepBisLSE2 : public BaseStateSepBisLSE2{
+class WarteAufEntnehmenSepBisLSE2 : public BaseStateSepBisLSE2  {
 public:
 	void entry() override;
 	void exit() override;
@@ -35,4 +32,4 @@ public:
 	void eStop() override;
 };
 
-#endif /* LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTESEPBISLSE2_H_ */
+#endif /* LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTEAUFENTNEHMENSEPBISLSE2_H_ */

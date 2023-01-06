@@ -23,17 +23,19 @@ void WarteSepBisLSE2::LsEAn(){
 	entry();
 }
 
+void WarteSepBisLSE2::LsEAus() {
+
+}
+
 void WarteSepBisLSE2::WsPassieren(){
-	if(wsListen->ws_list_passieren.size() > 0){
-		exit();
-		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
-			actions->seperatorAn();
-			new (this) WeicheGeoeffnetSepBisLSE2;
-		} else{
-			new (this) WsAufWegZuLSEndeSepBisLSE2;
-		}
-		entry();
+	exit();
+	if (!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)) {
+		actions->seperatorAn();
+		new (this) WeicheGeoeffnetSepBisLSE2;
+	} else {
+		new (this) WsAufWegZuLSEndeSepBisLSE2;
 	}
+	entry();
 }
 
 void WarteSepBisLSE2::WeicheSchliessen(){

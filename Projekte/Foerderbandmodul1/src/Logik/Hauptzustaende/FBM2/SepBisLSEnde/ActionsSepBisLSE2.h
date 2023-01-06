@@ -45,6 +45,7 @@ public:
 	virtual void FBM1WsUebergeben();
 
 	virtual void deleteTimerVerschwunden();
+	virtual void sendFBM2Bereit();
 
 	virtual void eStop();
 };

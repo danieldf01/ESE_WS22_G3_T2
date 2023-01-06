@@ -19,6 +19,10 @@ void QuittiertZuFruehSepBisLSE2::LsEAn(){
 
 }
 
+void QuittiertZuFruehSepBisLSE2::LsEAus() {
+
+}
+
 void QuittiertZuFruehSepBisLSE2::WsPassieren(){
 
 }

@@ -11,6 +11,7 @@
 #include "BaseStateSepBisLSE2.h"
 #include "FehlerWSVerschwundenSepBisLSE2.h"
 #include "FehlerWSZuFruehSepBisLSE2.h"
+#include "WarteAufEntnehmenSepBisLSE2.h"
 
 class WsAufWegZuLSEndeSepBisLSE2 : public BaseStateSepBisLSE2 {
 public:
@@ -19,6 +20,7 @@ public:
 
 	//normales Verhalten
 	void LsEAn() override;
+	void LsEAus() override;
 	void WsPassieren() override;
 	void WeicheSchliessen() override;
 	void FBM2bereit() override;

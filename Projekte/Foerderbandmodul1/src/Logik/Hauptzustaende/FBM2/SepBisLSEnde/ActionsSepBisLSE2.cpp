@@ -50,7 +50,7 @@ void ActionsSepBisLSE2::fehlerRunter(){
 }
 
 void ActionsSepBisLSE2::entferneWsPassieren(){
-	wsListen->ws_list_passieren.pop_front(); // TODO
+	wsListen->ws_passieren_2 = nullptr;
 }
 
 void ActionsSepBisLSE2::schnellRunter(){
@@ -75,7 +75,14 @@ void ActionsSepBisLSE2::stopRunter(){
 }
 
 void ActionsSepBisLSE2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_list_passieren.front().getiD());// TODO
+	zeitmanager->deleteTimer(wsListen->ws_passieren_2->getiD());
+}
+
+void ActionsSepBisLSE2::sendFBM2Bereit() {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+		perror("[FSM_LSAnfang2] MsgSendPulse failed");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void ActionsSepBisLSE2::eStop(){

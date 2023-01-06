@@ -19,6 +19,10 @@ void WeicheGeoeffnetSepBisLSE2::LsEAn(){
 
 }
 
+void WeicheGeoeffnetSepBisLSE2::LsEAus() {
+
+}
+
 void WeicheGeoeffnetSepBisLSE2::WsPassieren(){
 
 }
