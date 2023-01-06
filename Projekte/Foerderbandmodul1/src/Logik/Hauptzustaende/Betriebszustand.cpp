@@ -28,7 +28,6 @@ void Betriebszustand::handlePulse(int code, int value){
 
 	case CODE_ADC_2: //Pulse von ADC_2
 		MsgSendPulse(auswertungID2, SIGEV_PULSE_PRIO_INHERIT,	PULSE_ADC_SAMLING_WINDOW_DONE, value);
-		//cout << "ADC2 Wert erhalten" <<pulse.value.sival_int << endl;
 		//FMB2 ADC_WERT
 		break;
 
@@ -576,7 +575,10 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case WS_TYP:
-		//TODO Weiterleiten an FSM
+		if (MsgSendPulse(fsmWsErkennung2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_TYP) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		cout << "WS_TYP_2 erkannt" << endl;
 		break;
 

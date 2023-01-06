@@ -28,8 +28,13 @@ void OutputDispatcher::init(){
 }
 
 void OutputDispatcher::dispatchADC(int wert, int anlage){
-	//cout << "adc wert erhalten" << wert << endl;
-	MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlage + 2, wert);
+	if(anlage == 1){
+		//cout << "adc wert erhalten: " << wert << endl;
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_1, wert);
+	} else if(anlage == 2){
+//		cout << "OutputDispatcher adc wert von Anlage 2 erhalten: " << wert << endl;
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_2, wert);
+	}
 }
 
 void OutputDispatcher::dispatchOutput(int pin, int currentlevel){

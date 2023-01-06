@@ -27,6 +27,7 @@ public:
 	void receiveSignal();
 	void test();
 	void test2();
+	void fehlerQuittiert();
 };
 
 #endif /* INPUTDISPATCHER_H_ */

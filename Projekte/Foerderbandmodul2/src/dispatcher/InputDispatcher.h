@@ -58,6 +58,7 @@ public:
 	void test();
 	void test2();
 	int init();
+	void fehlerQuittiert();
 };
 
 

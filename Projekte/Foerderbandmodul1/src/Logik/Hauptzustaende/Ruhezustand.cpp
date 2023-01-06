@@ -290,7 +290,7 @@ void Ruhezustand::updateAuswertung(){
 	hoehenauswertung1->lookup_ADC_Value[1]= hoehenauswertung1->hoehe_hoehes_ws;
 
 	hoehenauswertung2->lookup_ADC_Value[0]= hoehenauswertung2->hoehe_laufband;
-	hoehenauswertung2->lookup_ADC_Value[2]= hoehenauswertung2->hoehe_hoehes_ws;
+	hoehenauswertung2->lookup_ADC_Value[1]= hoehenauswertung2->hoehe_hoehes_ws;
 
 	hoehenauswertung1->tiefe_loch_klein_mm = (double) dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_KLEIN_MM);
 	hoehenauswertung2->tiefe_loch_klein_mm = (double) dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_KLEIN_MM);

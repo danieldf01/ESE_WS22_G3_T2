@@ -44,7 +44,6 @@ void ContextLSAbisHS2::receiveSignal() {
 			switch (pulse.value.sival_int) {
 			//TODO cases abfangen
 			case WS_IN_LS_A_BIS_HS:
-				cout << "[FBM2] ContextLSAbisHS2 WS_IN_LS_A_BIS_HS" << endl;
 				WSinLSAbisHS();
 				break;
 			case HS_AKTIV:

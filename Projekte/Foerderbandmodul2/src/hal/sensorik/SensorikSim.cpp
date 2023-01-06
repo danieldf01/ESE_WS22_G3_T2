@@ -8,169 +8,85 @@
 #include "SensorikSim.h"
 
 SensorikSim::SensorikSim(OutputDispatcher &dispatcher, HALAktorik &halaktorik) {
-	// TODO Auto-generated constructor stub
-		outputDispatcher = &dispatcher;
-		aktorik = &halaktorik;
-		interruptID = 0;
-		// For ADC
-		tsc = new TSCADC();
-		adc = new ADC(*tsc);
+	connector = new SensorikQnet();
+	gpioSetup = new GPIOSetup();
+	outputDispatcher = &dispatcher;
+	aktorik = &halaktorik;
+	interruptID = 0;
 
-		// For the ADC output
-		count = 0;
-		adcSum = 0;
-		adcAverage = 0;
+	// For ADC
+	adcBaseAddr = 0;
+	interruptIDADC = 0;
 
+	// For the ADC output
+	count = 0;
+	adcSum = 0;
+	adcAverage = 0;
 }
 
 SensorikSim::~SensorikSim() {
-	// TODO Auto-generated destructor stub
-		outputDispatcher->~OutputDispatcher();
-		aktorik->~HALAktorik();
-		adc->~ADC();
-		tsc->~TSCADC();
+	connector->~SensorikQnet();
+	gpioSetup->~GPIOSetup();
+	outputDispatcher->~OutputDispatcher();
+	aktorik->~HALAktorik();
 }
 
 int SensorikSim::runHALSteuerung(){
 
-	/* ### Setup ### */
 	ThreadCtl(_NTO_TCTL_IO, 0);	//Request IO privileges for process.
-
 	// Request interrupt and IO abilities.
-	int procmgr_status = procmgr_ability(
-			0,
-			PROCMGR_ADN_ROOT | PROCMGR_AOP_ALLOW | PROCMGR_AID_INTERRUPT,
-			PROCMGR_ADN_NONROOT | PROCMGR_AOP_ALLOW | PROCMGR_AID_INTERRUPT,
-			PROCMGR_ADN_ROOT | PROCMGR_AOP_ALLOW | PROCMGR_AID_IO,
-			PROCMGR_ADN_NONROOT | PROCMGR_AOP_ALLOW | PROCMGR_AID_IO,
-			PROCMGR_AID_EOL
-	);
-	if(procmgr_status != EOK){
-		perror("Requested abilities failed or denied!");
-		exit(EXIT_FAILURE);
-	}
+	gpioSetup->requestGPIOAbiltiys();
+	InterruptEnable();	//Enables interrupts.
 
-	InterruptEnable();			//Enables interrupts.
+	adcBaseAddr = mmap_device_io(ADC_LENGTH, ADC_BASE); //Setup global ADC base address. todo hinzugekommen
 
-	/* ### Create channel ### */
-	int chanID = ChannelCreate(0);//Create channel to receive interrupt pulse messages.
-	if (chanID < 0) {
-		perror("Could not create a channel!\n");
-		return EXIT_FAILURE;
-	}
+	// Qnet Channel erstellen und verbinden
+	int chanID = connector->createConnection();
+	int conID = connector->openConnection(chanID);
 
-	int conID = ConnectAttach(0, 0, chanID, _NTO_SIDE_CHANNEL, 0); //Connect to channel.
-	if (conID < 0) {
-		perror("Could not connect to channel!");
-		return EXIT_FAILURE;
-	}
+	attachInterrupts(conID);
 
+	uintptr_t port0BaseAddr = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
+	//gpioSetup->configGPIOIRQEventTypes(port0BaseAddr);
+	setupGPIO(port0BaseAddr);
+
+	/* ### Start sampling ### */
+	adc_clear_interrupt();		//clear interrupt (just in case)
+	adc_enable_interrupt();		//enable interrupt
+	adc_ctrl_start_sample();	//start sampling
+
+	/* ### Start thread for handling interrupt messages. */
+	receivingRoutine(chanID);
+
+	// ENDE
+	connector->closeConnection(conID);
+	connector->destroyConnection(chanID);
+
+	return EXIT_SUCCESS;
+}
+
+void SensorikSim::attachInterrupts(int conID){
 	/* ### Register interrupts by OS. ### */
 	struct sigevent intr_event;
 	SIGEV_PULSE_INIT(&intr_event, conID, SIGEV_PULSE_PRIO_INHERIT, PULSE_INTR_ON_PORT0, 0);
 	interruptID = InterruptAttachEvent(INTR_GPIO_PORT0, &intr_event, 0);
 	if (interruptID < 0) {
 		perror("Interrupt was not able to be attached!");
-		return EXIT_FAILURE;
 	}
 
-	/* ### Configure registers to receive irq events. */
-	uintptr_t port0BaseAddr = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
+	struct sigevent event;
+	/* ### Setup interrupt ### */
+	SIGEV_PULSE_INIT(&event, conID, SIGEV_PULSE_PRIO_INHERIT,PULSE_ADC_SAMLING_DONE, 0);
 
-
-
-	// Set irq event types.
-	unsigned int temp;
-	// Enable interrupts on pins.
-	temp = (
-			BIT_MASK(LS_ANFANG_PIN) |
-			BIT_MASK(HS_HOCH_OK_PIN) |
-			BIT_MASK(LS_SEPERATOR_PIN) |
-			BIT_MASK(METALLSENSOR_PIN) |
-			BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
-			BIT_MASK(LS_RUTSCHE_PIN) |
-			BIT_MASK(LS_ENDE_PIN) |
-			BIT_MASK(T_START_PIN) |
-			BIT_MASK(T_STOP_PIN) |
-			BIT_MASK(T_RESET_PIN) |
-			BIT_MASK(E_STOP_PIN)
-	);//Add desired pins.
-	out32((uintptr_t) port0BaseAddr + GPIO_IRQSTATUS_SET_1, temp);
-
-
-
-	//	(for rising edge detection)
-	temp = in32((uintptr_t) (port0BaseAddr + GPIO_RISINGDETECT));			//Read current config.
-	temp |= (
-			BIT_MASK(LS_ANFANG_PIN) |
-			BIT_MASK(HS_HOCH_OK_PIN) |
-			BIT_MASK(LS_SEPERATOR_PIN) |
-			BIT_MASK(METALLSENSOR_PIN) |
-			BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
-			BIT_MASK(LS_RUTSCHE_PIN) |
-			BIT_MASK(LS_ENDE_PIN) |
-			BIT_MASK(T_START_PIN) |
-			BIT_MASK(T_STOP_PIN) |
-			BIT_MASK(T_RESET_PIN) |
-			BIT_MASK(E_STOP_PIN)
-	);//Add desired pins.
-
-	out32((uintptr_t) (port0BaseAddr + GPIO_RISINGDETECT), temp);			//Write new config back.
-
-	// 	(for falling edge detection)
-	temp = in32((uintptr_t) (port0BaseAddr + GPIO_FALLINGDETECT));			//Read current config.
-	temp |= (
-			BIT_MASK(LS_ANFANG_PIN) |
-			BIT_MASK(HS_HOCH_OK_PIN) |
-			BIT_MASK(LS_SEPERATOR_PIN) |
-			BIT_MASK(METALLSENSOR_PIN) |
-			BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
-			BIT_MASK(LS_RUTSCHE_PIN) |
-			BIT_MASK(LS_ENDE_PIN) |
-			BIT_MASK(T_START_PIN) |
-			BIT_MASK(T_STOP_PIN) |
-			BIT_MASK(T_RESET_PIN) |
-			BIT_MASK(E_STOP_PIN)
-	);//Add desired pins.
-	out32((uintptr_t) (port0BaseAddr + GPIO_FALLINGDETECT), temp);			//Write new config back.
-
-	/* ### Start thread for handling interrupt messages. */
-	adc->sample();
-	receivingRoutine(chanID,adc);
-
-	/* ### Cleaning up. */
-
-	// Detach interrupts.
-	int intr_detach_status = InterruptDetach(interruptID);
-	if(intr_detach_status != EOK){
-		perror("Detaching interrupt failed!");
+	/* Attach ISR  */
+	int interruptIDADC = InterruptAttachEvent(INTER_ADC, &event, 0);
+	if (interruptIDADC == -1) {
+		perror("InterruptAttach failed!");
 		exit(EXIT_FAILURE);
 	}
-
-
-	// Reset registers.
-	// ONLY IF YOUR THE ONLY PROGRAM WITH INTERRUPTS RUNNING ON THIS MACHINE!
-
-	// Close channel
-	int detach_status = ConnectDetach(conID);
-	if(detach_status != EOK){
-		perror("Detaching channel failed!");
-		exit(EXIT_FAILURE);
-	}
-
-	int destroy_status = ChannelDestroy(chanID);
-	if(destroy_status != EOK){
-		perror("Destroying channel failed!");
-		exit(EXIT_FAILURE);
-	}
-
-	return EXIT_SUCCESS;
 }
-void SensorikSim::receivingRoutine(int channelID, ADC *adc) {
 
-	//ThreadCtl( _NTO_TCTL_IO, 0);	//Request IO privileges
-
-	//_pulse msg;
+void SensorikSim::receivingRoutine(int channelID) {
 	receivingRunning = true;
 
 	while (receivingRunning) {
@@ -196,16 +112,23 @@ void SensorikSim::receivingRoutine(int channelID, ADC *adc) {
 
 			//ADC interrupt value.
 			if (msg.code == PULSE_ADC_SAMLING_DONE) {
+
+				uint32_t value = adc_read_sample_data();
+				adc_clear_interrupt();
+				InterruptUnmask(INTER_ADC, interruptIDADC);
+
 				// Sample direkt damit der naechste Interrupt vor dem Print gemacht wird!
-				adc->sample();
+				adc_ctrl_start_sample();	//Start next sampling.
+
 				// Handle ein ADC Interrupt
-				int messung = window(msg.value.sival_int);
+//				int messung = window(msg.value.sival_int);
+				int messung = value;// Wert direkt
+
 				if(messung != -1){
+//					cout << "BEFORE SEND" << messung << endl;
 					outputDispatcher->dispatchADC(messung);
 				}
 			}
-
-			// Do not ignore OS pulses!
 		}
 	}
 
@@ -271,4 +194,84 @@ int SensorikSim::window(const int messung) {
 		messung_mean = 0;
 	}
 	return ret;
+}
+
+void SensorikSim::adc_enable_interrupt(void){
+	out32((uintptr_t) adcBaseAddr + ADC_IRQ_ENABLE_SET, ADC_IRQ_PIN_MASK);
+}
+
+
+void SensorikSim::adc_disable_interrupt(void){
+	out32((uintptr_t) adcBaseAddr + ADC_IRQ_ENABLE_CLR, ADC_IRQ_PIN_MASK);
+}
+
+
+void SensorikSim::adc_clear_interrupt(void){
+	out32((uintptr_t) adcBaseAddr + ADC_IRQ_STATUS, ADC_IRQ_PIN_MASK);
+}
+
+
+void SensorikSim::adc_ctrl_start_sample(void){
+	out32((uintptr_t) adcBaseAddr + ADC_CTRL, 0x1);
+}
+
+uint32_t SensorikSim::adc_read_sample_data(void){
+	return in32((uintptr_t) adcBaseAddr + ADC_DATA);
+}
+
+void SensorikSim::setupGPIO(uintptr_t port0BaseAddr){
+	// Set irq event types.
+			unsigned int temp;
+			// Enable interrupts on pins.
+			temp = (
+					BIT_MASK(LS_ANFANG_PIN) |
+					BIT_MASK(HS_HOCH_OK_PIN) |
+					BIT_MASK(LS_SEPERATOR_PIN) |
+					BIT_MASK(METALLSENSOR_PIN) |
+					BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
+					BIT_MASK(LS_RUTSCHE_PIN) |
+					BIT_MASK(LS_ENDE_PIN) |
+					BIT_MASK(T_START_PIN) |
+					BIT_MASK(T_STOP_PIN) |
+					BIT_MASK(T_RESET_PIN) |
+					BIT_MASK(E_STOP_PIN)
+			);//Add desired pins.
+			out32((uintptr_t) port0BaseAddr + GPIO_IRQSTATUS_SET_1, temp);
+
+
+
+			//	(for rising edge detection)
+			temp = in32((uintptr_t) (port0BaseAddr + GPIO_RISINGDETECT));			//Read current config.
+			temp |= (
+					BIT_MASK(LS_ANFANG_PIN) |
+					BIT_MASK(HS_HOCH_OK_PIN) |
+					BIT_MASK(LS_SEPERATOR_PIN) |
+					BIT_MASK(METALLSENSOR_PIN) |
+					BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
+					BIT_MASK(LS_RUTSCHE_PIN) |
+					BIT_MASK(LS_ENDE_PIN) |
+					BIT_MASK(T_START_PIN) |
+					BIT_MASK(T_STOP_PIN) |
+					BIT_MASK(T_RESET_PIN) |
+					BIT_MASK(E_STOP_PIN)
+			);//Add desired pins.
+
+			out32((uintptr_t) (port0BaseAddr + GPIO_RISINGDETECT), temp);			//Write new config back.
+
+			// 	(for falling edge detection)
+			temp = in32((uintptr_t) (port0BaseAddr + GPIO_FALLINGDETECT));			//Read current config.
+			temp |= (
+					BIT_MASK(LS_ANFANG_PIN) |
+					BIT_MASK(HS_HOCH_OK_PIN) |
+					BIT_MASK(LS_SEPERATOR_PIN) |
+					BIT_MASK(METALLSENSOR_PIN) |
+					BIT_MASK(LS_ZUSTAND_SEPERATOR_PIN) |
+					BIT_MASK(LS_RUTSCHE_PIN) |
+					BIT_MASK(LS_ENDE_PIN) |
+					BIT_MASK(T_START_PIN) |
+					BIT_MASK(T_STOP_PIN) |
+					BIT_MASK(T_RESET_PIN) |
+					BIT_MASK(E_STOP_PIN)
+			);//Add desired pins.
+			out32((uintptr_t) (port0BaseAddr + GPIO_FALLINGDETECT), temp);			//Write new config back.
 }

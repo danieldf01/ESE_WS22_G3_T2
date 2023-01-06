@@ -19,14 +19,14 @@ void ActionsWsErkennung2::setupConnection(){
 }
 
 void ActionsWsErkennung2::langsamRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LANGSAM_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LANGSAM_RUNTER_2) == -1) {
 		perror("[FSM_WsErkennung2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung2::schnellRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, SCHNELL_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, SCHNELL_RUNTER_2) == -1) {
 		perror("[FSM_WsErkennung2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
