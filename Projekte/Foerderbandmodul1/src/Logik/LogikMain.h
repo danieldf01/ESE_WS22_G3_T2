@@ -40,6 +40,16 @@
 // TODO Added
 #include "Hauptzustaende/FBM2/LSAnfang/ActionsLSA2.h"
 #include "Hauptzustaende/FBM2/LSAnfang/ContextLSA2.h"
+#include "Hauptzustaende/FBM2/LSAnfangBisHS/ActionsLSAbisHS2.h"
+#include "Hauptzustaende/FBM2/LSAnfangBisHS/ContextLSAbisHS2.h"
+#include "Hauptzustaende/FBM2/WsErkennung/ActionsWsErkennung2.h"
+#include "Hauptzustaende/FBM2/WsErkennung/ContextWsErkennung2.h"
+#include "Hauptzustaende/FBM2/HSBisSep/ActionsHSBisSep2.h"
+#include "Hauptzustaende/FBM2/HSBisSep/ContextHSBisSep2.h"
+#include "Hauptzustaende/FBM2/SepBisRut/ActionsSepBisRut2.h"
+#include "Hauptzustaende/FBM2/SepBisRut/ContextSepBisRut2.h"
+//#include "Hauptzustaende/FBM2/SepBisLSEnde/ActionsSepBisLSE2.h"
+//#include "Hauptzustaende/FBM2/SepBisLSEnde/ContextSepBisLSE2.h"
 
 #define LOGIK "server_logik"
 #define INPUTDISPATCHER "server_inputdispatcher"

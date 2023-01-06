@@ -12,7 +12,6 @@ using namespace std;
 void FehlerWsVerschwundenLSAbisHS2::entry(){
 	actions->fehlerHoch();
 	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen der Lichtschranke Anfang und dem Hoehensensor verschwunden." << endl;
-	cout << "Bitte entfernen Sie in diesem Bereich " << wsListen->ws_list_LSAnfang_bis_HS.size() << " Werkstueck(e)." << endl;
 	actions->entferneWsLSAbisHS();
 }
 

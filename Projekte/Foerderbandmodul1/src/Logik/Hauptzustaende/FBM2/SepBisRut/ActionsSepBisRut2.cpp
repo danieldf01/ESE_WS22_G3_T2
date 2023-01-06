@@ -64,3 +64,10 @@ void ActionsSepBisRut2::zerstoereWsAussortieren() {
 void ActionsSepBisRut2::deleteTimerVerschwunden(){
 	zeitmanager->deleteTimer(wsListen->ws_list_aussortieren.front().getiD());
 }
+
+void ActionsSepBisRut2::sendFBM2Bereit() {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+		perror("[FSM_LSAnfang2] MsgSendPulse failed");
+		exit(EXIT_FAILURE);
+	}
+}

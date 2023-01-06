@@ -31,10 +31,13 @@ public:
 
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();
+	virtual void sendFBM2Bereit();
 
 	virtual void schnellRunter();
 	virtual void zerstoereWsAussortieren();
 	virtual void deleteTimerVerschwunden();
+
+
 };
 
 #endif /* LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISRUT_ACTIONSSEPBISRUT2_H_ */

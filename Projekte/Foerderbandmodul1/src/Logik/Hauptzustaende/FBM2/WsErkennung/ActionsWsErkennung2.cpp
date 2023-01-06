@@ -33,10 +33,12 @@ void ActionsWsErkennung2::schnellRunter(){
 }
 
 void ActionsWsErkennung2::WSinHSbisSeperator(){
-	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_2->getiD());
+
 	wsListen->ws_Hoehensensor_2->setTimestamp(zeitmanager->getTime());
-//	wsListen->ws_list_HS_bis_Seperator_2.push_back(*(wsListen->ws_Hoehensensor_2));
+	wsListen->ws_hs_bis_seperator_2 = wsListen->ws_Hoehensensor_2;
 	wsListen->ws_Hoehensensor_2 = nullptr;
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_IN_HS_BIS_SEPERATOR) == -1) {
 		perror("[FSM_WsErkennung2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
@@ -61,6 +63,22 @@ void ActionsWsErkennung2::deleteWsHoehensensor(){
 	wsListen->ws_Hoehensensor_2 = nullptr;
 }
 
+//void ActionsLSA2::sendFBM2Bereit() {
+//	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+//		perror("[FSM_LSAnfang2] MsgSendPulse failed");
+//		exit(EXIT_FAILURE);
+//	}
+//}
+
+void ActionsWsErkennung2::speicherWSTyp() {
+	// TODO
+}
+
+void ActionsWsErkennung2::checkWSueberschlagen() {
+	// TODO
+}
+
 void ActionsWsErkennung2::eStop(){
+	// TODO Hier fehlt etwas
 //	wsListen->ws_list_HS_bis_Seperator_2.clear();
 }

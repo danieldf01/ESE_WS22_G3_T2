@@ -16,11 +16,10 @@ void WartenLSAbisHS2::exit(){
 }
 
 void WartenLSAbisHS2::WSinLSAbisHS(){
-	if(wsListen->ws_list_LSAnfang_bis_HS.size() > 0){
-		exit();
-		new (this) WsAufWegZumHsLSAbisHS2;
-		entry();
-	}
+	cout << "[FBM2] Zustand: WartenLSAbisHS2 recv: WSinLSAbisHS" << endl;
+	exit();
+	new (this) WsAufWegZumHsLSAbisHS2;
+	entry();
 }
 
 void WartenLSAbisHS2::HSaktiv(){

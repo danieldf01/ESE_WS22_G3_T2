@@ -101,6 +101,10 @@ void LogikMain::startFSMs() {
 //	t_WsNichtAussortierbar.detach();
 //	state->fsmWsNichtAussortierbar_ID = qnetHandler->connectServer(S_F_WS_NICHT_AUSSORTIERBAR);
 
+	/**
+	 * FBM1 FSM's Threads
+	 */
+
 	ContextLSA1 *contextLSAnfang = new ContextLSA1(new ActionsLSA1, ref(wsListen), ref(state->zeitFBM1));
 	thread t_LSA1(&ContextLSA1::receiveSignal, ref(contextLSAnfang));
 	t_LSA1.detach();
@@ -129,12 +133,23 @@ void LogikMain::startFSMs() {
 	ContextSepBisLSE1 *contextSepBisLSEnde = new ContextSepBisLSE1(new ActionsSepBisLSE1, ref(wsListen), ref(state->zeitFBM1), ref(state->dateiManager));
 	thread t_SepBisLSEnde(&ContextSepBisLSE1::receiveSignal, ref(contextSepBisLSEnde));
 	t_SepBisLSEnde.detach();
-	state->fsmSepBisLSEnde_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE);
+	state->fsmSepBisLSEnde1_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE);
 
-
-	// TODO NEED TO BE TESTED
+	/**
+	 * FBM2 FSM's Threads
+	 */
 	ContextLSA2 *contextLSAnfang2 = new ContextLSA2(new ActionsLSA2, ref(wsListen), ref(state->zeitFBM2));
 	thread t_LSA2(&ContextLSA2::receiveSignal, ref(contextLSAnfang2));
 	t_LSA2.detach();
 	state->fsmLSA2_ID = qnetHandler->connectServer(S_LSANFANG2);
+
+	ContextLSAbisHS2 *contextLSAnfangBisHS2 = new ContextLSAbisHS2(new ActionsLSAbisHS2, ref(wsListen), ref(state->zeitFBM2));
+	thread t_LSAbisHS2(&ContextLSAbisHS2::receiveSignal, ref(contextLSAnfangBisHS2));
+	t_LSAbisHS2.detach();
+	state->fsmLSAbisHS2_ID = qnetHandler->connectServer(S_LSA_BIS_HS2);
+
+	ContextWsErkennung2 *contextWsErkennung2 = new ContextWsErkennung2(new ActionsWsErkennung2, ref(wsListen), ref(state->zeitFBM2));
+	thread t_WsErkennung2(&ContextWsErkennung2::receiveSignal, ref(contextWsErkennung2));
+	t_WsErkennung2.detach();
+	state->fsmWsErkennung2_ID = qnetHandler->connectServer(S_WS_ERKENNUNG2);
 }
