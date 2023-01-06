@@ -34,14 +34,6 @@ void WeicheGeoeffnetSepBisLSE2::WeicheSchliessen(){
 	entry();
 }
 
-void WeicheGeoeffnetSepBisLSE2::FBM2bereit(){
-
-}
-
-void WeicheGeoeffnetSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void WeicheGeoeffnetSepBisLSE2::quittiert(){
 
 }

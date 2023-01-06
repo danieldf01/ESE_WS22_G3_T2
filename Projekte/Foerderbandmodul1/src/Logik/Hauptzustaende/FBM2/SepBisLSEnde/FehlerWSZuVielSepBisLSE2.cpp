@@ -35,14 +35,6 @@ void FehlerWSZuVielSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void FehlerWSZuVielSepBisLSE2::FBM2bereit(){
-
-}
-
-void FehlerWSZuVielSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void FehlerWSZuVielSepBisLSE2::quittiert(){
 	exit();
 	new (this) QuittiertZuVielSepBisLSE2;

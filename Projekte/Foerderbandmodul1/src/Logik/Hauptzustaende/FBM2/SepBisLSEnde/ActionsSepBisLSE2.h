@@ -40,10 +40,6 @@ public:
 	virtual void stopHoch();
 	virtual void stopRunter();
 
-	virtual void FBM1bereit();
-	virtual void FBM1WsLosgeschickt();
-	virtual void FBM1WsUebergeben();
-
 	virtual void deleteTimerVerschwunden();
 	virtual void sendFBM2Bereit();
 

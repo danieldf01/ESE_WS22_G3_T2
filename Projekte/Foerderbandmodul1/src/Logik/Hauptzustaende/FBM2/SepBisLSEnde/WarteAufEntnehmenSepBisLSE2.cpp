@@ -26,12 +26,6 @@ void WarteAufEntnehmenSepBisLSE2::WsPassieren() {
 void WarteAufEntnehmenSepBisLSE2::WeicheSchliessen() {
 }
 
-void WarteAufEntnehmenSepBisLSE2::FBM2bereit() {
-}
-
-void WarteAufEntnehmenSepBisLSE2::WsWurdeUebergeben() {
-}
-
 void WarteAufEntnehmenSepBisLSE2::quittiert() {
 }
 

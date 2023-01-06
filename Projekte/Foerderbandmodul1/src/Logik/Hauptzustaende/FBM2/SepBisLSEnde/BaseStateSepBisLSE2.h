@@ -33,8 +33,6 @@ public:
 	virtual void LsEAus() = 0;
 	virtual void WsPassieren() = 0;
 	virtual void WeicheSchliessen() = 0;
-	virtual void FBM2bereit() = 0;
-	virtual void WsWurdeUebergeben() = 0;
 
 	//Fehlerverhalten
 	virtual void quittiert() = 0;

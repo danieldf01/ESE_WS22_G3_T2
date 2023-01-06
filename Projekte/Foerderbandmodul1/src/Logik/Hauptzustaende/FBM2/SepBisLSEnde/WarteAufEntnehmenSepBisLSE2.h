@@ -20,8 +20,6 @@ public:
 	void LsEAus() override;
 	void WsPassieren() override;
 	void WeicheSchliessen() override;
-	void FBM2bereit() override;
-	void WsWurdeUebergeben() override;
 
 	//Fehlerverhalten
 	void quittiert() override;

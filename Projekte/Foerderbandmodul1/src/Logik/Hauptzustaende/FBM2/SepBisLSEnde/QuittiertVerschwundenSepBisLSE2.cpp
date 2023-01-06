@@ -31,14 +31,6 @@ void QuittiertVerschwundenSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void QuittiertVerschwundenSepBisLSE2::FBM2bereit(){
-
-}
-
-void QuittiertVerschwundenSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void QuittiertVerschwundenSepBisLSE2::quittiert(){
 
 }

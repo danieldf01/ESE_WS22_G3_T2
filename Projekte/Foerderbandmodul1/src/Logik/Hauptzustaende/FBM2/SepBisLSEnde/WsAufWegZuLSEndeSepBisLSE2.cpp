@@ -45,14 +45,6 @@ void WsAufWegZuLSEndeSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void WsAufWegZuLSEndeSepBisLSE2::FBM2bereit(){
-
-}
-
-void WsAufWegZuLSEndeSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void WsAufWegZuLSEndeSepBisLSE2::quittiert(){
 
 }

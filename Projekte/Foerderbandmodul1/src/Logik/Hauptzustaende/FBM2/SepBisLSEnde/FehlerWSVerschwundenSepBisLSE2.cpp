@@ -35,14 +35,6 @@ void FehlerWSVerschwundenSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void FehlerWSVerschwundenSepBisLSE2::FBM2bereit(){
-
-}
-
-void FehlerWSVerschwundenSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void FehlerWSVerschwundenSepBisLSE2::quittiert(){
 	exit();
 	actions->schnellRunter();

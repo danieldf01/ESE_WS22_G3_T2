@@ -45,17 +45,14 @@ void ContextSepBisLSE2::receiveSignal() {
 			case LS_ENDE_AN:
 				LsEAn();
 				break;
+			case LS_ENDE_AUS:
+				LsEAus();
+				break;
 			case WS_PASSIEREN:
 				WsPassieren();
 				break;
 			case ZEIT_WEICHE:
 				WeicheSchliessen();
-				break;
-			case FBM2_BEREIT:
-				FBM2bereit();
-				break;
-			case ZEIT_UEBERGABE_AN_FBM2:
-				WsWurdeUebergeben();
 				break;
 			case QUITTIERT:
 				quittiert();
@@ -85,20 +82,16 @@ void ContextSepBisLSE2::LsEAn(){
 	state->LsEAn();
 }
 
+void ContextSepBisLSE2::LsEAus() {
+	state->LsEAus();
+}
+
 void ContextSepBisLSE2::WsPassieren(){
 	state->WsPassieren();
 }
 
 void ContextSepBisLSE2::WeicheSchliessen(){
 	state->WeicheSchliessen();
-}
-
-void ContextSepBisLSE2::FBM2bereit(){
-	state->FBM2bereit();
-}
-
-void ContextSepBisLSE2::WsWurdeUebergeben(){
-	state->WsWurdeUebergeben();
 }
 
 void ContextSepBisLSE2::quittiert(){

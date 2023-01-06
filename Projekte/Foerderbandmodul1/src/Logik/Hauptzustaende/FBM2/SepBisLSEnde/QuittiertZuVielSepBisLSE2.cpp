@@ -31,14 +31,6 @@ void QuittiertZuVielSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void QuittiertZuVielSepBisLSE2::FBM2bereit(){
-
-}
-
-void QuittiertZuVielSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void QuittiertZuVielSepBisLSE2::quittiert(){
 
 }

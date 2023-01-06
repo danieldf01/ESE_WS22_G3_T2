@@ -33,14 +33,6 @@ void FehlerWSZuFruehSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void FehlerWSZuFruehSepBisLSE2::FBM2bereit(){
-
-}
-
-void FehlerWSZuFruehSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void FehlerWSZuFruehSepBisLSE2::quittiert(){
 	exit();
 	new (this) QuittiertZuFruehSepBisLSE2;

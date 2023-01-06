@@ -42,14 +42,6 @@ void WarteSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void WarteSepBisLSE2::FBM2bereit(){
-
-}
-
-void WarteSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void WarteSepBisLSE2::quittiert(){
 
 }

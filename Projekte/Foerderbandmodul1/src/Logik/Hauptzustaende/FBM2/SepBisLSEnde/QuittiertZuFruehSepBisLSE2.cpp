@@ -31,14 +31,6 @@ void QuittiertZuFruehSepBisLSE2::WeicheSchliessen(){
 
 }
 
-void QuittiertZuFruehSepBisLSE2::FBM2bereit(){
-
-}
-
-void QuittiertZuFruehSepBisLSE2::WsWurdeUebergeben(){
-
-}
-
 void QuittiertZuFruehSepBisLSE2::quittiert(){
 
 }
