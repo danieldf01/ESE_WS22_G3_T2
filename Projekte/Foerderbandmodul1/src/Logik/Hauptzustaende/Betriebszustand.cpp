@@ -568,8 +568,11 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case HS_AKTIV:
-		//TODO Weiterleiten an FSM
-		cout << "HS_AKTIV_2" << endl;
+		cout << "Betriebszustand recv: HS_AKTIV" << endl;
+		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		break;
 
 	case WS_TYP:
@@ -578,11 +581,17 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case WS_IN_LS_A_BIS_HS:
-		//TODO Weiterleiten an FSM
+		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_IN_LS_A_BIS_HS) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		break;
 
 	case WS_IN_HS:
-		//TODO Weiterleiten an FSM
+		if (MsgSendPulse(fsmWsErkennung2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_IN_HS) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		break;
 
 	case TIMER_RUTSCHE:
