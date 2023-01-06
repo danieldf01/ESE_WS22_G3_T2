@@ -752,9 +752,16 @@ void Betriebszustand::pulseZeit1(int value){
  *
  */
 void Betriebszustand::pulseZeit2(int value){
+	// TODO missing signals!!!
 	switch(value){
 	case FEHLER_WS_VERSCHWUNDEN_LSA2:
 		if (MsgSendPulse(fsmLSA2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_LSA2) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+	case ZEIT_WEICHE:
+		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ZEIT_WEICHE) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
