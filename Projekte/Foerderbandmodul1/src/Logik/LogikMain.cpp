@@ -158,12 +158,12 @@ void LogikMain::startFSMs() {
 	t_HSbisSep2.detach();
 	state->fsmHSbisSep2_ID = qnetHandler->connectServer(S_HS_BIS_SEP2);
 
-//	ContextSepBisRut2 *contextSepBisRut2 = new ContextSepBisRut2(new ActionsSepBisRut2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
-//	thread t_SepBisRut2(&ContextSepBisRut2::receiveSignal, ref(contextSepBisRut2));
-//	t_SepBisRut2.detach();
-//	state->fsmSepBisRut2_ID = qnetHandler->connectServer(S_SEP_BIS_RUT2);
+	ContextSepBisRut2 *contextSepBisRut2 = new ContextSepBisRut2(new ActionsSepBisRut2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
+	thread t_SepBisRut2(&ContextSepBisRut2::receiveSignal, ref(contextSepBisRut2));
+	t_SepBisRut2.detach();
+	state->fsmSepBisRut2_ID = qnetHandler->connectServer(S_SEP_BIS_RUT2);
 
-//	ContextSepBisLSE2 *contextSepBisLSEnde = new ContextSepBisLSE2(new ActionsSepBisLSE2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
+//	ContextSepBisLSE2 *contextSepBisLSEnde2 = new ContextSepBisLSE2(new ActionsSepBisLSE2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
 //	thread t_SepBisLSEnde2(&ContextSepBisLSE2::receiveSignal, ref(contextSepBisLSEnde2));
 //	t_SepBisLSEnde2.detach();
 //	state->fsmSepBisLSEnde2_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE2);

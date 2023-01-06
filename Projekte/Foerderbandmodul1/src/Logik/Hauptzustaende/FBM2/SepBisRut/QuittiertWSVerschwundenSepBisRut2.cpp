@@ -28,18 +28,11 @@ void QuittiertWSVerschwundenSepBisRut2::quittiert() {
 
 void QuittiertWSVerschwundenSepBisRut2::keinFehler() {
 	exit();
+	actions->deleteTimerVerschwunden(); // TODO Hier timer delete?
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
-//	if (wsListen->ws_list_aussortieren_2.size() > 0) {
-//		if (konfig->get_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE)) { // Es ist ein Auswerfer TODO Auswerfer als Konfi Code anlegen
-//			actions->seperatorAn();
-//			new (this) AuswerferAusgefahrenSepBisRut2;
-//		} else { // Es ist eine Weiche
-//			new (this) AuswerferEingefahrenSepBisRut2;
-//		}
-//	} else if (wsListen->ws_list_aussortieren.size() <= 0) {
-//		new (this) WarteSepBisRut2;
-//	}
+	actions->sendFBM2Bereit();
+	new (this) WarteSepBisRut2;
 	entry();
 }
 

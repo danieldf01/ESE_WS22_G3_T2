@@ -454,6 +454,10 @@ void Betriebszustand::pulseFBM2(int value) {
 
 	case LS_RUTSCHE_AN: //active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AN);
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		break;
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AUS);
@@ -580,7 +584,6 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		cout << "WS_TYP_2 erkannt" << endl;
 		break;
 
 	case WS_IN_LS_A_BIS_HS:
