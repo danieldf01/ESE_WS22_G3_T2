@@ -57,10 +57,8 @@ void Kommunikation::receiveSignal() {
 				pulseFBM2(pulse.value.sival_int);
 				break;
 
-			case CODE_ADC_1:	//ADC Wert Anlage 1
-				break;
-
 			case CODE_ADC_2:	//ADC Wert Anlage 2
+				sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_2, pulse.value.sival_int);
 				break;
 
 			default:
@@ -91,31 +89,31 @@ void Kommunikation::receiveSignal() {
 void Kommunikation::pulseFBM1(int value){
 	switch (value) {
 
-		case WATCHDOG_ESTOP:
+	case WATCHDOG_ESTOP:
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, WATCHDOG_ESTOP);
 		break;
 
-		case ESTOP_AN:
+	case ESTOP_AN:
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AN_2);
 		break;
-		case ESTOP_AUS:
+	case ESTOP_AUS:
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AUS_2);
 		break;
 
 		//init watchdog
-		case WATCHDOG_INIT: {
-			init();
-			sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_INIT);
-			watchdog = new Watchdog(attach->chid);
-			thread startWD(&Watchdog::init, ref(watchdog));
-			startWD.detach();
-			break;
-		}
+	case WATCHDOG_INIT: {
+		init();
+		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_INIT);
+		watchdog = new Watchdog(attach->chid);
+		thread startWD(&Watchdog::init, ref(watchdog));
+		startWD.detach();
+		break;
+	}
 
-		/*
-		 * Watchdog notify
-		 */
-		case WATCHDOG_NOTIF:
+	/*
+	 * Watchdog notify
+	 */
+	case WATCHDOG_NOTIF:
 		watchdogM.lock();
 		if(!watchdogES) {
 			watchdog->notify();
@@ -123,71 +121,76 @@ void Kommunikation::pulseFBM1(int value){
 		watchdogM.unlock();
 		break;
 
-		case INIT_NOTIF:
+	case INIT_NOTIF:
 		init();
 		break;
 
-		case FEHLER_AN:
+	case FEHLER_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AN);
 		break;
-		case FEHLER_AUS:
+	case FEHLER_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 		break;
 
-		case STOP_AN:
+	case STOP_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_AN);
 		break;
-		case STOP_AUS:
+	case STOP_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_AUS);
 		break;
 
-		case MOTOR_AN:
+	case MOTOR_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_AN);
 		break;
-		case MOTOR_AUS:
+	case MOTOR_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_AUS);
 		break;
 
-		case MOTOR_STOP_AN:
+	case MOTOR_STOP_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_STOP_AN);
 		break;
-		case MOTOR_STOP_AUS:
+	case MOTOR_STOP_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_STOP_AUS);
 		break;
 
-		case MOTOR_LANGSAM_AN:
+	case MOTOR_LANGSAM_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_LANGSAM_AN);
 		break;
-		case MOTOR_LANGSAM_AUS:
+	case MOTOR_LANGSAM_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, MOTOR_LANGSAM_AUS);
 		break;
 
-		case SEP_AN:
+	case SEP_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
 		break;
-		case SEP_AUS:
+	case SEP_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS);
 		break;
 
-		case RUTSCHE_VOLL:
+	case RUTSCHE_VOLL:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, RUTSCHE_VOLL);
 		break;
-		case RUTSCHE_FREI:
+	case RUTSCHE_FREI:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, RUTSCHE_FREI);
 		break;
 
-		case BETRIEBSMODUS_AN:
+	case BETRIEBSMODUS_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
 		break;
-		case BETRIEBSMODUS_AUS:
+	case BETRIEBSMODUS_AUS:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
 		break;
-
-		case FEHLER_QUITTIERT:
-			cout << "received fehler quittiert" << endl;
+	case SERVICE_MODE_AN:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AN);
+		break;
+	case SERVICE_MODE_AUS:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AUS);
+		break;
+	case FEHLER_QUITTIERT:
+		cout << "received fehler quittiert" << endl;
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_QUITTIERT);
 		break;
-		case FEHLER_G_UNQUITTIERT:
+	case FEHLER_G_UNQUITTIERT:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
 		break;
 	}
@@ -300,7 +303,7 @@ void Kommunikation::pulseFBM2(int value){
 }
 
 void Kommunikation::sendPulse(int coid, int prio, int code, int value) {
-//TODO test pulse message, muss vorher je nach Fall konstruiert werden
+	//TODO test pulse message, muss vorher je nach Fall konstruiert werden
 	if ((MsgSendPulse(coid, prio, code, value)) != 0) {
 		perror("[KommunikationSlave] failed to send pulse message");
 		exit(EXIT_FAILURE);

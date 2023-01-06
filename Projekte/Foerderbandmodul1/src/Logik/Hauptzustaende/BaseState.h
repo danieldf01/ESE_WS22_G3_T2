@@ -44,8 +44,16 @@ public:
 	int fsmWsErkennung1_ID;
 	int fsmHSbisSep1_ID;
 	int fsmSepBisRut1_ID;
-	int fsmSepBisLSEnde_ID;
-	int fsmLSA2_ID; //TODO Hinzugefügt
+	int fsmSepBisLSEnde1_ID;
+
+	// TODO ALLE IDS added
+	int fsmLSA2_ID;
+	int fsmLSAbisHS2_ID;
+	int fsmWsErkennung2_ID;
+	int fsmHSbisSep2_ID;
+	int fsmSepBisRut2_ID;
+	int fsmSepBisLSEnde2_ID;
+
 	int motorID;
 	int rutschenID;
 

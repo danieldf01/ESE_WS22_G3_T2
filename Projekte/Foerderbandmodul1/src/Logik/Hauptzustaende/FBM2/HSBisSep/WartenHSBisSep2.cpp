@@ -14,11 +14,10 @@ void WartenHSBisSep2::exit() {
 }
 
 void WartenHSBisSep2::WSinHSbisSep() {
-//	if(wsListen->ws_list_HS_bis_Seperator_2.size() > 0){
-//		exit();
-//		new (this) WSAufWegZumSep2;
-//		entry();
-//	}
+	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
+	exit();
+	new (this) WSAufWegZumSep2;
+	entry();
 }
 
 void WartenHSBisSep2::MetSenAn() {

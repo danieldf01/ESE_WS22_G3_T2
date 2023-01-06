@@ -33,6 +33,7 @@ public:
 	virtual void entferneWsLSAbisHS();
 	virtual void schnellRunter();
 	virtual void HSleeren();
+	virtual void sendFBM2Bereit();
 	virtual void eStop();
 };
 

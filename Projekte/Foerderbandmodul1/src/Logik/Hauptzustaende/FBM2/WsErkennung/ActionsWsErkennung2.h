@@ -27,12 +27,19 @@ public:
 	void setZeitmanager(Zeitmanager *zeitmanager) {this->zeitmanager = zeitmanager;};
 
 	virtual void setupConnection();
-	virtual void langsamRunter();
-	virtual void schnellRunter();
+
+	// normales verhalten
+	virtual void speicherWSTyp();
+	virtual void checkWSueberschlagen();
 	virtual void WSinHSbisSeperator();
+
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();
 	virtual void deleteWsHoehensensor();
+
+	virtual void langsamRunter();
+	virtual void schnellRunter();
+
 	virtual void eStop();
 };
 

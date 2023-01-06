@@ -20,15 +20,14 @@ void WsAufWegZumHsLSAbisHS2::WSinLSAbisHS(){
 }
 
 void WsAufWegZumHsLSAbisHS2::HSaktiv(){
+	cout << "[FBM2] Zustand: WsAufWegZumHsLSAbisHS2 recv: HSaktiv" << endl;
 	exit();
-//	if(zeitmanager->getTime() < (1800 + wsListen->ws_list_LSAnfang_bis_HS_2.front().getTimestamp())){
-//		new (this) FehlerWsZuFruehLSAbisHS2;
-//	} else{
-//		actions->WSinHS();
-//		if(wsListen->ws_list_LSAnfang_bis_HS_2.size() <= 0){
-//			new (this) WartenLSAbisHS2;
-//		}
-//	}
+	if(zeitmanager->getTime() < (1800 + wsListen->ws_ls_anfang_bis_hs_2->getTimestamp())){
+		new (this) FehlerWsZuFruehLSAbisHS2;
+	} else{
+		actions->WSinHS();
+		new (this) WartenLSAbisHS2;
+	}
 	entry();
 }
 

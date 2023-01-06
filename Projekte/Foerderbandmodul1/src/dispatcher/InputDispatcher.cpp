@@ -82,6 +82,15 @@ void InputDispatcher::receiveSignal() {
 				case BETRIEBSMODUS_AUS:
 					hal->lampe->lampeGruenAus();
 					break;
+				case SERVICE_MODE_AN:
+				{
+					thread t_service_mode(&Ampel::blinken, hal->ampel, Gruen, SEKUNDE);
+					t_service_mode.detach();
+					break;
+				}
+				case SERVICE_MODE_AUS:
+					hal->ampel->lampeBlinkenAus(Gruen);
+					break;
 
 				case FEHLER_AN:
 				{
@@ -93,16 +102,16 @@ void InputDispatcher::receiveSignal() {
 				}
 
 				case FEHLER_AUS:
+					hal->ampel->lampeBlinkenAus(Rot);
 					hal->lampe->lampeRotAus();
 					break;
 
 				case FEHLER_QUITTIERT:
-					hal->ampel->lampeBlinkenAus(Rot);
-					//TODO in Methode schreiben
-					this_thread::sleep_for(chrono::milliseconds(1000));
-					hal->lampe->lampeRotAn();
+				{
+					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
+					t_fehler_quittiert.detach();
 					break;
-
+				}
 				case FEHLER_G_UNQUITTIERT:
 				{
 					hal->ampel->lampeBlinkenAus(Rot);
@@ -195,4 +204,9 @@ void InputDispatcher::test() {
 
 void InputDispatcher::test2() {
 	hal->ampel->lampeBlinkenAus(Gelb);
+}
+void InputDispatcher::fehlerQuittiert(){
+	hal->ampel->lampeBlinkenAus(Rot);
+	this_thread::sleep_for(chrono::milliseconds(1000));
+	hal->lampe->lampeRotAn();
 }

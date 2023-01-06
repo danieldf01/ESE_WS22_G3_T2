@@ -58,10 +58,8 @@ void Kommunikation::receiveSignal() {
 				pulseFBM2(pulse.value.sival_int);
 				break;
 
-			case CODE_ADC_1:	//ADC Wert Anlage 1
-				break;
-
 			case CODE_ADC_2:	//ADC Wert Anlage 2
+				outputDispatcher->dispatchADC(pulse.value.sival_int, 2);
 				break;
 
 			default:	//received some other (unexpected) pulse message
@@ -170,6 +168,12 @@ void Kommunikation::pulseFBM1(int value){
 		break;
 	case BETRIEBSMODUS_AUS:
 		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, BETRIEBSMODUS_AUS);
+		break;
+	case SERVICE_MODE_AN:
+		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, SERVICE_MODE_AN);
+		break;
+	case SERVICE_MODE_AUS:
+		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, SERVICE_MODE_AUS);
 		break;
 
 	case FEHLER_QUITTIERT:

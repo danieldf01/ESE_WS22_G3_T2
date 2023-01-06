@@ -19,33 +19,42 @@ void ActionsHSBisSep2::setupConnection(){
 }
 
 void ActionsHSBisSep2::setMetallTrue(){
-//	if(wsListen->ws_list_HS_bis_Seperator_2.front().getWsTyp() == HOCH_MB){
-//		wsListen->ws_list_HS_bis_Seperator_2.front().setWsTyp(HOCH_MBM);
-//	} else{
-//		wsListen->ws_list_HS_bis_Seperator_2.front().setWsTyp(UNBEKANNT);
-//	}
+	if(wsListen->ws_hs_bis_seperator_2->getWsTyp() == HOCH_MB){
+		wsListen->ws_hs_bis_seperator_2->setWsTyp(HOCH_MBM);
+	} else{
+		wsListen->ws_hs_bis_seperator_2->setWsTyp(UNBEKANNT);
+	}
 }
 
-void ActionsHSBisSep2::WsPassierenGefordert(){
+void ActionsHSBisSep2::WsPassieren(){
+
+	// update Reihung
 	int temp = wsListen->sortierReihenfolge.front();
 	wsListen->sortierReihenfolge.pop_front();
 	wsListen->sortierReihenfolge.push_back(temp);
-	Werkstueck temp_ws = wsListen->ws_list_HS_bis_Seperator.front();
-//	wsListen->ws_list_HS_bis_Seperator_2.pop_front();
-	temp_ws.setTimestamp(zeitmanager->getTime());
-//	wsListen->ws_list_passieren_2.push_back(temp_ws);
+
+	// update Werkstuecke
+	Werkstueck *temp_ws = wsListen->ws_hs_bis_seperator_2;
+	temp_ws->setTimestamp(zeitmanager->getTime());
+	wsListen->ws_passieren_2 = temp_ws;
+	wsListen->ws_hs_bis_seperator_2 = nullptr;
+
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_PASSIEREN) == -1) {
 		perror("[FSM_HSbisSeperator2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
-void ActionsHSBisSep2::WsPassierenNichtGefordert(){
-//	Werkstueck temp_ws = wsListen->ws_list_HS_bis_Seperator_2.front();
-//	wsListen->ws_list_HS_bis_Seperator_2.pop_front();
-//	temp_ws.setTimestamp(zeitmanager->getTime());
-//	wsListen->ws_list_passieren_2.push_back(temp_ws);
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_PASSIEREN) == -1) {
+void ActionsHSBisSep2::WsAussortieren(){
+
+	// update Werkstuecke
+	Werkstueck *temp_ws = wsListen->ws_hs_bis_seperator_2;
+	temp_ws->setTimestamp(zeitmanager->getTime());
+	wsListen->ws_passieren_2 = temp_ws;
+	wsListen->ws_hs_bis_seperator_2 = nullptr;
+
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_AUSSORTIEREN) == -1) {
 		perror("[FSM_HSbisSeperator2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -54,17 +63,6 @@ void ActionsHSBisSep2::WsPassierenNichtGefordert(){
 void ActionsHSBisSep2::WsNichtAussortierbar(){
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_NICHT_AUSSORTIERBAR) == -1) {
 		perror("[FSM_HSbisSeperator] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void ActionsHSBisSep2::WsAussortieren(){
-//	Werkstueck temp_ws = wsListen->ws_list_HS_bis_Seperator_2.front();
-//	wsListen->ws_list_HS_bis_Seperator_2.pop_front();
-//	temp_ws.setTimestamp(zeitmanager->getTime());
-//	wsListen->ws_list_aussortieren_2.push_back(temp_ws);
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_AUSSORTIEREN) == -1) {
-		perror("[FSM_HSbisSeperator2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -96,6 +94,13 @@ void ActionsHSBisSep2::schnellRunter(){
 
 void ActionsHSBisSep2::deleteTimerVerschwunden(){
 	zeitmanager->deleteTimer(wsListen->ws_list_HS_bis_Seperator.back().getiD());
+}
+
+void ActionsHSBisSep2::sendFBM2Bereit() {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+		perror("[FSM_LSAnfang2] MsgSendPulse failed");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void ActionsHSBisSep2::eStop(){

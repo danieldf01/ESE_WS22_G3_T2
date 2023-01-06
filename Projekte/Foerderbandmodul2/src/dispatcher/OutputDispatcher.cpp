@@ -31,7 +31,6 @@ void OutputDispatcher::init(){
 }
 
 void OutputDispatcher::dispatchADC(int wert){
-	////cout << "adc wert erhalten" << wert << endl;
 	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL+4,wert);
 	//TODO schicke ADC Wert an Logik Komponente
 
