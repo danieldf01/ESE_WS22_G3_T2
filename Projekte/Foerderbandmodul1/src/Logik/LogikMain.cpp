@@ -152,4 +152,19 @@ void LogikMain::startFSMs() {
 	thread t_WsErkennung2(&ContextWsErkennung2::receiveSignal, ref(contextWsErkennung2));
 	t_WsErkennung2.detach();
 	state->fsmWsErkennung2_ID = qnetHandler->connectServer(S_WS_ERKENNUNG2);
+
+	ContextHSBisSep2 *contextHSbisSep2 = new ContextHSBisSep2(new ActionsHSBisSep2, ref(wsListen), ref(state->zeitFBM2), ref(rutschenSteuerung));
+	thread t_HSbisSep2(&ContextHSBisSep2::receiveSignal, ref(contextHSbisSep2));
+	t_HSbisSep2.detach();
+	state->fsmHSbisSep2_ID = qnetHandler->connectServer(S_HS_BIS_SEP2);
+
+//	ContextSepBisRut2 *contextSepBisRut2 = new ContextSepBisRut2(new ActionsSepBisRut2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
+//	thread t_SepBisRut2(&ContextSepBisRut2::receiveSignal, ref(contextSepBisRut2));
+//	t_SepBisRut2.detach();
+//	state->fsmSepBisRut2_ID = qnetHandler->connectServer(S_SEP_BIS_RUT2);
+
+//	ContextSepBisLSE2 *contextSepBisLSEnde = new ContextSepBisLSE2(new ActionsSepBisLSE2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
+//	thread t_SepBisLSEnde2(&ContextSepBisLSE2::receiveSignal, ref(contextSepBisLSEnde2));
+//	t_SepBisLSEnde2.detach();
+//	state->fsmSepBisLSEnde2_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE2);
 }

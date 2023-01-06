@@ -105,8 +105,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case METALLSENSOR_AN:	//active high+
-		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, METALLSENSOR_AN);
+		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, METALLSENSOR_AN);
 		break;
 
 	case LS_ZUSTAND_SEPERATOR_AN:	//active high+
@@ -448,6 +447,7 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case LS_SEPERATOR_AN: //active low+
+		MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, LS_SEPERATOR_AN);
 		break;
 	case LS_SEPERATOR_AUS:	//active low+
 		break;
@@ -474,6 +474,7 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case METALLSENSOR_AN:	//active high+
+		MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, METALLSENSOR_AN);
 		break;
 	case METALLSENSOR_AUS: //active high+
 		break;
@@ -594,6 +595,34 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
+		break;
+
+	case WS_IN_HS_BIS_SEPERATOR:
+		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
+		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		// TODO Timer fehlt
+		//zeitFBM1->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_list_HS_bis_Seperator.back().getiD());
+		break;
+
+	case WS_PASSIEREN:
+		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		// TODO Timer fehlt
+		//zeitFBM1->startMessung(4000 + zeitFBM1->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE,wsListen->ws_list_passieren.back().getiD());
+		break;
+
+	case WS_AUSSORTIEREN:
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		// TODO Timer fehlt
+		//zeitFBM1->startMessung(3000 + zeitFBM1->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,wsListen->ws_list_aussortieren.back().getiD());
 		break;
 
 	case TIMER_RUTSCHE:
