@@ -48,8 +48,8 @@
 #include "Hauptzustaende/FBM2/HSBisSep/ContextHSBisSep2.h"
 #include "Hauptzustaende/FBM2/SepBisRut/ActionsSepBisRut2.h"
 #include "Hauptzustaende/FBM2/SepBisRut/ContextSepBisRut2.h"
-//#include "Hauptzustaende/FBM2/SepBisLSEnde/ActionsSepBisLSE2.h"
-//#include "Hauptzustaende/FBM2/SepBisLSEnde/ContextSepBisLSE2.h"
+#include "Hauptzustaende/FBM2/SepBisLSEnde/ActionsSepBisLSE2.h"
+#include "Hauptzustaende/FBM2/SepBisLSEnde/ContextSepBisLSE2.h"
 
 #define LOGIK "server_logik"
 #define INPUTDISPATCHER "server_inputdispatcher"

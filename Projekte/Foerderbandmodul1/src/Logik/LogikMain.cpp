@@ -163,8 +163,8 @@ void LogikMain::startFSMs() {
 	t_SepBisRut2.detach();
 	state->fsmSepBisRut2_ID = qnetHandler->connectServer(S_SEP_BIS_RUT2);
 
-//	ContextSepBisLSE2 *contextSepBisLSEnde2 = new ContextSepBisLSE2(new ActionsSepBisLSE2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
-//	thread t_SepBisLSEnde2(&ContextSepBisLSE2::receiveSignal, ref(contextSepBisLSEnde2));
-//	t_SepBisLSEnde2.detach();
-//	state->fsmSepBisLSEnde2_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE2);
+	ContextSepBisLSE2 *contextSepBisLSEnde2 = new ContextSepBisLSE2(new ActionsSepBisLSE2, ref(wsListen), ref(state->zeitFBM2), ref(state->dateiManager));
+	thread t_SepBisLSEnde2(&ContextSepBisLSE2::receiveSignal, ref(contextSepBisLSEnde2));
+	t_SepBisLSEnde2.detach();
+	state->fsmSepBisLSEnde2_ID = qnetHandler->connectServer(S_SEP_BIS_LSENDE2);
 }
