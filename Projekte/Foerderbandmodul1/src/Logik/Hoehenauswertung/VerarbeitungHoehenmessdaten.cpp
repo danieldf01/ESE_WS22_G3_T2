@@ -98,8 +98,10 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL(WsListen *wsListen) {
 }
 
 void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
+	cout << "messung_mm"<< messung_mm <<endl;
 	/*=======================Erkenne Werkstück=======================*/
 	if (ws_erkannt == false && (messung_mm >= (hoehe_flaches_ws_mm - toleranz_mm))) {
+		cout << "messung_mm"<< messung_mm <<endl;
 		ws_erkannt = true;
 		WS_Typ = FLACH;
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlage, HS_AKTIV);
