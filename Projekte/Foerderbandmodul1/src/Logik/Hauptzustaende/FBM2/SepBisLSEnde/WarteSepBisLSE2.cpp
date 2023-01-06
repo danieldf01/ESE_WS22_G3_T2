@@ -28,6 +28,7 @@ void WarteSepBisLSE2::LsEAus() {
 }
 
 void WarteSepBisLSE2::WsPassieren(){
+	cout << "WarteSepBisLSE2 recv:WsPassieren" << endl;
 	exit();
 	if (!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)) {
 		actions->seperatorAn();

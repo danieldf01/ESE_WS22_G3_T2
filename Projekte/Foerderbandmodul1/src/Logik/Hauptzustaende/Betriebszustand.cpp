@@ -335,16 +335,14 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case SEP_AN:
-		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN)
-				== -1) {
+		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN)== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		break;
 
 	case SEP_AUS:
-		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS)
-				== -1) {
+		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS)== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
@@ -606,8 +604,8 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		// TODO Timer fehlt
-		//zeitFBM1->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_list_HS_bis_Seperator.back().getiD());
+		// TODO Timer anpassen ggf.
+		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2->getiD());
 		break;
 
 	case WS_PASSIEREN:
@@ -615,8 +613,8 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		// TODO Timer fehlt
-		//zeitFBM1->startMessung(4000 + zeitFBM1->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE,wsListen->ws_list_passieren.back().getiD());
+		// TODO Timer anpassen ggf.
+		zeitFBM2->startMessung(4000 + zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_passieren_2->getiD());
 		break;
 
 	case WS_AUSSORTIEREN:
@@ -624,12 +622,20 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		// TODO Timer fehlt
-		//zeitFBM1->startMessung(3000 + zeitFBM1->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,wsListen->ws_list_aussortieren.back().getiD());
+		// TODO Timer anpassen ggf.
+		zeitFBM2->startMessung(3000 + zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,wsListen->ws_aussortieren_2->getiD());
 		break;
 
 	case TIMER_RUTSCHE:
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, TIMER_RUTSCHE);
+		break;
+
+	case TIMER_START_AUSWERFER:
+		zeitFBM2->startMessung(50 + zeitFBM2->getTime(), ZEIT_AUSWERFER, 0);//0, da Timer keinem WS zugeordnet werden muss (muss nicht zerstoert werden)
+		break;
+
+	case TIMER_START_WEICHE:
+		zeitFBM2->startMessung(1000 + zeitFBM2->getTime(), ZEIT_WEICHE, 0);	//0, da Timer keinem WS zugeordnet werden muss (muss nicht zerstoert werden)
 		break;
 
 	case FBM2_BEREIT:
