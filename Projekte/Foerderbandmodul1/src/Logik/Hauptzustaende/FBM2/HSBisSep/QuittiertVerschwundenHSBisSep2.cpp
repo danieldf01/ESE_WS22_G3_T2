@@ -40,11 +40,8 @@ void QuittiertVerschwundenHSBisSep2::quittiert() {
 
 void QuittiertVerschwundenHSBisSep2::keinFehler() {
 	exit();
-	if(wsListen->ws_list_HS_bis_Seperator.size() > 0){
-		new (this) WSAufWegZumSep2;
-	} else{
-		new (this) WartenHSBisSep2;
-	}
+	actions->sendFBM2Bereit();
+	new (this) WartenHSBisSep2;
 	entry();
 }
 

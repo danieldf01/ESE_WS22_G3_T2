@@ -52,33 +52,32 @@ void ImMetallsensorHSBisSep2::eStop() {
 
 void ImMetallsensorHSBisSep2::aussortieren1() {
 	//Fehler zu frueh?
-//	if (zeitmanager->getTime()< (500 + wsListen->ws_list_HS_bis_Seperator_2.front().getTimestamp())) {
-//		new (this) FehlerWsZuFruehHSBisSep2;
-//	} else {
-//		aussortieren2();
-//	}
+	if (zeitmanager->getTime()< (500 + wsListen->ws_hs_bis_seperator_2->getTimestamp())) {
+		new (this) FehlerWsZuFruehHSBisSep2;
+	} else {
+		aussortieren2();
+	}
 }
 
 void ImMetallsensorHSBisSep2::aussortieren2() {
 	//ist das aktuelle Werkstueck vom geforderten Typ?
-//	if (wsListen->ws_list_HS_bis_Seperator_2.front().getWsTyp() == wsListen->sortierReihenfolge.front()) {
-//		cout << "Werkstueck entspricht der Reihung" << endl;
-//		actions->WsPassierenGefordert();
-//		if (wsListen->ws_list_HS_bis_Seperator_2.size() <= 0) {
-//			new (this) WartenHSBisSep2;
-//		}
-//		//nicht geforderter Typ
-//	} else {
-//		cout << "Werkstueck entspricht nicht der Reihung" << endl;
-//		aussortieren3();
-//	}
+	if (wsListen->ws_hs_bis_seperator_2->getWsTyp() == wsListen->sortierReihenfolge.front()) {
+		cout << "[FBM2] Werkstueck entspricht der Reihung" << endl;
+		actions->WsPassieren();
+		new (this) WartenHSBisSep2;
+		//nicht geforderter Typ
+	} else {
+		cout << "[FBM2] Werkstueck entspricht nicht der Reihung" << endl;
+		aussortieren3();
+	}
 }
-// TODO Folgende Methode muss unebedingt angepasst werden!
+
 void ImMetallsensorHSBisSep2::aussortieren3() {
-	// Ist Rutsche2 voll?
-//	if (rutsche->rutsche2->rutscheVoll) {
-//		// TODO Action WS_NICHT_AUSSORTIERBAR
-//	}else{
-//		// TODO Uebergang in die Rutsche
-//	}
+	if (rutsche->rutsche2->rutscheVoll2) {
+		actions->WsNichtAussortierbar();
+		new (this) WarteAufRutscheFreiHSBisSep2;
+	} else {
+		actions->WsAussortieren();
+		new (this) WartenHSBisSep2;
+	}
 }

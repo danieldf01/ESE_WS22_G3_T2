@@ -11,9 +11,8 @@ using namespace std;
 
 void FehlerWsVerschwundenHSBisSep2::entry() {
 	actions->fehlerHoch();
-//	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen dem Hoehensensor und dem Seperator verschwunden." << endl;
-//	cout << "Bitte entfernen Sie in diesem Bereich " << wsListen->ws_list_HS_bis_Seperator_2.size() << " Werkstueck(e)." << endl;
 	actions->entferneWsHSbisSep();
+	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen dem Hoehensensor und dem Seperator verschwunden." << endl;
 }
 
 void FehlerWsVerschwundenHSBisSep2::exit() {

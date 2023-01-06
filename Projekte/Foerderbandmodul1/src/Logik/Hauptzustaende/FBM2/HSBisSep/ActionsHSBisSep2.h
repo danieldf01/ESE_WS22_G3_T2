@@ -27,16 +27,20 @@ public:
 	void setZeitmanager(Zeitmanager *zeitmanager) {this->zeitmanager = zeitmanager;};
 
 	virtual void setupConnection();
+
 	virtual void setMetallTrue();
-	virtual void WsPassierenGefordert();
-	virtual void WsPassierenNichtGefordert();
-	virtual void WsNichtAussortierbar();
+
+	virtual void WsPassieren();
 	virtual void WsAussortieren();
+	virtual void WsNichtAussortierbar();
+
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();
+
 	virtual void entferneWsHSbisSep();
 	virtual void schnellRunter();
 	virtual void deleteTimerVerschwunden();
+	virtual void sendFBM2Bereit();
 	virtual void eStop();
 };
 
