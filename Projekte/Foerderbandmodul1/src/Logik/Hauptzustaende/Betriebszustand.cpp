@@ -151,11 +151,6 @@ void Betriebszustand::pulseFBM1(int value) {
 	/*
 	 *	TASTER FBM1
 	 */
-	case T_START_AN:		//active high+
-		break;
-	case T_START_AUS:  		//active high+
-		break;
-
 	case T_STOP_AN: 	//active low+
 		break;
 	case T_STOP_AUS: 		//active low+
@@ -168,12 +163,6 @@ void Betriebszustand::pulseFBM1(int value) {
 			new (this) Ruhezustand;
 		}
 		break;
-
-	case T_RESET_AN:		//active high+
-		break;
-	case T_RESET_AUS: 	//active high+
-		break;
-
 
 	/*
 	 * AKTORIK FBM1
@@ -434,7 +423,7 @@ void Betriebszustand::pulseFBM2(int value) {
 		MsgSendPulse(fsmLSA2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, LS_ANFANG_AUS);
 		break;
 
-	case LS_ZUSTAND_SEPERATOR_AN:	//active high+
+	case LS_ZUSTAND_SEPERATOR_AN:	//active high+ // TODO Brauchen wir das im Betriebszustand?
 		break;
 	case LS_ZUSTAND_SEPERATOR_AUS: 	//active high+
 		break;
@@ -482,11 +471,6 @@ void Betriebszustand::pulseFBM2(int value) {
 	/*
 	 * TASTER FBM2
 	 */
-	case T_START_AN:		//active high+
-		break;
-	case T_START_AUS:  		//active high+
-		break;
-
 	case T_STOP_AN: 	//active low+
 		break;
 	case T_STOP_AUS: 		//active low+
@@ -498,11 +482,6 @@ void Betriebszustand::pulseFBM2(int value) {
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
 			new (this) Ruhezustand;
 		}
-		break;
-
-	case T_RESET_AN:		//active high+
-		break;
-	case T_RESET_AUS: 	//active high+
 		break;
 
 
@@ -584,6 +563,7 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
+		zeitFBM2->startMessung(3500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_ls_anfang_bis_hs_2->getiD());
 		break;
 
 	case HS_AKTIV:
@@ -599,6 +579,7 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
+		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_2->getiD());
 		break;
 
 	case WS_TYP:
@@ -752,8 +733,58 @@ void Betriebszustand::pulseZeit2(int value){
 			exit(EXIT_FAILURE);
 		}
 		break;
+
+	case FEHLER_WS_VERSCHWUNDEN:
+		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case FEHLER_HOEHENMESSUNG:
+		if (MsgSendPulse(fsmWsErkennung2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_HOEHENMESSUNG) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP:
+		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE:
+		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE:
+		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT:
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
 	case ZEIT_WEICHE:
 		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ZEIT_WEICHE) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+
+	case ZEIT_AUSWERFER:
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ZEIT_AUSWERFER) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}

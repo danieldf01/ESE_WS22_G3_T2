@@ -22,10 +22,11 @@ public:
 
 	WsListen *wsListen;
 
-	KonfigurationsdateiManager *dateiManager = nullptr;
+	KonfigurationsdateiManager *dateiManager;
 
-	VerarbeitungHoehenmessdaten *hoehenauswertung1 = nullptr;
-	VerarbeitungHoehenmessdaten *hoehenauswertung2 = nullptr;
+	VerarbeitungHoehenmessdaten *hoehenauswertung1;
+	VerarbeitungHoehenmessdaten *hoehenauswertung2;
+
 	bool eStop2;
 	bool eStop1;
 	bool langGedrueckt;
