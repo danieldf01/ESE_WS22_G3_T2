@@ -22,6 +22,7 @@ void AuswerferEingefahrenSepBisRut2::LsRutAn() {
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	actions->sendFBM2Bereit();
+	new (this) WarteSepBisRut2;
 	entry();
 }
 

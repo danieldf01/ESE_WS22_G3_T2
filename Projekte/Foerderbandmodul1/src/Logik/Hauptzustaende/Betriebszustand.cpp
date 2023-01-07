@@ -762,13 +762,6 @@ void Betriebszustand::pulseZeit2(int value){
 		}
 		break;
 
-	case FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE:
-		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE) == -1) {
-			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
-			exit(EXIT_FAILURE);
-		}
-		break;
-
 	case FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT:
 		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
