@@ -145,7 +145,7 @@ void Motor::handlePulse(int code,int value){
 			}
 			break;
 		case STOP_HOCH_2:
-			if(cnt_stop==0){
+			if(cnt_stop<=0){
 				MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,MOT_STOP_AN_2);
 				zeitFBM2->setTimerSpeedStop();
 			}

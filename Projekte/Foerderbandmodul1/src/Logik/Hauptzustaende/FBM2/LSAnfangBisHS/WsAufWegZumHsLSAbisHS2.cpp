@@ -22,6 +22,7 @@ void WsAufWegZumHsLSAbisHS2::WSinLSAbisHS(){
 void WsAufWegZumHsLSAbisHS2::HSaktiv(){
 	cout << "[FBM2] Zustand: WsAufWegZumHsLSAbisHS2 recv: HSaktiv" << endl;
 	exit();
+	cout << "ZEIT: " << zeitmanager->getTime() << ", WS TIMESTAMP: " << wsListen->ws_ls_anfang_bis_hs_2->getTimestamp() << endl;
 	if(zeitmanager->getTime() < (1800 + wsListen->ws_ls_anfang_bis_hs_2->getTimestamp())){
 		new (this) FehlerWsZuFruehLSAbisHS2;
 	} else{

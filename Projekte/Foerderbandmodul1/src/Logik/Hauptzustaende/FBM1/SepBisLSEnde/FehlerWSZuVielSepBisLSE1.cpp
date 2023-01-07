@@ -23,11 +23,7 @@ void FehlerWSZuVielSepBisLSE1::LsEAn(){
 
 }
 
-void FehlerWSZuVielSepBisLSE1::WsPassieren(){
-
-}
-
-void FehlerWSZuVielSepBisLSE1::WeicheSchliessen(){
+void FehlerWSZuVielSepBisLSE1::WsAufWegZuLSE(){
 
 }
 

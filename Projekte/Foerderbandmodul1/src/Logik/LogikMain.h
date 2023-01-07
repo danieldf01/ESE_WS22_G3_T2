@@ -30,6 +30,8 @@
 #include "Hauptzustaende/FBM1/HSBisSep/ContextHSBisSep1.h"
 #include "Hauptzustaende/FBM1/SepBisRut/ActionsSepBisRut1.h"
 #include "Hauptzustaende/FBM1/SepBisRut/ContextSepBisRut1.h"
+#include "Hauptzustaende/FBM1/Passieren/ActionsPassieren.h"
+#include "Hauptzustaende/FBM1/Passieren/ContextPassieren.h"
 #include "Hauptzustaende/FBM1/SepBisLSEnde/ActionsSepBisLSE1.h"
 #include "Hauptzustaende/FBM1/SepBisLSEnde/ContextSepBisLSE1.h"
 #include "WsListen.h"

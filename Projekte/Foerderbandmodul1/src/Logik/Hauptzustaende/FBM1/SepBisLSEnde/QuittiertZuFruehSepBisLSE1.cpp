@@ -19,11 +19,7 @@ void QuittiertZuFruehSepBisLSE1::LsEAn(){
 
 }
 
-void QuittiertZuFruehSepBisLSE1::WsPassieren(){
-
-}
-
-void QuittiertZuFruehSepBisLSE1::WeicheSchliessen(){
+void QuittiertZuFruehSepBisLSE1::WsAufWegZuLSE(){
 
 }
 

@@ -29,9 +29,9 @@ void Watchdog::initSTimer() {
 		perror("[Watchdog] timer_create for sendTimer failed");
 	}
 	sTimer.it_value.tv_sec = 0;
-	sTimer.it_value.tv_nsec = 150000000;
+	sTimer.it_value.tv_nsec = 750000000;
 	sTimer.it_interval.tv_sec = 0;
-	sTimer.it_interval.tv_nsec = 150000000;
+	sTimer.it_interval.tv_nsec = 750000000;
 	if ((timer_settime(sTimerID, 0, &sTimer, NULL)) == -1) {
 		perror("[Watchdog] timer_settime for sendTimer failed");
 	}
@@ -45,9 +45,9 @@ void Watchdog::initESTimer() {
 		perror("[Watchdog] timer_create for EStopTimer failed");
 	}
 	esTimer.it_value.tv_sec = 0;
-	esTimer.it_value.tv_nsec = 200000000;
+	esTimer.it_value.tv_nsec = 800000000;
 	esTimer.it_interval.tv_sec = 0;
-	esTimer.it_interval.tv_nsec = 200000000;
+	esTimer.it_interval.tv_nsec = 800000000;
 	if ((timer_settime(esTimerID, 0, &esTimer, NULL)) == -1) {
 		perror("[Watchdog] timer_settime for EStopTimer failed");
 	}

@@ -19,8 +19,7 @@ public:
 
 	//normales Verhalten
 	void LsEAn() override;
-	void WsPassieren() override;
-	void WeicheSchliessen() override;
+	void WsAufWegZuLSE() override;
 	void FBM2bereit() override;
 	void WsWurdeUebergeben() override;
 

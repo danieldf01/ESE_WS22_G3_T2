@@ -168,13 +168,16 @@ void InputDispatcher::receiveSignal() {
 					break;
 
 				case RUTSCHE_VOLL:
-					hal->ampel->lampeBlinkenAus(Gelb);
-					hal->lampe->lampeGelbAn();
-
+					{
+						hal->ampel->lampeBlinkenAus(Gelb);
+						thread t_rutscheVoll(&Ampel::blinken, hal->ampel, Gelb, HALBESEKUNDE);
+						t_rutscheVoll.detach();
+						break;
+					}
 					break;
 
 				case RUTSCHE_FREI:
-					hal->lampe->lampeGelbAus();
+					hal->ampel->lampeBlinkenAus(Gelb);
 
 					break;
 				case WATCHDOG_ESTOP:

@@ -19,11 +19,7 @@ void WartenFreiwerdenFBM2::LsEAn(){
 
 }
 
-void WartenFreiwerdenFBM2::WsPassieren(){
-
-}
-
-void WartenFreiwerdenFBM2::WeicheSchliessen(){
+void WartenFreiwerdenFBM2::WsAufWegZuLSE(){
 
 }
 

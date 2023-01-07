@@ -90,6 +90,7 @@
 #define FBM1_WS_LOSGESCHICKT	266
 #define FBM1_WS_UEBERGEBEN		267
 #define FBM2_BEREIT				268
+#define WS_AUF_WEG_ZU_LSE		269
 
 
 //zeit pulse values
@@ -177,6 +178,7 @@
 #define S_F_WS_NICHT_AUSSORTIERBAR	"server_f_ws_nicht_aussortierbar"
 #define S_SEP_BIS_RUT1				"server_sep_bis_rut1"
 #define S_SEP_BIS_RUT2				"server_sep_bis_rut2"
+#define S_PASSIEREN					"server_passieren"
 #define S_SEP_BIS_LSENDE			"server_sep_bis_lsende"
 #define S_SEP_BIS_LSENDE2			"server_sep_bis_lsende2"
 #endif /* LOGIK_DEFINES_H_ */

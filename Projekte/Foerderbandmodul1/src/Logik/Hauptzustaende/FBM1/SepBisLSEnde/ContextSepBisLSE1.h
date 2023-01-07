@@ -34,8 +34,7 @@ public:
 
 	//normales Verhalten
 	void LsEAn();
-	void WsPassieren();
-	void WeicheSchliessen();
+	void WsAufWegZuLSE();
 	void FBM2bereit();
 	void WsWurdeUebergeben();
 

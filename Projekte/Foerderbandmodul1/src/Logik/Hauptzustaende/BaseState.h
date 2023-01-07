@@ -47,14 +47,17 @@ public:
 	int auswertungID1;
 	int auswertungID2;
 	int fsmWsNichtAussortierbar_ID;
+
+	//FBM1 FSM IDs
 	int fsmLSA1_ID;
 	int fsmLSAbisHS1_ID;
 	int fsmWsErkennung1_ID;
 	int fsmHSbisSep1_ID;
 	int fsmSepBisRut1_ID;
 	int fsmSepBisLSEnde1_ID;
+	int fsmPassieren_ID;
 
-	// TODO ALLE IDS added
+	//FBM2 FSM IDs
 	int fsmLSA2_ID;
 	int fsmLSAbisHS2_ID;
 	int fsmWsErkennung2_ID;

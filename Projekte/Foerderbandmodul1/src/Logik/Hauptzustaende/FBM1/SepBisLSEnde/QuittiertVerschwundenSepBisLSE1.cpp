@@ -19,11 +19,7 @@ void QuittiertVerschwundenSepBisLSE1::LsEAn(){
 
 }
 
-void QuittiertVerschwundenSepBisLSE1::WsPassieren(){
-
-}
-
-void QuittiertVerschwundenSepBisLSE1::WeicheSchliessen(){
+void QuittiertVerschwundenSepBisLSE1::WsAufWegZuLSE(){
 
 }
 
@@ -42,12 +38,7 @@ void QuittiertVerschwundenSepBisLSE1::quittiert(){
 void QuittiertVerschwundenSepBisLSE1::keinFehler(){
 	exit();
 	if(wsListen->ws_list_passieren.size() > 0){
-		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
-			actions->seperatorAn();
-			new (this) WeicheGeoeffnetSepBisLSE1;
-		} else{
-			new (this) WsAufWegZuLSEndeSepBisLSE1;
-		}
+		new (this) WsAufWegZuLSEndeSepBisLSE1;
 	} else if(wsListen->ws_list_passieren.size() <= 0){
 		new (this) WarteSepBisLSE1;
 	}

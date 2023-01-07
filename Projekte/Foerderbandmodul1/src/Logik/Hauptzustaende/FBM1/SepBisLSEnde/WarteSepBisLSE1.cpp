@@ -23,22 +23,8 @@ void WarteSepBisLSE1::LsEAn(){
 	entry();
 }
 
-void WarteSepBisLSE1::WsPassieren(){
-	cout << "WarteSepBisLSE1::WsPassieren" << endl;
-	if(wsListen->ws_list_passieren.size() > 0){
-		exit();
-		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
-			actions->seperatorAn();
-			new (this) WeicheGeoeffnetSepBisLSE1;
-		} else{
-			new (this) WsAufWegZuLSEndeSepBisLSE1;
-		}
-		entry();
-	}
-}
-
-void WarteSepBisLSE1::WeicheSchliessen(){
-
+void WarteSepBisLSE1::WsAufWegZuLSE(){
+	new (this) WsAufWegZuLSEndeSepBisLSE1;
 }
 
 void WarteSepBisLSE1::FBM2bereit(){

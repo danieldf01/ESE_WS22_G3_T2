@@ -46,12 +46,8 @@ void ContextSepBisLSE1::receiveSignal() {
 			case LS_ENDE_AN:
 				LsEAn();
 				break;
-			case WS_PASSIEREN:
-				cout << "ContextSepBisLSE1::receiveSignal: WS_PASSIEREN" << endl;
-				WsPassieren();
-				break;
-			case ZEIT_WEICHE:
-				WeicheSchliessen();
+			case WS_AUF_WEG_ZU_LSE:
+				WsAufWegZuLSE();
 				break;
 			case FBM2_BEREIT:
 				FBM2bereit();
@@ -76,7 +72,7 @@ void ContextSepBisLSE1::receiveSignal() {
 		// handle name_open calls for this server
 		if ((_IO_BASE <= pulse.type) && (pulse.type <= _IO_MAX)) {
 			if (pulse.type == _IO_CONNECT) {
-				cout << "[" << S_SEP_BIS_RUT1 << "]" << " received _IO_CONNECT via sync. message" << endl;
+				cout << "[" << S_SEP_BIS_LSENDE << "]" << " received _IO_CONNECT via sync. message" << endl;
 				MsgReply(rcvid, EOK, NULL, 0);
 			}
 		}
@@ -87,12 +83,8 @@ void ContextSepBisLSE1::LsEAn(){
 	state->LsEAn();
 }
 
-void ContextSepBisLSE1::WsPassieren(){
-	state->WsPassieren();
-}
-
-void ContextSepBisLSE1::WeicheSchliessen(){
-	state->WeicheSchliessen();
+void ContextSepBisLSE1::WsAufWegZuLSE(){
+	state->WsAufWegZuLSE();
 }
 
 void ContextSepBisLSE1::FBM2bereit(){

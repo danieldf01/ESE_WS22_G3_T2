@@ -60,10 +60,14 @@ void LogikMain::receiveSignal(){
 	wsListen->sortierReihenfolge.push_back(state->dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
 	wsListen->sortierReihenfolge.push_back(state->dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
 
-	state->zeitFBM1 = new Zeitmanager(10, 6, attach->chid, CODE_ZEIT_1); //Erstellen des Zeitmanagers fuer FBM1
+	wsListen->sortierReihenfolge2.push_back(state->dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
+	wsListen->sortierReihenfolge2.push_back(state->dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
+	wsListen->sortierReihenfolge2.push_back(state->dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
+
+	state->zeitFBM1 = new Zeitmanager(10, 5, attach->chid, CODE_ZEIT_1); //Erstellen des Zeitmanagers fuer FBM1
 	thread t_startZeit(&Zeitmanager::threadStartZeit, ref(state->zeitFBM1));
 
-	state->zeitFBM2 = new Zeitmanager(10, 6, attach->chid, CODE_ZEIT_2); // Erstellen des Zeitmanagers fuer FBM2
+	state->zeitFBM2 = new Zeitmanager(10, 5, attach->chid, CODE_ZEIT_2); // Erstellen des Zeitmanagers fuer FBM2
 	thread t_startZeit2(&Zeitmanager::threadStartZeit, ref(state->zeitFBM2));
 
 	thread t_startFSMs(&LogikMain::startFSMs, this);
@@ -139,6 +143,11 @@ void LogikMain::startFSMs() {
 	thread t_SepBisRut1(&ContextSepBisRut1::receiveSignal, ref(contextSepBisRut1));
 	t_SepBisRut1.detach();
 	state->fsmSepBisRut1_ID = qnetHandler->connectServer(S_SEP_BIS_RUT1);
+
+	ContextPassieren *contextPassieren = new ContextPassieren(new ActionsPassieren, ref(wsListen), ref(state->dateiManager));
+	thread t_Passieren(&ContextPassieren::receiveSignal, ref(contextPassieren));
+	t_Passieren.detach();
+	state->fsmPassieren_ID = qnetHandler->connectServer(S_PASSIEREN);
 
 	ContextSepBisLSE1 *contextSepBisLSEnde = new ContextSepBisLSE1(new ActionsSepBisLSE1, ref(wsListen), ref(state->zeitFBM1), ref(state->dateiManager));
 	thread t_SepBisLSEnde(&ContextSepBisLSE1::receiveSignal, ref(contextSepBisLSEnde));

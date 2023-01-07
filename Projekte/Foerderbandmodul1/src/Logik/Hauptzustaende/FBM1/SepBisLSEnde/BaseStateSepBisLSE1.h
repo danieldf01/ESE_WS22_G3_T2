@@ -30,8 +30,7 @@ public:
 
 	//normales Verhalten
 	virtual void LsEAn() = 0;
-	virtual void WsPassieren() = 0;
-	virtual void WeicheSchliessen() = 0;
+	virtual void WsAufWegZuLSE() = 0;
 	virtual void FBM2bereit() = 0;
 	virtual void WsWurdeUebergeben() = 0;
 

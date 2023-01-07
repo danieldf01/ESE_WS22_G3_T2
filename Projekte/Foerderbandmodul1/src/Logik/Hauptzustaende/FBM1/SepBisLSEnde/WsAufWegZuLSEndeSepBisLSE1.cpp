@@ -22,7 +22,7 @@ void WsAufWegZuLSEndeSepBisLSE1::LsEAn(){
 	exit();
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?
-	if(zeitmanager->getTime() < (1500 + wsListen->ws_list_passieren.front().getTimestamp())){
+	if(zeitmanager->getTime() < (1500 + wsListen->ws_list_sep_bis_lsende.front().getTimestamp())){
 		new (this) FehlerWSZuFruehSepBisLSE1;
 	} else{
 		actions->stopHoch();
@@ -32,11 +32,7 @@ void WsAufWegZuLSEndeSepBisLSE1::LsEAn(){
 	entry();
 }
 
-void WsAufWegZuLSEndeSepBisLSE1::WsPassieren(){
-
-}
-
-void WsAufWegZuLSEndeSepBisLSE1::WeicheSchliessen(){
+void WsAufWegZuLSEndeSepBisLSE1::WsAufWegZuLSE(){
 
 }
 
