@@ -22,6 +22,11 @@ public:
 
 	WsListen *wsListen;
 
+	//Timer fuer langen Knopfdruck & Fehler_gegangen_unquittiert
+	timer_t TimerID;
+	struct sigevent TimerEvent;
+	struct itimerspec Timer;
+
 	KonfigurationsdateiManager *dateiManager;
 
 	VerarbeitungHoehenmessdaten *hoehenauswertung1;
@@ -30,11 +35,13 @@ public:
 	bool eStop2;
 	bool eStop1;
 	bool langGedrueckt;
+	bool fehlerUnquittiert;
 
 	int fehlerCount;
 	int warnungsCount;
 	bool fehlerQuittiert;
 	//Qnet connection IDs
+	int logikID;
 	int inputID;
 	int kommID;
 	int auswertungID1;

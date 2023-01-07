@@ -6,13 +6,15 @@
  */
 
 #include "FehlerRutsche1Und2Voll.h"
-
+using namespace std;
 void FehlerRutsche1Und2Voll::entry(){
 	actions->fehlerHoch();
+	cout <<"Fehler hoch gesendet"<<endl;
 }
 
 void FehlerRutsche1Und2Voll::exit(){
 	actions->fehlerRunter();
+	cout <<"Fehler runter gesendet"<< endl;
 }
 
 void FehlerRutsche1Und2Voll::WsNichtAussortierbar(){

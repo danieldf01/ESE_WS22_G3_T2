@@ -104,6 +104,8 @@
 #define ZEIT_UEBERGABE_AN_FBM2				308
 #define FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE	309
 #define FEHLER_WS_VERSCHWUNDEN_LSA2			310
+#define START_LANG							311
+#define UNQUITTIERT_ABGELAUFEN				312
 
 //Defines fuer den InputDispatcher
 #define ESTOP_AUS	1

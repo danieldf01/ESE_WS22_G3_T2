@@ -14,7 +14,7 @@ ContextWsNichtAussortierbar::ContextWsNichtAussortierbar(ActionsWsNichtAussortie
 
 	qnetHandler = new QnetHandler();
 	attach = qnetHandler->openServer(S_F_WS_NICHT_AUSSORTIERBAR);
-
+	chID = attach->chid;
 	actions->setupConnection();
 
 	state = new WartenWsNichtAussortierbar();

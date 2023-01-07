@@ -58,7 +58,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case E_STOP_AUS:		//active low+
-		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, ESTOP_AUS); // TODO Brauchen wir das?
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, ESTOP_AUS);
 		break;
 
 
@@ -124,6 +124,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,LS_RUTSCHE_AUS);
 		break;
 
 	case LS_ENDE_AN:	//active low+
@@ -156,11 +157,24 @@ void Betriebszustand::pulseFBM1(int value) {
 	case T_STOP_AUS: 		//active low+
 		if (fehlerCount == 0 && warnungsCount == 0) {
 			cout << "switched to Ruhezustand" << endl;
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_HOCH_1);
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_HOCH_2);
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
+					STOP_HOCH_1);
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,
+					STOP_HOCH_2);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,
+					_PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
+			if(fehlerUnquittiert){
+				MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
+				MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+			}
 			new (this) Ruhezustand;
+		}
+		break;
+	case T_RESET_AUS: 	//active high+
+		if(fehlerUnquittiert){
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 		}
 		break;
 
@@ -307,7 +321,14 @@ void Betriebszustand::pulseFBM1(int value) {
 		}
 		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT, wsListen->ws_list_aussortieren.back().getiD());
 		break;
-
+	case UNQUITTIERT_ABGELAUFEN:
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+		break;
+	case WS_NICHT_AUSSORTIERBAR:
+		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT,	CODE_FBM_1, WS_NICHT_AUSSORTIERBAR);
+		break;
 
 	/*
 	 * FÜR KOMMUNIKATION FBM1 - FBM2
@@ -443,6 +464,7 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,LS_RUTSCHE_AUS);
 		break;
 
 	case LS_ENDE_AN:	//active low+
@@ -481,6 +503,16 @@ void Betriebszustand::pulseFBM2(int value) {
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
 			new (this) Ruhezustand;
+			if(fehlerUnquittiert){
+				MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
+				MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+			}
+				}
+		break;
+	case T_RESET_AUS: 	//active high+
+		if(fehlerUnquittiert){
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 		}
 		break;
 
@@ -803,6 +835,7 @@ void Betriebszustand::eStop(int estop){
 	MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
 	MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
 	MsgSendPulse(fsmWsErkennung2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
+	MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
 	MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
 	MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);
 	MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, E_STOP_AN);

@@ -61,6 +61,7 @@ void FehlerQuittiert::pulseFBM1(int value){
 
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,LS_RUTSCHE_AUS);
 		break;
 
 	case LS_RUTSCHE_AN: //active low+
@@ -151,6 +152,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,LS_RUTSCHE_AUS);
 		break;
 	case LS_RUTSCHE_AN: //active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,LS_RUTSCHE_AN);
@@ -298,12 +300,17 @@ void FehlerQuittiert::keinFehler(){
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
 		MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
-		MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
-		MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
-		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
-		MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
-		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
 		MsgSendPulse(fsmLSA2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmWsErkennung2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
+		MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, KEIN_FEHLER);
 		new (this) Betriebszustand;
 	} else{
 		new (this) Fehlerzustand;

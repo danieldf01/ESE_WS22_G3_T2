@@ -69,6 +69,7 @@ void EStop::pulseFBM2(int value){
 
 	case E_STOP_AUS:
 		eStop2 = false;
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, ESTOP_AUS);
 		break;
 
 	case T_RESET_AUS: //active high

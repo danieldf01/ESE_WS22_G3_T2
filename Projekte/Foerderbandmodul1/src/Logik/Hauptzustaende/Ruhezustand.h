@@ -23,6 +23,7 @@ public:
 	void pulseZeit2(int) override;
 	void updateAuswertung() override;
 	void eStop(int) override;
+	void initTimer();
 };
 
 #endif /* SRC_HAUPTZUSTAND_H_ */

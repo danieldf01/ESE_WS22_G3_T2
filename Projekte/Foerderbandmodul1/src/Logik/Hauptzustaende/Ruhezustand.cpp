@@ -41,15 +41,27 @@ void Ruhezustand::pulseFBM1(int value){
 	switch(value){
 	case T_START_AN:
 		//TODO Starte Timer um zwischen Betriebsmodus&Service modus zu unterscheiden
+		langGedrueckt=false;
+		initTimer();
 		break;
 
 	case T_START_AUS:
-		cout << "switched to Betriebszustand"<< endl;
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AN );
-		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
+		if(!langGedrueckt){
+			cout << "switched to Betriebszustand"<< endl;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
+			new (this) Betriebszustand;
+		}
+		else{
+			cout << "switched to ServiceMode"<< endl;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,SERVICE_MODE_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AN);
+			new (this) ServiceMode;
+			cout << "Bitte betaetigen sie den Reset-Taster"<<endl;
+
+		}
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,STOP_RUNTER_1 );
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,STOP_RUNTER_2 );
-		new (this) Betriebszustand;
 		break;
 
 	case E_STOP_AN:
@@ -137,7 +149,10 @@ void Ruhezustand::pulseFBM1(int value){
 	case TIMER_RUTSCHE:
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,TIMER_RUTSCHE);
 		break;
-
+	case START_LANG:
+		cout<<"start_lang erhalten"<<endl;
+		langGedrueckt=true;
+		break;
 	}
 }
 
@@ -151,14 +166,26 @@ void Ruhezustand::pulseFBM2(int value){
 
 	case T_START_AN:
 		//TODO Starte Timer um zwischen Betriebsmodus&Service modus zu unterscheiden
+		langGedrueckt=false;
+		initTimer();
 		break;
 
 	case T_START_AUS:  		//active high+
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AN);
-		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
-		new (this) Betriebszustand;
+		if(!langGedrueckt){
+			cout << "switched to Betriebszustand"<< endl;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
+			new (this) Betriebszustand;
+		}
+		else{
+			cout << "switched to ServiceMode"<< endl;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,SERVICE_MODE_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AN);
+			new (this) ServiceMode;
+			cout << "Bitte betaetigen sie den Reset-Taster"<<endl;
+		}
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,STOP_RUNTER_1 );
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,STOP_RUNTER_2 );
 		break;
 
 	case E_STOP_AN:
@@ -252,6 +279,15 @@ void Ruhezustand::pulseZeit1(int value){
 
 }
 
+void Ruhezustand::initTimer(){
+	SIGEV_PULSE_INIT(&TimerEvent, logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1 ,START_LANG);
+	timer_create(CLOCK_REALTIME, &TimerEvent, &TimerID);
+	Timer.it_value.tv_sec = 3;
+	Timer.it_value.tv_nsec = 0;
+	Timer.it_interval.tv_sec = 0;
+	Timer.it_interval.tv_nsec = 0;
+	timer_settime(TimerID, 0, &Timer, NULL);
+}
 /**
  *
  * PULSE VON zeitFBM2

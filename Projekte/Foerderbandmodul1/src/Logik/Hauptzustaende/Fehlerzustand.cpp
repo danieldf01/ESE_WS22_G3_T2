@@ -48,14 +48,17 @@ void Fehlerzustand::pulseFBM1(int value){
 	case FEHLER_RUNTER:
 		fehlerCount--;
 		if (fehlerCount == 0) {
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,
-					_PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-					STOP_RUNTER_1);
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,
-					STOP_RUNTER_2);
-			new (this) FehlerGegangenUnquittiert;
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
+			MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
+			MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
+			initTimer();
+			new (this) Betriebszustand;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AN);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
+			fehlerUnquittiert=true;
 		}
 		break;
 
@@ -66,6 +69,7 @@ void Fehlerzustand::pulseFBM1(int value){
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
 				LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,LS_RUTSCHE_AUS);
 		break;
 
 	case LS_RUTSCHE_AN: //active low+
@@ -161,17 +165,24 @@ void Fehlerzustand::pulseFBM2(int value){
 
 	case FEHLER_RUNTER:
 		fehlerCount--;
-		if(fehlerCount==0){
+		if (fehlerCount == 0) {
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
+			MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
+			MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
-			new (this) FehlerGegangenUnquittiert;
+			initTimer();
+			new (this) Betriebszustand;
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AN);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
+			fehlerUnquittiert=true;
 		}
 		break;
 
 	case LS_RUTSCHE_AUS:	//active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,LS_RUTSCHE_AUS);
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,LS_RUTSCHE_AUS);
 		break;
 
 	case LS_RUTSCHE_AN: //active low+
@@ -216,7 +227,17 @@ void Fehlerzustand::pulseZeit2(int value){
 void Fehlerzustand::updateAuswertung(){
 
 }
+void Fehlerzustand::initTimer(){
 
+	SIGEV_PULSE_INIT(&TimerEvent, logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1 ,UNQUITTIERT_ABGELAUFEN);
+	timer_create(CLOCK_REALTIME, &TimerEvent, &TimerID);
+	Timer.it_value.tv_sec = 20;
+	Timer.it_value.tv_nsec = 0;
+	Timer.it_interval.tv_sec = 0;
+	Timer.it_interval.tv_nsec = 0;
+	timer_settime(TimerID, 0, &Timer, NULL);
+
+}
 
 void Fehlerzustand::eStop(int estop){
 	cout << "switched to EStop1"<< endl;

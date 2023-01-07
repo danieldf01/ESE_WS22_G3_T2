@@ -43,6 +43,8 @@ void LogikMain::init(){
 
 void LogikMain::receiveSignal(){
 
+	state->logikID= ConnectAttach(0, 0, attach->chid , _NTO_SIDE_CHANNEL, 0);
+
 	state->updateAuswertung();												//Update die Werte fuer die Hoehenauswertung
 
 	thread auswertung1(&VerarbeitungHoehenmessdaten::receivingADCValueFromHAL, ref(state->hoehenauswertung1)); //Hoehenauswertung1 thread
@@ -104,10 +106,10 @@ void LogikMain::startFSMs() {
 	t_motor.detach();
 	state->motorID= qnetHandler->connectServer(S_MOTORSTEUERUNG);
 
-//	ContextWsNichtAussortierbar *contextWsNichtAussortierbar = new ContextWsNichtAussortierbar(new ActionsWsNichtAussortierbar, ref(rutschenSteuerung));
-//	thread t_WsNichtAussortierbar(&ContextWsNichtAussortierbar::receiveSignal, ref(contextWsNichtAussortierbar));
-//	t_WsNichtAussortierbar.detach();
-//	state->fsmWsNichtAussortierbar_ID = qnetHandler->connectServer(S_F_WS_NICHT_AUSSORTIERBAR);
+	ContextWsNichtAussortierbar *contextWsNichtAussortierbar = new ContextWsNichtAussortierbar(new ActionsWsNichtAussortierbar, ref(rutschenSteuerung));
+	thread t_WsNichtAussortierbar(&ContextWsNichtAussortierbar::receiveSignal, ref(contextWsNichtAussortierbar));
+	t_WsNichtAussortierbar.detach();
+	state->fsmWsNichtAussortierbar_ID = ConnectAttach(0, 0, contextWsNichtAussortierbar->chID, _NTO_SIDE_CHANNEL , 0);
 
 	/**
 	 * FBM1 FSM's Threads
