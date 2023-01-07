@@ -48,10 +48,11 @@ void ActionsHSBisSep2::WsPassieren(){
 
 void ActionsHSBisSep2::WsAussortieren(){
 
+	cout << "ActionsHSBisSep2 WsAussortieren" << endl;
 	// update Werkstuecke
 	Werkstueck *temp_ws = wsListen->ws_hs_bis_seperator_2;
 	temp_ws->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_passieren_2 = temp_ws;
+	wsListen->ws_aussortieren_2 = temp_ws;
 	wsListen->ws_hs_bis_seperator_2 = nullptr;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_AUSSORTIEREN) == -1) {

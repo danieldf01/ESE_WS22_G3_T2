@@ -22,14 +22,12 @@ void ActionsLSAbisHS1::WSinHS() {
 	//loesche den timer fuer den WS verschwunden error, da das WS den HS erreicht hat
 	zeitmanager->deleteTimer(wsListen->ws_list_LSAnfang_bis_HS.front().getiD());
 
-	//gib das Werkstueck, das den HS erreicht hat, an die naechste FSM weiter
-	//wsListen->ws_Hoehensensor_1 = &(wsListen->ws_list_LSAnfang_bis_HS.front()); // TODO Hier mit getter ersetzt
-	wsListen->setWsHoehensensor1(&(wsListen->ws_list_LSAnfang_bis_HS.front()));
+	Werkstueck temp_ws = wsListen->ws_list_LSAnfang_bis_HS.front();
 	wsListen->ws_list_LSAnfang_bis_HS.pop_front();
-	//wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime()); // TODO Hier mit getter ersetzt
-	wsListen->getWsHoehensensor1()->setTimestamp(zeitmanager->getTime());
+	temp_ws.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_Hoehensensor_1 = &temp_ws;
 
-	cout << "ACTION Zeit vor WS_IN_HS Send" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+//	cout << "ActionsLSAbisHS1 WSinHS send time: " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
 	CODE_FBM_1, WS_IN_HS) == -1) {

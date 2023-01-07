@@ -10,8 +10,7 @@
 using namespace std;
 
 void WarteMessungWsErkennung1::entry(){
-	cout << "Aktuelle Zeit WS in entry:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
-	timestamp = wsListen->getWsHoehensensor1()->getTimestamp();
+//	cout << "Aktuelle Zeit WS in entry:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
 }
 
 void WarteMessungWsErkennung1::exit(){
@@ -26,13 +25,7 @@ void WarteMessungWsErkennung1::WsTyp(){
 
 	exit();
 	actions->langsamRunter();
-	cout << "Aktuelle Zeit WS in WSTypSignalRecv:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
-	//TODO Hier Temporärer Änderungen
-	wsListen->getWsHoehensensor1()->setTimestamp(timestamp);
-
-	cout << "Aktueller Typ WS NACH TEMP INSIDE WSTYPSIGNAL Recv:" << wsListen->getWsHoehensensor1()->getWsTyp() << endl;
-	cout << "Aktuelle Zeit WS NACH TEMP INSIDE WSTYPSIGNAL Recv:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
-	// TODO TEMP ÄNDERUNGEN ENDE
+	cout << "WarteMessungWsErkennung1 WsTyp revived time: " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
 
 	if(zeitmanager->getTime() < 100 + wsListen->ws_Hoehensensor_1->getTimestamp()){
 		cout << "[FEHLER] Die Werkstueckmessung auf Foerderband 1 ist zu schnell erfolgt. Bitte das Werkstueck unter dem Hoehensensor entfernen." << endl;

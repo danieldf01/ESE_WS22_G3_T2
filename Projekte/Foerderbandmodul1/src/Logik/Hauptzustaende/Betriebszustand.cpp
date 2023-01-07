@@ -49,8 +49,7 @@ void Betriebszustand::handlePulse(int code, int value){
 void Betriebszustand::pulseFBM1(int value) {
 	switch (value) {
 	case LS_ANFANG_AN: 		//active low+
-		MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				LS_ANFANG_AN);
+		MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, LS_ANFANG_AN);
 		//starte Timer in FSM, der nach 2 Sek ablaeuft und Signal sendet, wenn ein WS in der LS_Anfang feststeckt
 		break;
 
@@ -58,26 +57,22 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case LS_SEPERATOR_AN: //active low+
-		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, LS_SEPERATOR_AN);
+		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, LS_SEPERATOR_AN);
 		break;
 
 	case METALLSENSOR_AUS: //active high+
 		break;
 
 	case LS_RUTSCHE_AN: //active low+
-		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LS_RUTSCHE_AN);
-		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LS_RUTSCHE_AN) == -1) {
+		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_RUTSCHE_AN);
+		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_RUTSCHE_AN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		break;
 
 	case LS_ENDE_AN:	//active low+
-		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LS_ENDE_AN);
+		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_ENDE_AN);
 		break;
 
 	case T_START_AUS:  		//active high+
@@ -94,8 +89,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case LS_ANFANG_AUS:		//active low+
-		MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				LS_ANFANG_AUS);
+		MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, LS_ANFANG_AUS);
 		break;
 
 	case HS_HOCH_OK_AN:	//active high+
@@ -112,8 +106,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case LS_RUTSCHE_AUS:	//active low+
-		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LS_RUTSCHE_AUS);
+		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_RUTSCHE_AUS);
 		break;
 
 	case LS_ENDE_AUS:		//active low+
@@ -125,12 +118,9 @@ void Betriebszustand::pulseFBM1(int value) {
 	case T_STOP_AUS: 		//active low+
 		if (fehlerCount == 0 && warnungsCount == 0) {
 			cout << "switched to Ruhezustand" << endl;
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-					STOP_HOCH_1);
-			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,
-					STOP_HOCH_2);
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,
-					_PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_HOCH_1);
+			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_HOCH_2);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
 			new (this) Ruhezustand;
 		}
@@ -152,15 +142,11 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case FEHLER_HOCH:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				STOP_HOCH_1);
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2,
-				STOP_HOCH_2);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_HOCH_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_HOCH_2);
 		fehlerCount++;
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				BETRIEBSMODUS_AUS);
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				FEHLER_AN);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AUS);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_AN);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AUS);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AN);
 		new (this) Fehlerzustand;
@@ -168,170 +154,136 @@ void Betriebszustand::pulseFBM1(int value) {
 
 		//Pulse fuer motorsteuerung1
 	case SCHNELL_HOCH_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				SCHNELL_HOCH_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_HOCH_1);
 		break;
 
 	case SCHNELL_RUNTER_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				SCHNELL_RUNTER_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_RUNTER_1);
 		break;
 
 	case LANGSAM_HOCH_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LANGSAM_HOCH_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LANGSAM_HOCH_1);
 		break;
 
 	case LANGSAM_RUNTER_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				LANGSAM_RUNTER_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LANGSAM_RUNTER_1);
 		break;
 
 	case STOP_HOCH_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				STOP_HOCH_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_HOCH_1);
 		break;
 
 	case STOP_RUNTER_1:
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1,
-				STOP_RUNTER_1);
+		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
 		break;
 
 	case MOT_R_AN_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_AN);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_AN);
 		break;
 
 	case MOT_R_AUS_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_AUS);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_AUS);
 		break;
 
 	case MOT_LANGSAM_AN_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_LANGSAM_AN);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_LANGSAM_AN);
 		break;
 
 	case MOT_LANGSAM_AUS_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_LANGSAM_AUS);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_LANGSAM_AUS);
 		break;
 
 	case MOT_STOP_AN_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_STOP_AN);
-		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, MOTOR_STOP_AN);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AN);
+		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AN);
 		break;
 
 	case MOT_STOP_AUS_1:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				MOTOR_STOP_AUS);
-		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
 		break;
 
 		//Pulse von substates fuer fbm1
 	case WARNUNG_AUS:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				RUTSCHE_FREI);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, RUTSCHE_FREI);
 		warnungsCount--;
 		break;
 
 	case WARNUNG_AN:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL,
-				RUTSCHE_VOLL);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, RUTSCHE_VOLL);
 		warnungsCount++;
 		break;
 
 	case HS_AKTIV:
-		cout << "Zeit HS_AKTIV im Betriebszustand " << zeitFBM1->getTime() << endl;
-		if (MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
+		// cout << "Zeit HS_AKTIV im Betriebszustand " << zeitFBM1->getTime() << endl;
+		if (MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		break;
 
 	case WS_TYP:
-		cout << "Zeit WS_TYP im Betriebzustand " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
+		//cout << "Zeit WS_TYP im Betriebzustand " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
 		//cout << "Zeit WS_TYP im Betriebzustand " << wsListen->ws_list_LSAnfang_bis_HS.front().getTimestamp() << endl;
-		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, WS_TYP) == -1) {
+		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_TYP) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		break;
 
 	case WS_IN_LS_A_BIS_HS:
-		if (MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, WS_IN_LS_A_BIS_HS) == -1) {
+		if (MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_IN_LS_A_BIS_HS) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		// TODO Zeit geändert für die SIM vorher war da 3000
-		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(),
-				FEHLER_WS_VERSCHWUNDEN,
-				wsListen->ws_list_LSAnfang_bis_HS.back().getiD());
+		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_list_LSAnfang_bis_HS.back().getiD());
 		zeitFBM1->startMessung(1000 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
 		break;
 
 	case WS_ERSTELLT:
-		zeitFBM1->startMessung(2000 + zeitFBM1->getTime(),
-				FEHLER_WS_STECKT_FEST_LSA, wsListen->ws_LSAnfang->getiD());
+		zeitFBM1->startMessung(2000 + zeitFBM1->getTime(), FEHLER_WS_STECKT_FEST_LSA, wsListen->ws_LSAnfang->getiD());
 		break;
 
 	case WS_IN_HS:
-		cout << "WS_IN_HS im Betriebzustand: " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
-		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, WS_IN_HS) == -1) {
+//		cout << "WS_IN_HS im Betriebzustand: " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
+		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_IN_HS) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_HOEHENMESSUNG,
-				wsListen->ws_Hoehensensor_1->getiD());
+		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_1->getiD());
 		break;
 
 	case HS_LEEREN:
-		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, HS_LEEREN);
+		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_LEEREN);
 		break;
 
 	case WS_IN_HS_BIS_SEPERATOR:
-		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
 		if (MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT,
 				_PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
 		// TODO Hier Timer geändert vorher 1300 jetzt 1500
-		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(),
-				FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP,
-				wsListen->ws_list_HS_bis_Seperator.back().getiD());
+		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_list_HS_bis_Seperator.back().getiD());
 		break;
 
 	case WS_PASSIEREN:
-		cout << "WS soll passieren" << endl;
-		if (MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
+		cout << "[Betriebszustand] WS soll passieren" << endl;
+		if (MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM1->startMessung(4000 + zeitFBM1->getTime(),
-				FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE,
-				wsListen->ws_list_passieren.back().getiD());
+		zeitFBM1->startMessung(4000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_list_passieren.back().getiD());
 		break;
 
 	case WS_AUSSORTIEREN:
-		cout << "WS soll aussortiert werden" << endl;
-		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT,
-				_PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
+		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
+		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(),
-				FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,
-				wsListen->ws_list_aussortieren.back().getiD());
+		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT, wsListen->ws_list_aussortieren.back().getiD());
 		break;
 
 	case SEP_AN:
@@ -462,8 +414,10 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case LS_ENDE_AN:	//active low+
+		MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_ENDE_AN);
 		break;
 	case LS_ENDE_AUS:		//active low+
+		MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_ENDE_AUS);
 		break;
 
 

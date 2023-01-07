@@ -19,6 +19,7 @@ void WarteAufEntnehmenSepBisLSE2::LsEAn() {
 void WarteAufEntnehmenSepBisLSE2::LsEAus() {
 	cout << "WarteAufEntnehmenSepBisLSE2 recv:LsEAus" << endl;
 	actions->sendFBM2Bereit();
+	new (this) WarteSepBisLSE2;
 }
 
 void WarteAufEntnehmenSepBisLSE2::WsPassieren() {

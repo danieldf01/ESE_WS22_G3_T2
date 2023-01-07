@@ -22,11 +22,6 @@ KonfigurationsdateiManager::KonfigurationsdateiManager(std::string filename) {
 		this->set_value_of(Konfi_Codes::T_RUTSCHE_VOLL, 1000);
 		this->set_value_of(Konfi_Codes::TOLERANZ_MESSZEITEN, 50);
 		this->set_value_of(Konfi_Codes::FBM1_WS_EINLEGEN_ZEIT, 3000);
-		this->set_value_of(Konfi_Codes::ADC_BAND_LEVEL_1, 3646);
-		this->set_value_of(Konfi_Codes::ADC_BAND_LEVEL_2, 3646);
-		this->set_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1, 2339);
-		this->set_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2, 2339);
-
 		this->speicherInKonfigurationsdatei();
 	}
 

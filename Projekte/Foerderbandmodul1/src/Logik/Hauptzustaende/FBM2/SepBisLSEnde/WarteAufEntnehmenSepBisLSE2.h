@@ -9,6 +9,7 @@
 #define LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_WARTEAUFENTNEHMENSEPBISLSE2_H_
 
 #include "BaseStateSepBisLSE2.h"
+#include "WarteSepBisLSE2.h"
 
 class WarteAufEntnehmenSepBisLSE2 : public BaseStateSepBisLSE2  {
 public:

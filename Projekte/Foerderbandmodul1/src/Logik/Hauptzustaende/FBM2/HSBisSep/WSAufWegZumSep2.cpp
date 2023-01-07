@@ -87,6 +87,7 @@ void WSAufWegZumSep2::aussortieren3() {
 		actions->WsNichtAussortierbar();
 		new (this) WarteAufRutscheFreiHSBisSep2;
 	} else {
+		cout << "WSAufWegZumSep2 aussortieren3 else" << endl;
 		actions->WsAussortieren();
 		new (this) WartenHSBisSep2;
 	}

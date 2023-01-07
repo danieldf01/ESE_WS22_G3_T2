@@ -13,11 +13,6 @@
 
 class WarteMessungWsErkennung1 : public BaseStateWsErkennung1 {
 public:
-
-	//TODO Temp
-	int timestamp = 0;
-	// TODO Temp
-
 	void entry() override;
 	void exit() override;
 

@@ -60,6 +60,7 @@ void WSAufWegZumSep1::eStop() {
 }
 
 void WSAufWegZumSep1::aussortieren1() {
+	cout << "WSAufWegZumSep1 Before FehlerZuFrueh" << endl;
 	//Fehler zu frueh?
 	if (zeitmanager->getTime()< (500 + wsListen->ws_list_HS_bis_Seperator.front().getTimestamp())) {
 		new (this) FehlerWsZuFruehHSBisSep1;
@@ -69,6 +70,7 @@ void WSAufWegZumSep1::aussortieren1() {
 }
 
 void WSAufWegZumSep1::aussortieren2() {
+	cout << "WSAufWegZumSep1 Before geforderterTyp?" << endl;
 	//ist das aktuelle Werkstueck vom geforderten Typ?
 	if (wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() == wsListen->sortierReihenfolge.front()) {
 		cout << "Werkstueck entspricht der Reihung" << endl;
