@@ -51,16 +51,23 @@ void ActionsSepBisRut2::fehlerRunter() {
 }
 
 void ActionsSepBisRut2::schnellRunter() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
-		perror("[FSM_SepBisRut] MsgSendPulse failed");
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, SCHNELL_RUNTER_2) == -1) {
+		perror("[FSM_SepBisRut2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsSepBisRut2::zerstoereWsAussortieren() {
-	wsListen->ws_list_aussortieren.pop_front();
+	wsListen->ws_aussortieren_2 = nullptr;
 }
 
 void ActionsSepBisRut2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_list_aussortieren.front().getiD());
+	zeitmanager->deleteTimer(wsListen->ws_aussortieren_2->getiD());
+}
+
+void ActionsSepBisRut2::sendFBM2Bereit() {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+		perror("[FSM_LSAnfang2] MsgSendPulse failed");
+		exit(EXIT_FAILURE);
+	}
 }

@@ -29,11 +29,8 @@ void QuittiertVerschwundenLSAbisHS2::quittiert(){
 
 void QuittiertVerschwundenLSAbisHS2::keinFehler(){
 	exit();
-	if(wsListen->ws_list_LSAnfang_bis_HS.size() > 0){
-		new (this) WsAufWegZumHsLSAbisHS2;
-	} else{
-		new (this) WartenLSAbisHS2;
-	}
+	actions->sendFBM2Bereit();
+	new (this) WartenLSAbisHS2;
 	entry();
 }
 

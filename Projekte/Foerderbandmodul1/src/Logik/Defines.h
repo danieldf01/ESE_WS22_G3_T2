@@ -176,4 +176,5 @@
 #define S_SEP_BIS_RUT1				"server_sep_bis_rut1"
 #define S_SEP_BIS_RUT2				"server_sep_bis_rut2"
 #define S_SEP_BIS_LSENDE			"server_sep_bis_lsende"
+#define S_SEP_BIS_LSENDE2			"server_sep_bis_lsende2"
 #endif /* LOGIK_DEFINES_H_ */

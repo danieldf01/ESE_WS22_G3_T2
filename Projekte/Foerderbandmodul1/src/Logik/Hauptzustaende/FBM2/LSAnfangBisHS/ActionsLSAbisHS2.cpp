@@ -19,17 +19,15 @@ void ActionsLSAbisHS2::setupConnection() {
 }
 
 void ActionsLSAbisHS2::WSinHS() {
-	//loesche den timer fuer den WS verschwunden error, da das WS den HS erreicht hat
-//	zeitmanager->deleteTimer(wsListen->ws_list_LSAnfang_bis_HS_2.front().getiD());
-//
-//	//gib das Werkstueck, das den HS erreicht hat, an die naechste FSM weiter
-//	//wsListen->ws_Hoehensensor_1 = &(wsListen->ws_list_LSAnfang_bis_HS.front()); // TODO Hier mit getter ersetzt
-//	wsListen->setWsHoehensensor2(&(wsListen->ws_list_LSAnfang_bis_HS_2.front()));
-//	wsListen->ws_list_LSAnfang_bis_HS_2.pop_front();
-//	//wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime()); // TODO Hier mit getter ersetzt
-//	wsListen->getWsHoehensensor2()->setTimestamp(zeitmanager->getTime());
-//
-//	cout << "ACTION Zeit vor WS_IN_HS Send" << wsListen->getWsHoehensensor2()->getTimestamp() << endl;
+	cout << "[FBM2] ActionsLSAbisHS2" << endl;
+
+	//loesche den error timer, da das Werkstueck nicht festhaengt
+	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_bis_hs_2->getiD());
+
+	//gib dem Werkstueck einen aktuellen Timestamp und pack es in die Liste fuer die naechste FSM
+	wsListen->ws_ls_anfang_bis_hs_2->setTimestamp(zeitmanager->getTime());
+	wsListen->ws_Hoehensensor_2 = wsListen->ws_ls_anfang_bis_hs_2;
+	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_IN_HS) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
@@ -56,7 +54,7 @@ void ActionsLSAbisHS2::fehlerRunter() {
 }
 
 void ActionsLSAbisHS2::entferneWsLSAbisHS() {
-//	wsListen->ws_list_LSAnfang_bis_HS_2.pop_front();
+	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
 }
 
 void ActionsLSAbisHS2::schnellRunter() {
@@ -69,6 +67,13 @@ void ActionsLSAbisHS2::schnellRunter() {
 void ActionsLSAbisHS2::HSleeren() {
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, HS_LEEREN) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void ActionsLSAbisHS2::sendFBM2Bereit() {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, FBM2_BEREIT) == -1) {
+		perror("[FSM_LSAnfang2] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }

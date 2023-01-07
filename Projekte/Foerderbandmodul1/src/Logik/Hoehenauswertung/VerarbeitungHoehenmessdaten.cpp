@@ -110,14 +110,16 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterschei
 }
 
 void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
-	//cout << "WERTE in erkenneWS" << endl;
+	cout << "messung_mm"<< messung_mm <<endl;
 	/*=======================Erkenne Werkstück=======================*/
 	if (ws_erkannt == false && (messung_mm >= (hoehe_flaches_ws_mm - toleranz_mm))) {
+		cout << "messung_mm"<< messung_mm <<endl;
 		ws_erkannt = true;
 		WS_Typ = FLACH;
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
 		cout << "HS_AKTIV geschickt" << endl;
 	}
+
 	//WS in Höhenmessung
 	if (ws_erkannt) {
 
@@ -143,7 +145,7 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 
 		//Werkstück hat HS durchquert
 		if (messung_mm <= 0 + toleranz_mm) {
-			cout << "Werkstück hat HS durchquert Timestamp:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+//			cout << "Werkstück hat HS durchquert Timestamp:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
 			//berechne Arithmetisches mittel
 			for (auto it = mlist.begin(); it != mlist.end(); ++it) {
 				mittlereHohe += *it;
