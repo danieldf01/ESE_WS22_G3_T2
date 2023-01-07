@@ -2,12 +2,6 @@
 ESTRING (WS_Reihung_Nr_1)
 ESTRING (WS_Reihung_Nr_2)
 ESTRING (WS_Reihung_Nr_3)
-ESTRING (HOEHE_HOEHES_WS_MM)//####mit konstruktor
-ESTRING (HOEHE_FLACHES_WS_MM)//####mit konstruktor
-ESTRING (TIEFE_LOCH_MM)//####mit konstruktor
-ESTRING (HYSTERESE_LOCH_MM)//####mit konstruktor
-ESTRING (TIEFE_LOCH_KLEIN_MM)//####mit konstruktor
-ESTRING (TOLERANZ_MM)//####mit konstruktor
 ESTRING (ADC_BAND_LEVEL_1)  //ADC wert wen kein Ws aufband
 ESTRING (ADC_WS_HOCH_LEVEL_1) //ADC wert wen ein Hoches WS ohne Bohrung gemessen wird
 ESTRING (ADC_BAND_LEVEL_2)

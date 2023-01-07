@@ -64,7 +64,6 @@ private:
 	BaseState *state = nullptr;
 	WsListen *wsListen =nullptr;
 	int inputID=0;
-	int kommID;
 
 public:
 	LogikMain();

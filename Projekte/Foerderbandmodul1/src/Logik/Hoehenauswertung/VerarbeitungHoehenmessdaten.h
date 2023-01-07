@@ -28,53 +28,34 @@
 
 #define SLIDING_WINDOW_SIZE 1 //HW 15 SIM 1
 
-//#define hoehe_hoehes_ws 2277+
-//#define hoehe_laufband 3651+
-
-//const double hoehe_hoehes_ws_mm = 25.0;+
-//const double hoehe_flaches_ws_mm = 21.0;+
-
-//const double tiefe_loch_mm = 16.0;//muss größer toleranz_mm+
-//const double hysterese_mm = 8.0;+
-//const double toleranz_mm = 1.0;
-//
-//const double tiefe_loch_klein_mm = 3.0;+
-//
-
-
-
 
 class VerarbeitungHoehenmessdaten {
 public:
-	double hoehe_hoehes_ws_mm;
-	double hoehe_flaches_ws_mm;
-	double tiefe_loch_mm;
-
-	int hoehe_hoehes_ws;
-	int hoehe_laufband;
-	double hysterese_mm;
-	double toleranz_mm;
-	double tiefe_loch_klein_mm;
-	//const double lookup_mm[2] = 		{0,	hoehe_hoehes_ws_mm};
-	//const double lookup_ADC_Value[2] = {hoehe_laufband, hoehe_hoehes_ws};
-	double lookup_mm[2];
-	double lookup_ADC_Value[2];
-
-	WsListen *wsListen;
-	int anlage;
-	VerarbeitungHoehenmessdaten(int);
+	VerarbeitungHoehenmessdaten(int anlage, WsListen *wsListen,int hoehe_hoehes_ws_adc, int hoehe_laufband_adc);
 	virtual ~VerarbeitungHoehenmessdaten();
+	void receivingADCValueFromHAL();
 	QnetHandler qnetHandler;
 	name_attach_t *attach;
-	void receivingADCValueFromHAL(WsListen *wsListen);
-
-	int hoechster_adc_wert;//kalibrirung
-	int keinster_adc_wert;//kalibrirung
 private:
 	void erkenneWS(double messung_mm);
 	double adc_value_to_mm(int dig);
 	int slidingwindow(const int messung);
 	void clear_HS_daten();
+
+	WsListen *wsListen;
+	int anlagen_nr;
+	int hoechster_adc_wert;//kalibrirung
+	int keinster_adc_wert;//kalibrirung
+	double hoehe_hoehes_ws_mm;
+	double hoehe_flaches_ws_mm;
+	int hoehe_hoehes_ws_adc;
+	int hoehe_laufband_adc;
+
+	double tiefe_loch_mm;
+	double hysterese_mm;
+	double toleranz_mm;
+	double tiefe_loch_klein_mm;
+
 	bool receivingRunning;
 	bool stopAn;
 	int logikID;

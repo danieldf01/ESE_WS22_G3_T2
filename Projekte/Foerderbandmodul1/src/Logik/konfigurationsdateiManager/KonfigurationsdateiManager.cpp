@@ -15,12 +15,10 @@ KonfigurationsdateiManager::KonfigurationsdateiManager(std::string filename) {
 		std::cout << "erstelle Datei: " << filename << std::endl;
 		this->erstelleKonfigurationsdatei();
 		this->dateieinlesen();
-		this->set_value_of(Konfi_Codes::HOEHE_HOEHES_WS_MM, 25);
-		this->set_value_of(Konfi_Codes::HOEHE_FLACHES_WS_MM, 21);
-		this->set_value_of(Konfi_Codes::TIEFE_LOCH_MM, 16);
-		this->set_value_of(Konfi_Codes::HYSTERESE_LOCH_MM, 8);
-		this->set_value_of(Konfi_Codes::TIEFE_LOCH_KLEIN_MM, 3);
-		this->set_value_of(Konfi_Codes::TOLERANZ_MM, 1);
+		this->set_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1, 2339);
+		this->set_value_of(Konfi_Codes::ADC_BAND_LEVEL_1,3646);
+		this->set_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2, 2339);
+		this->set_value_of(Konfi_Codes::ADC_BAND_LEVEL_2,3646);
 		this->set_value_of(Konfi_Codes::T_RUTSCHE_VOLL, 1000);
 		this->set_value_of(Konfi_Codes::TOLERANZ_MESSZEITEN, 50);
 		this->set_value_of(Konfi_Codes::FBM1_WS_EINLEGEN_ZEIT, 3000);

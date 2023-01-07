@@ -262,46 +262,13 @@ void Ruhezustand::pulseZeit2(int value){
 }
 
 void Ruhezustand::updateAuswertung(){
-	hoehenauswertung1->hoehe_flaches_ws_mm= (double)dateiManager->get_value_of(Konfi_Codes::HOEHE_FLACHES_WS_MM);
-	hoehenauswertung2->hoehe_flaches_ws_mm= (double)dateiManager->get_value_of(Konfi_Codes::HOEHE_FLACHES_WS_MM);
+	//TODO
+//	hoehenauswertung1->hoehe_hoehes_ws_adc= dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1);
+//	hoehenauswertung2->hoehe_hoehes_ws_adc= dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2);
+//
+//	hoehenauswertung1->hoehe_laufband_adc= dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_1);
+//	hoehenauswertung2->hoehe_laufband_adc= dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_2);
 
-	hoehenauswertung1->hoehe_hoehes_ws= dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1);
-	hoehenauswertung2->hoehe_hoehes_ws= dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2);
-
-	hoehenauswertung1->hoehe_hoehes_ws_mm= (double)dateiManager->get_value_of(Konfi_Codes::HOEHE_HOEHES_WS_MM);
-	hoehenauswertung2->hoehe_hoehes_ws_mm= (double)dateiManager->get_value_of(Konfi_Codes::HOEHE_HOEHES_WS_MM);
-
-	hoehenauswertung1->hoehe_laufband= dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_1);
-	hoehenauswertung2->hoehe_laufband= dateiManager->get_value_of(Konfi_Codes::ADC_BAND_LEVEL_2);
-
-	hoehenauswertung1->hysterese_mm= (double)dateiManager->get_value_of(Konfi_Codes::HYSTERESE_LOCH_MM);
-	hoehenauswertung2->hysterese_mm= (double)dateiManager->get_value_of(Konfi_Codes::HYSTERESE_LOCH_MM);
-
-	hoehenauswertung1->lookup_mm[0]= 0;
-	hoehenauswertung1->lookup_mm[1]= hoehenauswertung1->hoehe_hoehes_ws_mm;
-	//{0,hoehenauswertung1->hoehe_hoehes_ws_mm};
-	//hoehenauswertung2->lookup_mm= {0,hoehenauswertung2->hoehe_hoehes_ws_mm};
-	hoehenauswertung2->lookup_mm[0]= 0;
-	hoehenauswertung2->lookup_mm[1]= hoehenauswertung2->hoehe_hoehes_ws_mm;
-
-	//hoehenauswertung1->lookup_ADC_Value= {hoehenauswertung1->hoehe_laufband,hoehenauswertung1->hoehe_hoehes_ws};
-	//hoehenauswertung2->lookup_ADC_Value= {hoehenauswertung2->hoehe_laufband,hoehenauswertung2->hoehe_hoehes_ws};
-	hoehenauswertung1->lookup_ADC_Value[0]= hoehenauswertung1->hoehe_laufband;
-	hoehenauswertung1->lookup_ADC_Value[1]= hoehenauswertung1->hoehe_hoehes_ws;
-
-	hoehenauswertung2->lookup_ADC_Value[0]= hoehenauswertung2->hoehe_laufband;
-	hoehenauswertung2->lookup_ADC_Value[1]= hoehenauswertung2->hoehe_hoehes_ws;
-
-	hoehenauswertung1->tiefe_loch_klein_mm = (double) dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_KLEIN_MM);
-	hoehenauswertung2->tiefe_loch_klein_mm = (double) dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_KLEIN_MM);
-
-
-	hoehenauswertung1->tiefe_loch_mm = (double)dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_MM);
-	hoehenauswertung2->tiefe_loch_mm = (double) dateiManager->get_value_of(Konfi_Codes::TIEFE_LOCH_MM);
-
-
-	hoehenauswertung1->toleranz_mm = (double)dateiManager->get_value_of(Konfi_Codes::TOLERANZ_MM);
-	hoehenauswertung2->toleranz_mm = (double)dateiManager->get_value_of(Konfi_Codes::TOLERANZ_MM);
 }
 void Ruhezustand::eStop(int estop){
 	cout << "switched to EStop1"<< endl;
