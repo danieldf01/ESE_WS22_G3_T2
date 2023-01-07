@@ -46,5 +46,4 @@ void WarteAufWsLSA1::keinFehler() {
 
 void WarteAufWsLSA1::eStop() {
 	actions->eStop();
-	new (this) WarteAufWsLSA1;
 }

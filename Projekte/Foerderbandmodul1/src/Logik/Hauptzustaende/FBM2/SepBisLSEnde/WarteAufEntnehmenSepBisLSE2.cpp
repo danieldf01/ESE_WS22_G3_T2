@@ -37,5 +37,7 @@ void WarteAufEntnehmenSepBisLSE2::keinFehler() {
 void WarteAufEntnehmenSepBisLSE2::fehlerVerschwunden() {
 }
 
-void WarteAufEntnehmenSepBisLSE2::eStop() {
+void WarteAufEntnehmenSepBisLSE2::eStop() { // TODO?
+	actions->eStop();
+	new (this) WarteSepBisLSE2;
 }

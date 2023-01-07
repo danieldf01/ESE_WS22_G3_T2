@@ -37,4 +37,5 @@ void FehlerWSVerschwundenSepBisRut1::Fverschwunden() {
 }
 
 void FehlerWSVerschwundenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

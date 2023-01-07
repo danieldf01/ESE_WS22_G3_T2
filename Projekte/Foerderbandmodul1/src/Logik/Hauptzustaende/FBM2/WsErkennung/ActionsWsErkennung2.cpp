@@ -79,6 +79,5 @@ void ActionsWsErkennung2::checkWSueberschlagen() {
 }
 
 void ActionsWsErkennung2::eStop(){
-	// TODO Hier fehlt etwas
-//	wsListen->ws_list_HS_bis_Seperator_2.clear();
+	wsListen->ws_hs_bis_seperator_2 = nullptr;
 }

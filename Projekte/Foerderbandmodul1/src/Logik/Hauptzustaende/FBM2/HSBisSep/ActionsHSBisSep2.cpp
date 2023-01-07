@@ -105,6 +105,6 @@ void ActionsHSBisSep2::sendFBM2Bereit() {
 }
 
 void ActionsHSBisSep2::eStop(){
-	wsListen->ws_list_passieren.clear();
-	wsListen->ws_list_aussortieren.clear();
+	wsListen->ws_passieren_2 = nullptr;
+	wsListen->ws_aussortieren_2 = nullptr;
 }

@@ -47,4 +47,5 @@ void QuittiertWSVerschwundenSepBisRut1::Fverschwunden() {
 }
 
 void QuittiertWSVerschwundenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

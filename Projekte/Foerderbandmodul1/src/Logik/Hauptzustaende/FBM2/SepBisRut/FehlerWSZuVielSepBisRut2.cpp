@@ -38,4 +38,5 @@ void FehlerWSZuVielSepBisRut2::Fverschwunden() {
 }
 
 void FehlerWSZuVielSepBisRut2::eStop() {
+	new (this) WarteSepBisRut2;
 }

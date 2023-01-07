@@ -34,4 +34,5 @@ void AuswerferAusgefahrenSepBisRut1::Fverschwunden() {
 }
 
 void AuswerferAusgefahrenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

@@ -86,5 +86,5 @@ void ActionsSepBisLSE2::sendFBM2Bereit() {
 }
 
 void ActionsSepBisLSE2::eStop(){
-	wsListen->ws_ls_anfang_2 = nullptr;
+
 }

@@ -39,6 +39,7 @@ void WSInLSA2::fehlerVerschwunden(){
 
 void WSInLSA2::eStop() {
 	actions->eStop();
+	new (this) WarteAufFBM2;
 }
 
 void WSInLSA2::fbm1Bereit() {

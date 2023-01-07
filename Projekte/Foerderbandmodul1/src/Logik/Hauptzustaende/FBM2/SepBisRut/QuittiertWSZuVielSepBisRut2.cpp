@@ -36,4 +36,5 @@ void QuittiertWSZuVielSepBisRut2::Fverschwunden() {
 }
 
 void QuittiertWSZuVielSepBisRut2::eStop() {
+	new (this) WarteSepBisRut2;
 }
