@@ -24,6 +24,7 @@ void WarteSepBisLSE1::LsEAn(){
 }
 
 void WarteSepBisLSE1::WsPassieren(){
+	cout << "WarteSepBisLSE1::WsPassieren" << endl;
 	if(wsListen->ws_list_passieren.size() > 0){
 		exit();
 		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){

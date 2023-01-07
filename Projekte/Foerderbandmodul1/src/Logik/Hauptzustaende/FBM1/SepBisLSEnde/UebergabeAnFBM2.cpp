@@ -35,6 +35,7 @@ void UebergabeAnFBM2::WsWurdeUebergeben(){
 	exit();
 	actions->FBM1WsUebergeben();
 	if(wsListen->ws_list_passieren.size() > 0){
+		cout << "weiteres WS zwischen Sep bis LSE" << endl;
 		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
 			actions->seperatorAn();
 			new (this) WeicheGeoeffnetSepBisLSE1;
@@ -42,6 +43,7 @@ void UebergabeAnFBM2::WsWurdeUebergeben(){
 			new (this) WsAufWegZuLSEndeSepBisLSE1;
 		}
 	} else if(wsListen->ws_list_passieren.size() <= 0){
+		cout << "kein weiteres WS zwischen Sep bis LSE" << endl;
 		new (this) WarteSepBisLSE1;
 	}
 	entry();

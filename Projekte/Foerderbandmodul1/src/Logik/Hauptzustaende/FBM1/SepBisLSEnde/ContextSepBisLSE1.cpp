@@ -47,6 +47,7 @@ void ContextSepBisLSE1::receiveSignal() {
 				LsEAn();
 				break;
 			case WS_PASSIEREN:
+				cout << "ContextSepBisLSE1::receiveSignal: WS_PASSIEREN" << endl;
 				WsPassieren();
 				break;
 			case ZEIT_WEICHE:
