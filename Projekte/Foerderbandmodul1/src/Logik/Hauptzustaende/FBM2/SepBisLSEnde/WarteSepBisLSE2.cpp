@@ -28,14 +28,14 @@ void WarteSepBisLSE2::LsEAus() {
 }
 
 void WarteSepBisLSE2::WsPassieren(){
-	cout << "WarteSepBisLSE2 recv:WsPassieren" << endl;
+//	cout << "WarteSepBisLSE2 recv:WsPassieren" << endl;
 	exit();
 	if (!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)) {
-		cout << "WarteSepBisLSE2 isWeiche" << endl;
+//		cout << "WarteSepBisLSE2 isWeiche" << endl;
 		actions->seperatorAn();
 		new (this) WeicheGeoeffnetSepBisLSE2;
 	} else {
-		cout << "WarteSepBisLSE2 isAuswerfer" << endl;
+//		cout << "WarteSepBisLSE2 isAuswerfer" << endl;
 		new (this) WsAufWegZuLSEndeSepBisLSE2;
 	}
 	entry();

@@ -14,7 +14,7 @@ void WartenHSBisSep2::exit() {
 }
 
 void WartenHSBisSep2::WSinHSbisSep() {
-	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
+//	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
 	exit();
 	new (this) WSAufWegZumSep2;
 	entry();

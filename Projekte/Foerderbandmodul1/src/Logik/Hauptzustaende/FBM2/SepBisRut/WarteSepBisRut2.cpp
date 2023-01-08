@@ -20,7 +20,7 @@ void WarteSepBisRut2::LsRutAn() {
 }
 
 void WarteSepBisRut2::WsAussortieren() {
-	cout << "WarteSepBisRut2 recv:WsAussortieren" << endl;
+//	cout << "WarteSepBisRut2 recv:WsAussortieren" << endl;
 	exit();
 	if (konfig->get_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE)) { // Es ist ein Auswerfer TODO Auswerfer als Konfi Code anlegen
 		actions->seperatorAn();

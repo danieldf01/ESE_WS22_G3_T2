@@ -22,7 +22,7 @@ void WarteWSVerlaesstFBM1::fbm1WsLosgeschickt() {
 }
 
 void WarteWSVerlaesstFBM1::fbm1WsUebergeben() {
-	cout << "[FBM2] WarteWSVerlaestFBM1 recv: fbm1WsUebergeben" << endl;
+//	cout << "[FBM2] WarteWSVerlaestFBM1 recv: fbm1WsUebergeben" << endl;
 	new (this) WSZwischenFBM1FBM2;
 }
 

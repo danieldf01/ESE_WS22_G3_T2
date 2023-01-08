@@ -16,7 +16,7 @@ void WartenLSAbisHS2::exit(){
 }
 
 void WartenLSAbisHS2::WSinLSAbisHS(){
-	cout << "[FBM2] Zustand: WartenLSAbisHS2 recv: WSinLSAbisHS" << endl;
+//	cout << "[FBM2] Zustand: WartenLSAbisHS2 recv: WSinLSAbisHS" << endl;
 	exit();
 	new (this) WsAufWegZumHsLSAbisHS2;
 	entry();

@@ -129,6 +129,7 @@ void Betriebszustand::pulseFBM1(int value) {
 
 	case LS_ENDE_AN:	//active low+
 		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_ENDE_AN);
+		cout << "Betriebszustand sending LS_ENDE_AN" << endl;
 		break;
 	case LS_ENDE_AUS:		//active low+
 		break;

@@ -19,7 +19,7 @@ void WSAufWegZumSep2::WSinHSbisSep() {
 }
 
 void WSAufWegZumSep2::MetSenAn() {
-	cout << "WSAufWegZumSep2 recv:MetSenAn" << endl;
+//	cout << "WSAufWegZumSep2 recv:MetSenAn" << endl;
 	exit();
 	actions->setMetallTrue();
 	new (this) ImMetallsensorHSBisSep2;
@@ -27,7 +27,7 @@ void WSAufWegZumSep2::MetSenAn() {
 }
 
 void WSAufWegZumSep2::LSSepAn() {
-	cout << "WSAufWegZumSep2 recv:LSSepAn" << endl;
+//	cout << "WSAufWegZumSep2 recv:LSSepAn" << endl;
 	exit();
 //	cout << "auf weg sep: WsListe Typ" <<  wsListen->ws_list_HS_bis_Seperator_2.front().getWsTyp() << endl;
 	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge2.front() << endl;
@@ -87,7 +87,7 @@ void WSAufWegZumSep2::aussortieren3() {
 		actions->WsNichtAussortierbar();
 		new (this) WarteAufRutscheFreiHSBisSep2;
 	} else {
-		cout << "WSAufWegZumSep2 aussortieren3 else" << endl;
+//		cout << "WSAufWegZumSep2 aussortieren3 else" << endl;
 		actions->WsAussortieren();
 		new (this) WartenHSBisSep2;
 	}

@@ -23,7 +23,7 @@ void WarteMessungWsErkennung2::WSinHS(){
 }
 
 void WarteMessungWsErkennung2::WsTyp(){
-	cout << "WarteMessungWsErkennung2 recv WSTyp" << endl;
+//	cout << "WarteMessungWsErkennung2 recv WSTyp" << endl;
 	cout << "TODO CheckWSuberschlagen" << endl;
 	exit();
 	actions->langsamRunter();

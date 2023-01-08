@@ -18,7 +18,7 @@ void WartenPassieren::exit(){
 }
 
 void WartenPassieren::WsPassieren(){
-	cout << "WarteSepBisLSE1::WsPassieren" << endl;
+//	cout << "WarteSepBisLSE1::WsPassieren" << endl;
 	if(wsListen->ws_list_passieren.size() > 0){
 		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
 			actions->seperatorAn();

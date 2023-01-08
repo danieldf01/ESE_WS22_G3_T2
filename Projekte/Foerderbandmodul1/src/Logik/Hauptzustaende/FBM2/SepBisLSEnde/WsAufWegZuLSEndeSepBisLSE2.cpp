@@ -18,7 +18,7 @@ void WsAufWegZuLSEndeSepBisLSE2::exit(){
 }
 
 void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
-	cout << "WsAufWegZuLSEndeSepBisLSE2 Recv: LsEAn" <<endl;
+//	cout << "WsAufWegZuLSEndeSepBisLSE2 Recv: LsEAn" <<endl;
 	exit();
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?

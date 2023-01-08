@@ -7,6 +7,8 @@
 
 #include "ActionsPassieren.h"
 
+using namespace std;
+
 ActionsPassieren::~ActionsPassieren() {
 }
 
@@ -36,6 +38,7 @@ void ActionsPassieren::seperatorAus(){
 }
 
 void ActionsPassieren::WsAufWegZuLSE(){
+	cout << "ActionsPassieren send WsAufWegZuLSE" << endl;
 	Werkstueck tempWs = wsListen->ws_list_passieren.front();
 	wsListen->ws_list_passieren.pop_front();
 	wsListen->ws_list_sep_bis_lsende.push_back(tempWs);

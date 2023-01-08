@@ -34,6 +34,8 @@ void ActionsLSA1::schnellHoch() {
 }
 
 void ActionsLSA1::erstelleWS() {
+	cout << "ActionsLSA1 LSA AN" << endl;
+
 	werkstueck = new Werkstueck(wsID, zeitmanager->getTime());
 	Werkstueck tempWS = *werkstueck;
 	wsListen->ws_LSAnfang = &tempWS;
@@ -59,6 +61,8 @@ void ActionsLSA1::schnellRunter() {
 }
 
 void ActionsLSA1::WSinLSAbisHS() {
+	cout << "ActionsLSA1 LSA AUS" << endl;
+
 	//loesche den error timer, da das Werkstueck nicht festhaengt
 	zeitmanager->deleteTimer(wsListen->ws_LSAnfang->getiD());
 //	wsListen->ws_LSAnfang = nullptr;

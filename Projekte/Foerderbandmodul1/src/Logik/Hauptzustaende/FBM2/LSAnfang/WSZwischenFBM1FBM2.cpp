@@ -14,7 +14,7 @@ void WSZwischenFBM1FBM2::exit() {
 }
 
 void WSZwischenFBM1FBM2::lsAnfangAn() {
-	cout << "[FBM2] WSZwischenFBM1FBM2 recv: lsAnfangAn" << endl;
+//	cout << "[FBM2] WSZwischenFBM1FBM2 recv: lsAnfangAn" << endl;
 	actions->schnellRunter1();
 	new (this) WSInLSA2;
 }

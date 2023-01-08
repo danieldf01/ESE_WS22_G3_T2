@@ -39,9 +39,8 @@ void WarteAufRutscheFreiHSBisSep2::quittiert() {
 
 void WarteAufRutscheFreiHSBisSep2::keinFehler() {
 }
-// TODO anpassen
-void WarteAufRutscheFreiHSBisSep2::fehlerCntDown() {
 
+void WarteAufRutscheFreiHSBisSep2::fehlerCntDown() {
 	if (!rutsche->rutsche2->rutscheVoll2) {
 		if (!rutsche->rutsche2->rutscheVoll2) {
 			actions->WsAussortieren();
