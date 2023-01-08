@@ -301,6 +301,11 @@ void Ruhezustand::pulseFBM1(int value){
 void Ruhezustand::pulseFBM2(int value){
 	switch (value) {
 
+	case E_STOP_AN:
+		eStop(2);
+		break;
+
+
 	case T_START_AN:
 		//TODO Starte Timer um zwischen Betriebsmodus&Service modus zu unterscheiden
 		langGedrueckt=false;
@@ -323,10 +328,6 @@ void Ruhezustand::pulseFBM2(int value){
 		}
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,STOP_RUNTER_1 );
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,STOP_RUNTER_2 );
-		break;
-
-	case E_STOP_AN:
-		eStop(2);
 		break;
 
 	case LS_RUTSCHE_AUS:	//active low+

@@ -831,7 +831,6 @@ void Betriebszustand::updateAuswertung(){
 
 }
 void Betriebszustand::eStop(int estop){
-	cout << "switched to EStop1"<< endl;
 	MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO),_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AUS );
 	MsgSendPulse(motorID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_1,E_STOP_AN );
 	MsgSendPulse(motorID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_2,E_STOP_AN);
@@ -859,13 +858,14 @@ void Betriebszustand::eStop(int estop){
 	zeitFBM2->clearLists();
 
 	//TODO alle EStop Signale auf hoechste Prioritaet setzen?
-	MsgSendPulse(kommID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AN);
 	fehlerCount=0;
 	warnungsCount=0;
 	if(estop==1){
 		eStop1=true;
+		MsgSendPulse(kommID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AN);
 	} else{
 		eStop2=true;
 	}
 	new (this) EStop;
+	cout << "switched to EStop " << estop << endl;
 }

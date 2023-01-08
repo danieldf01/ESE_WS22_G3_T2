@@ -15,7 +15,7 @@ void EStop::handlePulse(int code,int value){
 			break;
 
 		case CODE_FBM_2: //Pulse von FBM_2
-			pulseFBM1(value);
+			pulseFBM2(value);
 			break;
 
 		case CODE_ZEIT_1:

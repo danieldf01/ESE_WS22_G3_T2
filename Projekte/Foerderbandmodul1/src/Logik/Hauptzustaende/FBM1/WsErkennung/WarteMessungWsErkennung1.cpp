@@ -48,8 +48,6 @@ void WarteMessungWsErkennung1::keinFehler(){
 void WarteMessungWsErkennung1::fehlerHoehenmessung(){
 	exit();
 	actions->langsamRunter();
-	cout << "[FEHLER] Die Werkstueckmessung auf Foerderband 1 dauert zu lange. Moeglicherweise ist ein Werkstueck verschwunden." << endl;
-	cout << "Bitte entfernen Sie ein Werkstueck unter dem Hoehensensor, falls dort eins liegt." << endl;
 	new (this) FehlerHoehenmessungWsErkennung1;
 	entry();
 }
