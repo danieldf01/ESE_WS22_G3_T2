@@ -653,7 +653,6 @@ void Fehlerzustand::initTimer(){
 }
 
 void Fehlerzustand::eStop(int estop){
-	cout << "switched to EStop1"<< endl;
 	MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO),_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AUS );
 	MsgSendPulse(motorID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_1,E_STOP_AN );
 	MsgSendPulse(motorID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_2,E_STOP_AN);
@@ -680,16 +679,21 @@ void Fehlerzustand::eStop(int estop){
 	zeitFBM1->clearLists();
 	zeitFBM2->clearLists();
 
-	MsgSendPulse(kommID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_1,ESTOP_AN);
+	wsListen->sortierReihenfolge.clear();
+	wsListen->sortierReihenfolge2.clear();
+
 	fehlerCount=0;
 	warnungsCount=0;
+
 	if(estop==1){
+		MsgSendPulse(kommID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_1,ESTOP_AN);
 		eStop1=true;
-		}
-		else{
+	} else{
 		eStop2=true;
-		}
+	}
+
 	new (this) EStop;
+	cout << "switched to EStop " << estop << endl;
 }
 
 void Fehlerzustand::quittiert(){

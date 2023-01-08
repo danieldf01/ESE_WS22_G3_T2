@@ -39,6 +39,7 @@ void FehlerWSVerschwundenSepBisLSE1::WsWurdeUebergeben(){
 void FehlerWSVerschwundenSepBisLSE1::quittiert(){
 	exit();
 	actions->schnellRunter();
+	new (this) QuittiertVerschwundenSepBisLSE1;
 	entry();
 }
 

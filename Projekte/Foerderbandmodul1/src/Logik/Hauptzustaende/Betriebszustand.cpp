@@ -300,8 +300,7 @@ void Betriebszustand::pulseFBM1(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		// TODO Hier Timer geändert vorher 1300 jetzt 1500
-		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_list_HS_bis_Seperator.back().getiD());
+		zeitFBM1->startMessung(2000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_list_HS_bis_Seperator.back().getiD());
 		break;
 
 	case WS_PASSIEREN:
@@ -317,6 +316,7 @@ void Betriebszustand::pulseFBM1(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
+		cout << "Betriebszustand start timer ws auf weg zu lse" << endl;
 		zeitFBM1->startMessung(4000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_list_sep_bis_lsende.back().getiD());
 		break;
 
@@ -632,8 +632,7 @@ void Betriebszustand::pulseFBM2(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		// TODO Timer anpassen ggf.
-		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2->getiD());
+		zeitFBM2->startMessung(2000 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2->getiD());
 		break;
 
 	case WS_NICHT_AUSSORTIERBAR:
@@ -860,12 +859,17 @@ void Betriebszustand::eStop(int estop){
 	//TODO alle EStop Signale auf hoechste Prioritaet setzen?
 	fehlerCount=0;
 	warnungsCount=0;
+
+	wsListen->sortierReihenfolge.clear();
+	wsListen->sortierReihenfolge2.clear();
+
 	if(estop==1){
 		eStop1=true;
 		MsgSendPulse(kommID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AN);
 	} else{
 		eStop2=true;
 	}
+
 	new (this) EStop;
 	cout << "switched to EStop " << estop << endl;
 }

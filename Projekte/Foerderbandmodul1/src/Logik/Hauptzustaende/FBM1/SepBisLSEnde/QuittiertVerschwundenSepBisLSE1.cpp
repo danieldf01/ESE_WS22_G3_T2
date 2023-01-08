@@ -37,9 +37,9 @@ void QuittiertVerschwundenSepBisLSE1::quittiert(){
 
 void QuittiertVerschwundenSepBisLSE1::keinFehler(){
 	exit();
-	if(wsListen->ws_list_passieren.size() > 0){
+	if(wsListen->ws_list_sep_bis_lsende.size() > 0){
 		new (this) WsAufWegZuLSEndeSepBisLSE1;
-	} else if(wsListen->ws_list_passieren.size() <= 0){
+	} else if(wsListen->ws_list_sep_bis_lsende.size() <= 0){
 		new (this) WarteSepBisLSE1;
 	}
 	entry();

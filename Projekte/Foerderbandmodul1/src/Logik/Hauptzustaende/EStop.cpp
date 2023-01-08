@@ -49,6 +49,14 @@ void EStop::pulseFBM1(int value) {
 		if (!eStop2 && !eStop1) {
 			MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
 			MsgSendPulse(auswertungID2, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
+
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
 			new (this) Ruhezustand;
 		}
 		break;
@@ -75,6 +83,14 @@ void EStop::pulseFBM2(int value){
 		if (!eStop2 && !eStop1) {
 			MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
 			MsgSendPulse(auswertungID2, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
+			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
+
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
+			wsListen->sortierReihenfolge2.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_3));
 			new (this) Ruhezustand;
 		}
 		break;
