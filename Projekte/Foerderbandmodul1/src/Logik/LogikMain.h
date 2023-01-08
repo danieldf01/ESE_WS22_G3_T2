@@ -35,8 +35,8 @@
 #include "Hauptzustaende/FBM1/SepBisLSEnde/ActionsSepBisLSE1.h"
 #include "Hauptzustaende/FBM1/SepBisLSEnde/ContextSepBisLSE1.h"
 #include "WsListen.h"
-#include "Hauptzustaende/FBM1/Motorsteuerung/Motorsteuerung.h"
-#include "Hauptzustaende/FBM1/Rutsche/Rutsche.h"
+#include "Hauptzustaende/Motorsteuerung/Motorsteuerung.h"
+#include "Hauptzustaende/Rutsche/Rutsche.h"
 #include "Zeit/Zeitmanager.h"
 
 // TODO Added

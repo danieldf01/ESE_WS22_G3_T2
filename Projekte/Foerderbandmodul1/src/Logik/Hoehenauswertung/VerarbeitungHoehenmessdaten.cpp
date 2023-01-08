@@ -96,12 +96,12 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterschei
 				if(!stopAn){
 					this->erkenneWS(messung_mm);
 				}else{ //TODO Multiplikator HW:3 SIM:10
-					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband_adc) + (toleranz_mm*10) && !fehlergeworfen) {
-						fehlergeworfen = true;
-						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
-						cout << "HS_AKTIV STOERFAKTOR" << endl;
-						fflush(stdout);
-					}
+//					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband_adc) + (toleranz_mm*10) && !fehlergeworfen) {
+//						fehlergeworfen = true;
+//						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
+//						cout << "HS_AKTIV STOERFAKTOR" << endl;
+//						fflush(stdout);
+//					}
 				}
 
 			}

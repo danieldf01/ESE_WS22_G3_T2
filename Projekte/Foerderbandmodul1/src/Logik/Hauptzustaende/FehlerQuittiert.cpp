@@ -53,6 +53,8 @@ void FehlerQuittiert::pulseFBM1(int value){
 	case FEHLER_RUNTER:
 		fehlerCount--;
 		cout << "fehler runter" << fehlerCount << endl;
+		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
+		MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
 		break;
 
 	case T_START_AUS:
@@ -134,6 +136,15 @@ void FehlerQuittiert::pulseFBM1(int value){
 
 	case HS_LEEREN:
 		MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_LEEREN);
+		break;
+
+	case WS_AUSSORTIEREN:
+		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		// TODO Timer anpassen ggf.
+		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT, wsListen->ws_list_aussortieren.back().getiD());
 		break;
 	}
 }
@@ -224,17 +235,26 @@ void FehlerQuittiert::pulseFBM2(int value){
 		break;
 
 	case WARNUNG_AUS:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,RUTSCHE_FREI);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, RUTSCHE_FREI);
 		warnungsCount--;
 		break;
 
 	case WARNUNG_AN:
-		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,RUTSCHE_VOLL);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, RUTSCHE_VOLL);
 		warnungsCount++;
 		break;
 
 	case TIMER_RUTSCHE:
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2,TIMER_RUTSCHE);
+		break;
+
+	case WS_AUSSORTIEREN:
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		// TODO Timer anpassen ggf.
+		zeitFBM2->startMessung(3000 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT, wsListen->ws_aussortieren_2->getiD());
 		break;
 	}
 }

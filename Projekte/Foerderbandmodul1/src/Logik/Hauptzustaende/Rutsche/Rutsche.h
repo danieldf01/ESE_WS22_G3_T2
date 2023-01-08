@@ -4,7 +4,7 @@
  *  Created on: 15.12.2022
  *      Author: acy003
  */
-#include "../../../../dispatcher/QnetHandler.h"
+#include "../../../dispatcher/QnetHandler.h"
 #include "RutschenSteuerung.h"
 #ifndef LOGIK_HAUPTZUSTAENDE_FBM1_RUTSCHE_RUTSCHE_H_
 #define LOGIK_HAUPTZUSTAENDE_FBM1_RUTSCHE_RUTSCHE_H_

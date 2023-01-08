@@ -86,6 +86,8 @@ void WSAufWegZumSep1::aussortieren2() {
 }
 
 void WSAufWegZumSep1::aussortieren3() {
+	cout << "RUTSCHE 1 VOLL: " << rutsche->rutsche1->rutscheVoll1 << endl;
+	cout << "RUTSCHE 2 VOLL: " << rutsche->rutsche2->rutscheVoll2 << endl;
 	if (rutsche->rutsche2->rutscheVoll2) {
 		if (rutsche->rutsche1->rutscheVoll1) {
 			//wenn Rutsche 1 und 2 voll sind, tritt der Fehler nicht aussortierbar ein

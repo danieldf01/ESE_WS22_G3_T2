@@ -9,12 +9,12 @@
 using namespace std;
 void FehlerRutsche1Und2Voll::entry(){
 	actions->fehlerHoch();
-	cout <<"Fehler hoch gesendet"<<endl;
+	cout << "[FEHLER] Die Rutschen auf beiden Foerderbandmodulen sind voll, es kann kein Werkstueck aussortiert werden!" << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke aus den Rutschen" << endl;
 }
 
 void FehlerRutsche1Und2Voll::exit(){
 	actions->fehlerRunter();
-	cout <<"Fehler runter gesendet"<< endl;
 }
 
 void FehlerRutsche1Und2Voll::WsNichtAussortierbar(){

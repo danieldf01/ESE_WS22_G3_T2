@@ -335,7 +335,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case WS_NICHT_AUSSORTIERBAR:
-		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
+//		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
 		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT,	CODE_FBM_1, WS_NICHT_AUSSORTIERBAR);
 		break;
 
@@ -512,7 +512,7 @@ void Betriebszustand::pulseFBM2(int value) {
 				MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
 				MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 			}
-				}
+		}
 		break;
 	case T_RESET_AUS: 	//active high+
 		if(fehlerUnquittiert){
@@ -636,8 +636,13 @@ void Betriebszustand::pulseFBM2(int value) {
 		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2->getiD());
 		break;
 
+	case WS_NICHT_AUSSORTIERBAR:
+//		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
+		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_NICHT_AUSSORTIERBAR);
+		break;
+
 	case WS_PASSIEREN:
-		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
+		if (MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}

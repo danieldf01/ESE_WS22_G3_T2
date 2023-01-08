@@ -11,7 +11,7 @@
 #include <iostream>
 #include <algorithm>
 #include "ActionsHSBisSep1.h"
-#include "../Rutsche/Rutsche.h"
+#include "../../Rutsche/Rutsche.h"
 
 class BaseStateHSBisSep1 {
 protected:

@@ -9,9 +9,9 @@
 #define LOGIK_HAUPTZUSTAENDE_FBM1_MOTORSTEUERUNG_MOTOR_H_
 
 
-#include "../../../Defines.h"
-#include "../../../../dispatcher/QnetHandler.h"
-#include "../../../Zeit/Zeitmanager.h"
+#include "../../Defines.h"
+#include "../../../dispatcher/QnetHandler.h"
+#include "../../Zeit/Zeitmanager.h"
 
 class Motor {
 public:

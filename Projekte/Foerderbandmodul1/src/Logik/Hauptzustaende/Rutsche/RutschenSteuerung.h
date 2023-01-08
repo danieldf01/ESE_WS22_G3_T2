@@ -7,7 +7,7 @@
 
 #ifndef LOGIK_HAUPTZUSTAENDE_FBM1_RUTSCHE_RUTSCHENSTEUERUNG_H_
 #define LOGIK_HAUPTZUSTAENDE_FBM1_RUTSCHE_RUTSCHENSTEUERUNG_H_
-#include "../../../Defines.h"
+#include "../../Defines.h"
 #include <iostream>
 #include <stdio.h>
 #include <errno.h>
