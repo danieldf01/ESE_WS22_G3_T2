@@ -7,6 +7,7 @@
 
 #include "WsAufWegZuLSEndeSepBisLSE2.h"
 
+
 using namespace std;
 
 void WsAufWegZuLSEndeSepBisLSE2::entry(){
@@ -26,30 +27,7 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
 		actions->schnellRunter();
-
-		Werkstueck ws = *wsListen->ws_passieren_2;
-		int wsId = ws.getiD();
-		int wsTyp = ws.getWsTyp();
-		double wsMeanhight = ws.getMittlereHoehe();
-		double wsHeight = ws.getHoehenmesswert();
-
-		// Konsolen Ausgabe
-		cout << "----Werkstueck Daten----" << endl;
-		cout << "wsId" << wsId << endl;
-		cout << "wsTyp" << wsTyp << endl;
-		printf("wsMeanhight %f", wsMeanhight);
-		printf("wsHeight %f", wsHeight);
-
-		// MQTT Stuff
-		std::string address ="tcp://192.168.120.1:1883";
-		std::string clientID="FESTO_Client_Pub";
-		std::string topic="Festo";
-
-		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
-		client->senden(topic, wsId, "DÜNN", wsMeanhight, wsHeight);//TODO FLIPT fehlt
-		client->destroy();
-
-
+		actions->augabeKonsoleMQTT();
 		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
 	entry();

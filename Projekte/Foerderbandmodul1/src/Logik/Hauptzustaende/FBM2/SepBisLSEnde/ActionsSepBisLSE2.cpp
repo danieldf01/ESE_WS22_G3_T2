@@ -17,6 +17,48 @@ void ActionsSepBisLSE2::setupConnection(){
 	}
 }
 
+void ActionsSepBisLSE2::augabeKonsoleMQTT(){
+Werkstueck ws = *wsListen->ws_passieren_2;
+		int wsId = ws.getiD();
+		int WS_Typ = ws.getWsTyp();
+		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
+		double wsMeanhight = ws.getMittlereHoehe();
+		double wsHeight = ws.getHoehenmesswert();
+
+		if (WS_Typ == FLACH) {
+			wsTypAsString = "FLACH";
+		}
+		if (WS_Typ == HOCH_OB) {
+			wsTypAsString = "HOCH_OB";
+		}
+		if (WS_Typ == HOCH_MB) {
+			wsTypAsString = "HOCH_MB";
+		}
+		if (WS_Typ == HOCH_MBM) {
+			wsTypAsString = "HOCH_MBM";
+		}
+		if (WS_Typ == UNBEKANNT) {
+			wsTypAsString = "UNBEKANNT";
+		}
+
+
+		// Konsolen Ausgabe
+		cout << "----Werkstueck Daten----" << endl;
+		cout << "wsId" << wsId << endl;
+		cout << "wsTyp" << wsTypAsString << endl;
+		printf("wsMeanhight %f", wsMeanhight);
+		printf("wsHeight %f", wsHeight);
+
+		// MQTT Stuff
+		std::string address ="tcp://192.168.120.1:1883";
+		std::string clientID="FESTO_Client_Pub";
+		std::string topic="Festo";
+
+		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
+		client->senden(topic, wsId, wsTypAsString, wsMeanhight, wsHeight);//TODO FLIPT fehlt
+		client->destroy();
+}
+
 void ActionsSepBisLSE2::seperatorAn(){
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, TIMER_START_WEICHE) == -1) {
 		perror("[FSM_SepBisLSE2] MsgSendPulse failed");
