@@ -98,7 +98,7 @@ void ActionsHSBisSep1::schnellRunter(){
 }
 
 void ActionsHSBisSep1::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_list_HS_bis_Seperator.back().getiD());
+	zeitmanager->deleteTimer(wsListen->ws_list_HS_bis_Seperator.front().getiD());
 }
 
 void ActionsHSBisSep1::eStop(){

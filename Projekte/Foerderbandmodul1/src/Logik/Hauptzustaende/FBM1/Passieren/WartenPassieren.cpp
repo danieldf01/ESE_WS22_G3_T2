@@ -25,6 +25,7 @@ void WartenPassieren::WsPassieren(){
 			new (this) WeicheGeoeffnetPassieren;
 		} else{
 			actions->WsAufWegZuLSE();
+			// Ist schon im richtigen State
 		}
 	}
 }
