@@ -12,9 +12,8 @@
 
 class IAmpel {
 public:
-	virtual void lampeSchnellBlinken(Farbe farbe) = 0;
-	virtual void lampeLangsamBlinken(Farbe farbe) = 0;
-	virtual void lampeBlinkenAus() = 0;
+	virtual void lampeBlinkenAus(Farbe) = 0;
+	virtual void blinken(Farbe, int) = 0;
 };
 
 

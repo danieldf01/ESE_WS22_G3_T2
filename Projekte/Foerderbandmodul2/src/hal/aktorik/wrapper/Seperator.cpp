@@ -11,8 +11,9 @@ using namespace std;
 
 Seperator::Seperator() {
 	gpio_bank_1 = mmap_device_io(0x1000, (uint64_t) 0x4804C000);
-	uintptr_t gpioBase = mmap_device_io(0x1000, 0x44E07000);
 	out32((uintptr_t) (gpio_bank_1 + GPIO_OE_REGISTER_AKT), 0x00000000);
+
+	//this->seperatorTyp = in32((uintptr_t) (gpio_bank_1  & 14));
 }
 
 Seperator::~Seperator() {

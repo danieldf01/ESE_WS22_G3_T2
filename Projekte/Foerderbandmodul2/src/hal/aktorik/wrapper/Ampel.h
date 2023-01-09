@@ -13,35 +13,28 @@
 #include "Farbe.h"
 #include "Lampe.h"
 #include "interfaces/ILampe.h"
+#include "interfaces/IAmpel.h"
 #include <mutex>
 
 // Sekunde und eine halbe Sekunde fuer das Blinken. Es wird usleep verwendet!
 #define SEKUNDE 10*1000*100
 #define HALBESEKUNDE 5000*100
 
-class Ampel {
+class Ampel : public IAmpel{
 private:
 	std::mutex mutexGruen;
 	std::mutex mutexGelb;
 	std::mutex mutexRot;
 	ILampe *lampe = nullptr;
 public:
+	bool blinkenGruen = true;
 	bool blinkenGelb=true;
 	bool blinkenRot=true;
-	bool blinkenGruen = true;
-//	bool blinkenAktiv=true;
-//	int langsam;
-//	int schnell;
-//	int zeitRot=0;
-//	int zeitGelb=0;
-//	int zeitGruen=0;
 
 	Ampel();
 	virtual ~Ampel();
-	void lampeSchnellBlinken(Farbe farbe);
-	void lampeLangsamBlinken(Farbe farbe);
-	void lampeBlinkenAus(Farbe farbe) ;
-	void blinken(Farbe farbe,int zeit);
+	void lampeBlinkenAus(Farbe farbe) override;
+	void blinken(Farbe farbe,int zeit) override;
 };
 
 class AmpelWrapper{
