@@ -42,8 +42,6 @@ void FehlerWsZuVielLSAbisHS1::Fverschwunden(){
 }
 
 void FehlerWsZuVielLSAbisHS1::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS1;
-	entry();
 }

@@ -29,29 +29,25 @@ void ActionsLSAbisHS1::WSinHS() {
 
 //	cout << "ActionsLSAbisHS1 WSinHS send time: " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
 
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, WS_IN_HS) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_HS) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, LANGSAM_HOCH_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LANGSAM_HOCH_1) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsLSAbisHS1::fehlerHoch() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_HOCH) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_HOCH) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsLSAbisHS1::fehlerRunter() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_RUNTER) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -59,19 +55,18 @@ void ActionsLSAbisHS1::fehlerRunter() {
 
 void ActionsLSAbisHS1::entferneWsLSAbisHS() {
 	wsListen->ws_list_LSAnfang_bis_HS.pop_front();
+	// TODO Nur pop oder auch auf nullptr setzen noch?
 }
 
 void ActionsLSAbisHS1::schnellRunter() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsLSAbisHS1::HSleeren() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, HS_LEEREN) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, HS_LEEREN) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}

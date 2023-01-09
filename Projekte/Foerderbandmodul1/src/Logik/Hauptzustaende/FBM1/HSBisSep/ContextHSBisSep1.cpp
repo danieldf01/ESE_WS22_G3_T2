@@ -7,10 +7,8 @@
 
 #include "ContextHSBisSep1.h"
 
-ContextHSBisSep1::ContextHSBisSep1(ActionsHSBisSep1 *shared_action,
-		WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM, Rutsche *r) :
-		actions(shared_action), wsListen(werkstueckListen), zeitmanager(
-				zeitmanagerFSM), rutsche(r) {
+ContextHSBisSep1::ContextHSBisSep1(ActionsHSBisSep1 *shared_action, WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM, Rutsche *r) :
+		actions(shared_action), wsListen(werkstueckListen), zeitmanager(zeitmanagerFSM), rutsche(r) {
 
 	qnetHandler = new QnetHandler();
 	attach = qnetHandler->openServer(S_HS_BIS_SEP1);
@@ -72,8 +70,7 @@ void ContextHSBisSep1::receiveSignal() {
 		// handle name_open calls for this server
 		if ((_IO_BASE <= pulse.type) && (pulse.type <= _IO_MAX)) {
 			if (pulse.type == _IO_CONNECT) {
-				cout << "[" << S_HS_BIS_SEP1 << "]"
-						<< " received _IO_CONNECT via sync. message" << endl;
+				cout << "[" << S_HS_BIS_SEP1 << "]" << " received _IO_CONNECT via sync. message" << endl;
 				MsgReply(rcvid, EOK, NULL, 0);
 			}
 		}

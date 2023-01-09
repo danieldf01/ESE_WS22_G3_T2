@@ -21,8 +21,7 @@ void ImMetallsensorHSBisSep1::MetSenAn() {
 
 void ImMetallsensorHSBisSep1::LSSepAn() {
 	exit();
-	actions->deleteTimerVerschwunden();
-	// TODO Zeit anpassen
+	actions->deleteTimerVerschwunden(); // TODO Nicht in der Doku
 	aussortieren1();
 	entry();
 }
@@ -43,15 +42,8 @@ void ImMetallsensorHSBisSep1::fehlerVerschwunden() {
 	entry();
 }
 
-void ImMetallsensorHSBisSep1::eStop() {
-	exit();
-	actions->eStop();
-	new (this) WartenHSBisSep1;
-	entry();
-}
-
 void ImMetallsensorHSBisSep1::aussortieren1() {
-	//Fehler zu frueh?
+	//Fehler zu frueh? TODO Define oder Konfig
 	if (zeitmanager->getTime()< (500 + wsListen->ws_list_HS_bis_Seperator.front().getTimestamp())) {
 		new (this) FehlerWsZuFruehHSBisSep1;
 	} else {
@@ -66,7 +58,7 @@ void ImMetallsensorHSBisSep1::aussortieren2() {
 		actions->WsPassierenGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		}
+		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
 		//nicht geforderter Typ
 	} else {
 		cout << "Werkstueck entspricht nicht der Reihung" << endl;
@@ -85,7 +77,7 @@ void ImMetallsensorHSBisSep1::aussortieren3() {
 			actions->WsAussortieren();
 			if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 				new (this) WartenHSBisSep1;
-			}
+			} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
 		}
 	} else {
 		aussortieren4();
@@ -105,18 +97,25 @@ void ImMetallsensorHSBisSep1::aussortieren4() {
 	cout << "rutvoll" << rutscheVoll1 << endl;
 
 	if (rutscheVoll1 || isInsideReihenfolge || (typ== HOCH_OB || typ == HOCH_MB || typ == HOCH_MBM)) {
-		cout << "[DEBUG][WSAWZS1a4] Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
+		cout << "ImMetallsensorHSBisSep1::aussortieren4 Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
 		//Werkstueck soll auf Foerderbandmodul 2 aussortiert werden
 		actions->WsPassierenNichtGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		}
+		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
 	} else {
 		//Werkstueck ist ein flaches oder binaeres Werkstueck und kann auf Rutsche 1 aussortiert werden
-		cout << "[DEBUG][WSAWZS1a4] Werkstueck soll aussortiert werden" << endl;
+		cout << "ImMetallsensorHSBisSep1::aussortieren4 Werkstueck soll aussortiert werden" << endl;
 		actions->WsAussortieren();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		}
+		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
 	}
+}
+
+void ImMetallsensorHSBisSep1::eStop() {
+	exit();
+	actions->eStop();
+	new (this) WartenHSBisSep1;
+	entry();
 }

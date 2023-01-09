@@ -46,7 +46,7 @@ void QuittiertVerschwundenHSBisSep1::keinFehler() {
 	exit();
 	if(wsListen->ws_list_HS_bis_Seperator.size() > 0){
 		new (this) WSAufWegZumSep1;
-	} else{
+	} else {
 		new (this) WartenHSBisSep1;
 	}
 	entry();

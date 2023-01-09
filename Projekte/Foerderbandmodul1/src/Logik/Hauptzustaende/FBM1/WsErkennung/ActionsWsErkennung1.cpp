@@ -19,51 +19,49 @@ void ActionsWsErkennung1::setupConnection(){
 }
 
 void ActionsWsErkennung1::langsamRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, LANGSAM_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LANGSAM_RUNTER_1) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung1::schnellRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung1::WSinHSbisSeperator(){
+	// TODO Hier noch mit der alten Übergabe, vielleicht auch Abändern mit tempObj und Referenz?
 	cout << "ActionsWsErkennung1::WSinHSbisSeperator" << endl;
 	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1->getiD());
 	wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime());
 	wsListen->ws_list_HS_bis_Seperator.push_back(*(wsListen->ws_Hoehensensor_1));
 	wsListen->ws_Hoehensensor_1 = nullptr;
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, WS_IN_HS_BIS_SEPERATOR) == -1) {
+
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_HS_BIS_SEPERATOR) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung1::fehlerHoch(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_HOCH) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_HOCH) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung1::fehlerRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_RUNTER) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsWsErkennung1::deleteWsHoehensensor(){
+	// TODO richtig Löschung des WS?
 	wsListen->ws_Hoehensensor_1 = nullptr;
 }
 

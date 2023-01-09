@@ -21,7 +21,7 @@ void WSAufWegZumSep1::WSinHSbisSep() {
 
 void WSAufWegZumSep1::MetSenAn() {
 	exit();
-	actions->setMetallTrue();
+	actions->setMetallTrue();	// TODO Ist das so hier richtig in der Doku steht Typ setzten hier Metall?
 	new (this) ImMetallsensorHSBisSep1;
 	entry();
 }
@@ -30,8 +30,7 @@ void WSAufWegZumSep1::LSSepAn() {
 	exit();
 	cout << "auf weg sep: WsListe Typ" <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
 	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge.front() << endl;
-	actions->deleteTimerVerschwunden();
-	// TODO Zeit anpassen
+	actions->deleteTimerVerschwunden(); // TODO << nicht in der Doku vermerkt
 	aussortieren1();
 	entry();
 }
@@ -52,16 +51,9 @@ void WSAufWegZumSep1::fehlerVerschwunden() {
 	entry();
 }
 
-void WSAufWegZumSep1::eStop() {
-	exit();
-	actions->eStop();
-	new (this) WartenHSBisSep1;
-	entry();
-}
-
 void WSAufWegZumSep1::aussortieren1() {
 	cout << "WSAufWegZumSep1 Before FehlerZuFrueh" << endl;
-	//Fehler zu frueh?
+	//Fehler zu frueh? TODO Zeit als Define oder Konfig
 	if (zeitmanager->getTime()< (500 + wsListen->ws_list_HS_bis_Seperator.front().getTimestamp())) {
 		new (this) FehlerWsZuFruehHSBisSep1;
 	} else {
@@ -118,7 +110,7 @@ void WSAufWegZumSep1::aussortieren4() {
 	cout << "rutvoll" << rutscheVoll1 << endl;
 
 	if (rutscheVoll1 || isInsideReihenfolge || (typ== HOCH_OB || typ == HOCH_MB || typ == HOCH_MBM)) {
-		cout << "[DEBUG][WSAWZS1a4] Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
+		cout << "[FBM1] WSAufWegZumSep1::aussortieren4 Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
 		//Werkstueck soll auf Foerderbandmodul 2 aussortiert werden
 		actions->WsPassierenNichtGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
@@ -126,10 +118,17 @@ void WSAufWegZumSep1::aussortieren4() {
 		}
 	} else {
 		//Werkstueck ist ein flaches oder binaeres Werkstueck und kann auf Rutsche 1 aussortiert werden
-		cout << "[DEBUG][WSAWZS1a4] Werkstueck soll aussortiert werden" << endl;
+		cout << "[FBM1] WSAufWegZumSep1::aussortieren4 Werkstueck soll aussortiert werden" << endl;
 		actions->WsAussortieren();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
 		}
 	}
+}
+
+void WSAufWegZumSep1::eStop() {
+	exit();
+	actions->eStop();
+	new (this) WartenHSBisSep1;
+	entry();
 }

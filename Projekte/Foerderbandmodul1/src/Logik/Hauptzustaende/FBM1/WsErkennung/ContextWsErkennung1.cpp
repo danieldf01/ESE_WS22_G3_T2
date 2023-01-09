@@ -7,10 +7,8 @@
 
 #include "ContextWsErkennung1.h"
 
-ContextWsErkennung1::ContextWsErkennung1(ActionsWsErkennung1 *shared_action,
-		WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM) :
-		actions(shared_action), wsListen(werkstueckListen), zeitmanager(
-				zeitmanagerFSM) {
+ContextWsErkennung1::ContextWsErkennung1(ActionsWsErkennung1 *shared_action, WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM) :
+		actions(shared_action), wsListen(werkstueckListen), zeitmanager(zeitmanagerFSM) {
 
 	qnetHandler = new QnetHandler();
 	attach = qnetHandler->openServer(S_WS_ERKENNUNG1);
@@ -42,7 +40,6 @@ void ContextWsErkennung1::receiveSignal() {
 		}
 		if (rcvid == 0) { // Pulse was received
 			switch (pulse.value.sival_int) {
-			//TODO cases abfangen
 			case WS_IN_HS:
 				WSinHS();
 				break;
@@ -66,8 +63,7 @@ void ContextWsErkennung1::receiveSignal() {
 		// handle name_open calls for this server
 		if ((_IO_BASE <= pulse.type) && (pulse.type <= _IO_MAX)) {
 			if (pulse.type == _IO_CONNECT) {
-				cout << "[" << S_WS_ERKENNUNG1 << "]"
-						<< " received _IO_CONNECT via sync. message" << endl;
+				cout << "[" << S_WS_ERKENNUNG1 << "]" << " received _IO_CONNECT via sync. message" << endl;
 				MsgReply(rcvid, EOK, NULL, 0);
 			}
 		}

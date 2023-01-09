@@ -9,7 +9,7 @@
 
 void QuittiertZuVielLSAbisHS1::entry(){
 	actions->fehlerRunter();
-	actions->HSleeren();
+	actions->HSleeren();	// TODO << Nicht in der Doku, ist das hier richtig?
 }
 
 void QuittiertZuVielLSAbisHS1::exit(){
@@ -39,8 +39,6 @@ void QuittiertZuVielLSAbisHS1::Fverschwunden(){
 }
 
 void QuittiertZuVielLSAbisHS1::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS1;
-	entry();
 }
