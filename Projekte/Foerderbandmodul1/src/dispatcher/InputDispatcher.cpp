@@ -108,8 +108,9 @@ void InputDispatcher::receiveSignal() {
 
 				case FEHLER_QUITTIERT:
 				{
-					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
-					t_fehler_quittiert.detach();
+					hal->lampe->lampeRotAn();
+//					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
+//					t_fehler_quittiert.detach();
 					break;
 				}
 				case FEHLER_G_UNQUITTIERT:
@@ -205,8 +206,9 @@ void InputDispatcher::test() {
 void InputDispatcher::test2() {
 	hal->ampel->lampeBlinkenAus(Gelb);
 }
+
 void InputDispatcher::fehlerQuittiert(){
 	hal->ampel->lampeBlinkenAus(Rot);
-	this_thread::sleep_for(chrono::milliseconds(1000));
+	this_thread::sleep_for(chrono::milliseconds(500));
 	hal->lampe->lampeRotAn();
 }

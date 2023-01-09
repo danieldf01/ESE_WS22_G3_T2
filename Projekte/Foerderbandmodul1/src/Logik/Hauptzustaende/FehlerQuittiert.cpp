@@ -146,6 +146,10 @@ void FehlerQuittiert::pulseFBM1(int value){
 		// TODO Timer anpassen ggf.
 		zeitFBM1->startMessung(3000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT, wsListen->ws_list_aussortieren.back().getiD());
 		break;
+	case QUITTIERT:
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,FEHLER_QUITTIERT);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,FEHLER_QUITTIERT);
+		break;
 	}
 }
 

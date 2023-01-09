@@ -114,8 +114,9 @@ void InputDispatcher::receiveSignal() {
 					break;
 				case FEHLER_QUITTIERT:
 				{
-					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
-					t_fehler_quittiert.detach();
+					hal->lampe->lampeRotAn();
+//					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
+//					t_fehler_quittiert.detach();
 					break;
 				}
 				case FEHLER_G_UNQUITTIERT:
