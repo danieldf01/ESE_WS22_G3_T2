@@ -27,9 +27,10 @@ private:
 	std::mutex mutexRot;
 	ILampe *lampe = nullptr;
 public:
-	bool blinkenGruen = true;
-	bool blinkenGelb=true;
-	bool blinkenRot=true;
+	bool blinkenGruen;
+	bool blinkenGelb;
+	bool blinkenRot;
+	int zeitRot;
 
 	Ampel();
 	virtual ~Ampel();

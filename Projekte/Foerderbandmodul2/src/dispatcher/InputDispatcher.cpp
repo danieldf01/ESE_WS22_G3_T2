@@ -100,11 +100,14 @@ void InputDispatcher::receiveSignal() {
 
 				case FEHLER_AN:
 				{
-					//TODO Laufbandmotor fsm counter hoch
 					hal->sortierer->sortiererEinfahren();
-					hal->ampel->lampeBlinkenAus(Rot);
-					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
-					e.detach();
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=HALBESEKUNDE;
+					}
+					else{
+						thread t_fehlerAn(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
+						t_fehlerAn.detach();
+					}
 					break;
 				}
 
@@ -121,10 +124,13 @@ void InputDispatcher::receiveSignal() {
 				}
 				case FEHLER_G_UNQUITTIERT:
 				{
-					cout <<"inputdispatcher received unquittiert"<<endl;
-					hal->ampel->lampeBlinkenAus(Rot);
-					thread e(&Ampel::blinken, hal->ampel, Rot, SEKUNDE);
-					e.detach();
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=SEKUNDE;
+					}
+					else{
+						thread t_fehler_g_unq(&Ampel::blinken, hal->ampel, Rot, SEKUNDE);
+						t_fehler_g_unq.detach();
+					}
 					break;
 				}
 

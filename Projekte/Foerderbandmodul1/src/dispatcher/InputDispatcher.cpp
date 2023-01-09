@@ -94,10 +94,14 @@ void InputDispatcher::receiveSignal() {
 
 				case FEHLER_AN:
 				{
-					hal->sortierer->sortiererEinfahren();
-					hal->ampel->lampeBlinkenAus(Rot);
+//					hal->sortierer->sortiererEinfahren();
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=HALBESEKUNDE;
+					}
+					else{
 					thread t_fehlerAn(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
 					t_fehlerAn.detach();
+					}
 					break;
 				}
 
@@ -115,9 +119,13 @@ void InputDispatcher::receiveSignal() {
 				}
 				case FEHLER_G_UNQUITTIERT:
 				{
-					hal->ampel->lampeBlinkenAus(Rot);
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=SEKUNDE;
+					}
+					else{
 					thread t_fehler_g_unq(&Ampel::blinken, hal->ampel, Rot, SEKUNDE);
 					t_fehler_g_unq.detach();
+					}
 					break;
 				}
 

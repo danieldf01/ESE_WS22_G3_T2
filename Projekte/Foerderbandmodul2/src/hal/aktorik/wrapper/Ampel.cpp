@@ -86,12 +86,13 @@ void Ampel::blinken(Farbe farbe, int zeit){
 	//ROT
 	case 2:
 		blinkenRot=true; //blinken aktiv setzen
+		zeitRot=zeit;
 		mutexRot.lock();
 		while(blinkenRot){
 			mutexRot.unlock();
-			usleep(zeit);
+			usleep(zeitRot);
 			lampe->lampeRotAn();
-			usleep(zeit);
+			usleep(zeitRot);
 			lampe->lampeRotAus();
 			mutexRot.lock();
 		}
