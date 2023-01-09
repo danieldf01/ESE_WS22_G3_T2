@@ -68,8 +68,8 @@ void InputDispatcher::receiveSignal() {
 
 				case ESTOP_AN:
 				{
-					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
-					e.detach();
+//					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
+//					e.detach();
 					estop=true;
 					cout << "estop true" << endl;
 					break;
@@ -77,8 +77,8 @@ void InputDispatcher::receiveSignal() {
 				case ESTOP_AN_2:
 				{
 					hal->eStopp();
-					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
-					e.detach();
+//					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
+//					e.detach();
 					estop=true;
 					break;
 				}
@@ -121,6 +121,7 @@ void InputDispatcher::receiveSignal() {
 				}
 				case FEHLER_G_UNQUITTIERT:
 				{
+					cout <<"inputdispatcher received unquittiert"<<endl;
 					hal->ampel->lampeBlinkenAus(Rot);
 					thread e(&Ampel::blinken, hal->ampel, Rot, SEKUNDE);
 					e.detach();

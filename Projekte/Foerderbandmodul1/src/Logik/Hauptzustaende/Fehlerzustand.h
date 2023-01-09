@@ -21,8 +21,9 @@ public:
 	void updateAuswertung() override;
 	void eStop(int) override;
 	void quittiert();
-	void initTimer1();;
+	void initTimer1();
 	void initTimer2();
+	void initTimer3();
 };
 
 #endif /* LOGIK_HAUPTZUSTAENDE_FEHLERZUSTAND_H_ */
