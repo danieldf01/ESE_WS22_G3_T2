@@ -26,8 +26,18 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
 		// TODO MQTT missing
+		Werkstueck ws = *wsListen->ws_passieren_2;
+		int wsId = ws.getiD();
+		int wsTyp = ws.getWsTyp();
+		double wsMeanhight = ws.getMittlereHoehe();
+		double wsHeight = ws.getHoehenmesswert();
+		cout << "----Werkstueck Daten----" << endl;
+		cout << "wsId" << wsId << endl;
+		cout << "wsTyp" << wsTyp << endl;
+		printf("wsMeanhight %f", wsMeanhight);
+		printf("wsHeight %f", wsHeight);
+
 		cout << "TODO Send per MQTT here WsAufWegZuLSEndeSepBisLSE2" << endl;
-		cout << "TODO Konsolenausgabe" << endl;
 		actions->schnellRunter();
 		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
