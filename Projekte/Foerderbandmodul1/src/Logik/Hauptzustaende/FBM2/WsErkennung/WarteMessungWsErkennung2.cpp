@@ -24,7 +24,7 @@ void WarteMessungWsErkennung2::WSinHS(){
 
 void WarteMessungWsErkennung2::WsTyp(){
 //	cout << "WarteMessungWsErkennung2 recv WSTyp" << endl;
-	cout << "TODO CheckWSuberschlagen" << endl;
+	actions->checkWSueberschlagen();
 	exit();
 	actions->langsamRunter();
 	if(zeitmanager->getTime() < 100 + wsListen->ws_Hoehensensor_2->getTimestamp()){

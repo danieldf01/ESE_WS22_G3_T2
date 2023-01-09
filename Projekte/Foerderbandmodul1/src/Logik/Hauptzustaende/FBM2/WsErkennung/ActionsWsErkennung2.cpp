@@ -75,12 +75,27 @@ void ActionsWsErkennung2::deleteWsHoehensensor(){
 //	}
 //}
 
-void ActionsWsErkennung2::speicherWSTyp() {
-	// TODO
+void ActionsWsErkennung2::speicherWSTyp() { // TODO testen!
+	cout << "ActionsWsErkennung2::speicherWSTyp" << endl;
+	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
+	wsTyp = tempWS.getWsTyp();
+	cout << wsTyp << endl;
 }
 
-void ActionsWsErkennung2::checkWSueberschlagen() {
-	// TODO
+void ActionsWsErkennung2::checkWSueberschlagen() { // TODO testen!
+	cout << "ActionsWsErkennung2::checkWSueberschlagen" << endl;
+	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
+	cout << wsTyp << endl;
+	cout << tempWS.getWsTyp() << endl;
+
+	if(wsTyp == tempWS.getWsTyp()){
+		cout << "IST NICHT UEBERSCHLAGEN" << endl;
+		tempWS.setUeberschlagen(false);
+	} else {
+		cout << "IST UEBERSCHLAGEN" << endl;
+		tempWS.setUeberschlagen(true);
+	}
+	wsListen->ws_Hoehensensor_2 = &tempWS;
 }
 
 void ActionsWsErkennung2::eStop(){

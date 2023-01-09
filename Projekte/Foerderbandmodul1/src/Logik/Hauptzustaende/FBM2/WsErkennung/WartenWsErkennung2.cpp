@@ -17,8 +17,6 @@ void WartenWsErkennung2::exit(){
 
 void WartenWsErkennung2::WSinHS(){
 	exit();
-	// TODO Action save stuff
-	cout << "TODO WartenWsErkennung2 WSinHS Speicher WS TYP ab..." << endl;
 	actions->speicherWSTyp();
 	new (this) WarteMessungWsErkennung2;
 	entry();

@@ -24,6 +24,7 @@ Werkstueck ws = *wsListen->ws_passieren_2;
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
 		double wsMeanhight = ws.getMittlereHoehe();
 		double wsHeight = ws.getHoehenmesswert();
+		bool isUeberschlagen = ws.getUeberschlagen();
 
 		if (WS_Typ == FLACH) {
 			wsTypAsString = "FLACH";
@@ -46,11 +47,18 @@ Werkstueck ws = *wsListen->ws_passieren_2;
 		cout << "----Werkstueck Daten----" << endl;
 		cout << "wsId" << wsId << endl;
 		cout << "wsTyp" << wsTypAsString << endl;
-		printf("wsMeanhight %f", wsMeanhight);
-		printf("wsHeight %f", wsHeight);
+		printf("wsMeanhight %f.2", wsMeanhight);
+		printf("wsHeight %f.2", wsHeight);
+
+		if(isUeberschlagen){
+			cout << "ist ueberschlagen" << endl;
+		}else{
+			cout << "nicht ueberschlagen" << endl;
+		}
+
 
 		// MQTT Stuff
-		std::string address ="tcp://192.168.120.1:1883";
+		std::string address ="tcp://192.168.235.1:1883";
 		std::string clientID="FESTO_Client_Pub";
 		std::string topic="Festo";
 
