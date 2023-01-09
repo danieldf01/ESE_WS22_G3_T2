@@ -25,7 +25,6 @@ void FehlerHoehenmessungWsErkennung2::WsTyp(){
 }
 
 void FehlerHoehenmessungWsErkennung2::quittiert(){
-	exit();
 	actions->schnellRunter();
 	new (this) QuittiertWsErkennung2;
 	entry();
@@ -40,8 +39,6 @@ void FehlerHoehenmessungWsErkennung2::fehlerHoehenmessung(){
 }
 
 void FehlerHoehenmessungWsErkennung2::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenWsErkennung2;
-	entry();
 }

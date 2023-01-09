@@ -37,8 +37,6 @@ public:
 	virtual void entferneWsPassieren();
 
 	virtual void schnellRunter();
-	virtual void stopHoch();
-	virtual void stopRunter();
 
 	virtual void deleteTimerVerschwunden();
 	virtual void sendFBM2Bereit();

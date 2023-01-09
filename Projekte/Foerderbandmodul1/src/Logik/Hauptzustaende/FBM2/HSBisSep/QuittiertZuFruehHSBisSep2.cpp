@@ -39,9 +39,7 @@ void QuittiertZuFruehHSBisSep2::quittiert() {
 }
 
 void QuittiertZuFruehHSBisSep2::keinFehler() {
-	exit();
 	new (this) WSAufWegZumSep2;
-	entry();
 }
 
 void QuittiertZuFruehHSBisSep2::fehlerCntDown(){
@@ -53,8 +51,6 @@ void QuittiertZuFruehHSBisSep2::fehlerVerschwunden(){
 }
 
 void QuittiertZuFruehHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

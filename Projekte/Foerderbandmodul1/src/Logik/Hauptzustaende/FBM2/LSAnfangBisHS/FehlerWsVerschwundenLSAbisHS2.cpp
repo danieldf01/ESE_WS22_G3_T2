@@ -12,6 +12,7 @@ using namespace std;
 void FehlerWsVerschwundenLSAbisHS2::entry(){
 	actions->fehlerHoch();
 	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen der Lichtschranke Anfang und dem Hoehensensor verschwunden." << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke vom Foerderbandmodul 2." << endl;
 	actions->entferneWsLSAbisHS();
 }
 
@@ -28,7 +29,6 @@ void FehlerWsVerschwundenLSAbisHS2::HSaktiv(){
 }
 
 void FehlerWsVerschwundenLSAbisHS2::quittiert(){
-	exit();
 	actions->schnellRunter();
 	new (this) QuittiertVerschwundenLSAbisHS2;
 	entry();
@@ -43,8 +43,6 @@ void FehlerWsVerschwundenLSAbisHS2::Fverschwunden(){
 }
 
 void FehlerWsVerschwundenLSAbisHS2::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS2;
-	entry();
 }

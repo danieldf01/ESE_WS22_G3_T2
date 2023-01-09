@@ -28,9 +28,8 @@ void QuittiertWsErkennung2::quittiert(){
 }
 
 void QuittiertWsErkennung2::keinFehler(){
-	exit();
+	actions->sendFBM2Bereit();
 	new (this) WartenWsErkennung2;
-	entry();
 }
 
 void QuittiertWsErkennung2::fehlerHoehenmessung(){
@@ -38,8 +37,6 @@ void QuittiertWsErkennung2::fehlerHoehenmessung(){
 }
 
 void QuittiertWsErkennung2::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenWsErkennung2;
-	entry();
 }

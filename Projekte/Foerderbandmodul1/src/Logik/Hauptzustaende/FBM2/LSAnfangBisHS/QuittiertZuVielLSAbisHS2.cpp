@@ -9,7 +9,6 @@
 
 void QuittiertZuVielLSAbisHS2::entry(){
 	actions->fehlerRunter();
-	actions->HSleeren();
 }
 
 void QuittiertZuVielLSAbisHS2::exit(){
@@ -29,9 +28,7 @@ void QuittiertZuVielLSAbisHS2::quittiert(){
 }
 
 void QuittiertZuVielLSAbisHS2::keinFehler(){
-	exit();
 	new (this) WartenLSAbisHS2;
-	entry();
 }
 
 void QuittiertZuVielLSAbisHS2::Fverschwunden(){
@@ -39,8 +36,6 @@ void QuittiertZuVielLSAbisHS2::Fverschwunden(){
 }
 
 void QuittiertZuVielLSAbisHS2::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS2;
-	entry();
 }

@@ -27,9 +27,7 @@ void QuittiertWSZuVielSepBisRut2::quittiert() {
 }
 
 void QuittiertWSZuVielSepBisRut2::keinFehler() {
-	exit();
 	new (this) WarteSepBisRut2;
-	entry();
 }
 
 void QuittiertWSZuVielSepBisRut2::Fverschwunden() {

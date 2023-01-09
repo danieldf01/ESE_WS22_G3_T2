@@ -12,6 +12,7 @@ using namespace std;
 void FehlerWSVerschwundenSepBisLSE2::entry(){
 	actions->fehlerHoch();
 	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen dem Seperator und der Lichtschranke am Ende verschwunden." << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke vom Foerderbandmodul 2." << endl;
 	actions->entferneWsPassieren();
 }
 
@@ -36,7 +37,6 @@ void FehlerWSVerschwundenSepBisLSE2::WeicheSchliessen(){
 }
 
 void FehlerWSVerschwundenSepBisLSE2::quittiert(){
-	exit();
 	actions->schnellRunter();
 	entry();
 }
@@ -53,5 +53,3 @@ void FehlerWSVerschwundenSepBisLSE2::eStop(){
 	actions->eStop();
 	new (this) WarteSepBisLSE2;
 }
-
-
