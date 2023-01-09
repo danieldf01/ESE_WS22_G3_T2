@@ -25,6 +25,7 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
+		actions->schnellRunter();
 
 		Werkstueck ws = *wsListen->ws_passieren_2;
 		int wsId = ws.getiD();
@@ -40,15 +41,15 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 		printf("wsHeight %f", wsHeight);
 
 		// MQTT Stuff
-		std::string address ="tcp://192.168.101.201:1883";
+		std::string address ="tcp://192.168.120.1:1883";
 		std::string clientID="FESTO_Client_Pub";
-		std::string topic="werkstueck";
+		std::string topic="Festo";
 
 		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
-		client->senden(topic, 8000, "DÜNN", 2.0, 2666.9567);
+		client->senden(topic, wsId, "DÜNN", wsMeanhight, wsHeight);//TODO FLIPT fehlt
 		client->destroy();
 
-		actions->schnellRunter();
+
 		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
 	entry();
