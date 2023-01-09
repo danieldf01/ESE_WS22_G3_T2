@@ -13,7 +13,7 @@ TARGET = $(OUTPUT_DIR)/$(ARTIFACT)
 #Compiler definitions
 
 CC = qcc -Vgcc_nto$(PLATFORM)
-CXX = qcc -lang-c++ -Vgcc_nto$(PLATFORM) -DSIM_SHOW_SENSORS -DSIM_REPORT -DSIM_EXT_CTRL -DSIM_TWIN
+CXX = qcc -lang-c++ -Vgcc_nto$(PLATFORM) -DSIM_SHOW_SENSORS -DSIM_REPORT -DSIM_EXT_CTRL -DSIM_TWIN -DSIM_PUSHER
 LD = $(CXX)
 
 #User defined include/preprocessor flags and libraries
