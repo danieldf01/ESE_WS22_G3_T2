@@ -55,7 +55,6 @@ void ActionsLSAbisHS1::fehlerRunter() {
 
 void ActionsLSAbisHS1::entferneWsLSAbisHS() {
 	wsListen->ws_list_LSAnfang_bis_HS.pop_front();
-	// TODO Nur pop oder auch auf nullptr setzen noch?
 }
 
 void ActionsLSAbisHS1::schnellRunter() {

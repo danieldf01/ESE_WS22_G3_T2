@@ -4,7 +4,6 @@
  *  Created on: 21.12.2022
  *      Author: acx514
  */
-// TODO MISSING STUFF!
 #include "WarteSepBisRut1.h"
 
 void WarteSepBisRut1::entry() {

@@ -21,7 +21,7 @@ void ImMetallsensorHSBisSep1::MetSenAn() {
 
 void ImMetallsensorHSBisSep1::LSSepAn() {
 	exit();
-	actions->deleteTimerVerschwunden(); // TODO Nicht in der Doku
+	actions->deleteTimerVerschwunden();
 	aussortieren1();
 	entry();
 }
@@ -58,7 +58,9 @@ void ImMetallsensorHSBisSep1::aussortieren2() {
 		actions->WsPassierenGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
+		} else {
+			new (this) WSAufWegZumSep1;
+		}
 		//nicht geforderter Typ
 	} else {
 		cout << "Werkstueck entspricht nicht der Reihung" << endl;
@@ -77,7 +79,9 @@ void ImMetallsensorHSBisSep1::aussortieren3() {
 			actions->WsAussortieren();
 			if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 				new (this) WartenHSBisSep1;
-			} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
+			} else {
+				new (this) WSAufWegZumSep1;
+			}
 		}
 	} else {
 		aussortieren4();
@@ -102,14 +106,18 @@ void ImMetallsensorHSBisSep1::aussortieren4() {
 		actions->WsPassierenNichtGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
+		} else {
+			new (this) WSAufWegZumSep1;
+		}
 	} else {
 		//Werkstueck ist ein flaches oder binaeres Werkstueck und kann auf Rutsche 1 aussortiert werden
 		cout << "ImMetallsensorHSBisSep1::aussortieren4 Werkstueck soll aussortiert werden" << endl;
 		actions->WsAussortieren();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;
-		} // TODO Fehlt hier nicht ein else WS_auf_Weg_zum_Sep?
+		} else {
+			new (this) WSAufWegZumSep1;
+		}
 	}
 }
 

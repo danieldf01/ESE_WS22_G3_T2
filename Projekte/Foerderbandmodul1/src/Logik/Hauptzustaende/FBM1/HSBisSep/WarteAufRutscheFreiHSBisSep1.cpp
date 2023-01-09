@@ -4,7 +4,6 @@
  *  Created on: 19.12.2022
  *      Author: Daniel Drefs Fernandes
  */
-// TODO Diese Klasse wurde gerefactored sie sollte nochmal überprüft werden und getestet werden!
 #include "WarteAufRutscheFreiHSBisSep1.h"
 
 void WarteAufRutscheFreiHSBisSep1::entry() {

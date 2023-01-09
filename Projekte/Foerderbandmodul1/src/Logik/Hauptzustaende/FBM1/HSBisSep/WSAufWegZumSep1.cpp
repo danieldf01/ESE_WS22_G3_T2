@@ -10,7 +10,7 @@
 using namespace std;
 
 void WSAufWegZumSep1::entry() {
-	cout << "WSAufWegZumSep1 entry" << endl;
+//	cout << "WSAufWegZumSep1 entry" << endl;
 }
 
 void WSAufWegZumSep1::exit() {
@@ -21,16 +21,15 @@ void WSAufWegZumSep1::WSinHSbisSep() {
 
 void WSAufWegZumSep1::MetSenAn() {
 	exit();
-	actions->setMetallTrue();	// TODO Ist das so hier richtig in der Doku steht Typ setzten hier Metall?
+	actions->setMetallTrue();
 	new (this) ImMetallsensorHSBisSep1;
 	entry();
 }
 
 void WSAufWegZumSep1::LSSepAn() {
-	exit();
+	actions->deleteTimerVerschwunden();
 	cout << "auf weg sep: WsListe Typ" <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
 	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge.front() << endl;
-	actions->deleteTimerVerschwunden(); // TODO << nicht in der Doku vermerkt
 	aussortieren1();
 	entry();
 }

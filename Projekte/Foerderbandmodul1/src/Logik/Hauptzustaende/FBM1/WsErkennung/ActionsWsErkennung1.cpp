@@ -33,12 +33,18 @@ void ActionsWsErkennung1::schnellRunter(){
 }
 
 void ActionsWsErkennung1::WSinHSbisSeperator(){
-	// TODO Hier noch mit der alten Übergabe, vielleicht auch Abändern mit tempObj und Referenz?
 	cout << "ActionsWsErkennung1::WSinHSbisSeperator" << endl;
 	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1->getiD());
-	wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_list_HS_bis_Seperator.push_back(*(wsListen->ws_Hoehensensor_1));
+
+//	wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime());
+//	wsListen->ws_list_HS_bis_Seperator.push_back(*(wsListen->ws_Hoehensensor_1));
+//	wsListen->ws_Hoehensensor_1 = nullptr;
+
+	Werkstueck wsTemp = *wsListen->ws_Hoehensensor_1;
+	wsTemp.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_list_HS_bis_Seperator.push_back(wsTemp);
 	wsListen->ws_Hoehensensor_1 = nullptr;
+
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_HS_BIS_SEPERATOR) == -1) {
 		perror("[FSM_WsErkennung] MsgSendPulse failed");

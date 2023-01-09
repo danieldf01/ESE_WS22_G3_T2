@@ -9,7 +9,6 @@
 
 void QuittiertZuVielLSAbisHS1::entry(){
 	actions->fehlerRunter();
-	actions->HSleeren();	// TODO << Nicht in der Doku, ist das hier richtig?
 }
 
 void QuittiertZuVielLSAbisHS1::exit(){

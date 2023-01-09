@@ -9,7 +9,6 @@
 
 void QuittiertZuFruehLSAbisHS1::entry(){
 	actions->fehlerRunter();
-	actions->HSleeren(); // TODO << Anders als in der Doku, das kommt eigentlich laut Doku in den Fehler rein
 }
 
 void QuittiertZuFruehLSAbisHS1::exit(){
