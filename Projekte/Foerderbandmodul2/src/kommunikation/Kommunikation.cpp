@@ -193,6 +193,18 @@ void Kommunikation::pulseFBM1(int value){
 	case FEHLER_G_UNQUITTIERT:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
 		break;
+	case LED_START_AN:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_START_AN);
+		break;
+	case LED_START_AUS:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_START_AUS);
+		break;
+	case LED_RESET_AN:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_RESET_AN);
+		break;
+	case LED_RESET_AUS:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_RESET_AUS);
+		break;
 	}
 }
 

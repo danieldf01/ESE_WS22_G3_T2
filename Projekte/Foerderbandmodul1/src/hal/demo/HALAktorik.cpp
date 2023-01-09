@@ -48,6 +48,8 @@ void HALAktorik::eStopp(){
 	lampe->lampeRotAus();
 	bedienpanel->ledResetAus();
 	bedienpanel->ledStartAus();
+	bedienpanel->signalleuchteQ1Aus();
+	bedienpanel->signalleuchteQ2Aus();
 	thread estop(&Ampel::blinken, ref(this->ampel), Rot, HALBESEKUNDE);
 	estop.detach();
 }

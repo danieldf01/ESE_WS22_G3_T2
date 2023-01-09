@@ -112,6 +112,7 @@ void ServiceMode::pulseFBM1(int value){
 		break;
 	case LS_RUTSCHE_AUS:
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,SCHNELL_RUNTER_1);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
 		cout << " LS_RUTSCHE aus" << endl;
 		break;
 	case LS_ENDE_AN:	//active low+
@@ -139,6 +140,7 @@ void ServiceMode::pulseFBM1(int value){
 		if(durchlauf==2){
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,MOTOR_LANGSAM_AN);
 		}
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AUS );
 		cout << "START aus" << endl;
 		break;
 
@@ -153,7 +155,11 @@ void ServiceMode::pulseFBM1(int value){
 		break;
 	case T_RESET_AUS: 	//active high+
 		cout << "RESET aus" << endl;
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_RESET_AUS );
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 		durchlauf=0;
+		cout << "Bitte legen Sie ein Hohes Werkstueck ohne Bohrung in die LSA 1 und betaetigen Sie die Start Taste, wiederholen Sie dies 2 mal sobald Laufband stoppt." << endl;
 		break;
 
 	case E_STOP_AN: 	//active low+
@@ -240,6 +246,7 @@ void ServiceMode::pulseFBM2(int value){
 		break;
 	case LS_RUTSCHE_AUS:
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2, SCHNELL_RUNTER_2);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
 		cout << "LS_RUTSCHE 2 aus" << endl;
 		break;
 	case LS_ENDE_AN:	//active low+
@@ -258,16 +265,17 @@ void ServiceMode::pulseFBM2(int value){
 		new (this) Ruhezustand;
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,SERVICE_MODE_AUS);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AUS);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 		break;
 	case LS_ENDE_AUS:
 		cout << "LS_ENDE 2 aus" << endl;
+
 		break;
 	case T_START_AN:
 		cout << "START 2 an" << endl;
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2, LANGSAM_HOCH_2);
 		break;
 	case T_START_AUS:  		//active high+
-		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2, LANGSAM_RUNTER_2);
 		cout << "START 2 aus" << endl;
 		break;
 	case T_STOP_AN: 	//active low+
