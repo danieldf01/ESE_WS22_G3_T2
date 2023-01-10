@@ -53,6 +53,7 @@ void Ruhezustand::pulseFBM1(int value){
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AUS );
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AUS);
 			new (this) Betriebszustand;
+			destroyTimer();
 		}
 		else{
 			cout << "switched to ServiceMode"<< endl;
@@ -295,6 +296,24 @@ void Ruhezustand::pulseFBM1(int value){
 		cout<<"start_lang erhalten"<<endl;
 		langGedrueckt=true;
 		break;
+	case WEICHE1:
+		dateiManager->set_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE, 0);
+		dateiManager->speicherInKonfigurationsdatei();
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WEICHE1);
+		break;
+	case AUSWERFER1:
+		dateiManager->set_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE, 1);
+		dateiManager->speicherInKonfigurationsdatei();
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WEICHE1);
+		break;
+	case WEICHE2:
+		dateiManager->set_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE, 0);
+		dateiManager->speicherInKonfigurationsdatei();
+		break;
+	case AUSWERFER2:
+		dateiManager->set_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE, 1);
+		dateiManager->speicherInKonfigurationsdatei();
+		break;
 	}
 }
 
@@ -325,6 +344,7 @@ void Ruhezustand::pulseFBM2(int value){
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AUS );
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AUS);
 			new (this) Betriebszustand;
+			destroyTimer();
 		}
 		else{
 			cout << "switched to ServiceMode"<< endl;
@@ -660,6 +680,9 @@ void Ruhezustand::initTimer(){
 	timer_settime(TimerID, 0, &Timer, NULL);
 }
 
+void Ruhezustand::destroyTimer(){
+	timer_delete(TimerID);
+}
 void Ruhezustand::updateAuswertung(){
 	//TODO
 //	hoehenauswertung1->hoehe_hoehes_ws_adc= dateiManager->get_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_1);

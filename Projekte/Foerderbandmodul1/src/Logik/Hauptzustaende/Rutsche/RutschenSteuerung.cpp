@@ -88,7 +88,7 @@ void RutschenSteuerung::initTimer(int code){
 	if(code ==1){
 		timer_create(CLOCK_REALTIME, &pruefTimerEvent, &pruefTimerID1);
 		pruefTimer.it_value.tv_sec = 0;
-		pruefTimer.it_value.tv_nsec = 500000000;
+		pruefTimer.it_value.tv_nsec = 700000000;
 		pruefTimer.it_interval.tv_sec = 0;
 		pruefTimer.it_interval.tv_nsec = 0;
 		timer_settime(pruefTimerID1, 0, &pruefTimer, NULL);
@@ -96,7 +96,7 @@ void RutschenSteuerung::initTimer(int code){
 	else{
 		timer_create(CLOCK_REALTIME, &pruefTimerEvent, &pruefTimerID2);
 		pruefTimer.it_value.tv_sec = 0;
-		pruefTimer.it_value.tv_nsec = 500000000;
+		pruefTimer.it_value.tv_nsec = 700000000;
 		pruefTimer.it_interval.tv_sec = 0;
 		pruefTimer.it_interval.tv_nsec = 0;
 		timer_settime(pruefTimerID2, 0, &pruefTimer, NULL);

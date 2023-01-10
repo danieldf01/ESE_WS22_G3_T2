@@ -68,6 +68,12 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 			//TODO Stop Taster losgelassen
 		}
 		break;
+	case AUSWERFER2:
+		auswerfer=true;
+		break;
+	case WEICHE2:
+		auswerfer=false;
+		break;
 	case LS_ENDE_PIN:
 		if(currentlevel==0){
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL+2, 20 );

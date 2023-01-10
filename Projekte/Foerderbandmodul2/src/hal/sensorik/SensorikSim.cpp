@@ -49,6 +49,14 @@ int SensorikSim::runHALSteuerung(){
 	uintptr_t port0BaseAddr = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
 	//gpioSetup->configGPIOIRQEventTypes(port0BaseAddr);
 	setupGPIO(port0BaseAddr);
+	uintptr_t gpioBase = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
+	int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> 14) & 0x1;
+	if(current_level==0){
+		outputDispatcher->dispatchOutput(WEICHE2, 0);
+	}
+	else{
+		outputDispatcher->dispatchOutput(AUSWERFER2, 0);
+	}
 
 	/* ### Start sampling ### */
 	adc_clear_interrupt();		//clear interrupt (just in case)

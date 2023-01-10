@@ -24,6 +24,7 @@ public:
 	void updateAuswertung() override;
 	void eStop(int) override;
 	void initTimer();
+	void destroyTimer();
 };
 
 #endif /* SRC_HAUPTZUSTAND_H_ */

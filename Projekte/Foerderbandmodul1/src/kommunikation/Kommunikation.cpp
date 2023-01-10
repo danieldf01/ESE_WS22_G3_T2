@@ -195,6 +195,9 @@ void Kommunikation::pulseFBM1(int value){
 	case LED_RESET_AUS:
 		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, LED_RESET_AUS);
 		break;
+	case WEICHE1:
+		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WEICHE1);
+		break;
 	}
 }
 
@@ -304,6 +307,12 @@ void Kommunikation::pulseFBM2(int value){
 		break;
 	case T_RESET_AUS:
 		outputDispatcher->dispatchOutput(T_RESET_PIN_2, 0);
+		break;
+	case AUSWERFER2:
+		outputDispatcher->dispatchOutput(AUSWERFER2, 0);
+		break;
+	case WEICHE2:
+		outputDispatcher->dispatchOutput(WEICHE2, 0);
 		break;
 	}
 }

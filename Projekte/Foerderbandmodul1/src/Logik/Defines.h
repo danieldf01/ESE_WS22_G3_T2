@@ -34,6 +34,11 @@
 #define T_RESET_AN 126		//active high+
 #define E_STOP_AUS 127		//active low+
 
+#define WEICHE1 40
+#define AUSWERFER1 41
+#define WEICHE2 42
+#define AUSWERFER2 43
+
 #define FEHLER_HOCH 128
 #define FEHLER_RUNTER 129
 #define QUITTIERT 130

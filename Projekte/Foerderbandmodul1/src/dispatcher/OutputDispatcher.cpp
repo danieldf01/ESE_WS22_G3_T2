@@ -51,6 +51,20 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		}
 		break;
 
+	case WEICHE1:
+		this_thread::sleep_for(chrono::milliseconds(50));
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE1);
+		break;
+	case AUSWERFER1:
+		this_thread::sleep_for(chrono::milliseconds(50));
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER1);
+		break;
+	case WEICHE2:
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE2);
+		break;
+	case AUSWERFER2:
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER2);
+		break;
 	case WATCHDOG_ESTOP:
 		MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, WATCHDOG_ESTOP);
 		MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, WATCHDOG_ESTOP);
