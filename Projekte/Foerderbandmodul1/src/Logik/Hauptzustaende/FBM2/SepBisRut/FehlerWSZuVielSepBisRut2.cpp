@@ -26,7 +26,6 @@ void FehlerWSZuVielSepBisRut2::AuswerferEinfahren() {
 }
 
 void FehlerWSZuVielSepBisRut2::quittiert() {
-	exit();
 	new (this) QuittiertWSZuVielSepBisRut2;
 	entry();
 }

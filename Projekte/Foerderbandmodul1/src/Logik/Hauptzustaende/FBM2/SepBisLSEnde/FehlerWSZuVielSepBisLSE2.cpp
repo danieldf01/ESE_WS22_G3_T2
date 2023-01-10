@@ -36,7 +36,6 @@ void FehlerWSZuVielSepBisLSE2::WeicheSchliessen(){
 }
 
 void FehlerWSZuVielSepBisLSE2::quittiert(){
-	exit();
 	new (this) QuittiertZuVielSepBisLSE2;
 	entry();
 }

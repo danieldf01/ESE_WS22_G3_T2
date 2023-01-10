@@ -13,6 +13,7 @@ void FehlerWsVerschwundenHSBisSep2::entry() {
 	actions->fehlerHoch();
 	actions->entferneWsHSbisSep();
 	cout << "[FEHLER] Auf Foerderbandmodul 2 ist ein Werkstueck zwischen dem Hoehensensor und dem Seperator verschwunden." << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke vom Foerderbandmodul 2." << endl;
 }
 
 void FehlerWsVerschwundenHSBisSep2::exit() {
@@ -40,7 +41,6 @@ void FehlerWsVerschwundenHSBisSep2::aussortieren3(){
 }
 
 void FehlerWsVerschwundenHSBisSep2::quittiert() {
-	exit();
 	actions->schnellRunter();
 	new (this) QuittiertVerschwundenHSBisSep2;
 	entry();
@@ -58,8 +58,6 @@ void FehlerWsVerschwundenHSBisSep2::fehlerVerschwunden(){
 }
 
 void FehlerWsVerschwundenHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

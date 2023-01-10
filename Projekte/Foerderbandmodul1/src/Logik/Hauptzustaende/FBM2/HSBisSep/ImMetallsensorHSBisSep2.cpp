@@ -20,7 +20,6 @@ void ImMetallsensorHSBisSep2::MetSenAn() {
 }
 
 void ImMetallsensorHSBisSep2::LSSepAn() {
-	exit();
 	actions->deleteTimerVerschwunden();
 	// TODO Zeit anpassen
 	aussortieren1();
@@ -38,16 +37,13 @@ void ImMetallsensorHSBisSep2::fehlerCntDown() {
 }
 
 void ImMetallsensorHSBisSep2::fehlerVerschwunden() {
-	exit();
 	new (this) FehlerWsVerschwundenHSBisSep2;
 	entry();
 }
 
 void ImMetallsensorHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }
 
 void ImMetallsensorHSBisSep2::aussortieren1() {

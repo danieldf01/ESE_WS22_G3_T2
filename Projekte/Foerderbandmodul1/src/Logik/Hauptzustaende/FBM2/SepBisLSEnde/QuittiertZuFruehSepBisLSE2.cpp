@@ -36,9 +36,7 @@ void QuittiertZuFruehSepBisLSE2::quittiert(){
 }
 
 void QuittiertZuFruehSepBisLSE2::keinFehler(){
-	exit();
 	new (this) WsAufWegZuLSEndeSepBisLSE2;
-	entry();
 }
 
 void QuittiertZuFruehSepBisLSE2::fehlerVerschwunden(){
