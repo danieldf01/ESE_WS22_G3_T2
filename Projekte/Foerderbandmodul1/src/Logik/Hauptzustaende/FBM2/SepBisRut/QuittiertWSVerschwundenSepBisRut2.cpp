@@ -27,13 +27,11 @@ void QuittiertWSVerschwundenSepBisRut2::quittiert() {
 }
 
 void QuittiertWSVerschwundenSepBisRut2::keinFehler() {
-	exit();
 	actions->deleteTimerVerschwunden(); // TODO Hier timer delete?
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	actions->sendFBM2Bereit();
 	new (this) WarteSepBisRut2;
-	entry();
 }
 
 void QuittiertWSVerschwundenSepBisRut2::Fverschwunden() {

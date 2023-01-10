@@ -34,7 +34,6 @@ void FehlerWSZuFruehSepBisLSE2::WeicheSchliessen(){
 }
 
 void FehlerWSZuFruehSepBisLSE2::quittiert(){
-	exit();
 	new (this) QuittiertZuFruehSepBisLSE2;
 	entry();
 }

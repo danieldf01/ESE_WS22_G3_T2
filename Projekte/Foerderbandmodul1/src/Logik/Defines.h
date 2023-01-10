@@ -138,7 +138,10 @@
 #define SL_Q1_AUS 29
 #define SEP_AN 30
 #define SEP_AUS 31
-//#define FEHLER_G_UNQUITTIERT 32
+#define LED_START_AN 32
+#define LED_START_AUS 33
+#define LED_RESET_AN 34
+#define LED_RESET_AUS 35
 
 //Watchdog defines fuer die Kommunikation
 #define WATCHDOG_NOTIF		50

@@ -38,7 +38,6 @@ void FehlerWsZuFruehHSBisSep2::aussortieren3(){
 }
 
 void FehlerWsZuFruehHSBisSep2::quittiert() {
-	exit();
 	new (this) QuittiertZuFruehHSBisSep2;
 	entry();
 }
@@ -55,8 +54,6 @@ void FehlerWsZuFruehHSBisSep2::fehlerVerschwunden(){
 }
 
 void FehlerWsZuFruehHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

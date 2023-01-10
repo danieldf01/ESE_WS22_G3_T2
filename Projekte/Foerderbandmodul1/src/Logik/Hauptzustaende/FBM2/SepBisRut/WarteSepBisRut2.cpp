@@ -13,7 +13,6 @@ void WarteSepBisRut2::exit() {
 }
 
 void WarteSepBisRut2::LsRutAn() {
-	exit();
 	new (this) FehlerWSZuVielSepBisRut2;
 	entry();
 }
@@ -27,7 +26,6 @@ void WarteSepBisRut2::WsAussortieren() {
 	} else { // Es ist eine Weiche
 		new (this) AuswerferEingefahrenSepBisRut2;
 	}
-	entry();
 }
 
 void WarteSepBisRut2::AuswerferEinfahren() {

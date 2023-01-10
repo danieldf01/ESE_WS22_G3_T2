@@ -72,6 +72,8 @@ void LogikMain::receiveSignal(){
 
 	thread t_startFSMs(&LogikMain::startFSMs, this);
 
+	MsgSendPulse(state->inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+	MsgSendPulse(state->kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 	while (1) {
 
 		int rcvid = MsgReceive(attach->chid, &pulse, sizeof(_pulse), NULL);

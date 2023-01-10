@@ -4,7 +4,7 @@
  *  Created on: 11.12.2022
  *      Author: Daniel
  */
-// DONE
+
 #include "ActionsSepBisRut2.h"
 
 ActionsSepBisRut2::~ActionsSepBisRut2() {

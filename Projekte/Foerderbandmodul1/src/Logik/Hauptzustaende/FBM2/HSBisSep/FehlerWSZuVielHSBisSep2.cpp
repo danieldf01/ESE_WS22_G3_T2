@@ -40,7 +40,6 @@ void FehlerWSZuVielHSBisSep2::aussortieren3(){
 }
 
 void FehlerWSZuVielHSBisSep2::quittiert() {
-	exit();
 	new (this) QuittiertZuVielHSBisSep2;
 	entry();
 }
@@ -57,8 +56,6 @@ void FehlerWSZuVielHSBisSep2::fehlerVerschwunden(){
 }
 
 void FehlerWSZuVielHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

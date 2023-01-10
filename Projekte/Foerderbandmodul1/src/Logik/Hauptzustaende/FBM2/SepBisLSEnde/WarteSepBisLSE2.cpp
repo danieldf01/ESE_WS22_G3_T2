@@ -18,7 +18,6 @@ void WarteSepBisLSE2::exit(){
 }
 
 void WarteSepBisLSE2::LsEAn(){
-	entry();
 	new (this) FehlerWSZuVielSepBisLSE2;
 	entry();
 }
@@ -29,7 +28,6 @@ void WarteSepBisLSE2::LsEAus() {
 
 void WarteSepBisLSE2::WsPassieren(){
 //	cout << "WarteSepBisLSE2 recv:WsPassieren" << endl;
-	exit();
 	if (!konfig->get_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE)) {
 //		cout << "WarteSepBisLSE2 isWeiche" << endl;
 		actions->seperatorAn();
@@ -38,7 +36,6 @@ void WarteSepBisLSE2::WsPassieren(){
 //		cout << "WarteSepBisLSE2 isAuswerfer" << endl;
 		new (this) WsAufWegZuLSEndeSepBisLSE2;
 	}
-	entry();
 }
 
 void WarteSepBisLSE2::WeicheSchliessen(){

@@ -110,20 +110,6 @@ void ActionsSepBisLSE2::schnellRunter(){
 	}
 }
 
-void ActionsSepBisLSE2::stopHoch(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_HOCH_2) == -1) {
-		perror("[FSM_SepBisLSE2] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void ActionsSepBisLSE2::stopRunter(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2) == -1) {
-		perror("[FSM_SepBisLSE2] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-}
-
 void ActionsSepBisLSE2::deleteTimerVerschwunden(){
 	zeitmanager->deleteTimer(wsListen->ws_passieren_2->getiD());
 }

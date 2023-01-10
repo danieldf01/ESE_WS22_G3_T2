@@ -44,7 +44,7 @@ void WarteAufRutscheFreiHSBisSep2::fehlerCntDown() {
 	if (!rutsche->rutsche2->rutscheVoll2) {
 		if (!rutsche->rutsche2->rutscheVoll2) {
 			actions->WsAussortieren();
-			new (this) WSAufWegZumSep2;
+			new (this) WartenHSBisSep2;
 		}else{
 			actions->WsNichtAussortierbar();
 		}
@@ -56,8 +56,6 @@ void WarteAufRutscheFreiHSBisSep2::fehlerVerschwunden() {
 }
 
 void WarteAufRutscheFreiHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

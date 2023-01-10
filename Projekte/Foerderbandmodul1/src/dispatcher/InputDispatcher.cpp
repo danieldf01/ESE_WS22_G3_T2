@@ -180,7 +180,18 @@ void InputDispatcher::receiveSignal() {
 				case SL_Q1_AUS:
 					hal->bedienpanel->signalleuchteQ1Aus();
 					break;
-
+				case LED_START_AN:
+					hal->bedienpanel->ledStartAn();
+					break;
+				case LED_START_AUS:
+					hal->bedienpanel->ledStartAus();
+					break;
+				case LED_RESET_AN:
+					hal->bedienpanel->ledResetAn();
+					break;
+				case LED_RESET_AUS:
+					hal->bedienpanel->ledResetAus();
+					break;
 				case SEP_AN:
 					hal->sortierer->sortiererAusfahren();
 					break;

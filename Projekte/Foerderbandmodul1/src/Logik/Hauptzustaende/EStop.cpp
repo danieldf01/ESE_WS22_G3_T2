@@ -49,6 +49,8 @@ void EStop::pulseFBM1(int value) {
 		if (!eStop2 && !eStop1) {
 			MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
 			MsgSendPulse(auswertungID2, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 
 			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
 			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));
@@ -83,6 +85,8 @@ void EStop::pulseFBM2(int value){
 		if (!eStop2 && !eStop1) {
 			MsgSendPulse(auswertungID1, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
 			MsgSendPulse(auswertungID2, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, MOTOR_STOP_AUS);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 
 			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_1));
 			wsListen->sortierReihenfolge.push_back(dateiManager->get_value_of(Konfi_Codes::WS_Reihung_Nr_2));

@@ -33,6 +33,7 @@ public:
 	virtual void speicherWSTyp();
 	virtual void checkWSueberschlagen();
 	virtual void WSinHSbisSeperator();
+	virtual void sendFBM2Bereit();
 
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();

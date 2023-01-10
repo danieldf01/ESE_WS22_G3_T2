@@ -36,9 +36,8 @@ void QuittiertVerschwundenSepBisLSE2::quittiert(){
 }
 
 void QuittiertVerschwundenSepBisLSE2::keinFehler(){
-	exit();
 	actions->sendFBM2Bereit();
-	entry();
+	new (this) WarteSepBisLSE2;
 }
 
 void QuittiertVerschwundenSepBisLSE2::fehlerVerschwunden(){

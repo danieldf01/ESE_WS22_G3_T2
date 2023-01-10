@@ -174,15 +174,26 @@ void InputDispatcher::receiveSignal() {
 					hal->sortierer->sortiererAusfahren();
 
 					break;
-
-				case RUTSCHE_VOLL:
-					{
-						hal->ampel->lampeBlinkenAus(Gelb);
-						thread t_rutscheVoll(&Ampel::blinken, hal->ampel, Gelb, HALBESEKUNDE);
-						t_rutscheVoll.detach();
-						break;
-					}
+				case LED_START_AN:
+					hal->bedienpanel->ledStartAn();
 					break;
+				case LED_START_AUS:
+					hal->bedienpanel->ledStartAus();
+					break;
+				case LED_RESET_AN:
+					hal->bedienpanel->ledResetAn();
+					break;
+				case LED_RESET_AUS:
+					hal->bedienpanel->ledResetAus();
+					break;
+				case RUTSCHE_VOLL:
+				{
+					hal->ampel->lampeBlinkenAus(Gelb);
+					thread t_rutscheVoll(&Ampel::blinken, hal->ampel, Gelb, HALBESEKUNDE);
+					t_rutscheVoll.detach();
+					break;
+				}
+				break;
 
 				case RUTSCHE_FREI:
 					hal->ampel->lampeBlinkenAus(Gelb);

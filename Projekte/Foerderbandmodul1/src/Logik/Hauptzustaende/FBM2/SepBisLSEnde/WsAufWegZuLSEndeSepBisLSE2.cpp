@@ -20,7 +20,6 @@ void WsAufWegZuLSEndeSepBisLSE2::exit(){
 
 void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 //	cout << "WsAufWegZuLSEndeSepBisLSE2 Recv: LsEAn" <<endl;
-	exit();
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?
 	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){
@@ -30,7 +29,6 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 		actions->augabeKonsoleMQTT();
 		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
-	entry();
 }
 
 void WsAufWegZuLSEndeSepBisLSE2::LsEAus() {
@@ -53,7 +51,6 @@ void WsAufWegZuLSEndeSepBisLSE2::keinFehler(){
 }
 
 void WsAufWegZuLSEndeSepBisLSE2::fehlerVerschwunden(){
-	exit();
 	new (this) FehlerWSVerschwundenSepBisLSE2;
 	entry();
 }
