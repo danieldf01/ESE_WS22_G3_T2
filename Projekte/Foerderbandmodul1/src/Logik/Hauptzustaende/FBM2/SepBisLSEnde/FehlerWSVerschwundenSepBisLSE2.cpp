@@ -38,6 +38,7 @@ void FehlerWSVerschwundenSepBisLSE2::WeicheSchliessen(){
 
 void FehlerWSVerschwundenSepBisLSE2::quittiert(){
 	actions->schnellRunter();
+	new (this) QuittiertVerschwundenSepBisLSE2;
 	entry();
 }
 

@@ -10,6 +10,7 @@
 Werkstueck::Werkstueck(int iD, unsigned int timestamp) {
 	this->iD= iD;
 	this->timestamp = timestamp;
+	this->istUeberschlagen = false;
 }
 
 Werkstueck::~Werkstueck() {

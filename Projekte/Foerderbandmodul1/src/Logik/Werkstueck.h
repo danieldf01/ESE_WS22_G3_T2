@@ -18,6 +18,7 @@ private:
 	WsTyp wsTyp;
 	double mittlereHoehe;
 	double hoehenmesswert;
+	bool istUeberschlagen;
 
 public:
 	Werkstueck(int, unsigned int);
