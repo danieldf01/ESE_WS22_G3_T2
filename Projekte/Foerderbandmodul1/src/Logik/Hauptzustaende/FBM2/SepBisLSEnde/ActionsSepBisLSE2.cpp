@@ -18,7 +18,7 @@ void ActionsSepBisLSE2::setupConnection(){
 }
 
 void ActionsSepBisLSE2::augabeKonsoleMQTT(){
-Werkstueck ws = *wsListen->ws_passieren_2;
+		Werkstueck ws = *wsListen->ws_passieren_2;
 		int wsId = ws.getiD();
 		int WS_Typ = ws.getWsTyp();
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";

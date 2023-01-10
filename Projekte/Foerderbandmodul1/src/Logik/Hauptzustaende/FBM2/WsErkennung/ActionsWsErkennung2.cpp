@@ -75,25 +75,24 @@ void ActionsWsErkennung2::sendFBM2Bereit() {
 	}
 }
 
-void ActionsWsErkennung2::speicherWSTyp() { // TODO testen!
+void ActionsWsErkennung2::speicherWSTyp() {
 	cout << "ActionsWsErkennung2::speicherWSTyp" << endl;
 	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
 	wsTyp = tempWS.getWsTyp();
-	cout << wsTyp << endl;
 }
 
 void ActionsWsErkennung2::checkWSueberschlagen() { // TODO testen!
 	cout << "ActionsWsErkennung2::checkWSueberschlagen" << endl;
 	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
-	cout << wsTyp << endl;
-	cout << tempWS.getWsTyp() << endl;
 
 	if(wsTyp == tempWS.getWsTyp()){
 		cout << "IST NICHT UEBERSCHLAGEN" << endl;
-		tempWS.setUeberschlagen(false);
+		tempWS.setUeberschlagen(0);
+		//wsListen->ws_Hoehensensor_2->setUeberschlagen(0);
 	} else {
 		cout << "IST UEBERSCHLAGEN" << endl;
-		tempWS.setUeberschlagen(true);
+		tempWS.setUeberschlagen(1);
+		//wsListen->ws_Hoehensensor_2->setUeberschlagen(1);
 	}
 	wsListen->ws_Hoehensensor_2 = &tempWS;
 }

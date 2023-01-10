@@ -53,10 +53,10 @@ void Werkstueck::setHoehenmesswert(double messwert){
 	this->hoehenmesswert=messwert;
 }
 
-bool Werkstueck::getUeberschlagen(){
+int Werkstueck::getUeberschlagen(){
 	return this->ueberschlagen;
 }
 
-void Werkstueck::setUeberschlagen(bool ueberschlagen){
+void Werkstueck::setUeberschlagen(int ueberschlagen){
 	this->ueberschlagen = ueberschlagen;
 }

@@ -14,7 +14,8 @@ void WartenHSBisSep2::exit() {
 }
 
 void WartenHSBisSep2::WSinHSbisSep() {
-//	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
+	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
+	cout << "Ueberschlagen" << wsListen->ws_hs_bis_seperator_2->getUeberschlagen() << endl;
 	new (this) WSAufWegZumSep2;
 }
 
