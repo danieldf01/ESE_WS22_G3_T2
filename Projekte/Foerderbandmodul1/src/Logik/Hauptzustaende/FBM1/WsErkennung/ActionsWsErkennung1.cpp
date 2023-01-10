@@ -33,7 +33,7 @@ void ActionsWsErkennung1::schnellRunter(){
 }
 
 void ActionsWsErkennung1::WSinHSbisSeperator(){
-	cout << "ActionsWsErkennung1::WSinHSbisSeperator" << endl;
+//	cout << "ActionsWsErkennung1::WSinHSbisSeperator" << endl;
 	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1->getiD());
 
 //	wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime());

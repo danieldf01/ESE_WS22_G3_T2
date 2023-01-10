@@ -28,7 +28,7 @@ void WSAufWegZumSep1::MetSenAn() {
 
 void WSAufWegZumSep1::LSSepAn() {
 	actions->deleteTimerVerschwunden();
-	cout << "auf weg sep: WsListe Typ" <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
+	cout << "auf weg sep: WsListe Typ " <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
 	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge.front() << endl;
 	aussortieren1();
 	entry();
@@ -51,7 +51,7 @@ void WSAufWegZumSep1::fehlerVerschwunden() {
 }
 
 void WSAufWegZumSep1::aussortieren1() {
-	cout << "WSAufWegZumSep1 Before FehlerZuFrueh" << endl;
+//	cout << "WSAufWegZumSep1 Before FehlerZuFrueh" << endl;
 	//Fehler zu frueh? TODO Zeit als Define oder Konfig
 	if (zeitmanager->getTime()< (500 + wsListen->ws_list_HS_bis_Seperator.front().getTimestamp())) {
 		new (this) FehlerWsZuFruehHSBisSep1;
@@ -61,7 +61,7 @@ void WSAufWegZumSep1::aussortieren1() {
 }
 
 void WSAufWegZumSep1::aussortieren2() {
-	cout << "WSAufWegZumSep1 Before geforderterTyp?" << endl;
+//	cout << "WSAufWegZumSep1 Before geforderterTyp?" << endl;
 	//ist das aktuelle Werkstueck vom geforderten Typ?
 	if (wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() == wsListen->sortierReihenfolge.front()) {
 		cout << "Werkstueck entspricht der Reihung" << endl;

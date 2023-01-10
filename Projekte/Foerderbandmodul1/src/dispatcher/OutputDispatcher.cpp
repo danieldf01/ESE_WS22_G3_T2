@@ -52,11 +52,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		break;
 
 	case WEICHE1:
-		this_thread::sleep_for(chrono::milliseconds(50));
+		//this_thread::sleep_for(chrono::milliseconds(50));
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE1);
 		break;
 	case AUSWERFER1:
-		this_thread::sleep_for(chrono::milliseconds(50));
+		//this_thread::sleep_for(chrono::milliseconds(50));
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER1);
 		break;
 	case WEICHE2:

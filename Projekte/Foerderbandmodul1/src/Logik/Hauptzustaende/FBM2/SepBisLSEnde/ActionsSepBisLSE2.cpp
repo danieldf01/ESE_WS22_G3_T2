@@ -24,7 +24,6 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
 		double wsMeanhight = ws.getMittlereHoehe();
 		double wsHeight = ws.getHoehenmesswert();
-//		int isUeberschlagen = ws.getUeberschlagen();
 
 		if (WS_Typ == FLACH) {
 			wsTypAsString = "FLACH";
@@ -45,10 +44,11 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 
 		// Konsolen Ausgabe
 		cout << "----Werkstueck Daten----" << endl;
-		cout << "wsId" << wsId << endl;
-		cout << "wsTyp" << wsTypAsString << endl;
-		printf("wsMeanhight %f.2\n", wsMeanhight);
-		printf("wsHeight %f.2\n", wsHeight);
+		cout << "Werkstueck Id :" << wsId << endl;
+		cout << "Werkstueck Typ: " << wsTypAsString << endl;
+		cout.precision(4);
+		cout << "Werkstueck meanhight: " << wsMeanhight<< endl;
+		cout << "Werkstueck hight: " << wsMeanhight<< endl;
 
 		if(wsListen->ueberschlagen == true){
 			cout << "ist ueberschlagen" << endl;

@@ -117,7 +117,6 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 		ws_erkannt = true;
 		WS_Typ = FLACH;
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
-		cout << "HS_AKTIV geschickt" << endl;
 	}
 
 	//WS in Höhenmessung

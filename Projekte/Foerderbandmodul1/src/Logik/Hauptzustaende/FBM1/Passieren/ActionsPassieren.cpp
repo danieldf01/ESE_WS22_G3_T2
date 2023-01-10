@@ -38,7 +38,7 @@ void ActionsPassieren::seperatorAus(){
 }
 
 void ActionsPassieren::WsAufWegZuLSE(){
-	cout << "ActionsPassieren send WsAufWegZuLSE" << endl;
+//	cout << "ActionsPassieren send WsAufWegZuLSE" << endl;
 
 	Werkstueck tempWs = wsListen->ws_list_passieren.front();
 	wsListen->ws_list_passieren.pop_front();

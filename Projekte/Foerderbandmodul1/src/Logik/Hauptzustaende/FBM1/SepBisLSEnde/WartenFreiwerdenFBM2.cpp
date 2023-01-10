@@ -24,7 +24,6 @@ void WartenFreiwerdenFBM2::WsAufWegZuLSE(){
 }
 
 void WartenFreiwerdenFBM2::FBM2bereit(){
-	cout << "WartenFreiwerdenFBM2 Recv: FBM2_BEREIT" <<endl;
 	exit();
 	actions->FBM1WsLosgeschickt();
 	actions->stopRunter();

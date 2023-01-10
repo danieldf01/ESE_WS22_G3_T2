@@ -43,7 +43,6 @@ void ContextSepBisLSE1::receiveSignal() {
 		if (rcvid == 0) { // Pulse was received
 			switch (pulse.value.sival_int) {
 			case LS_ENDE_AN:
-				cout << "ContextSepBisLSE1 received LS_ENDE_AN" << endl;
 				LsEAn();
 				break;
 			case WS_AUF_WEG_ZU_LSE:

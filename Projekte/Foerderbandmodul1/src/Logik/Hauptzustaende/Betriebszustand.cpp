@@ -131,7 +131,7 @@ void Betriebszustand::pulseFBM1(int value) {
 
 	case LS_ENDE_AN:	//active low+
 		MsgSendPulse(fsmSepBisLSEnde1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_ENDE_AN);
-		cout << "Betriebszustand sending LS_ENDE_AN" << endl;
+//		cout << "Betriebszustand sending LS_ENDE_AN" << endl;
 		break;
 	case LS_ENDE_AUS:		//active low+
 		break;
@@ -313,7 +313,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case WS_PASSIEREN:
-		cout << "[Betriebszustand] WS soll passieren" << endl;
+//		cout << "[Betriebszustand] WS soll passieren" << endl;
 		if (MsgSendPulse(fsmPassieren_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -325,12 +325,12 @@ void Betriebszustand::pulseFBM1(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		cout << "Betriebszustand start timer ws auf weg zu lse" << endl;
+//		cout << "Betriebszustand start timer ws auf weg zu lse" << endl;
 		zeitFBM1->startMessung(4000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_list_sep_bis_lsende.back().getiD());
 		break;
 
 	case WS_AUSSORTIEREN:
-		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
+//		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
 		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -342,7 +342,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, LED_RESET_AUS);
-			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 		fehlerUnquittiert=false;
 		break;
 	case UNQUITTIERT:
