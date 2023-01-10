@@ -24,7 +24,7 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
 		double wsMeanhight = ws.getMittlereHoehe();
 		double wsHeight = ws.getHoehenmesswert();
-		bool isUeberschlagen = ws.getUeberschlagen();
+//		int isUeberschlagen = ws.getUeberschlagen();
 
 		if (WS_Typ == FLACH) {
 			wsTypAsString = "FLACH";
@@ -47,18 +47,18 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 		cout << "----Werkstueck Daten----" << endl;
 		cout << "wsId" << wsId << endl;
 		cout << "wsTyp" << wsTypAsString << endl;
-		printf("wsMeanhight %f.2", wsMeanhight);
-		printf("wsHeight %f.2", wsHeight);
+		printf("wsMeanhight %f.2\n", wsMeanhight);
+		printf("wsHeight %f.2\n", wsHeight);
 
-		if(isUeberschlagen){
+		if(wsListen->ueberschlagen == true){
 			cout << "ist ueberschlagen" << endl;
-		}else{
+		}else {
 			cout << "nicht ueberschlagen" << endl;
 		}
 
 
 		// MQTT Stuff
-		std::string address ="tcp://192.168.235.1:1883";
+		std::string address ="tcp://192.168.222.1:1883";
 		std::string clientID="FESTO_Client_Pub";
 		std::string topic="Festo";
 

@@ -19,7 +19,6 @@ void WsAufWegZuLSEndeSepBisLSE2::exit(){
 }
 
 void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
-//	cout << "WsAufWegZuLSEndeSepBisLSE2 Recv: LsEAn" <<endl;
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?
 	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){

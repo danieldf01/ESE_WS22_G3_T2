@@ -20,7 +20,6 @@ void AuswerferAusgefahrenSepBisRut2::WsAussortieren() {
 }
 
 void AuswerferAusgefahrenSepBisRut2::AuswerferEinfahren() {
-//	cout << "AuswerferAusgefahrenSepBisRut2 recv:AuswerferEinfahren" << endl;
 	actions->seperatorAus();
 	new (this) AuswerferEingefahrenSepBisRut2;
 }

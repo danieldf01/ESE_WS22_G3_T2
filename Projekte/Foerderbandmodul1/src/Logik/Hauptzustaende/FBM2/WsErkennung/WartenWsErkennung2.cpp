@@ -16,10 +16,8 @@ void WartenWsErkennung2::exit(){
 }
 
 void WartenWsErkennung2::WSinHS(){
-	exit();
 	actions->speicherWSTyp();
 	new (this) WarteMessungWsErkennung2;
-	entry();
 }
 
 void WartenWsErkennung2::WsTyp(){

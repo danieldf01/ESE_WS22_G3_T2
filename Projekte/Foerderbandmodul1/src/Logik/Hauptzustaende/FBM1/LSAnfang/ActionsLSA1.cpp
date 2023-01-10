@@ -33,16 +33,12 @@ void ActionsLSA1::schnellHoch() {
 }
 
 void ActionsLSA1::erstelleWS() {
-	cout << "ActionsLSA1 LSA AN" << endl;
-
 	werkstueck = new Werkstueck(wsID, zeitmanager->getTime());
 	Werkstueck tempWS = *werkstueck;
 	wsListen->ws_LSAnfang = &tempWS;
-//	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
-//	cout << "ActionsLSA1 werkstueck: " << werkstueck << endl;
+
 	werkstueck = nullptr;
-//	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
-//	cout << "ActionsLSA1 werkstueck: " << werkstueck << endl;
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_ERSTELLT) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
@@ -58,21 +54,14 @@ void ActionsLSA1::schnellRunter() {
 }
 
 void ActionsLSA1::WSinLSAbisHS() {
-	cout << "ActionsLSA1 LSA AUS" << endl;
-
 	//loesche den error timer, da das Werkstueck nicht festhaengt
 	zeitmanager->deleteTimer(wsListen->ws_LSAnfang->getiD());
-//	wsListen->ws_LSAnfang = nullptr;
 
 	//gib dem Werkstueck einen aktuellen Timestamp und pack es in die Liste fuer die naechste FSM
 	Werkstueck tempWS = *wsListen->ws_LSAnfang;
-//	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
-//	cout << "ActionsLSA1 tempWS: " << &tempWS << endl;
 	tempWS.setTimestamp(zeitmanager->getTime());
 	wsListen->ws_list_LSAnfang_bis_HS.push_back(tempWS);
 	wsListen->ws_LSAnfang = nullptr;
-//	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
-//	cout << "ActionsLSA1 tempWS: " << &tempWS << endl;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_LS_A_BIS_HS) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");

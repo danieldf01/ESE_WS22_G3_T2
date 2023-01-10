@@ -27,7 +27,6 @@ void QuittiertWSVerschwundenSepBisRut2::quittiert() {
 }
 
 void QuittiertWSVerschwundenSepBisRut2::keinFehler() {
-	actions->deleteTimerVerschwunden(); // TODO Hier timer delete?
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	actions->sendFBM2Bereit();

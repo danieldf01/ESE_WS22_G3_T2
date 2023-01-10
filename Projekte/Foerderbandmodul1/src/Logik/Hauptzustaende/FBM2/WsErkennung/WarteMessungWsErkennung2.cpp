@@ -10,8 +10,7 @@
 using namespace std;
 
 void WarteMessungWsErkennung2::entry(){
-//	cout << "Aktuelle Zeit WS in entry:" << wsListen->getWsHoehensensor2()->getTimestamp() << endl;
-//	timestamp = wsListen->getWsHoehensensor2()->getTimestamp();
+
 }
 
 void WarteMessungWsErkennung2::exit(){
@@ -23,10 +22,9 @@ void WarteMessungWsErkennung2::WSinHS(){
 }
 
 void WarteMessungWsErkennung2::WsTyp(){
-//	cout << "WarteMessungWsErkennung2 recv WSTyp" << endl;
 	actions->checkWSueberschlagen();
-	exit();
 	actions->langsamRunter();
+
 	if(zeitmanager->getTime() < 100 + wsListen->ws_Hoehensensor_2->getTimestamp()){
 		cout << "[FEHLER] Die Werkstueckmessung auf Foerderband 2 ist zu schnell erfolgt. Bitte das Werkstueck unter dem Hoehensensor entfernen." << endl;
 		new (this) FehlerHoehenmessungWsErkennung2;

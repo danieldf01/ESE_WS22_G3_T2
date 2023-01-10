@@ -18,7 +18,6 @@ private:
 	WsTyp wsTyp;
 	double mittlereHoehe;
 	double hoehenmesswert;
-	int ueberschlagen;
 
 public:
 	Werkstueck(int, unsigned int);
@@ -33,8 +32,6 @@ public:
 	void setMittlereHoehe(double);
 	double getHoehenmesswert();
 	void setHoehenmesswert(double);
-	int getUeberschlagen();
-	void setUeberschlagen(int);
 };
 
 #endif /* LOGIK_WERKSTUECK_H_ */

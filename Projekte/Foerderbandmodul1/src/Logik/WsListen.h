@@ -43,6 +43,9 @@ public:
 	Werkstueck *ws_hs_bis_seperator_2=nullptr;
 	Werkstueck *ws_passieren_2=nullptr;
 	Werkstueck *ws_aussortieren_2=nullptr;
+
+	bool ueberschlagen = false;
+
 	WsListen();
 	virtual ~WsListen();
 	void emptyAll();

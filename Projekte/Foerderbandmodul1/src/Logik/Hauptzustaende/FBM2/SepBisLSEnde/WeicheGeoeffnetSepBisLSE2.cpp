@@ -28,7 +28,6 @@ void WeicheGeoeffnetSepBisLSE2::WsPassieren(){
 }
 
 void WeicheGeoeffnetSepBisLSE2::WeicheSchliessen(){
-//	cout << "WeicheGeoeffnetSepBisLSE2 recv:WeicheSchliessen" << endl;
 	actions->seperatorAus();
 	new (this) WsAufWegZuLSEndeSepBisLSE2;
 }

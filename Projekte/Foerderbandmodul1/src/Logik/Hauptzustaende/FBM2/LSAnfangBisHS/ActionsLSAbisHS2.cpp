@@ -19,8 +19,6 @@ void ActionsLSAbisHS2::setupConnection() {
 }
 
 void ActionsLSAbisHS2::WSinHS() {
-	cout << "[FBM2] ActionsLSAbisHS2" << endl;
-
 	//loesche den error timer, da das Werkstueck nicht festhaengt
 	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_bis_hs_2->getiD());
 

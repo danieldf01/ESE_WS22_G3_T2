@@ -16,7 +16,6 @@ void AuswerferEingefahrenSepBisRut2::exit() {
 }
 
 void AuswerferEingefahrenSepBisRut2::LsRutAn() {
-//	cout << "AuswerferEingefahrenSepBisRut2 recv:LsRutAn" << endl;
 	actions->deleteTimerVerschwunden();
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();

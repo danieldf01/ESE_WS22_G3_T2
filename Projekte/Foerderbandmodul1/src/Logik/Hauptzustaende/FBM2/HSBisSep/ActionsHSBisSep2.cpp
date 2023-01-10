@@ -47,8 +47,6 @@ void ActionsHSBisSep2::WsPassieren(){
 }
 
 void ActionsHSBisSep2::WsAussortieren(){
-
-	cout << "ActionsHSBisSep2 WsAussortieren" << endl;
 	// update Werkstuecke
 	Werkstueck temp_ws = *wsListen->ws_hs_bis_seperator_2;
 	temp_ws.setTimestamp(zeitmanager->getTime());

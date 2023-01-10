@@ -10,7 +10,6 @@
 Werkstueck::Werkstueck(int iD, unsigned int timestamp) {
 	this->iD= iD;
 	this->timestamp = timestamp;
-	this->ueberschlagen = false;
 }
 
 Werkstueck::~Werkstueck() {
@@ -51,12 +50,4 @@ double Werkstueck::getHoehenmesswert(){
 
 void Werkstueck::setHoehenmesswert(double messwert){
 	this->hoehenmesswert=messwert;
-}
-
-int Werkstueck::getUeberschlagen(){
-	return this->ueberschlagen;
-}
-
-void Werkstueck::setUeberschlagen(int ueberschlagen){
-	this->ueberschlagen = ueberschlagen;
 }
