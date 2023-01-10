@@ -39,9 +39,11 @@ void ActionsPassieren::seperatorAus(){
 
 void ActionsPassieren::WsAufWegZuLSE(){
 	cout << "ActionsPassieren send WsAufWegZuLSE" << endl;
+
 	Werkstueck tempWs = wsListen->ws_list_passieren.front();
 	wsListen->ws_list_passieren.pop_front();
 	wsListen->ws_list_sep_bis_lsende.push_back(tempWs);
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_AUF_WEG_ZU_LSE) == -1) {
 		perror("[FSM_Passieren] MsgSendPulse failed");
 		exit(EXIT_FAILURE);

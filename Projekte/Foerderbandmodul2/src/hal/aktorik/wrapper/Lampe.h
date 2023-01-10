@@ -31,10 +31,6 @@ public:
 	void lampeGelbAus() override;
 	void lampeRotAn() override;
 	void lampeRotAus() override;
-	void lampeAn(Farbe farben);
-	void lampeAus(Farbe farben);
-	//void lampeAn(int farben);
-	//void lampeAus(int farben);
 };
 
 #endif /* HAL_AKTORIK_LAMPEN_H_ */

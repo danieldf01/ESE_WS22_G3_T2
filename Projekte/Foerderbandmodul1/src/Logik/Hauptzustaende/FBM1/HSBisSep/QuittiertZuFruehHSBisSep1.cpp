@@ -45,6 +45,7 @@ void QuittiertZuFruehHSBisSep1::quittiert() {
 void QuittiertZuFruehHSBisSep1::keinFehler() {
 	exit();
 	new (this) WSAufWegZumSep1;
+	entry();
 }
 
 void QuittiertZuFruehHSBisSep1::fehlerCntDown(){

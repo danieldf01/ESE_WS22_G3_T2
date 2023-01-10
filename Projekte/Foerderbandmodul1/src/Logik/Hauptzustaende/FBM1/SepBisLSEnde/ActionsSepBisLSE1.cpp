@@ -71,12 +71,18 @@ void ActionsSepBisLSE1::FBM1WsLosgeschickt(){
 }
 
 void ActionsSepBisLSE1::FBM1WsUebergeben(){
+
+	Werkstueck wsTemp = wsListen->ws_list_sep_bis_lsende.front();
+	wsListen->ws_ls_anfang_2 = &wsTemp;
+	wsListen->ws_list_sep_bis_lsende.pop_front();
+
+//	wsListen->ws_ls_anfang_2 = &(wsListen->ws_list_sep_bis_lsende.front());
+//	wsListen->ws_list_sep_bis_lsende.pop_front();
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FBM1_WS_UEBERGEBEN) == -1) {
 		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
-	wsListen->ws_ls_anfang_2 = &(wsListen->ws_list_sep_bis_lsende.front());
-	wsListen->ws_list_sep_bis_lsende.pop_front();
 }
 
 void ActionsSepBisLSE1::deleteTimerVerschwunden(){

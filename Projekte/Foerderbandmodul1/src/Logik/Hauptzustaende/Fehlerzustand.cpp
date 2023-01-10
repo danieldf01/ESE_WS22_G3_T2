@@ -48,13 +48,14 @@ void Fehlerzustand::pulseFBM1(int value){
 	case FEHLER_RUNTER:
 		fehlerCount--;
 		if (fehlerCount == 0) {
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
-			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_AUS);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+			initTimer3();
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
 			MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
 			MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
-			initTimer();
+			initTimer1();
 			new (this) Betriebszustand;
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AN);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
@@ -311,13 +312,13 @@ void Fehlerzustand::pulseFBM2(int value){
 	case FEHLER_RUNTER:
 		fehlerCount--;
 		if (fehlerCount == 0) {
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
-			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_AUS);
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, STOP_RUNTER_1);
 			MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
 			MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER);
 			MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, STOP_RUNTER_2);
-			initTimer();
+			initTimer1();
 			new (this) Betriebszustand;
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, BETRIEBSMODUS_AN);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, BETRIEBSMODUS_AN);
@@ -640,7 +641,7 @@ void Fehlerzustand::pulseZeit2(int value){
 void Fehlerzustand::updateAuswertung(){
 
 }
-void Fehlerzustand::initTimer(){
+void Fehlerzustand::initTimer1(){
 
 	SIGEV_PULSE_INIT(&TimerEvent, logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1 ,UNQUITTIERT_ABGELAUFEN);
 	timer_create(CLOCK_REALTIME, &TimerEvent, &TimerID);
@@ -651,7 +652,28 @@ void Fehlerzustand::initTimer(){
 	timer_settime(TimerID, 0, &Timer, NULL);
 
 }
+void Fehlerzustand::initTimer2(){
 
+	SIGEV_PULSE_INIT(&TimerEvent, logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1 ,QUITTIERT);
+	timer_create(CLOCK_REALTIME, &TimerEvent, &TimerID);
+	Timer.it_value.tv_sec = 1;
+	Timer.it_value.tv_nsec = 0;
+	Timer.it_interval.tv_sec = 0;
+	Timer.it_interval.tv_nsec = 0;
+	timer_settime(TimerID, 0, &Timer, NULL);
+
+}
+void Fehlerzustand::initTimer3(){
+
+	SIGEV_PULSE_INIT(&TimerEvent, logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1 ,UNQUITTIERT);
+	timer_create(CLOCK_REALTIME, &TimerEvent, &TimerID);
+	Timer.it_value.tv_sec = 1;
+	Timer.it_value.tv_nsec = 0;
+	Timer.it_interval.tv_sec = 0;
+	Timer.it_interval.tv_nsec = 0;
+	timer_settime(TimerID, 0, &Timer, NULL);
+
+}
 void Fehlerzustand::eStop(int estop){
 	MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO),_PULSE_CODE_MINAVAIL,BETRIEBSMODUS_AUS );
 	MsgSendPulse(motorID, sched_get_priority_max(SCHED_FIFO),CODE_FBM_1,E_STOP_AN );
@@ -698,8 +720,13 @@ void Fehlerzustand::eStop(int estop){
 
 void Fehlerzustand::quittiert(){
 	//TODO Quittiert an alle FSMs schicken
-	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_QUITTIERT);
-	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_QUITTIERT);
+	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_AUS);
+	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_RESET_AUS);
+	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
+	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
+	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
+	initTimer2();
 	cout << "fehler quittiert" << endl;
 	new (this) FehlerQuittiert;
 	MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);

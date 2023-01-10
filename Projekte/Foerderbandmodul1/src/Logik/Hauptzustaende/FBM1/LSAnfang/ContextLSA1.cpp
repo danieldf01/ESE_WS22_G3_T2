@@ -66,8 +66,7 @@ void ContextLSA1::receiveSignal() {
 		// handle name_open calls for this server
 		if ((_IO_BASE <= pulse.type) && (pulse.type <= _IO_MAX)) {
 			if (pulse.type == _IO_CONNECT) {
-				cout << S_LSANFANG1 << " received _IO_CONNECT via sync. message"
-						<< endl;
+				cout << S_LSANFANG1 << " received _IO_CONNECT via sync. message" << endl;
 				MsgReply(rcvid, EOK, NULL, 0);
 			}
 		}

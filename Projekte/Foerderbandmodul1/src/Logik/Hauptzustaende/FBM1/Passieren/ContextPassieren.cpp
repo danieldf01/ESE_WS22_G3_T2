@@ -9,8 +9,7 @@
 
 using namespace std;
 
-ContextPassieren::ContextPassieren(ActionsPassieren *shared_action, WsListen *werkstueckListen,
-		KonfigurationsdateiManager *konfigManager) :
+ContextPassieren::ContextPassieren(ActionsPassieren *shared_action, WsListen *werkstueckListen, KonfigurationsdateiManager *konfigManager) :
 		actions(shared_action), wsListen(werkstueckListen), konfig(konfigManager) {
 
 	qnetHandler = new QnetHandler();

@@ -21,8 +21,9 @@ void WsAufWegZuLSEndeSepBisLSE1::LsEAn(){
 	cout << "WsAufWegZuLSEndeSepBisLSE1 Recv: LsEAn" <<endl;
 	exit();
 	actions->deleteTimerVerschwunden();
+
 	//WS zu frueh angekommen?
-	if(zeitmanager->getTime() < (1500 + wsListen->ws_list_sep_bis_lsende.front().getTimestamp())){
+	if(zeitmanager->getTime() < (1500 + wsListen->ws_list_sep_bis_lsende.front().getTimestamp())){// TODO Timer define
 		new (this) FehlerWSZuFruehSepBisLSE1;
 	} else{
 		actions->stopHoch();

@@ -26,8 +26,7 @@ void ActionsLSA1::setupConnection() {
 }
 
 void ActionsLSA1::schnellHoch() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SCHNELL_HOCH_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_HOCH_1) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -44,8 +43,7 @@ void ActionsLSA1::erstelleWS() {
 	werkstueck = nullptr;
 //	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
 //	cout << "ActionsLSA1 werkstueck: " << werkstueck << endl;
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, WS_ERSTELLT) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_ERSTELLT) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -53,8 +51,7 @@ void ActionsLSA1::erstelleWS() {
 }
 
 void ActionsLSA1::schnellRunter() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SCHNELL_RUNTER_1) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -77,8 +74,7 @@ void ActionsLSA1::WSinLSAbisHS() {
 //	cout << "ActionsLSA1 ws_LSAnfang: " << wsListen->ws_LSAnfang << endl;
 //	cout << "ActionsLSA1 tempWS: " << &tempWS << endl;
 
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, WS_IN_LS_A_BIS_HS) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_LS_A_BIS_HS) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -87,16 +83,14 @@ void ActionsLSA1::WSinLSAbisHS() {
 void ActionsLSA1::fehlerHoch() {
 	wsListen->ws_LSAnfang = nullptr;
 
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_HOCH) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_HOCH) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsLSA1::fehlerRunter() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, FEHLER_RUNTER) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_RUNTER) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
@@ -109,16 +103,14 @@ void ActionsLSA1::eStop() {
 }
 
 void ActionsLSA1::slq1_an() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SL_Q1_AN) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SL_Q1_AN) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void ActionsLSA1::slq1_aus() {
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,
-	CODE_FBM_1, SL_Q1_AUS) == -1) {
+	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SL_Q1_AUS) == -1) {
 		perror("[FSM_LSAnfang] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}

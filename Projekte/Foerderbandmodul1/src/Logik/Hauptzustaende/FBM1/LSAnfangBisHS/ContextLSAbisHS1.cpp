@@ -7,10 +7,8 @@
 
 #include "ContextLSAbisHS1.h"
 
-ContextLSAbisHS1::ContextLSAbisHS1(ActionsLSAbisHS1 *shared_action,
-		WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM) :
-		actions(shared_action), wsListen(werkstueckListen), zeitmanager(
-				zeitmanagerFSM) {
+ContextLSAbisHS1::ContextLSAbisHS1(ActionsLSAbisHS1 *shared_action, WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM) :
+		actions(shared_action), wsListen(werkstueckListen), zeitmanager(zeitmanagerFSM) {
 
 	qnetHandler = new QnetHandler();
 	attach = qnetHandler->openServer(S_LSA_BIS_HS1);
@@ -42,7 +40,6 @@ void ContextLSAbisHS1::receiveSignal() {
 		}
 		if (rcvid == 0) { // Pulse was received
 			switch (pulse.value.sival_int) {
-			//TODO cases abfangen
 			case WS_IN_LS_A_BIS_HS:
 				WSinLSAbisHS();
 				break;

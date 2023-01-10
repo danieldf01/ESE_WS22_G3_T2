@@ -9,7 +9,6 @@
 
 void QuittiertZuFruehLSAbisHS1::entry(){
 	actions->fehlerRunter();
-	actions->HSleeren();
 }
 
 void QuittiertZuFruehLSAbisHS1::exit(){
