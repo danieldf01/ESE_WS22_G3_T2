@@ -24,6 +24,7 @@ INCLUDES += -Isrc/simulation/simulationadapterqnx
 INCLUDES += -Isrc/simulation/simulationbase
 INCLUDES += -Isrc/simulation/simulationcore
 INCLUDES += -Isrc/simulation/simulationudpqnx
+INCLUDES += -Isrc/Logik/MQTTClientHandler/MQTT/
 
 #LIBS += -L/path/to/my/lib/$(PLATFORM)/usr/lib -lmylib
 #LIBS += -L../mylib/$(OUTPUT_DIR) -lmylib

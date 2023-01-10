@@ -33,8 +33,8 @@ public:
 	void setMittlereHoehe(double);
 	double getHoehenmesswert();
 	void setHoehenmesswert(double);
-	bool istUeberschlagen();
-	void setUeberschlagen();
+	bool getUeberschlagen();
+	void setUeberschlagen(bool);
 };
 
 #endif /* LOGIK_WERKSTUECK_H_ */

@@ -8,12 +8,15 @@
 #ifndef LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_ACTIONSSEPBISLSE2_H_
 #define LOGIK_HAUPTZUSTAENDE_FBM2_SEPBISLSENDE_ACTIONSSEPBISLSE2_H_
 
+#include <string>
 #include <iostream>
 #include <sys/dispatch.h>
 #include "../../../Defines.h"
 #include "../../../WsListen.h"
 #include "../../../Werkstueck.h"
+#include "../../../WsTyp.h"
 #include "../../../Zeit/Zeitmanager.h"
+#include "../../../MQTTClientHandler/MQTTClientHandler.h"
 
 class ActionsSepBisLSE2 {
 protected:
@@ -40,6 +43,7 @@ public:
 
 	virtual void deleteTimerVerschwunden();
 	virtual void sendFBM2Bereit();
+	virtual void augabeKonsoleMQTT();
 
 	virtual void eStop();
 };

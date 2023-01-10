@@ -20,6 +20,7 @@ protected:
 	int logikID;
 	WsListen *wsListen;
 	Zeitmanager *zeitmanager;
+	WsTyp wsTyp;
 public:
 	virtual ~ActionsWsErkennung2();
 

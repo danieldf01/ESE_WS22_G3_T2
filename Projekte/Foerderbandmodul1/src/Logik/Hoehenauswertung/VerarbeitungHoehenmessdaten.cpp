@@ -206,7 +206,15 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 					wsListen->ws_Hoehensensor_2->setWsTyp(UNBEKANNT);
 				}
 			}
-//			cout << "BEFORE WS_TYP SEND " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+
+			if(anlagen_nr == 1){
+				printf("mittelwert %f", mittlereHohe);
+				wsListen->ws_Hoehensensor_1->setMittlereHoehe(mittlereHohe);
+			} else {
+				printf("hoehe mitte %f", HoheMitteWs);
+				wsListen->ws_Hoehensensor_2->setHoehenmesswert(HoheMitteWs);
+			}
+
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlagen_nr, WS_TYP);
 			fflush(stdout);
 

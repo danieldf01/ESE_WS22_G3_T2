@@ -7,6 +7,7 @@
 
 #include "WsAufWegZuLSEndeSepBisLSE2.h"
 
+
 using namespace std;
 
 void WsAufWegZuLSEndeSepBisLSE2::entry(){
@@ -24,10 +25,8 @@ void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
-		// TODO MQTT missing
-		cout << "TODO Send per MQTT here WsAufWegZuLSEndeSepBisLSE2" << endl;
-		cout << "TODO Konsolenausgabe" << endl;
 		actions->schnellRunter();
+		actions->augabeKonsoleMQTT();
 		new (this) WarteAufEntnehmenSepBisLSE2;
 	}
 }
