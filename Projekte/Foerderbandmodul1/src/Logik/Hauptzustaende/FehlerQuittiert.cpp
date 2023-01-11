@@ -55,8 +55,9 @@ void FehlerQuittiert::pulseFBM1(int value){
 		break;
 
 	case FEHLER_RUNTER:
+		cout << "Von " << fehlerCount << "Fehler wird einer entfernt" << endl;
 		fehlerCount--;
-		cout << "fehler runter" << fehlerCount << endl;
+		// TODO Implementierung wieso hier Fehler Runter?
 		MsgSendPulse(fsmHSbisSep1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
 		MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_RUNTER);
 		break;

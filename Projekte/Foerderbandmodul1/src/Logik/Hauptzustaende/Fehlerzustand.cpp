@@ -729,6 +729,7 @@ void Fehlerzustand::quittiert(){
 	initTimer2();
 	cout << "fehler quittiert" << endl;
 	new (this) FehlerQuittiert;
+	// TODO Implementierung unterschied zu FehlerQuittert?
 	MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);
 	MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);
 	MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);

@@ -145,7 +145,11 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 		//Werkstück hat HS durchquert
 		if (messung_mm <= 0 + toleranz_mm) {
 
-			// TODO missing check nach legalen WS objekt
+			// Wenn das aktuelle Werstueck Objekt noch nicht vorhanden ist
+			if(wsListen->ws_Hoehensensor_1 == nullptr && wsListen->ws_Hoehensensor_2 == nullptr){
+				cout << "[FATAL ERROR] Werkstueck unter dem Hoehensensor nicht bekannt!" << endl;
+				// TODO ggf. sicheren Modus betreten E-Stop
+			}
 
 			//berechne Arithmetisches mittel
 			for (auto it = mlist.begin(); it != mlist.end(); ++it) {
