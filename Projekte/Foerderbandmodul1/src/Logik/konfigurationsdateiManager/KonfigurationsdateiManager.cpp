@@ -24,13 +24,13 @@ KonfigurationsdateiManager::KonfigurationsdateiManager(std::string filename) {
 		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_HS, 3000);
 		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_SEP, 1500);
 		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_RUT, 2400);
-		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, 2800);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, 3500);
 		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_WS_UEBERGEBEN, 400);
 		this->set_value_of(Konfi_Codes::FBM1_ZEIT_WS_PASSIERT_WEICHE, 1000);
 		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_HS, 3000);
 		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_SEP, 1500);
 		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT, 2400);
-		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, 3000);
+		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, 3500);
 		this->set_value_of(Konfi_Codes::FBM2_ZEIT_WS_PASSIERT_WEICHE, 1000);
 		this->set_value_of(Konfi_Codes::EINLEGE_ZEIT_AUSWERFER, 500);
 		this->set_value_of(Konfi_Codes::EINLEGE_ZEIT_WEICHE, 1550);

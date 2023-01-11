@@ -58,7 +58,12 @@ void Motor::handlePulse(int code,int value){
 		case LANGSAM_HOCH_1:
 			if(cnt_langsam==0){
 				MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,MOT_LANGSAM_AN_1);
+				if(cnt_stop>0){
+					zeitFBM1->setTimerSpeedStop();
+				}
+				else if(cnt_schnell>0){
 				zeitFBM1->setTimerSpeedLangsam();
+				}
 			}
 			cnt_langsam++;
 			break;

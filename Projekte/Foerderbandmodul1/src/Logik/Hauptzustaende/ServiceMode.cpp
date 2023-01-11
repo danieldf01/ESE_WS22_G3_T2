@@ -281,24 +281,24 @@ void ServiceMode::pulseFBM2(int value){
 //		cout << "LS_ENDE 2 ZEIT"<< zeitSepbisEnde2 << endl;
 		cout << "ZeitLSAbisHS:"<< zeitLSAbisHS<< " ,ZeitHSbisSep:"<< zeitHSbisSep<< " ,Zeit SepBisRutsche:"<< zeitSepbisRutsche<< " ,ZeitSepBisEnde:"<<zeitSepbisEnde<<" ,ZeitEndeBisLSA2:"<<zeitEndebisLSA2 << endl;
 
-		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_WS_UEBERGEBEN, zeitEndebisLSA2);
-		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS);
-		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep);
-		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche);
-		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde+1200);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_WS_UEBERGEBEN, zeitEndebisLSA2+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche+200);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde+1200);
 		dateiManager->speicherInKonfigurationsdatei();
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2, SCHNELL_RUNTER_2);
+		break;
+	case LS_ENDE_AUS:
 		new (this) Ruhezustand;
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,SERVICE_MODE_AUS);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SERVICE_MODE_AUS);
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
-		break;
-	case LS_ENDE_AUS:
 		cout << "LS_ENDE 2 aus" << endl;
 
 		break;

@@ -45,7 +45,8 @@ void Zeitmanager::threadStartZeit() {
 		}
 
 		if (recvid == 0) {	//pulse received.
-
+			if(currentSpeed>0){
+			}
 			zeit += (currentSpeed * 1); //Hier 10ms es ist wichtig das Zeitgeber alle 10ms einen pulse sendet
 			/*Übergprüfer ob ein Timer in der liste abgelaufen*/
 			for (auto it = lmessungen.begin(); it != lmessungen.end(); ++it) {
