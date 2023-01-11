@@ -27,8 +27,8 @@ void WSAufWegZumSep1::MetSenAn() {
 
 void WSAufWegZumSep1::LSSepAn() {
 	actions->deleteTimerVerschwunden();
-	cout << "[FBM1] Auf dem Weg zum Sep: WsListe Typ " <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
-	cout << "[FBM1] SortierReihenfolge: " << wsListen->sortierReihenfolge.front() << endl;
+//	cout << "[FBM1] Auf dem Weg zum Sep: WsListe Typ " <<  wsListen->ws_list_HS_bis_Seperator.front().getWsTyp() << endl;
+//	cout << "[FBM1] SortierReihenfolge: " << wsListen->sortierReihenfolge.front() << endl;
 	aussortieren1();
 	entry();
 }
@@ -74,8 +74,8 @@ void WSAufWegZumSep1::aussortieren2() {
 }
 
 void WSAufWegZumSep1::aussortieren3() {
-	cout << "RUTSCHE 1 VOLL: " << rutsche->rutsche1->rutscheVoll1 << endl;
-	cout << "RUTSCHE 2 VOLL: " << rutsche->rutsche2->rutscheVoll2 << endl;
+//	cout << "RUTSCHE 1 VOLL: " << rutsche->rutsche1->rutscheVoll1 << endl;
+//	cout << "RUTSCHE 2 VOLL: " << rutsche->rutsche2->rutscheVoll2 << endl;
 	if (rutsche->rutsche2->rutscheVoll2) {
 		if (rutsche->rutsche1->rutscheVoll1) {
 			//wenn Rutsche 1 und 2 voll sind, tritt der Fehler nicht aussortierbar ein
@@ -101,9 +101,9 @@ void WSAufWegZumSep1::aussortieren4() {
 	bool rutscheVoll1 = rutsche->rutsche1->rutscheVoll1;
 	bool isInsideReihenfolge = std::find(wsListen->sortierReihenfolge.begin(),wsListen->sortierReihenfolge.end(), typ)!= wsListen->sortierReihenfolge.end();
 
-	cout << "BOOL:" << isInsideReihenfolge << endl;
-	cout << "typ" << typ << endl;
-	cout << "rutvoll" << rutscheVoll1 << endl;
+//	cout << "BOOL:" << isInsideReihenfolge << endl;
+//	cout << "typ" << typ << endl;
+//	cout << "rutvoll" << rutscheVoll1 << endl;
 
 	if (rutscheVoll1 || isInsideReihenfolge || (typ== HOCH_OB || typ == HOCH_MB || typ == HOCH_MBM)) {
 		cout << "[FBM1] WSAufWegZumSep1::aussortieren4 Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;

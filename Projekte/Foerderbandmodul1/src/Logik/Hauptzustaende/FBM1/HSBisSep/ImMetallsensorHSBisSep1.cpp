@@ -96,9 +96,9 @@ void ImMetallsensorHSBisSep1::aussortieren4() {
 	bool rutscheVoll1 = rutsche->rutsche1->rutscheVoll1;
 	bool isInsideReihenfolge = std::find(wsListen->sortierReihenfolge.begin(),wsListen->sortierReihenfolge.end(), typ)!= wsListen->sortierReihenfolge.end();
 
-	cout << "bool:" << isInsideReihenfolge << endl;
-	cout << "typ" << typ << endl;
-	cout << "rutvoll" << rutscheVoll1 << endl;
+//	cout << "bool:" << isInsideReihenfolge << endl;
+//	cout << "typ" << typ << endl;
+//	cout << "rutvoll" << rutscheVoll1 << endl;
 
 	if (rutscheVoll1 || isInsideReihenfolge || (typ== HOCH_OB || typ == HOCH_MB || typ == HOCH_MBM)) {
 		cout << "[FBM1] Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;

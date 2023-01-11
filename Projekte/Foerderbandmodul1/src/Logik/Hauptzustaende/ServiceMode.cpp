@@ -135,7 +135,7 @@ void ServiceMode::pulseFBM1(int value){
 		break;
 	case T_START_AUS:  		//active high+
 		durchlauf++;
-		cout<< "durchlauf:"<<durchlauf<<endl;
+		cout<< "Durchlauf:"<<durchlauf<<endl;
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,SCHNELL_HOCH_1);
 		if(durchlauf==2){
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,MOTOR_LANGSAM_AN);
@@ -159,7 +159,7 @@ void ServiceMode::pulseFBM1(int value){
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_RESET_AUS );
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 		durchlauf=0;
-		cout << "Bitte legen Sie ein Hohes Werkstueck ohne Bohrung in die LSA 1 und betaetigen Sie die Start Taste, wiederholen Sie dies 2 mal sobald Laufband stoppt." << endl;
+		cout << "Bitte legen Sie ein Hohes Werkstueck ohne Bohrung in die LSA 1 und betaetigen Sie die Start Taste, wiederholen Sie dies 2 mal sobald das Laufband stoppt." << endl;
 		break;
 
 	case E_STOP_AN: 	//active low+

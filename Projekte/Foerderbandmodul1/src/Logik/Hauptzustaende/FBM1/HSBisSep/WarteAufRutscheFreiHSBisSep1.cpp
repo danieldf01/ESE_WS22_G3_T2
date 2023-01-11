@@ -75,12 +75,12 @@ void WarteAufRutscheFreiHSBisSep1::aussortieren4(){
 	bool rutscheVoll1 = rutsche->rutsche1->rutscheVoll1;
 	bool isInsideReihenfolge = std::find(wsListen->sortierReihenfolge.begin(),wsListen->sortierReihenfolge.end(), typ)!= wsListen->sortierReihenfolge.end();
 
-	cout << "BOOL:" << isInsideReihenfolge << endl;
-	cout << "typ" << typ << endl;
-	cout << "rutvoll" << rutscheVoll1 << endl;
+//	cout << "BOOL:" << isInsideReihenfolge << endl;
+//	cout << "typ" << typ << endl;
+//	cout << "rutvoll" << rutscheVoll1 << endl;
 
 	if (rutscheVoll1 || isInsideReihenfolge || (typ== HOCH_OB || typ == HOCH_MB || typ == HOCH_MBM)) {
-		cout << "WarteAufRutscheFreiHSBisSep1::aussortieren4 Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
+		cout << "[FBM1] Werkstueck gehoert nicht zur Reihung soll aber passieren" << endl;
 		//Werkstueck soll auf Foerderbandmodul 2 aussortiert werden
 		actions->WsPassierenNichtGefordert();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
@@ -90,7 +90,7 @@ void WarteAufRutscheFreiHSBisSep1::aussortieren4(){
 		}
 	} else {
 		//Werkstueck ist ein flaches oder binaeres Werkstueck und kann auf Rutsche 1 aussortiert werden
-		cout << "WarteAufRutscheFreiHSBisSep1::aussortieren4 Werkstueck soll aussortiert werden" << endl;
+		cout << "[FBM1] Werkstueck soll aussortiert werden" << endl;
 		actions->WsAussortieren();
 		if (wsListen->ws_list_HS_bis_Seperator.size() <= 0) {
 			new (this) WartenHSBisSep1;

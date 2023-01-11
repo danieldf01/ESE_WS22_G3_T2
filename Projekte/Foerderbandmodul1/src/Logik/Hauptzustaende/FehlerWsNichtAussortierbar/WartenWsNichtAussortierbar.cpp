@@ -18,12 +18,12 @@ void WartenWsNichtAussortierbar::exit(){
 
 void WartenWsNichtAussortierbar::WsNichtAussortierbar(){
 	exit();
-	cout << "WsNichtAussortierbar erhalten" << endl;
+//	cout << "WsNichtAussortierbar erhalten" << endl;
 	if(rutsche->rutsche1->rutscheVoll1 && rutsche->rutsche2->rutscheVoll2){
 		new (this) FehlerRutsche1Und2Voll;
-		cout << "FehlerRutsche1und2Voll" << endl;
+//		cout << "FehlerRutsche1und2Voll" << endl;
 	} else if(!rutsche->rutsche1->rutscheVoll1 && rutsche->rutsche2->rutscheVoll2){
-		cout << "FehlerRutsche2Voll" << endl;
+//		cout << "FehlerRutsche2Voll" << endl;
 		new (this) FehlerRutsche2Voll;
 	}
 	entry();

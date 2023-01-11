@@ -275,7 +275,12 @@ void Betriebszustand::pulseFBM1(int value) {
 		}
 		// TODO Zeit geändert für die SIM vorher war da 3000
 		zeitFBM1->startMessung(3500 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_list_LSAnfang_bis_HS.back().getiD());
-		zeitFBM1->startMessung(1000 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==1){
+		zeitFBM1->startMessung(500 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		}
+		else{
+			zeitFBM1->startMessung(1550 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		}
 		break;
 
 	case HS_AKTIV:
@@ -340,9 +345,12 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case UNQUITTIERT:
-		cout <<"UNQUITTIERT"<<endl;
+//		cout <<"UNQUITTIERT"<<endl;
+		fehlerUnquittiert=true;
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, LED_RESET_AN);
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AN);
 		break;
 
 	case WS_NICHT_AUSSORTIERBAR:
@@ -532,10 +540,10 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 	case T_RESET_AUS: 	//active high+
 		if(fehlerUnquittiert){
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_RESET_AUS );
-			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_AUS);
 			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AUS);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_RESET_AUS );
+			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 		}
 		break;
 

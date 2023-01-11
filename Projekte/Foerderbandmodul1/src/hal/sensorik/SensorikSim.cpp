@@ -170,7 +170,7 @@ void SensorikSim::handleInterrupt(void) {
 				if (pin == E_STOP_PIN && current_level == 0){
 					aktorik->eStopp();
 				}
-				printf("Interrupt on pin %d, now %d\n", pin, current_level);
+//				printf("Interrupt on pin %d, now %d\n", pin, current_level);
 				// Hier die Dispatcher GPIO Methode
 				outputDispatcher->dispatchOutput(pin, current_level);
 			}

@@ -52,11 +52,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		break;
 
 	case WEICHE1:
-		//this_thread::sleep_for(chrono::milliseconds(50));
+		this_thread::sleep_for(chrono::milliseconds(50));
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE1);
 		break;
 	case AUSWERFER1:
-		//this_thread::sleep_for(chrono::milliseconds(50));
+		this_thread::sleep_for(chrono::milliseconds(50));
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER1);
 		break;
 	case WEICHE2:
@@ -110,11 +110,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		if(currentlevel==0){
 			//LS_ANFANG unterbrochen
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AN);
-			cout << "LS_ANFANG unterbrochen" << endl;
+//			cout << "LS_ANFANG unterbrochen" << endl;
 		} else{
 			//LS_ANFANG freigegeben
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AUS);
-			cout << "LS_ANFANG freigegeben" << endl;
+//			cout << "LS_ANFANG freigegeben" << endl;
 		}
 		break;
 
@@ -183,11 +183,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, E_STOP_AN);
 			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, ESTOP_AN_2);
 			//TODO E-Stopp An Signal weiterleiten
-			cout << "OutputDispatcher estopp2 an" << endl;
+//			cout << "OutputDispatcher estopp2 an" << endl;
 		} else{
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, E_STOP_AUS);
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ESTOP_AUS_2);
-			cout << "OutputDispatcher estopp2 aus" << endl;
+//			cout << "OutputDispatcher estopp2 aus" << endl;
 			//TODO E-Stopp Aus Signal weiterleiten
 		}
 		break;
