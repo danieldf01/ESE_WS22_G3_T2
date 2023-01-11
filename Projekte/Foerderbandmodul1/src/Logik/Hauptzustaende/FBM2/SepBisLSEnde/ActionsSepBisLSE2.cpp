@@ -58,9 +58,13 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 
 
 		// MQTT Stuff
-		std::string address ="tcp://192.168.131.1:1883";
-		std::string clientID="FESTO_Client_Pub";
-		std::string topic="/Festo/129"; // TODO Config
+		std::string address =dateiManager->getMqtTaddress();
+		std::string clientID=dateiManager->getMqtTclientId();
+		std::string topic=dateiManager->getMqtTtopic();
+
+//		std::string address ="tcp://192.168.140.1:1883";
+//		std::string clientID="FESTO_Client_Pub";
+//		std::string topic="/Festo/128";
 
 		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
 		client->senden(topic, wsId, wsTypAsString, wsMeanhight, wsHeight);

@@ -1,4 +1,7 @@
 // Definition of Enum-Values that should be used as strings as well
+ESTRING (MQTTaddress)
+ESTRING (MQTTclientID)
+ESTRING (MQTTtopic)
 ESTRING (WS_Reihung_Nr_1)
 ESTRING (WS_Reihung_Nr_2)
 ESTRING (WS_Reihung_Nr_3)

@@ -17,17 +17,20 @@
 #include "../../../WsTyp.h"
 #include "../../../Zeit/Zeitmanager.h"
 #include "../../../MQTTClientHandler/MQTTClientHandler.h"
+#include "../../../konfigurationsdateiManager/KonfigurationsdateiManager.h"
 
 class ActionsSepBisLSE2 {
 protected:
 	int logikID;
 	WsListen *wsListen;
 	Zeitmanager *zeitmanager;
+	KonfigurationsdateiManager *dateiManager;
 public:
 	virtual ~ActionsSepBisLSE2();
 
 	void setWsListen(WsListen *wsListen) {this->wsListen = wsListen;};
 	void setZeitmanager(Zeitmanager *zeitmanager) {this->zeitmanager = zeitmanager;};
+	void setKonfigurationsdateiManager(KonfigurationsdateiManager *dateiManager) {this->dateiManager = dateiManager;};
 
 	virtual void setupConnection();
 
