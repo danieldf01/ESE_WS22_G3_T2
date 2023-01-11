@@ -27,22 +27,16 @@ private:
 	QnetHandler *qnetHandler;
 	int coid_master;
 	int chid_master;
-	//sendTimer
-	timer_t sTimerID;
-	struct sigevent sTimerEvent;
-	struct itimerspec sTimer;
 
-	//EStoppTimer
-	timer_t esTimerID;
-	struct sigevent esTimerEvent;
-	struct itimerspec esTimer;
+	//timer fuer sicherheit
+	timer_t timerID;
+	struct sigevent timerEvent;
+	struct itimerspec timer;
 public:
 	Watchdog(int);
 	virtual ~Watchdog();
 	void notify();
-	void initESTimer();
-	void initSTimer();
-	void stopTimer();
+	void initTimer();
 };
 
 #endif /* KOMMUNIKATION_WATCHDOG_H_ */

@@ -27,6 +27,7 @@ void Kommunikation::init() {
 		perror("[KommunikationSlave] name_open connect to InputDispatcher failed");
 		exit(EXIT_FAILURE);
 	}
+
 	cout << "[KommunikationSlave] connected to InputDispatcher" << endl;
 	coid_kom_m = qnetHandler->connectServer(SERVER_KOM_MASTER);
 	if (coid_kom_m == -1) {
@@ -89,10 +90,6 @@ void Kommunikation::receiveSignal() {
 void Kommunikation::pulseFBM1(int value){
 	switch (value) {
 
-	case WATCHDOG_ESTOP:
-		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, WATCHDOG_ESTOP);
-		break;
-
 	case ESTOP_AN:
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AN_2);
 		break;
@@ -100,29 +97,26 @@ void Kommunikation::pulseFBM1(int value){
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, ESTOP_AUS_2);
 		break;
 
-		//init watchdog
-	case WATCHDOG_INIT: {
+	case INIT_NOTIF:
 		init();
+		break;
+
+	case WATCHDOG_INIT: {
+		this->watchdog = new Watchdog(attach->chid);
+		watchdog->initTimer();
+		usleep(100);
 		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_INIT);
-		watchdog = new Watchdog(attach->chid);
-		thread startWD(&Watchdog::init, ref(watchdog));
-		startWD.detach();
+		//cout << "WATCHDOG ERSTELLT 2" << endl;
 		break;
 	}
 
-	/*
-	 * Watchdog notify
-	 */
 	case WATCHDOG_NOTIF:
-		watchdogM.lock();
+		cout << "WATCHDOG NOTIF VON 1" << endl;
 		if(!watchdogES) {
 			watchdog->notify();
+			usleep(100);
+			sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_NOTIF);
 		}
-		watchdogM.unlock();
-		break;
-
-	case INIT_NOTIF:
-		init();
 		break;
 
 	case WEICHE1:
@@ -232,12 +226,8 @@ void Kommunikation::pulseFBM2(int value){
 		break;
 
 	case WATCHDOG_ESTOP:
-		watchdogM.lock();
+		cout << "ESTOPP AKTIV 2" << endl;
 		watchdogES = true;
-		watchdogM.unlock();
-		cout << "ESTOPP AKTIV" << endl;
-		sendPulse(coid_kom_m, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, WATCHDOG_ESTOP);
-		watchdog->stopTimer();
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, WATCHDOG_ESTOP);
 		break;
 
@@ -327,6 +317,5 @@ void Kommunikation::sendPulse(int coid, int prio, int code, int value) {
 	//TODO test pulse message, muss vorher je nach Fall konstruiert werden
 	if ((MsgSendPulse(coid, prio, code, value)) != 0) {
 		perror("[KommunikationSlave] failed to send pulse message");
-		exit(EXIT_FAILURE);
 	}
 }
