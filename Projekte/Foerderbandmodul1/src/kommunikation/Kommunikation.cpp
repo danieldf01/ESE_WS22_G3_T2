@@ -14,6 +14,10 @@ Kommunikation::Kommunikation(OutputDispatcher &oD) {
 	qnetHandler = new QnetHandler();
 	watchdogES = false;
 	attach = qnetHandler->openServer(SERVER_KOM_MASTER);
+	watchdog = new Watchdog(oD);
+	thread threadWatchdog(&Watchdog::threadWatchdog, ref(watchdog));
+	threadWatchdog.detach();
+
 }
 
 Kommunikation::~Kommunikation() {
@@ -35,8 +39,14 @@ void Kommunikation::init() {
 	}
 	cout << "[KommunikationMaster] connected to KommunikationSlave" << endl;
 
+	coid_watchdog = qnetHandler->connectServer("Watchdog1");
+
+	cout<<"##############################################################"<<endl;
+	MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
 	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, INIT_NOTIF);
 	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
+
+
 }
 
 
@@ -96,6 +106,9 @@ void Kommunikation::pulseFBM1(int value){
 		break;
 	case ESTOP_AUS:
 		sendPulse(coid_kom_s, sched_get_priority_max(SCHED_FIFO), ESTOP_AUS);
+		break;
+	case WATCHDOG_NOTIF:
+		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
 		break;
 
 	case WATCHDOG_ESTOP:
@@ -214,18 +227,11 @@ void Kommunikation::pulseFBM2(int value){
 		break;
 
 	case WATCHDOG_INIT:
-		this->watchdog = new Watchdog(attach->chid);
-		watchdog->initTimer();
-		usleep(100);
-		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
-		cout << "WATCHDOG ERSTELLT 1" << endl;
+
 		break;
 
 	case WATCHDOG_NOTIF:
-		//cout << "WATCHDOG NOTIF VON 2" << endl;
-		watchdog->notify();
-		usleep(100);
-		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
+
 		break;
 
 		/*

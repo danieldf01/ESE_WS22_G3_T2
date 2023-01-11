@@ -98,6 +98,7 @@
 class Kommunikation {
 private:
 	Watchdog *watchdog;
+	int coid_watchdog;
 	QnetHandler *qnetHandler;
 	OutputDispatcher *outputDispatcher;
 	name_attach_t *attach;
