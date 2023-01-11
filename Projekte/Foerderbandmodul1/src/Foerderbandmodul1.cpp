@@ -38,13 +38,8 @@ int main() {
 	thread t6 (&LogikMain::init, ref(logik));
 	thread t7 (&OutputDispatcher::init, ref(outputDispatcher));
 	thread kommInit(&Kommunikation::init, ref(kommunikation));
-
-	//aktorik->runDemo();
-	//thread t4(&SensorikSteuerung::runHALSteuerung, *sensorik);
-
 	sensorik->runHALSteuerung();
 
-	kommInit.join();
 	t7.join();
 	t6.join();
 	t5.join();

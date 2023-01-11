@@ -16,9 +16,9 @@
 #include <sys/dispatch.h>
 #include <mutex>
 
-#include "Watchdog.h"
 #include "../dispatcher/QnetHandler.h"
 #include "../dispatcher/OutputDispatcher.h"
+#include "watchdog/Watchdog.h"
 
 #define SERVER_KOM_SLAVE "KommunikationSlave"
 #define SERVER_KOM_MASTER "KommunikationMaster"
@@ -33,6 +33,7 @@
 #define INIT_NOTIF				55
 #define CHID_SENT				60
 #define WATCHDOG_SEND_NOTIF 	666
+#define WATCHDOG_NOTIF		50
 
 #define LS_ANFANG_AN		2			//active low
 #define HS_HOCH_OK_AUS		4    		//active high
@@ -98,6 +99,7 @@
 class Kommunikation {
 private:
 	Watchdog *watchdog;
+	int coid_watchdog;
 	QnetHandler *qnetHandler;
 	OutputDispatcher *outputDispatcher;
 	name_attach_t *attach;

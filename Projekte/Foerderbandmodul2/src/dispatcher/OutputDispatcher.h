@@ -31,7 +31,7 @@
 #define AUSWERFER1 41
 #define WEICHE2 42
 #define AUSWERFER2 43
-
+#define WATCHDOG_ESTOP		51
 
 
 

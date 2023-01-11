@@ -202,8 +202,8 @@ void InputDispatcher::receiveSignal() {
 				case WATCHDOG_ESTOP:
 				{
 					hal->eStopp();
-					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
-					e.detach();
+//					thread e(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
+//					e.detach();
 					estop=true;
 					break;
 				}

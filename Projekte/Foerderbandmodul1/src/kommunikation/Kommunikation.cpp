@@ -14,6 +14,10 @@ Kommunikation::Kommunikation(OutputDispatcher &oD) {
 	qnetHandler = new QnetHandler();
 	watchdogES = false;
 	attach = qnetHandler->openServer(SERVER_KOM_MASTER);
+	watchdog = new Watchdog(oD);
+	thread threadWatchdog(&Watchdog::threadWatchdog, ref(watchdog));
+	threadWatchdog.detach();
+
 }
 
 Kommunikation::~Kommunikation() {
@@ -27,14 +31,22 @@ void Kommunikation::init() {
 		exit(EXIT_FAILURE);
 	}
 	cout << "[KommunikationMaster] connected to InputDispatcher" << endl;
+
 	coid_kom_s = qnetHandler->connectServer(SERVER_KOM_SLAVE);
 	if (coid_kom_s == -1) {
 		perror("[KommunikationMaster] name_open connect to KommunikationSlave failed");
 		exit(EXIT_FAILURE);
 	}
 	cout << "[KommunikationMaster] connected to KommunikationSlave" << endl;
-	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
+
+	coid_watchdog = ConnectAttach(0, 0, watchdog->attach->chid, _NTO_SIDE_CHANNEL, 0);
+
+	cout<<"##############################################################"<<endl;
+//	MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
 	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, INIT_NOTIF);
+//	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
+
+
 }
 
 
@@ -96,21 +108,20 @@ void Kommunikation::pulseFBM1(int value){
 		sendPulse(coid_kom_s, sched_get_priority_max(SCHED_FIFO), ESTOP_AUS);
 		break;
 
-	case WATCHDOG_SEND_NOTIF:
-		watchdogM.lock();
-		if(!watchdogES){
-			sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
-		}
-		watchdogM.unlock();
+	case WATCHDOG_NOTIF:
+		sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
 		break;
 
 	case WATCHDOG_ESTOP:
-		watchdogM.lock();
-		watchdogES = true;
-		watchdogM.unlock();
-		watchdog->stopTimer();
-		outputDispatcher->dispatchOutput(WATCHDOG_ESTOP, 1);
-		sendPulse(coid_kom_s, sched_get_priority_max(SCHED_FIFO), WATCHDOG_ESTOP);
+			cout << "ESTOPP AKTIV 1" << endl;
+			watchdogES = true;
+			outputDispatcher->dispatchOutput(WATCHDOG_ESTOP, 1);
+			break;
+
+	case WATCHDOG_SEND_NOTIF:
+		if(!watchdogES){
+			sendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, WATCHDOG_NOTIF);
+		}
 		break;
 
 		//Aktorik auf Anlage 2 ansprechen
@@ -216,24 +227,12 @@ void Kommunikation::pulseFBM2(int value){
 		outputDispatcher->dispatchOutput(E_STOP_PIN_2, 1);
 		break;
 
-	case WATCHDOG_ESTOP:
-		outputDispatcher->dispatchOutput(WATCHDOG_ESTOP, 1);
-		break;
-
-		//init watchdog
 	case WATCHDOG_INIT:
-		this->watchdog = new Watchdog(attach->chid);
+		MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
 		break;
 
-		/*
-		 * Watchdog notify
-		 */
 	case WATCHDOG_NOTIF:
-		watchdogM.lock();
-		if(!watchdogES){
-			watchdog->notify();
-		}
-		watchdogM.unlock();
+		MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_NOTIF);
 		break;
 
 		/*
@@ -321,6 +320,5 @@ void Kommunikation::pulseFBM2(int value){
 void Kommunikation::sendPulse(int coid, int prio, int value) {
 	if ((MsgSendPulse(coid, prio, _PULSE_CODE_MINAVAIL + 1, value)) == -1) {
 		perror("[KommunikationMaster] failed to send pulse message");
-		exit(EXIT_FAILURE);
 	}
 }

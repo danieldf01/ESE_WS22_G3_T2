@@ -16,13 +16,14 @@
 #include <sys/dispatch.h>
 #include <mutex>
 
-#include "Watchdog.h"
 #include "../dispatcher/QnetHandler.h"
 #include "../dispatcher/OutputDispatcher.h"
 #include "../Logik/Defines.h"
+#include "watchdog/Watchdog.h"
 
 class Kommunikation {
 private:
+	int coid_watchdog;
 	Watchdog *watchdog;
 	QnetHandler *qnetHandler;
 	OutputDispatcher *outputDispatcher;

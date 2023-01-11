@@ -55,6 +55,9 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 			//TODO E-Stopp Aus Signal weiterleiten
 		}
 		break;
+	case WATCHDOG_ESTOP:
+			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, WATCHDOG_ESTOP);
+			break;
 	case T_STOP_PIN:
 		if(currentlevel==0){
 
