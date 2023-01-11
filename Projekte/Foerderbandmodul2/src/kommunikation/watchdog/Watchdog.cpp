@@ -13,7 +13,7 @@ Watchdog::Watchdog(OutputDispatcher &dispatcher) {
 	this->zeit = 0;
 	this->outputDispatcher = &dispatcher;
 	this->qnetHandler = new QnetHandler();
-	std::cout << "createWatchdog1" << std::endl;
+	std::cout << "createWatchdog2" << std::endl;
 
 }
 
@@ -24,7 +24,7 @@ Watchdog::~Watchdog() {
 
 void Watchdog::threadWatchdog() {
 
-	attach = qnetHandler->openServer("Watchdog1");
+	attach = qnetHandler->openServer("Watchdog2");
 
 
 	_pulse msg;
@@ -42,7 +42,7 @@ void Watchdog::threadWatchdog() {
 
 			if(msg.value.sival_int == WATCHDOG_INIT){
 				Watchdog::startTimerPeriodisch(TIMER_INTERVAL, attach->chid);
-				coid_kommunikation=qnetHandler->connectServer(SERVER_KOM_MASTER);
+				coid_kommunikation=qnetHandler->connectServer(SERVER_KOM_SLAVE);
 				std::cout << "createWatchdog INIT" << std::endl;
 			}
 
@@ -53,14 +53,14 @@ void Watchdog::threadWatchdog() {
 
 			if(msg.value.sival_int == 1/*Timer puls alle 10 ms*/){
 				zeit += 1;
-//				std::cout << "Watchdog Zeit: "<< zeit << std::endl;
+//				std::cout << "Watchdog 2 Zeit: "<< zeit << std::endl;
 				if(zeit == 20){
 					outputDispatcher->dispatchOutput(WATCHDOG_ESTOP, 0);
 				}
 				else if(zeit == 5){
 					/*sende puls an andern watchdog*/
-//					std::cout << "Watchdog1 WATCHDOG_NOTIF -> 2: "<< zeit << std::endl;
-					MsgSendPulse(coid_kommunikation, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WATCHDOG_NOTIF);
+//					std::cout << "Watchdog2 WATCHDOG_NOTIF -> 2: "<< zeit << std::endl;
+					MsgSendPulse(coid_kommunikation, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_2, WATCHDOG_NOTIF);
 				}
 			}
 		}

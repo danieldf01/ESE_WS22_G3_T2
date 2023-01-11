@@ -12,8 +12,10 @@ using namespace std;
 Kommunikation::Kommunikation(OutputDispatcher &oD) {
 	outputDispatcher = &oD;
 	qnetHandler = new QnetHandler();
-	watchdogES = false;
 	attach = qnetHandler->openServer(SERVER_KOM_SLAVE);
+	watchdog = new Watchdog(oD);
+	thread threadWatchdog2(&Watchdog::threadWatchdog, ref(watchdog));
+	threadWatchdog2.detach();
 }
 
 Kommunikation::~Kommunikation() {
@@ -35,6 +37,11 @@ void Kommunikation::init() {
 		exit(EXIT_FAILURE);
 	}
 	cout << "[KommunikationSlave] connected to KommunikationMaster" << endl;
+
+	coid_watchdog = ConnectAttach(0, 0, watchdog->attach->chid, _NTO_SIDE_CHANNEL, 0);
+
+	MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
+	MsgSendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_INIT);
 
 }
 
@@ -59,7 +66,7 @@ void Kommunikation::receiveSignal() {
 				break;
 
 			case CODE_ADC_2:	//ADC Wert Anlage 2
-				sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_2, pulse.value.sival_int);
+				MsgSendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_2, pulse.value.sival_int);
 				break;
 
 			default:
@@ -102,21 +109,12 @@ void Kommunikation::pulseFBM1(int value){
 		break;
 
 	case WATCHDOG_INIT: {
-		this->watchdog = new Watchdog(attach->chid);
-		watchdog->initTimer();
-		usleep(100);
-		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_INIT);
-		//cout << "WATCHDOG ERSTELLT 2" << endl;
+
 		break;
 	}
 
 	case WATCHDOG_NOTIF:
-		cout << "WATCHDOG NOTIF VON 1" << endl;
-		if(!watchdogES) {
-			watchdog->notify();
-			usleep(100);
-			sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_NOTIF);
-		}
+		MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_NOTIF);
 		break;
 
 	case WEICHE1:
@@ -231,12 +229,8 @@ void Kommunikation::pulseFBM2(int value){
 		sendPulse(coid_indis, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, WATCHDOG_ESTOP);
 		break;
 
-	case WATCHDOG_SEND_NOTIF:
-		watchdogM.lock();
-		if (!watchdogES) {
-			sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_NOTIF);
-		}
-		watchdogM.unlock();
+	case WATCHDOG_NOTIF:
+		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WATCHDOG_NOTIF);
 		break;
 
 

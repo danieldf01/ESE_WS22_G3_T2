@@ -37,7 +37,7 @@ int main() {
 	thread t5 (&LogikMain::receiveSignal, ref(logik));
 	thread t6 (&LogikMain::init, ref(logik));
 	thread t7 (&OutputDispatcher::init, ref(outputDispatcher));
-	kommunikation->init();
+	thread kommInit(&Kommunikation::init, ref(kommunikation));
 	sensorik->runHALSteuerung();
 
 	t7.join();
