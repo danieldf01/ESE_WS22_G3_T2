@@ -17,8 +17,8 @@ Watchdog::~Watchdog() {
 
 void Watchdog::init() {
 	coid_slave = ConnectAttach(0, 0, chid_slave, 0, 0);
-	initSTimer();
-	initESTimer();
+	//initSTimer();
+	//initESTimer();
 }
 
 void Watchdog::initSTimer() {

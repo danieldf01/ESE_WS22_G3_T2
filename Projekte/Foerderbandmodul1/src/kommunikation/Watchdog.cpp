@@ -13,8 +13,8 @@ Watchdog::Watchdog(int iD_master) {
 	qnetHandler = new QnetHandler();
 	chid_master = iD_master;
 	coid_master = ConnectAttach(0,0,chid_master,0,0);
-	initSTimer();
-	initESTimer();
+	//initSTimer();
+	//initESTimer();
 }
 
 Watchdog::~Watchdog() {

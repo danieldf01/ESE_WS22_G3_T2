@@ -63,8 +63,11 @@ int SensorikSim::runHALSteuerung(){
 	adc_enable_interrupt();		//enable interrupt
 	adc_ctrl_start_sample();	//start sampling
 
+
+
 	/* ### Start thread for handling interrupt messages. */
 	receivingRoutine(chanID);
+
 
 	// ENDE
 	connector->closeConnection(conID);
@@ -157,16 +160,23 @@ void SensorikSim::handleInterrupt(void) {
 	out32(uintptr_t(gpioBase + GPIO_IRQSTATUS_1), 0xffffffff);	//clear all interrupts.
 	InterruptUnmask(INTR_GPIO_PORT0, interruptID);				//unmask interrupt.
 
-	for (int pin = 31; pin >= 0; pin--) {
-		unsigned int mask = (uint32_t) BIT_MASK(pin);
-		if (intrStatusReg == mask) {
-			int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> pin) & 0x1;
-			if (pin == E_STOP_PIN && current_level == 0){
-				aktorik->eStopp();
+	static int one = 0;
+	if(one == 1){
+		for (int pin = 31; pin >= 0; pin--) {
+			unsigned int mask = (uint32_t) BIT_MASK(pin);
+			if ((intrStatusReg & mask) > 0) {
+
+				int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> pin) & 0x1;
+				if (pin == E_STOP_PIN && current_level == 0){
+					aktorik->eStopp();
+				}
+				printf("Interrupt on pin %d, now %d\n", pin, current_level);
+				// Hier die Dispatcher GPIO Methode
+				outputDispatcher->dispatchOutput(pin, current_level);
 			}
-			// Hier die Dispatcher GPIO Methode
-			outputDispatcher->dispatchOutput(pin, current_level);
 		}
+	}else{
+		one = 1;
 	}
 }
 void SensorikSim::handleADCInterrupt(_pulse *msg) {

@@ -110,11 +110,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		if(currentlevel==0){
 			//LS_ANFANG unterbrochen
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AN);
-			//cout << "LS_ANFANG unterbrochen" << endl;
+			cout << "LS_ANFANG unterbrochen" << endl;
 		} else{
 			//LS_ANFANG freigegeben
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AUS);
-			//cout << "LS_ANFANG freigegeben" << endl;
+			cout << "LS_ANFANG freigegeben" << endl;
 		}
 		break;
 
