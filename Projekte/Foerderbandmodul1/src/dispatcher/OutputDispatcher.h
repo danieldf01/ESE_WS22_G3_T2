@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <sched.h>
+#include <thread>
+#include <chrono>
 #include "QnetHandler.h"
 #include "../Logik/Defines.h"
 

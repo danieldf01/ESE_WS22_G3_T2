@@ -88,6 +88,11 @@ void Ruhezustand::pulseFBM1(int value){
 
 	case LS_RUTSCHE_AN:
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,LS_RUTSCHE_AN);
+		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LS_RUTSCHE_AN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+
 		break;
 
 		//Pulse fuer Motorsteuerung1
@@ -152,7 +157,21 @@ void Ruhezustand::pulseFBM1(int value){
 		warnungsCount++;
 		break;
 
-
+		/*
+		 * AKTORIK FBM1
+		 */
+	case SEP_AN:
+		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN)== -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+	case SEP_AUS:
+		if (MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS)== -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
 	/*
 	 * SIGNALE SUBSTATES FBM1
 	 */
@@ -168,7 +187,12 @@ void Ruhezustand::pulseFBM1(int value){
 		}
 		// TODO Zeit geändert für die SIM vorher war da 3000
 		zeitFBM1->startMessung(3500 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_list_LSAnfang_bis_HS.back().getiD());
-		zeitFBM1->startMessung(1000 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==1){
+			zeitFBM1->startMessung(500 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		}
+		else{
+			zeitFBM1->startMessung(1550 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+		}
 		break;
 
 	case HS_AKTIV:
@@ -366,6 +390,10 @@ void Ruhezustand::pulseFBM2(int value){
 
 	case LS_RUTSCHE_AN: //active low+
 		MsgSendPulse(rutschenID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AN);
+		if (MsgSendPulse(fsmSepBisRut2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_RUTSCHE_AN) == -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
 		break;
 
 		//Pulse fuer Motorsteuerung2
@@ -431,6 +459,21 @@ void Ruhezustand::pulseFBM2(int value){
 		warnungsCount++;
 		break;
 
+		/*
+		 * AKTORIK
+		 */
+	case SEP_AN:
+		if (MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN)== -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
+	case SEP_AUS:
+		if (MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS)== -1) {
+			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
+			exit(EXIT_FAILURE);
+		}
+		break;
 	/*
 	 * SIGNALE SUBSTATES FBM2
 	 */
