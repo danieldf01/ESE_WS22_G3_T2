@@ -4,7 +4,6 @@
  *  Created on: 21.12.2022
  *      Author: acx514
  */
-// TODO STILL WORKING
 #include "FehlerWSVerschwundenSepBisRut1.h"
 
 void FehlerWSVerschwundenSepBisRut1::entry() {
@@ -37,4 +36,5 @@ void FehlerWSVerschwundenSepBisRut1::Fverschwunden() {
 }
 
 void FehlerWSVerschwundenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

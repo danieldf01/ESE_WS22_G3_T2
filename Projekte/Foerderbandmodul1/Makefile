@@ -13,7 +13,7 @@ TARGET = $(OUTPUT_DIR)/$(ARTIFACT)
 #Compiler definitions
 
 CC = qcc -Vgcc_nto$(PLATFORM)
-CXX = qcc -lang-c++ -Vgcc_nto$(PLATFORM) -DSIM_SHOW_SENSORS -DSIM_SHOW_ACTUATORS -DSIM_REPORT -DSIM_EXT_CTRL -DSIM_TWIN
+CXX = qcc -lang-c++ -Vgcc_nto$(PLATFORM) -DSIM_SHOW_SENSORS -DSIM_REPORT -DSIM_EXT_CTRL -DSIM_TWIN -DSIM_PUSHER
 LD = $(CXX)
 
 #User defined include/preprocessor flags and libraries
@@ -24,6 +24,7 @@ INCLUDES += -Isrc/simulation/simulationadapterqnx
 INCLUDES += -Isrc/simulation/simulationbase
 INCLUDES += -Isrc/simulation/simulationcore
 INCLUDES += -Isrc/simulation/simulationudpqnx
+INCLUDES += -Isrc/Logik/MQTTClientHandler/MQTT/
 
 #LIBS += -L/path/to/my/lib/$(PLATFORM)/usr/lib -lmylib
 #LIBS += -L../mylib/$(OUTPUT_DIR) -lmylib

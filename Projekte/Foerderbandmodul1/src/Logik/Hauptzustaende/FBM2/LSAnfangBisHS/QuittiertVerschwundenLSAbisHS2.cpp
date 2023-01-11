@@ -28,10 +28,8 @@ void QuittiertVerschwundenLSAbisHS2::quittiert(){
 }
 
 void QuittiertVerschwundenLSAbisHS2::keinFehler(){
-	exit();
 	actions->sendFBM2Bereit();
 	new (this) WartenLSAbisHS2;
-	entry();
 }
 
 void QuittiertVerschwundenLSAbisHS2::Fverschwunden(){
@@ -39,8 +37,6 @@ void QuittiertVerschwundenLSAbisHS2::Fverschwunden(){
 }
 
 void QuittiertVerschwundenLSAbisHS2::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS2;
-	entry();
 }

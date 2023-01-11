@@ -90,6 +90,10 @@
 #define SERVICE_MODE_AUS 25
 #define SEP_AN 30
 #define SEP_AUS 31
+#define LED_START_AN 32
+#define LED_START_AUS 33
+#define LED_RESET_AN 34
+#define LED_RESET_AUS 35
 
 class Kommunikation {
 private:

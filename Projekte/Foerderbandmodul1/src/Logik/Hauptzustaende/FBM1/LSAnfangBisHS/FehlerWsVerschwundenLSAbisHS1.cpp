@@ -44,7 +44,6 @@ void FehlerWsVerschwundenLSAbisHS1::Fverschwunden(){
 }
 
 void FehlerWsVerschwundenLSAbisHS1::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS1;
 	entry();

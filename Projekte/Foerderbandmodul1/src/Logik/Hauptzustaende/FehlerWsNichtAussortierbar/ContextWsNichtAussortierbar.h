@@ -22,6 +22,8 @@ private:
 	name_attach_t *attach;
 	Rutsche *rutsche;
 public:
+
+	int chID;
 	ContextWsNichtAussortierbar(ActionsWsNichtAussortierbar *shared_action, Rutsche *r);
 	virtual ~ContextWsNichtAussortierbar();
 

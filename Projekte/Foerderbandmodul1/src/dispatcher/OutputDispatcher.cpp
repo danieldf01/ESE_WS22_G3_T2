@@ -39,7 +39,7 @@ void OutputDispatcher::dispatchADC(int wert, int anlage){
 
 void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 	switch (pin) {
-	case  E_STOP_AN:
+	case  E_STOP_PIN:
 		if(currentlevel == 0){
 			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, ESTOP_AN);
 			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, E_STOP_AN);
@@ -51,6 +51,20 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		}
 		break;
 
+	case WEICHE1:
+		this_thread::sleep_for(chrono::milliseconds(50));
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE1);
+		break;
+	case AUSWERFER1:
+		this_thread::sleep_for(chrono::milliseconds(50));
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER1);
+		break;
+	case WEICHE2:
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, WEICHE2);
+		break;
+	case AUSWERFER2:
+		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT , CODE_FBM_1, AUSWERFER2);
+		break;
 	case WATCHDOG_ESTOP:
 		MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, WATCHDOG_ESTOP);
 		MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_1, WATCHDOG_ESTOP);
@@ -96,11 +110,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		if(currentlevel==0){
 			//LS_ANFANG unterbrochen
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AN);
-			//cout << "LS_ANFANG unterbrochen" << endl;
+//			cout << "LS_ANFANG unterbrochen" << endl;
 		} else{
 			//LS_ANFANG freigegeben
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LS_ANFANG_AUS);
-			//cout << "LS_ANFANG freigegeben" << endl;
+//			cout << "LS_ANFANG freigegeben" << endl;
 		}
 		break;
 
@@ -166,14 +180,14 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 
 	case E_STOP_PIN_2:
 		if(currentlevel == 0){
-			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, ESTOP_AN);
+			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, E_STOP_AN);
 			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, ESTOP_AN_2);
 			//TODO E-Stopp An Signal weiterleiten
-			//cout << "estopp2 an" << endl;
+//			cout << "OutputDispatcher estopp2 an" << endl;
 		} else{
-			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, ESTOP_AUS);
-			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, ESTOP_AUS_2);
-			//cout << "estopp2 aus" << endl;
+			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, E_STOP_AUS);
+			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ESTOP_AUS_2);
+//			cout << "OutputDispatcher estopp2 aus" << endl;
 			//TODO E-Stopp Aus Signal weiterleiten
 		}
 		break;

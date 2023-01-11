@@ -19,15 +19,18 @@ void ActionsLSAbisHS2::setupConnection() {
 }
 
 void ActionsLSAbisHS2::WSinHS() {
-	cout << "[FBM2] ActionsLSAbisHS2" << endl;
-
 	//loesche den error timer, da das Werkstueck nicht festhaengt
 	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_bis_hs_2->getiD());
 
 	//gib dem Werkstueck einen aktuellen Timestamp und pack es in die Liste fuer die naechste FSM
-	wsListen->ws_ls_anfang_bis_hs_2->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_Hoehensensor_2 = wsListen->ws_ls_anfang_bis_hs_2;
+	Werkstueck tempWS = *wsListen->ws_ls_anfang_bis_hs_2;
+	tempWS.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_Hoehensensor_2 = &tempWS;
 	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
+
+//	wsListen->ws_ls_anfang_bis_hs_2->setTimestamp(zeitmanager->getTime());
+//	wsListen->ws_Hoehensensor_2 = wsListen->ws_ls_anfang_bis_hs_2;
+//	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_IN_HS) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");

@@ -16,13 +16,11 @@ void AuswerferEingefahrenSepBisRut2::exit() {
 }
 
 void AuswerferEingefahrenSepBisRut2::LsRutAn() {
-	cout << "AuswerferEingefahrenSepBisRut2 recv:LsRutAn" << endl;
-	exit();
-	//actions->deleteTimerVerschwunden();
+	actions->deleteTimerVerschwunden();
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	actions->sendFBM2Bereit();
-	entry();
+	new (this) WarteSepBisRut2;
 }
 
 void AuswerferEingefahrenSepBisRut2::WsAussortieren() {
@@ -43,4 +41,5 @@ void AuswerferEingefahrenSepBisRut2::Fverschwunden() {
 }
 
 void AuswerferEingefahrenSepBisRut2::eStop() {
+	new (this) WarteSepBisRut2;
 }

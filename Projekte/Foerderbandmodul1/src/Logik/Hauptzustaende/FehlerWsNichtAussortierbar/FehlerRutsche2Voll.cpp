@@ -7,8 +7,12 @@
 
 #include "FehlerRutsche2Voll.h"
 
+using namespace std;
+
 void FehlerRutsche2Voll::entry(){
 	actions->fehlerHoch();
+	cout << "[FEHLER] Die Rutsche auf Foerderbandmodul 2 ist voll, es kann dort kein Werkstueck aussortiert werden!" << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke aus der Rutsche" << endl;
 }
 
 void FehlerRutsche2Voll::exit(){

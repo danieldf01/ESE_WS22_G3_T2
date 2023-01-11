@@ -11,9 +11,9 @@ using namespace std;
 
 void FehlerWSVerschwundenSepBisLSE1::entry(){
 	actions->fehlerHoch();
-	cout << "[FEHLER] Auf Foerderbandmodul 1 ist ein Werkstueck zwischen dem Seperator und der Lichtschranke am Ende verschwunden." << endl;
-	cout << "Bitte entfernen Sie in diesem Bereich " << wsListen->ws_list_passieren.size() << " Werkstueck(e)." << endl;
 	actions->entferneWsPassieren();
+	cout << "[FEHLER] Auf Foerderbandmodul 1 ist ein Werkstueck zwischen dem Seperator und der Lichtschranke am Ende verschwunden." << endl;
+	cout << "Bitte entfernen Sie in diesem Bereich " << wsListen->ws_list_sep_bis_lsende.size() << " Werkstueck(e)." << endl;
 }
 
 void FehlerWSVerschwundenSepBisLSE1::exit(){
@@ -24,11 +24,7 @@ void FehlerWSVerschwundenSepBisLSE1::LsEAn(){
 
 }
 
-void FehlerWSVerschwundenSepBisLSE1::WsPassieren(){
-
-}
-
-void FehlerWSVerschwundenSepBisLSE1::WeicheSchliessen(){
+void FehlerWSVerschwundenSepBisLSE1::WsAufWegZuLSE(){
 
 }
 
@@ -43,6 +39,7 @@ void FehlerWSVerschwundenSepBisLSE1::WsWurdeUebergeben(){
 void FehlerWSVerschwundenSepBisLSE1::quittiert(){
 	exit();
 	actions->schnellRunter();
+	new (this) QuittiertVerschwundenSepBisLSE1;
 	entry();
 }
 

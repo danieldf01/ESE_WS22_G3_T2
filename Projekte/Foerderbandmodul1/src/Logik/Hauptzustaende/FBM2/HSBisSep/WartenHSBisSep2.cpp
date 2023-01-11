@@ -14,10 +14,7 @@ void WartenHSBisSep2::exit() {
 }
 
 void WartenHSBisSep2::WSinHSbisSep() {
-	cout << "WartenHSBisSep2 recv:WSinHSbisSep" << endl;
-	exit();
 	new (this) WSAufWegZumSep2;
-	entry();
 }
 
 void WartenHSBisSep2::MetSenAn() {
@@ -25,7 +22,6 @@ void WartenHSBisSep2::MetSenAn() {
 }
 
 void WartenHSBisSep2::LSSepAn() {
-	exit();
 	new (this) FehlerWSZuVielHSBisSep2;
 	entry();
 }

@@ -23,6 +23,7 @@ private:
 	uintptr_t gpio_bank_1;
 
 public:
+
 	Seperator();
 	virtual ~Seperator();
 	void sortiererEinfahren()override;

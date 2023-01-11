@@ -17,24 +17,6 @@ void ActionsSepBisLSE1::setupConnection(){
 	}
 }
 
-void ActionsSepBisLSE1::seperatorAn(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, TIMER_START_WEICHE) == -1) {
-		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN) == -1) {
-		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void ActionsSepBisLSE1::seperatorAus(){
-	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS) == -1) {
-		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
-		exit(EXIT_FAILURE);
-	}
-}
-
 void ActionsSepBisLSE1::fehlerHoch(){
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_HOCH) == -1) {
 		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
@@ -50,7 +32,7 @@ void ActionsSepBisLSE1::fehlerRunter(){
 }
 
 void ActionsSepBisLSE1::entferneWsPassieren(){
-	wsListen->ws_list_passieren.pop_front();
+	wsListen->ws_list_sep_bis_lsende.pop_front();
 }
 
 void ActionsSepBisLSE1::schnellRunter(){
@@ -89,16 +71,22 @@ void ActionsSepBisLSE1::FBM1WsLosgeschickt(){
 }
 
 void ActionsSepBisLSE1::FBM1WsUebergeben(){
+
+	Werkstueck wsTemp = wsListen->ws_list_sep_bis_lsende.front();
+	wsListen->ws_ls_anfang_2 = &wsTemp;
+	wsListen->ws_list_sep_bis_lsende.pop_front();
+
+//	wsListen->ws_ls_anfang_2 = &(wsListen->ws_list_sep_bis_lsende.front());
+//	wsListen->ws_list_sep_bis_lsende.pop_front();
+
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FBM1_WS_UEBERGEBEN) == -1) {
 		perror("[FSM_SepBisLSE1] MsgSendPulse failed");
 		exit(EXIT_FAILURE);
 	}
-	wsListen->ws_ls_anfang_2 = &(wsListen->ws_list_passieren.front());
-	wsListen->ws_list_passieren.pop_front();
 }
 
 void ActionsSepBisLSE1::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_list_passieren.front().getiD());
+	zeitmanager->deleteTimer(wsListen->ws_list_sep_bis_lsende.front().getiD());
 }
 
 void ActionsSepBisLSE1::eStop(){

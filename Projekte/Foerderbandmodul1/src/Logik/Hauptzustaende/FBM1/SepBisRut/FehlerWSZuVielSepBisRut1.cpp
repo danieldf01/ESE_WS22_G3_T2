@@ -4,7 +4,6 @@
  *  Created on: 21.12.2022
  *      Author: acx514
  */
- // TODO DONE
 #include "FehlerWSZuVielSepBisRut1.h"
 
 void FehlerWSZuVielSepBisRut1::entry() {
@@ -38,4 +37,5 @@ void FehlerWSZuVielSepBisRut1::Fverschwunden() {
 }
 
 void FehlerWSZuVielSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

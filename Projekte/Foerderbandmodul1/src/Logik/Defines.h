@@ -8,6 +8,8 @@
 #ifndef LOGIK_DEFINES_H_
 #define LOGIK_DEFINES_H_
 
+//#define DEBUG
+
 //Pulse values der Interrupts, unterscheidung durch code
 #define LS_ANFANG_AN 2		//active low+
 #define HS_HOCH_OK_AUS 4	//active high+
@@ -34,10 +36,16 @@
 #define T_RESET_AN 126		//active high+
 #define E_STOP_AUS 127		//active low+
 
+#define WEICHE1 40
+#define AUSWERFER1 41
+#define WEICHE2 42
+#define AUSWERFER2 43
+
 #define FEHLER_HOCH 128
 #define FEHLER_RUNTER 129
 #define QUITTIERT 130
 #define KEIN_FEHLER 131
+#define UNQUITTIERT 132
 
 //Signale fuer an die Motorsteuerung
 #define SCHNELL_HOCH_1 200
@@ -90,6 +98,7 @@
 #define FBM1_WS_LOSGESCHICKT	266
 #define FBM1_WS_UEBERGEBEN		267
 #define FBM2_BEREIT				268
+#define WS_AUF_WEG_ZU_LSE		269
 
 
 //zeit pulse values
@@ -104,6 +113,8 @@
 #define ZEIT_UEBERGABE_AN_FBM2				308
 #define FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE	309
 #define FEHLER_WS_VERSCHWUNDEN_LSA2			310
+#define START_LANG							311
+#define UNQUITTIERT_ABGELAUFEN				312
 
 //Defines fuer den InputDispatcher
 #define ESTOP_AUS	1
@@ -127,14 +138,17 @@
 #define BETRIEBSMODUS_AN 20
 #define BETRIEBSMODUS_AUS 21
 #define FEHLER_QUITTIERT 22
-//23 bereits vergeben an T_STOP_AN Signal
+#define FEHLER_G_UNQUITTIERT 23
 #define SERVICE_MODE_AN 24
 #define SERVICE_MODE_AUS 25
 #define SL_Q1_AN 28
 #define SL_Q1_AUS 29
 #define SEP_AN 30
 #define SEP_AUS 31
-#define FEHLER_G_UNQUITTIERT 32
+#define LED_START_AN 32
+#define LED_START_AUS 33
+#define LED_RESET_AN 34
+#define LED_RESET_AUS 35
 
 //Watchdog defines fuer die Kommunikation
 #define WATCHDOG_NOTIF		50
@@ -163,7 +177,7 @@
 #define AUSWERTUNG_1				"server_auswertung_1"
 #define AUSWERTUNG_2				"server_auswertung_2"
 #define S_LSANFANG1					"server_lsanfang1"
-#define S_LSANFANG2					"server_lsanfang2" // TODO das hier hinzugefügt
+#define S_LSANFANG2					"server_lsanfang2"
 #define S_MOTORSTEUERUNG			"server_motorsteuerung"
 #define S_LSA_BIS_HS1				"server_lsanfang_bis_hs1"
 #define S_LSA_BIS_HS2				"server_lsanfang_bis_hs2"
@@ -175,6 +189,7 @@
 #define S_F_WS_NICHT_AUSSORTIERBAR	"server_f_ws_nicht_aussortierbar"
 #define S_SEP_BIS_RUT1				"server_sep_bis_rut1"
 #define S_SEP_BIS_RUT2				"server_sep_bis_rut2"
+#define S_PASSIEREN					"server_passieren"
 #define S_SEP_BIS_LSENDE			"server_sep_bis_lsende"
 #define S_SEP_BIS_LSENDE2			"server_sep_bis_lsende2"
 #endif /* LOGIK_DEFINES_H_ */

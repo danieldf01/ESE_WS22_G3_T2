@@ -52,7 +52,7 @@ VerarbeitungHoehenmessdaten::~VerarbeitungHoehenmessdaten() {
 
 //als Thread starten
 void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterscheidung Wert von Anlage 1 oder 2
-	bool fehlergeworfen = false;
+	bool fehlergeworfen = false; // TODO unused var
 
 	_pulse msg;
 	while (receivingRunning) {
@@ -96,12 +96,12 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterschei
 				if(!stopAn){
 					this->erkenneWS(messung_mm);
 				}else{ //TODO Multiplikator HW:3 SIM:10
-					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband_adc) + (toleranz_mm*10) && !fehlergeworfen) {
-						fehlergeworfen = true;
-						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
-						cout << "HS_AKTIV STOERFAKTOR" << endl;
-						fflush(stdout);
-					}
+//					if (messung_mm >= this->adc_value_to_mm(hoehe_laufband_adc) + (toleranz_mm*10) && !fehlergeworfen) {
+//						fehlergeworfen = true;
+//						MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
+//						cout << "HS_AKTIV STOERFAKTOR" << endl;
+//						fflush(stdout);
+//					}
 				}
 
 			}
@@ -110,14 +110,13 @@ void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterschei
 }
 
 void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
-	cout << "messung_mm"<< messung_mm <<endl;
+//	cout << "messung_mm"<< messung_mm <<endl;
 	/*=======================Erkenne Werkstück=======================*/
 	if (ws_erkannt == false && (messung_mm >= (hoehe_flaches_ws_mm - toleranz_mm))) {
-		cout << "messung_mm"<< messung_mm <<endl;
+//		cout << "messung_mm"<< messung_mm <<endl;
 		ws_erkannt = true;
 		WS_Typ = FLACH;
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL + anlagen_nr, HS_AKTIV);
-		cout << "HS_AKTIV geschickt" << endl;
 	}
 
 	//WS in Höhenmessung
@@ -145,7 +144,13 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 
 		//Werkstück hat HS durchquert
 		if (messung_mm <= 0 + toleranz_mm) {
-//			cout << "Werkstück hat HS durchquert Timestamp:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+
+			// Wenn das aktuelle Werstueck Objekt noch nicht vorhanden ist
+			if(wsListen->ws_Hoehensensor_1 == nullptr && wsListen->ws_Hoehensensor_2 == nullptr){
+				cout << "[FATAL ERROR] Werkstueck unter dem Hoehensensor nicht bekannt!" << endl;
+				// TODO ggf. sicheren Modus betreten E-Stop
+			}
+
 			//berechne Arithmetisches mittel
 			for (auto it = mlist.begin(); it != mlist.end(); ++it) {
 				mittlereHohe += *it;
@@ -169,8 +174,9 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			if (WS_Typ == HOCH_OB && hoechste_messung - tiefe_loch_klein_mm > HoheMitteWs) {
 				WS_Typ = UNBEKANNT;
 			}
-			/*=======================Erkenne Werkstück ENDE=======================*/
 
+			/*=======================Erkenne Werkstück ENDE=======================*/
+			cout << "" << endl;
 			//Ausgabe
 			printf("TYP: %d mittlere Höhe: %.2f Höhe Mitte des Werkstücks: %.2f Loch: %d hoechste_messung: %.2f neueMessung %.2f MAX_ADC: %d MIN_ADC: %d\n",
 					WS_Typ, mittlereHohe, HoheMitteWs,loch_tief_cnt, hoechste_messung, messung_mm, hoechster_adc_wert, keinster_adc_wert);
@@ -206,7 +212,15 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 					wsListen->ws_Hoehensensor_2->setWsTyp(UNBEKANNT);
 				}
 			}
-			cout << "BEFORE WS_TYP SEND " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+
+			if(anlagen_nr == 1){
+				printf("mittelwert %f\n", mittlereHohe);
+				wsListen->ws_Hoehensensor_1->setMittlereHoehe(mittlereHohe);
+			} else {
+				printf("hoehe mitte %f\n", HoheMitteWs);
+				wsListen->ws_Hoehensensor_2->setHoehenmesswert(HoheMitteWs);
+			}
+
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlagen_nr, WS_TYP);
 			fflush(stdout);
 

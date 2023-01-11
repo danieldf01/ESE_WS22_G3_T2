@@ -21,13 +21,14 @@ void WsAufWegZumHsLSAbisHS1::WSinLSAbisHS(){
 
 void WsAufWegZumHsLSAbisHS1::HSaktiv(){
 	exit();
+	// TODO Config
 	if(zeitmanager->getTime() < (1800 + wsListen->ws_list_LSAnfang_bis_HS.front().getTimestamp())){
 		new (this) FehlerWsZuFruehLSAbisHS1;
 	} else{
 		actions->WSinHS();
 		if(wsListen->ws_list_LSAnfang_bis_HS.size() <= 0){
 			new (this) WartenLSAbisHS1;
-		}
+		}// else bleibe in diesem Zustand
 	}
 	entry();
 }
@@ -47,7 +48,6 @@ void WsAufWegZumHsLSAbisHS1::Fverschwunden(){
 }
 
 void WsAufWegZumHsLSAbisHS1::eStop(){
-	exit();
 	actions->eStop();
 	new (this) WartenLSAbisHS1;
 	entry();

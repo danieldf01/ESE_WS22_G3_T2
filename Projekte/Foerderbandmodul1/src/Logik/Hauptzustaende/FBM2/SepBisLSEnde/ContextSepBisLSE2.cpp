@@ -18,6 +18,7 @@ ContextSepBisLSE2::ContextSepBisLSE2(ActionsSepBisLSE2 *shared_action, WsListen 
 	actions->setupConnection();
 	actions->setWsListen(wsListen);
 	actions->setZeitmanager(zeitmanager);
+	actions->setKonfigurationsdateiManager(konfig);
 
 	state = new WarteSepBisLSE2;
 	state->setActions(actions);

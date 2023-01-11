@@ -21,11 +21,7 @@ void FehlerWSZuFruehSepBisLSE1::LsEAn(){
 
 }
 
-void FehlerWSZuFruehSepBisLSE1::WsPassieren(){
-
-}
-
-void FehlerWSZuFruehSepBisLSE1::WeicheSchliessen(){
+void FehlerWSZuFruehSepBisLSE1::WsAufWegZuLSE(){
 
 }
 

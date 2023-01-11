@@ -19,16 +19,11 @@ void WartenFreiwerdenFBM2::LsEAn(){
 
 }
 
-void WartenFreiwerdenFBM2::WsPassieren(){
-
-}
-
-void WartenFreiwerdenFBM2::WeicheSchliessen(){
+void WartenFreiwerdenFBM2::WsAufWegZuLSE(){
 
 }
 
 void WartenFreiwerdenFBM2::FBM2bereit(){
-	cout << "WartenFreiwerdenFBM2 Recv: FBM2_BEREIT" <<endl;
 	exit();
 	actions->FBM1WsLosgeschickt();
 	actions->stopRunter();

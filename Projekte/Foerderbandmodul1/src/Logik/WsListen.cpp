@@ -20,6 +20,7 @@ void WsListen::emptyAll(){
 	ws_list_HS_bis_Seperator.clear();
 	ws_list_aussortieren.clear();
 	ws_list_passieren.clear();
+	ws_list_sep_bis_lsende.clear();
 	ws_Hoehensensor_1=nullptr;
 	ws_Hoehensensor_2=nullptr;
 	ws_ls_anfang_2=nullptr;

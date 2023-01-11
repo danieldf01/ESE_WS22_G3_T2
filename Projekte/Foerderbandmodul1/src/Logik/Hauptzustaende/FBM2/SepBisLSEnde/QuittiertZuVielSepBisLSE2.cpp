@@ -36,9 +36,7 @@ void QuittiertZuVielSepBisLSE2::quittiert(){
 }
 
 void QuittiertZuVielSepBisLSE2::keinFehler(){
-	exit();
 	new (this) WarteSepBisLSE2;
-	entry();
 }
 
 void QuittiertZuVielSepBisLSE2::fehlerVerschwunden(){

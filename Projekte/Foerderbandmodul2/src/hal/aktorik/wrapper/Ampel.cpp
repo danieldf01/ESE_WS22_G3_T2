@@ -22,113 +22,89 @@ Ampel::~Ampel() {
 }
 
 /**
- *
  * @parameter die Farbe Gruen, Gelb oder Rot.
  */
-//void Ampel::lampeSchnellBlinken(Farbe farbe) {
-//	switch(farbe){
-//					case 0:
-//						this->zeitGruen=HALBESEKUNDE;
-//						break;
-//					case 1:
-//						this->zeitGelb=HALBESEKUNDE;
-//						break;
-//					case 2:
-//						this->zeitRot=HALBESEKUNDE;
-//						break;
-//				}
-//}
-//
-///**
-// * @parameter die Farbe Gruen, Gelb oder Rot.
-// */
-//void Ampel::lampeLangsamBlinken(Farbe farbe) {
-//	switch(farbe){
-//					case 0:
-//						this->zeitGruen=SEKUNDE;
-//						break;
-//					case 1:
-//						this->zeitGelb=SEKUNDE;
-//						break;
-//					case 2:
-//						this->zeitRot=SEKUNDE;
-//						break;
-//				}
-//}
-
-//void Ampel::lampeBlinkenAus(Farbe farbe){
-//	switch(farbe){
-//				case 0:
-//					this->blinkenGruen=false;
-//					break;
-//				case 1:
-//					this->blinkenGelb=false;
-//					break;
-//				case 2:
-//					this->blinkenRot=false;
-//					break;
-//			}
-//}
-
 void Ampel::lampeBlinkenAus(Farbe farbe){
 	switch(farbe){
-				case 0:
-					this->blinkenGruen=false;
-					break;
-				case 1:
-					this->blinkenGelb=false;
-					break;
-				case 2:
-					this->blinkenRot=false;
-					break;
-			}
+
+	//GRUEN
+	case 0:
+		mutexGruen.lock();
+		this->blinkenGruen=false;
+		mutexGruen.unlock();
+		break;
+
+	//GELB
+	case 1:
+		mutexGelb.lock();
+		this->blinkenGelb=false;
+		mutexGelb.unlock();
+		break;
+
+	//ROT
+	case 2:
+		mutexRot.lock();
+		this->blinkenRot=false;
+		mutexRot.unlock();
+		break;
+	}
 }
-void Ampel::blinken(Farbe farbe,int zeit){
 
+void Ampel::blinken(Farbe farbe, int zeit){
 	switch(farbe){
-				case 0:
-					mutexGruen.lock();	//blinken für andere threads sperren
-					blinkenGruen=true; //blinken aktiv setzen
-					while(blinkenGruen){
-								usleep(zeit);
-								lampe->lampeAn(farbe);
-								usleep(zeit);
-								lampe->lampeAus(farbe);
-						}
-						mutexGruen.unlock();
-					break;
 
-				case 1:
-					mutexGelb.lock();	//blinken für andere threads sperren
-					blinkenGelb=true; //blinken aktiv setzen
-					while(blinkenGelb){
-								usleep(zeit);
-								lampe->lampeAn(farbe);
-								usleep(zeit);
-								lampe->lampeAus(farbe);
-						}
-						mutexGelb.unlock();
-					break;
+	//GRUEN
+	case 0:
+		blinkenGruen=true; //blinken aktiv setzen
+		mutexGruen.lock();
+		while(blinkenGruen){
+			mutexGruen.unlock();
+			usleep(zeit);
+			lampe->lampeGruenAn();
+			usleep(zeit);
+			lampe->lampeGruenAus();
+			mutexGruen.lock();
+		}
+		mutexGruen.unlock();
+		break;
 
-				case 2:
-					mutexRot.lock();	//blinken für andere threads sperren
-					blinkenRot=true; //blinken aktiv setzen
-					while(blinkenRot){
-								usleep(zeit);
-								lampe->lampeAn(farbe);
-								usleep(zeit);
-								lampe->lampeAus(farbe);
-						}
-						mutexRot.unlock();
-					break;
-			}
+	//GELB
+	case 1:
+		blinkenGelb=true; //blinken aktiv setzen
+		mutexGelb.lock();
+		while(blinkenGelb){
+			mutexGelb.unlock();
+			usleep(zeit);
+			lampe->lampeGelbAn();
+			usleep(zeit);
+			lampe->lampeGelbAus();
+			mutexGelb.lock();
+		}
+		mutexGelb.unlock();
+		break;
+
+	//ROT
+	case 2:
+		blinkenRot=true; //blinken aktiv setzen
+		zeitRot=zeit;
+		mutexRot.lock();
+		while(blinkenRot){
+			mutexRot.unlock();
+			usleep(zeitRot);
+			lampe->lampeRotAn();
+			usleep(zeitRot);
+			lampe->lampeRotAus();
+			mutexRot.lock();
+		}
+		mutexRot.unlock();
+		break;
+	}
 }
 
 
 AmpelWrapper::AmpelWrapper(Ampel &ampel): ampel(ampel){}
 
 void AmpelWrapper::operator ()(Farbe farbe,int zeit){
-
 	ampel.blinken(farbe,zeit);
 
 }

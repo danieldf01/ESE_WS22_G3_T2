@@ -7,9 +7,13 @@
 
 #include "FehlerHoehenmessungWsErkennung1.h"
 
+using namespace std;
+
 void FehlerHoehenmessungWsErkennung1::entry(){
 	actions->fehlerHoch();
 	actions->deleteWsHoehensensor();
+	cout << "[FEHLER] Die Werkstueckmessung auf Foerderband 1 dauert zu lange. Moeglicherweise ist ein Werkstueck verschwunden." << endl;
+	cout << "Bitte entfernen Sie ein Werkstueck unter dem Hoehensensor, falls dort eins liegt." << endl;
 }
 
 void FehlerHoehenmessungWsErkennung1::exit(){

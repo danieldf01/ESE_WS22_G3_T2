@@ -50,13 +50,24 @@ int SensorikSim::runHALSteuerung(){
 	//gpioSetup->configGPIOIRQEventTypes(port0BaseAddr);
 	setupGPIO(port0BaseAddr);
 
+	uintptr_t gpioBase = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
+		int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> 14) & 0x1;
+		if(current_level==0){
+			outputDispatcher->dispatchOutput(WEICHE1, 0);
+		}
+		else{
+			outputDispatcher->dispatchOutput(AUSWERFER1, 0);
+		}
 	/* ### Start sampling ### */
 	adc_clear_interrupt();		//clear interrupt (just in case)
 	adc_enable_interrupt();		//enable interrupt
 	adc_ctrl_start_sample();	//start sampling
 
+
+
 	/* ### Start thread for handling interrupt messages. */
 	receivingRoutine(chanID);
+
 
 	// ENDE
 	connector->closeConnection(conID);
@@ -149,17 +160,23 @@ void SensorikSim::handleInterrupt(void) {
 	out32(uintptr_t(gpioBase + GPIO_IRQSTATUS_1), 0xffffffff);	//clear all interrupts.
 	InterruptUnmask(INTR_GPIO_PORT0, interruptID);				//unmask interrupt.
 
-	for (int pin = 31; pin >= 0; pin--) {
-		unsigned int mask = (uint32_t) BIT_MASK(pin);
-		if (intrStatusReg == mask) {
-			int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> pin) & 0x1;
-			if (pin == E_STOP_PIN && current_level == 0){
-				aktorik->eStopp();
+	static int one = 0;
+	if(one == 1){
+		for (int pin = 31; pin >= 0; pin--) {
+			unsigned int mask = (uint32_t) BIT_MASK(pin);
+			if ((intrStatusReg & mask) > 0) {
+
+				int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> pin) & 0x1;
+				if (pin == E_STOP_PIN && current_level == 0){
+					aktorik->eStopp();
+				}
+//				printf("Interrupt on pin %d, now %d\n", pin, current_level);
+				// Hier die Dispatcher GPIO Methode
+				outputDispatcher->dispatchOutput(pin, current_level);
 			}
-			//printf("Interrupt on pin %d, now %d\n", pin, current_level);
-			outputDispatcher->dispatchOutput(pin, current_level);
-			// TODO Hier die Dispatcher GPIO Methode
 		}
+	}else{
+		one = 1;
 	}
 }
 void SensorikSim::handleADCInterrupt(_pulse *msg) {
@@ -171,7 +188,7 @@ void SensorikSim::handleADCInterrupt(_pulse *msg) {
 
 	if (count == 100) {
 		adcAverage = adcSum / count;
-		// TODO Hier die Dispatcher ADC Schnittstelle von der HAL aus
+		//Hier die Dispatcher ADC Schnittstelle von der HAL aus
 		outputDispatcher->dispatchADC(adcAverage,1);
 		//cout << adcAverage << endl;
 		// reset count and adcSum

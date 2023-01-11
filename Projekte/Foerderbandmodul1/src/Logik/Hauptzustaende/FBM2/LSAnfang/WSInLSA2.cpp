@@ -23,7 +23,6 @@ void WSInLSA2::fbm1WsUebergeben() {
 }
 
 void WSInLSA2::lsAnfangAus() {
-	cout << "[FBM2] WSInLSA2 recv: lsAnfangAus" << endl;
 	actions->WSinLSAbisHS();
 	new (this) WarteFBM2Frei;
 }
@@ -39,6 +38,7 @@ void WSInLSA2::fehlerVerschwunden(){
 
 void WSInLSA2::eStop() {
 	actions->eStop();
+	new (this) WarteAufFBM2;
 }
 
 void WSInLSA2::fbm1Bereit() {

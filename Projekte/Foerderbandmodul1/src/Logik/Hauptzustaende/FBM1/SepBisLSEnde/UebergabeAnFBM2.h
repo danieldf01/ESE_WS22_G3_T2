@@ -10,7 +10,6 @@
 
 #include "BaseStateSepBisLSE1.h"
 #include "WarteSepBisLSE1.h"
-#include "WeicheGeoeffnetSepBisLSE1.h"
 #include "WsAufWegZuLSEndeSepBisLSE1.h"
 
 class UebergabeAnFBM2 : public BaseStateSepBisLSE1 {
@@ -20,8 +19,7 @@ public:
 
 	//normales Verhalten
 	void LsEAn() override;
-	void WsPassieren() override;
-	void WeicheSchliessen() override;
+	void WsAufWegZuLSE() override;
 	void FBM2bereit() override;
 	void WsWurdeUebergeben() override;
 

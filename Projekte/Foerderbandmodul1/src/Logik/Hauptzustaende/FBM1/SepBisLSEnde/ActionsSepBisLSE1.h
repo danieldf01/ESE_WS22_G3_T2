@@ -28,9 +28,6 @@ public:
 
 	virtual void setupConnection();
 
-	virtual void seperatorAn();
-	virtual void seperatorAus();
-
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();
 

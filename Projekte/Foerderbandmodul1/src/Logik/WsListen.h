@@ -28,10 +28,13 @@ public:
 	list<Werkstueck> ws_list_LSAnfang_bis_HS;
 	list<Werkstueck> ws_list_HS_bis_Seperator;
 	list<Werkstueck> ws_list_passieren;
+	list<Werkstueck> ws_list_sep_bis_lsende;
 	list<Werkstueck> ws_list_aussortieren;
-	list<int> sortierReihenfolge;
 	Werkstueck *ws_LSAnfang = nullptr;
 	Werkstueck *ws_Hoehensensor_1=nullptr;
+
+	list<int> sortierReihenfolge;
+	list<int> sortierReihenfolge2;
 
 	//Werkstueck auf dem FBM2
 	Werkstueck *ws_Hoehensensor_2=nullptr;
@@ -40,6 +43,9 @@ public:
 	Werkstueck *ws_hs_bis_seperator_2=nullptr;
 	Werkstueck *ws_passieren_2=nullptr;
 	Werkstueck *ws_aussortieren_2=nullptr;
+
+	bool ueberschlagen = false;
+
 	WsListen();
 	virtual ~WsListen();
 	void emptyAll();

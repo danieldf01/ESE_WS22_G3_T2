@@ -27,9 +27,14 @@ void ActionsLSA2::WSinLSAbisHS() {
 	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_2->getiD());
 
 	//gib dem Werkstueck einen aktuellen Timestamp und pack es in die Liste fuer die naechste FSM
-	wsListen->ws_ls_anfang_2->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_ls_anfang_bis_hs_2 = wsListen->ws_ls_anfang_2;
+	Werkstueck tempWS = *wsListen->ws_ls_anfang_2;
+	tempWS.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_ls_anfang_bis_hs_2 = &tempWS;
 	wsListen->ws_ls_anfang_2 = nullptr;
+
+//	wsListen->ws_ls_anfang_2->setTimestamp(zeitmanager->getTime());
+//	wsListen->ws_ls_anfang_bis_hs_2 = wsListen->ws_ls_anfang_2;
+//	wsListen->ws_ls_anfang_2 = nullptr;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_IN_LS_A_BIS_HS) == -1) {
 		perror("[FSM_LSAnfang2] MsgSendPulse failed");

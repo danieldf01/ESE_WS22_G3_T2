@@ -4,7 +4,6 @@
  *  Created on: 21.12.2022
  *      Author: acx514
  */
- // TODO DONE
 #include "FehlerWSZuVielSepBisRut2.h"
 
 void FehlerWSZuVielSepBisRut2::entry() {
@@ -26,7 +25,6 @@ void FehlerWSZuVielSepBisRut2::AuswerferEinfahren() {
 }
 
 void FehlerWSZuVielSepBisRut2::quittiert() {
-	exit();
 	new (this) QuittiertWSZuVielSepBisRut2;
 	entry();
 }
@@ -38,4 +36,5 @@ void FehlerWSZuVielSepBisRut2::Fverschwunden() {
 }
 
 void FehlerWSZuVielSepBisRut2::eStop() {
+	new (this) WarteSepBisRut2;
 }

@@ -27,6 +27,11 @@
 #define T_RESET_PIN 26		//active high+
 #define E_STOP_PIN 27		//active low+
 
+#define WEICHE1 40
+#define AUSWERFER1 41
+#define WEICHE2 42
+#define AUSWERFER2 43
+
 
 
 
@@ -35,7 +40,9 @@ private:
 	int inputID;
 	int kommID;
 	QnetHandler qnetHandler;
+
 public:
+	bool auswerfer;
 	OutputDispatcher();
 	virtual ~OutputDispatcher();
 	void dispatchOutput(int,int);

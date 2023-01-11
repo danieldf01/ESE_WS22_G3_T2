@@ -9,8 +9,7 @@
 
 using namespace std;
 
-ContextSepBisRut1::ContextSepBisRut1(ActionsSepBisRut1 *shared_action, WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM,
-		KonfigurationsdateiManager *konfigManager) :
+ContextSepBisRut1::ContextSepBisRut1(ActionsSepBisRut1 *shared_action, WsListen *werkstueckListen, Zeitmanager *zeitmanagerFSM, KonfigurationsdateiManager *konfigManager) :
 		actions(shared_action), wsListen(werkstueckListen), zeitmanager(zeitmanagerFSM), konfig(konfigManager) {
 
 	qnetHandler = new QnetHandler();

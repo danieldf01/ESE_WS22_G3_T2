@@ -10,6 +10,7 @@
 Werkstueck::Werkstueck(int iD, unsigned int timestamp) {
 	this->iD= iD;
 	this->timestamp = timestamp;
+	this->istUeberschlagen = false;
 }
 
 Werkstueck::~Werkstueck() {
@@ -25,7 +26,7 @@ unsigned int Werkstueck::getTimestamp(){
 }
 
 void Werkstueck::setTimestamp(unsigned int timestamp){
-	this->timestamp=timestamp;
+	this->timestamp = timestamp;
 }
 
 WsTyp Werkstueck::getWsTyp(){
@@ -33,7 +34,7 @@ WsTyp Werkstueck::getWsTyp(){
 }
 
 void Werkstueck::setWsTyp(WsTyp typ){
-	this->wsTyp=typ;
+	this->wsTyp = typ;
 }
 
 double Werkstueck::getMittlereHoehe(){
@@ -41,7 +42,7 @@ double Werkstueck::getMittlereHoehe(){
 }
 
 void Werkstueck::setMittlereHoehe(double hoehe){
-	this->mittlereHoehe=hoehe;
+	this->mittlereHoehe = hoehe;
 }
 
 double Werkstueck::getHoehenmesswert(){
@@ -50,12 +51,4 @@ double Werkstueck::getHoehenmesswert(){
 
 void Werkstueck::setHoehenmesswert(double messwert){
 	this->hoehenmesswert=messwert;
-}
-
-bool Werkstueck::istUeberschlagen(){
-	return this->ueberschlagen;
-}
-
-void Werkstueck::setUeberschlagen(){
-	this->ueberschlagen=true;
 }

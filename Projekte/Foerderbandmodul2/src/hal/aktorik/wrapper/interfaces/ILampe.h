@@ -18,8 +18,6 @@ public:
 	virtual void lampeGelbAus() = 0;
 	virtual void lampeRotAn() = 0;
 	virtual void lampeRotAus() = 0;
-	virtual void lampeAn(Farbe farbe) = 0;
-	virtual void lampeAus(Farbe farbe) = 0;
 };
 
 #endif /* HAL_AKTORIK_INTERFACES_ILAMPE_H_ */

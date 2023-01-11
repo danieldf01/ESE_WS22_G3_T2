@@ -6,9 +6,11 @@
  */
 
 #include "FehlerRutsche1Und2Voll.h"
-
+using namespace std;
 void FehlerRutsche1Und2Voll::entry(){
 	actions->fehlerHoch();
+	cout << "[FEHLER] Die Rutschen auf beiden Foerderbandmodulen sind voll, es kann kein Werkstueck aussortiert werden!" << endl;
+	cout << "Bitte entfernen Sie alle Werkstuecke aus den Rutschen" << endl;
 }
 
 void FehlerRutsche1Und2Voll::exit(){

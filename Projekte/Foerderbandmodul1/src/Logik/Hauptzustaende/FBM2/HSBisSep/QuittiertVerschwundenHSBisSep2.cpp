@@ -39,10 +39,8 @@ void QuittiertVerschwundenHSBisSep2::quittiert() {
 }
 
 void QuittiertVerschwundenHSBisSep2::keinFehler() {
-	exit();
 	actions->sendFBM2Bereit();
 	new (this) WartenHSBisSep2;
-	entry();
 }
 
 void QuittiertVerschwundenHSBisSep2::fehlerCntDown(){
@@ -54,8 +52,6 @@ void QuittiertVerschwundenHSBisSep2::fehlerVerschwunden(){
 }
 
 void QuittiertVerschwundenHSBisSep2::eStop() {
-	exit();
 	actions->eStop();
 	new (this) WartenHSBisSep2;
-	entry();
 }

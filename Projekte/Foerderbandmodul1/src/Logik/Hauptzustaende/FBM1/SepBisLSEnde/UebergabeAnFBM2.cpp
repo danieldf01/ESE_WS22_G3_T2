@@ -19,11 +19,7 @@ void UebergabeAnFBM2::LsEAn(){
 
 }
 
-void UebergabeAnFBM2::WsPassieren(){
-
-}
-
-void UebergabeAnFBM2::WeicheSchliessen(){
+void UebergabeAnFBM2::WsAufWegZuLSE(){
 
 }
 
@@ -34,14 +30,9 @@ void UebergabeAnFBM2::FBM2bereit(){
 void UebergabeAnFBM2::WsWurdeUebergeben(){
 	exit();
 	actions->FBM1WsUebergeben();
-	if(wsListen->ws_list_passieren.size() > 0){
-		if(!konfig->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)){
-			actions->seperatorAn();
-			new (this) WeicheGeoeffnetSepBisLSE1;
-		} else{
-			new (this) WsAufWegZuLSEndeSepBisLSE1;
-		}
-	} else if(wsListen->ws_list_passieren.size() <= 0){
+	if(wsListen->ws_list_sep_bis_lsende.size() > 0){
+		new (this) WsAufWegZuLSEndeSepBisLSE1;
+	} else if(wsListen->ws_list_sep_bis_lsende.size() <= 0){
 		new (this) WarteSepBisLSE1;
 	}
 	entry();

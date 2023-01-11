@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include "ActionsWsNichtAussortierbar.h"
-#include "../FBM1/Rutsche/Rutsche.h"
+#include "../Rutsche/Rutsche.h"
 
 class BaseStateWsNichtAussortierbar {
 protected:

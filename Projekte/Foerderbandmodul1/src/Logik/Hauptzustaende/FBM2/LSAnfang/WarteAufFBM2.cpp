@@ -19,7 +19,6 @@ void WarteAufFBM2::lsAnfangAn() {
 }
 
 void WarteAufFBM2::fbm1WsLosgeschickt() {
-	cout << "[FBM2] WarteAufFBM2 recv: fbm1WsLosgeschickt" << endl;
 	actions->schnellHoch();
 	new (this)WarteWSVerlaesstFBM1;
 }

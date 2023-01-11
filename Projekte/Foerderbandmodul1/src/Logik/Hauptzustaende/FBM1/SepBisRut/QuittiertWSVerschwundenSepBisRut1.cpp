@@ -27,7 +27,6 @@ void QuittiertWSVerschwundenSepBisRut1::quittiert() {
 }
 
 void QuittiertWSVerschwundenSepBisRut1::keinFehler() {
-	exit();
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	if (wsListen->ws_list_aussortieren.size() > 0) {
@@ -47,4 +46,5 @@ void QuittiertWSVerschwundenSepBisRut1::Fverschwunden() {
 }
 
 void QuittiertWSVerschwundenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

@@ -94,10 +94,14 @@ void InputDispatcher::receiveSignal() {
 
 				case FEHLER_AN:
 				{
-					hal->sortierer->sortiererEinfahren();
-					hal->ampel->lampeBlinkenAus(Rot);
+//					hal->sortierer->sortiererEinfahren();
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=HALBESEKUNDE;
+					}
+					else{
 					thread t_fehlerAn(&Ampel::blinken, hal->ampel, Rot, HALBESEKUNDE);
 					t_fehlerAn.detach();
+					}
 					break;
 				}
 
@@ -108,15 +112,20 @@ void InputDispatcher::receiveSignal() {
 
 				case FEHLER_QUITTIERT:
 				{
-					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
-					t_fehler_quittiert.detach();
+					hal->lampe->lampeRotAn();
+//					thread t_fehler_quittiert(&InputDispatcher::fehlerQuittiert, this);
+//					t_fehler_quittiert.detach();
 					break;
 				}
 				case FEHLER_G_UNQUITTIERT:
 				{
-					hal->ampel->lampeBlinkenAus(Rot);
+					if(hal->ampel->blinkenRot){
+						hal->ampel->zeitRot=SEKUNDE;
+					}
+					else{
 					thread t_fehler_g_unq(&Ampel::blinken, hal->ampel, Rot, SEKUNDE);
 					t_fehler_g_unq.detach();
+					}
 					break;
 				}
 
@@ -171,7 +180,18 @@ void InputDispatcher::receiveSignal() {
 				case SL_Q1_AUS:
 					hal->bedienpanel->signalleuchteQ1Aus();
 					break;
-
+				case LED_START_AN:
+					hal->bedienpanel->ledStartAn();
+					break;
+				case LED_START_AUS:
+					hal->bedienpanel->ledStartAus();
+					break;
+				case LED_RESET_AN:
+					hal->bedienpanel->ledResetAn();
+					break;
+				case LED_RESET_AUS:
+					hal->bedienpanel->ledResetAus();
+					break;
 				case SEP_AN:
 					hal->sortierer->sortiererAusfahren();
 					break;
@@ -205,8 +225,9 @@ void InputDispatcher::test() {
 void InputDispatcher::test2() {
 	hal->ampel->lampeBlinkenAus(Gelb);
 }
+
 void InputDispatcher::fehlerQuittiert(){
 	hal->ampel->lampeBlinkenAus(Rot);
-	this_thread::sleep_for(chrono::milliseconds(1000));
+	this_thread::sleep_for(chrono::milliseconds(500));
 	hal->lampe->lampeRotAn();
 }

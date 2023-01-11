@@ -29,14 +29,14 @@ void ActionsHSBisSep2::setMetallTrue(){
 void ActionsHSBisSep2::WsPassieren(){
 
 	// update Reihung
-	int temp = wsListen->sortierReihenfolge.front();
-	wsListen->sortierReihenfolge.pop_front();
-	wsListen->sortierReihenfolge.push_back(temp);
+	int temp = wsListen->sortierReihenfolge2.front();
+	wsListen->sortierReihenfolge2.pop_front();
+	wsListen->sortierReihenfolge2.push_back(temp);
 
 	// update Werkstuecke
-	Werkstueck *temp_ws = wsListen->ws_hs_bis_seperator_2;
-	temp_ws->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_passieren_2 = temp_ws;
+	Werkstueck temp_ws = *wsListen->ws_hs_bis_seperator_2;
+	temp_ws.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_passieren_2 = &temp_ws;
 	wsListen->ws_hs_bis_seperator_2 = nullptr;
 
 
@@ -47,11 +47,10 @@ void ActionsHSBisSep2::WsPassieren(){
 }
 
 void ActionsHSBisSep2::WsAussortieren(){
-
 	// update Werkstuecke
-	Werkstueck *temp_ws = wsListen->ws_hs_bis_seperator_2;
-	temp_ws->setTimestamp(zeitmanager->getTime());
-	wsListen->ws_passieren_2 = temp_ws;
+	Werkstueck temp_ws = *wsListen->ws_hs_bis_seperator_2;
+	temp_ws.setTimestamp(zeitmanager->getTime());
+	wsListen->ws_aussortieren_2 = &temp_ws;
 	wsListen->ws_hs_bis_seperator_2 = nullptr;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_AUSSORTIEREN) == -1) {
@@ -82,7 +81,7 @@ void ActionsHSBisSep2::fehlerRunter(){
 }
 
 void ActionsHSBisSep2::entferneWsHSbisSep(){
-//	wsListen->ws_list_HS_bis_Seperator_2.pop_front();
+	wsListen->ws_hs_bis_seperator_2 = nullptr;
 }
 
 void ActionsHSBisSep2::schnellRunter(){
@@ -93,7 +92,7 @@ void ActionsHSBisSep2::schnellRunter(){
 }
 
 void ActionsHSBisSep2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_list_HS_bis_Seperator.back().getiD());
+	zeitmanager->deleteTimer(wsListen->ws_hs_bis_seperator_2->getiD());
 }
 
 void ActionsHSBisSep2::sendFBM2Bereit() {
@@ -104,6 +103,6 @@ void ActionsHSBisSep2::sendFBM2Bereit() {
 }
 
 void ActionsHSBisSep2::eStop(){
-	wsListen->ws_list_passieren.clear();
-	wsListen->ws_list_aussortieren.clear();
+	wsListen->ws_passieren_2 = nullptr;
+	wsListen->ws_aussortieren_2 = nullptr;
 }

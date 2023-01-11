@@ -20,6 +20,7 @@ protected:
 	int logikID;
 	WsListen *wsListen;
 	Zeitmanager *zeitmanager;
+	WsTyp wsTyp;
 public:
 	virtual ~ActionsWsErkennung2();
 
@@ -32,6 +33,7 @@ public:
 	virtual void speicherWSTyp();
 	virtual void checkWSueberschlagen();
 	virtual void WSinHSbisSeperator();
+	virtual void sendFBM2Bereit();
 
 	virtual void fehlerHoch();
 	virtual void fehlerRunter();

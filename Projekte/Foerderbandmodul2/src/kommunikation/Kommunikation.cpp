@@ -125,6 +125,14 @@ void Kommunikation::pulseFBM1(int value){
 		init();
 		break;
 
+	case WEICHE1:
+		if(outputDispatcher->auswerfer==true){
+		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, AUSWERFER2);
+		}
+		else{
+		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WEICHE2);
+		}
+		break;
 	case FEHLER_AN:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_AN);
 		break;
@@ -192,6 +200,18 @@ void Kommunikation::pulseFBM1(int value){
 		break;
 	case FEHLER_G_UNQUITTIERT:
 		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
+		break;
+	case LED_START_AN:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_START_AN);
+		break;
+	case LED_START_AUS:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_START_AUS);
+		break;
+	case LED_RESET_AN:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_RESET_AN);
+		break;
+	case LED_RESET_AUS:
+		sendPulse(coid_indis, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1, LED_RESET_AUS);
 		break;
 	}
 }
@@ -299,6 +319,7 @@ void Kommunikation::pulseFBM2(int value){
 	case T_RESET_AUS:
 		sendPulse(coid_kom_m, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, T_RESET_AUS);
 		break;
+
 	}
 }
 

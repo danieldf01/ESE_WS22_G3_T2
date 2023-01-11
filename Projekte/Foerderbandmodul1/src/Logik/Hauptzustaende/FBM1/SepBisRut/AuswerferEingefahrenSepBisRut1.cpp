@@ -16,9 +16,9 @@ void AuswerferEingefahrenSepBisRut1::exit() {
 }
 
 void AuswerferEingefahrenSepBisRut1::LsRutAn() {
-	cout << "in state" << endl;
 	exit();
 	actions->deleteTimerVerschwunden();
+
 	actions->schnellRunter();
 	actions->zerstoereWsAussortieren();
 	if(wsListen->ws_list_aussortieren.size()>0){
@@ -52,4 +52,5 @@ void AuswerferEingefahrenSepBisRut1::Fverschwunden() {
 }
 
 void AuswerferEingefahrenSepBisRut1::eStop() {
+	new (this) WarteSepBisRut1;
 }

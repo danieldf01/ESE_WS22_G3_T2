@@ -22,31 +22,42 @@ public:
 
 	WsListen *wsListen;
 
-	KonfigurationsdateiManager *dateiManager = nullptr;
+	//Timer fuer langen Knopfdruck & Fehler_gegangen_unquittiert
+	timer_t TimerID;
+	struct sigevent TimerEvent;
+	struct itimerspec Timer;
 
-	VerarbeitungHoehenmessdaten *hoehenauswertung1 = nullptr;
-	VerarbeitungHoehenmessdaten *hoehenauswertung2 = nullptr;
+	KonfigurationsdateiManager *dateiManager;
+
+	VerarbeitungHoehenmessdaten *hoehenauswertung1;
+	VerarbeitungHoehenmessdaten *hoehenauswertung2;
+
 	bool eStop2;
 	bool eStop1;
 	bool langGedrueckt;
+	bool fehlerUnquittiert;
 
 	int fehlerCount;
 	int warnungsCount;
 	bool fehlerQuittiert;
 	//Qnet connection IDs
+	int logikID;
 	int inputID;
 	int kommID;
 	int auswertungID1;
 	int auswertungID2;
 	int fsmWsNichtAussortierbar_ID;
+
+	//FBM1 FSM IDs
 	int fsmLSA1_ID;
 	int fsmLSAbisHS1_ID;
 	int fsmWsErkennung1_ID;
 	int fsmHSbisSep1_ID;
 	int fsmSepBisRut1_ID;
 	int fsmSepBisLSEnde1_ID;
+	int fsmPassieren_ID;
 
-	// TODO ALLE IDS added
+	//FBM2 FSM IDs
 	int fsmLSA2_ID;
 	int fsmLSAbisHS2_ID;
 	int fsmWsErkennung2_ID;

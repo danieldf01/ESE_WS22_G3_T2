@@ -29,10 +29,26 @@ public:
 	void speicherInKonfigurationsdatei();
 	int get_value_of(Konfi_Codes name);
 	int set_value_of(Konfi_Codes name,int value);
+
+	const std::string& getMqtTaddress() const {
+		return MQTTaddress;
+	}
+
+	const std::string& getMqtTclientId() const {
+		return MQTTclientID;
+	}
+
+	const std::string& getMqtTtopic() const {
+		return MQTTtopic;
+	}
+
 private:
 	void erstelleKonfigurationsdatei();
 	std::list<std::tuple<std::string, int>> lkonf;
 	std::string filename;
+	std::string MQTTaddress;
+	std::string MQTTclientID;
+	std::string MQTTtopic;
 };
 
 
