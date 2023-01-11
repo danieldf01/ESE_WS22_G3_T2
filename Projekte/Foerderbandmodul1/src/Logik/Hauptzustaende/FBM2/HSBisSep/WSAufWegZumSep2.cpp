@@ -24,7 +24,7 @@ void WSAufWegZumSep2::MetSenAn() {
 }
 
 void WSAufWegZumSep2::LSSepAn() {
-	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge2.front() << endl;
+//	cout << "SortierReihenfolge: " << wsListen->sortierReihenfolge2.front() << endl;
 	actions->deleteTimerVerschwunden();
 	// TODO Zeit anpassen
 	aussortieren1();

@@ -345,7 +345,7 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case UNQUITTIERT:
-		cout <<"UNQUITTIERT"<<endl;
+//		cout <<"UNQUITTIERT"<<endl;
 		fehlerUnquittiert=true;
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);

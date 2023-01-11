@@ -240,7 +240,7 @@ void FehlerQuittiert::pulseFBM1(int value){
 		break;
 
 	case WS_PASSIEREN:
-		cout << "[Betriebszustand] WS soll passieren" << endl;
+//		cout << "[Betriebszustand] WS soll passieren" << endl;
 		if (MsgSendPulse(fsmPassieren_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -258,7 +258,7 @@ void FehlerQuittiert::pulseFBM1(int value){
 		break;
 
 	case WS_AUSSORTIEREN:
-		cout << "[F] WS soll aussortiert werden" << endl;
+//		cout << "[F] WS soll aussortiert werden" << endl;
 		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -453,7 +453,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 		break;
 
 	case HS_AKTIV:
-		cout << "Betriebszustand recv: HS_AKTIV" << endl;
+//		cout << "Betriebszustand recv: HS_AKTIV" << endl;
 		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_AKTIV)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -479,7 +479,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 		break;
 
 	case WS_IN_HS_BIS_SEPERATOR:
-		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
+//		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
 		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -763,6 +763,6 @@ void FehlerQuittiert::keinFehler(){
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AN);
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AUS );
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AUS);
-		cout << "unbehandelter Fehler" << endl;
+		cout << fehlerCount<<"  UNBEHANDELTE FEHLER!" << endl;
 	}
 }

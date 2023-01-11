@@ -186,7 +186,7 @@ void Fehlerzustand::pulseFBM1(int value){
 			zeitFBM1->startMessung(500 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
 		}
 		else{
-			zeitFBM1->startMessung(1200 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
+			zeitFBM1->startMessung(1550 + zeitFBM1->getTime(), ZEIT_WS_ABSTAND, 0);	//0, da keine ws ID zugehoerig
 		}
 		break;
 
@@ -230,7 +230,7 @@ void Fehlerzustand::pulseFBM1(int value){
 		break;
 
 	case WS_PASSIEREN:
-		cout << "[Betriebszustand] WS soll passieren" << endl;
+//		cout << "[Betriebszustand] WS soll passieren" << endl;
 		if (MsgSendPulse(fsmPassieren_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -248,7 +248,7 @@ void Fehlerzustand::pulseFBM1(int value){
 		break;
 
 	case WS_AUSSORTIEREN:
-		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
+//		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
 		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -463,7 +463,7 @@ void Fehlerzustand::pulseFBM2(int value){
 		break;
 
 	case HS_AKTIV:
-		cout << "Betriebszustand recv: HS_AKTIV" << endl;
+//		cout << "Betriebszustand recv: HS_AKTIV" << endl;
 		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_AKTIV)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -489,7 +489,7 @@ void Fehlerzustand::pulseFBM2(int value){
 		break;
 
 	case WS_IN_HS_BIS_SEPERATOR:
-		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
+//		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
 		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR)
 				== -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
@@ -783,7 +783,7 @@ void Fehlerzustand::quittiert(){
 	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
 	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 	initTimer2();
-	cout << "fehler quittiert" << endl;
+	cout << "Fehler Quittiert" << endl;
 	new (this) FehlerQuittiert;
 	// TODO Implementierung unterschied zu FehlerQuittert?
 	MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);

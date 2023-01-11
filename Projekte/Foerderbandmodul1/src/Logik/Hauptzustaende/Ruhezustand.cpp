@@ -231,7 +231,7 @@ void Ruhezustand::pulseFBM1(int value){
 		break;
 
 	case WS_PASSIEREN:
-		cout << "[Betriebszustand] WS soll passieren" << endl;
+//		cout << "[Betriebszustand] WS soll passieren" << endl;
 		if (MsgSendPulse(fsmPassieren_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -247,7 +247,7 @@ void Ruhezustand::pulseFBM1(int value){
 		break;
 
 	case WS_AUSSORTIEREN:
-		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
+//		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
 		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -317,7 +317,7 @@ void Ruhezustand::pulseFBM1(int value){
 		break;
 
 	case START_LANG:
-		cout<<"start_lang erhalten"<<endl;
+//		cout<<"start_lang erhalten"<<endl;
 		langGedrueckt=true;
 		break;
 	case WEICHE1:
@@ -491,7 +491,7 @@ void Ruhezustand::pulseFBM2(int value){
 		break;
 
 	case HS_AKTIV:
-		cout << "Betriebszustand recv: HS_AKTIV" << endl;
+//		cout << "Betriebszustand recv: HS_AKTIV" << endl;
 		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -514,7 +514,7 @@ void Ruhezustand::pulseFBM2(int value){
 		break;
 
 	case WS_IN_HS_BIS_SEPERATOR:
-		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
+//		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
 		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
