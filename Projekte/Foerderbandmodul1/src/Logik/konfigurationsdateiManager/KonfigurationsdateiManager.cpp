@@ -22,6 +22,9 @@ KonfigurationsdateiManager::KonfigurationsdateiManager(std::string filename) {
 		this->set_value_of(Konfi_Codes::T_RUTSCHE_VOLL, 1000);
 		this->set_value_of(Konfi_Codes::TOLERANZ_MESSZEITEN, 50);
 		this->set_value_of(Konfi_Codes::FBM1_WS_EINLEGEN_ZEIT, 3000);
+		this->MQTTaddress="tcp://192.168.140.1:1883";
+		this->MQTTclientID="FESTO_Client_Pub";
+		this->MQTTtopic="/Festo/128";
 		this->speicherInKonfigurationsdatei();
 	}
 
@@ -62,7 +65,25 @@ int KonfigurationsdateiManager::dateieinlesen(){
 			    name = line.substr(0, pos);
 			    line.erase(0, pos + delimiter.length());
 			    value = line;
-			    lkonf.push_back(std::tuple<std::string,int>(name,std::stoi(value)));
+
+				if(name == MsgCodeStrings[Konfi_Codes::MQTTaddress] ){//etwas uneleganter fix für Mqtt da strings
+					std::cout << "MQTTaddress: "<<value<<std::endl;
+					MQTTaddress = value;
+					lkonf.push_back(std::tuple<std::string,int>(name,0));
+				}
+				else if(name == MsgCodeStrings[Konfi_Codes::MQTTclientID] ){
+					std::cout << "MQTTclientID: "<<value<<std::endl;
+					MQTTclientID = value;
+					lkonf.push_back(std::tuple<std::string,int>(name,0));
+				}
+				else if(name == MsgCodeStrings[Konfi_Codes::MQTTtopic] ){
+					std::cout << "MQTTtopic: "<<value <<std::endl;
+					MQTTtopic = value;
+					lkonf.push_back(std::tuple<std::string,int>(name,0));
+				}
+				else{
+					lkonf.push_back(std::tuple<std::string,int>(name,std::stoi(value)));
+				}
 			}
 		}
 
@@ -82,8 +103,23 @@ void KonfigurationsdateiManager::speicherInKonfigurationsdatei(){
 	file.open(filename);
 	file << einleitung;
 
+
 	for (auto it = lkonf.begin(); it != lkonf.end(); ++it){
-		file <<std::get<0>(*it)<< "=" <<std::get<1>(*it)<<std::endl;
+		if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTaddress] ){//etwas uneleganter fix für Mqtt da strings
+			std::cout << "MQTTaddress"<<std::endl;
+			file <<std::get<0>(*it)<< "=" << MQTTaddress<<std::endl;
+		}
+		else if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTclientID] ){
+			std::cout << "MQTTclientID"<<std::endl;
+			file <<std::get<0>(*it)<< "=" << MQTTclientID<<std::endl;
+		}
+		else if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTtopic] ){
+			std::cout << "MQTTtopic"<<std::endl;
+			file <<std::get<0>(*it)<< "=" << MQTTtopic<<std::endl;
+		}
+		else{
+			file <<std::get<0>(*it)<< "=" <<std::get<1>(*it)<<std::endl;
+		}
 	}
 	file.close();
 }
