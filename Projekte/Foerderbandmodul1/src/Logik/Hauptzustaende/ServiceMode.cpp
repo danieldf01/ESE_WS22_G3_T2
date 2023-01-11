@@ -74,20 +74,31 @@ void ServiceMode::pulseFBM1(int value){
 		break;
 	case LS_SEPERATOR_AN: //active low+
 		if(durchlauf>1){
-			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
-			thread t_durchlassen(&ServiceMode::durchlassen, this,1);
-			t_durchlassen.detach();
-		}
-		cout << " LS_SEPERATOR an" << endl;
+					if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==0){
+					MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
+					thread t_durchlassen(&ServiceMode::durchlassen, this,1);
+					t_durchlassen.detach();
+					}
+				}
+				else{
+					if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==1){
+						MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
+						thread t_aussortieren(&ServiceMode::aussortieren, this,1);
+						t_aussortieren.detach();
+					}
+				}
+				cout << " LS_SEPERATOR an" << endl;
 
-		if(durchlauf==2){
-			cout<<"Zeit SEPERATOR_AN langsam"<< zeitFBM1->getTime() <<endl;
-		}
-		if(durchlauf==1){
-			cout << "Zeit SEPERATOR AN schnell bis rutsche"<< zeitFBM1->getTime();
-			zeitHSbisSep= zeitFBM1->getTime()-zeitHSaus;
-			zeitSepAn=zeitHSbisSep;
-		}
+				if(durchlauf==2){
+					cout<<"Zeit SEPERATOR_AN langsam"<< zeitFBM1->getTime() <<endl;
+				}
+				if(durchlauf==1){
+					cout << "Zeit SEPERATOR AN schnell bis rutsche"<< zeitFBM1->getTime();
+					zeitHSbisSep= zeitFBM1->getTime()-zeitHSaus;
+					if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==0){
+					zeitSepAn=zeitFBM1->getTime();
+					}
+				}
 		break;
 	case LS_SEPERATOR_AUS:
 		cout << "LS_SEPERATOR aus" << endl;
@@ -108,7 +119,12 @@ void ServiceMode::pulseFBM1(int value){
 	case LS_RUTSCHE_AN: //active low+
 		cout << "LS_RUTSCHE an" << endl;
 		cout << "Zeit Rutsche an" << zeitFBM1->getTime()<<endl;
-		zeitSepbisRutsche=zeitFBM1->getTime() - zeitSepAn;
+		if(dateiManager->get_value_of(Konfi_Codes::FBM1_AUSWERFER_TRUE)==0){
+			zeitSepbisRutsche=zeitFBM1->getTime() - zeitSepAn;
+		}
+		else{
+			zeitSepbisRutsche=2400;
+		}
 		break;
 	case LS_RUTSCHE_AUS:
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_1,SCHNELL_RUNTER_1);
@@ -226,14 +242,24 @@ void ServiceMode::pulseFBM2(int value){
 		break;
 	case LS_SEPERATOR_AN: //active low+
 		if(durchlauf>2){
-			MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
-			thread t_durchlassen(&ServiceMode::durchlassen, this,2);
-			t_durchlassen.detach();
+			if(dateiManager->get_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE)==0){
+				MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
+				thread t_durchlassen(&ServiceMode::durchlassen, this,2);
+				t_durchlassen.detach();
+			}
+		}
+		else{
+			if(dateiManager->get_value_of(Konfi_Codes::FBM2_AUSWERFER_TRUE)==1){
+				MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AN);
+				thread t_aussortieren(&ServiceMode::aussortieren, this,2);
+				t_aussortieren.detach();
+			}
 		}
 		cout << "LS_SEPERATOR 2 an" << endl;
 		break;
 	case LS_SEPERATOR_AUS:
 		cout << "LS_SEPERATOR 2 aus" << endl;
+		zeitSepbisEnde2=zeitFBM2->getTime();
 		break;
 	case METALLSENSOR_AN:
 		cout << "METALLSENSOR 2 an" << endl;
@@ -251,15 +277,19 @@ void ServiceMode::pulseFBM2(int value){
 		break;
 	case LS_ENDE_AN:	//active low+
 		cout << "LS_ENDE 2 an" << endl;
-
-
+//		zeitSepbisEnde2= zeitFBM2->getTime() - zeitSepbisEnde2;
+//		cout << "LS_ENDE 2 ZEIT"<< zeitSepbisEnde2 << endl;
 		cout << "ZeitLSAbisHS:"<< zeitLSAbisHS<< " ,ZeitHSbisSep:"<< zeitHSbisSep<< " ,Zeit SepBisRutsche:"<< zeitSepbisRutsche<< " ,ZeitSepBisEnde:"<<zeitSepbisEnde<<" ,ZeitEndeBisLSA2:"<<zeitEndebisLSA2 << endl;
 
-		dateiManager->set_value_of(Konfi_Codes::FBM1_KUERZTE_ZEIT_BIS_HS, zeitLSAbisHS);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_KUERZESTE_ZEIT_BIS_SEP, zeitHSbisSep);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep);
 		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche);
-		dateiManager->set_value_of(Konfi_Codes::FBM1_KUERZESTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde);
+		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde);
 		dateiManager->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_WS_UEBERGEBEN, zeitEndebisLSA2);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_HS, zeitLSAbisHS);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_SEP, zeitHSbisSep);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT, zeitSepbisRutsche);
+		dateiManager->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, zeitSepbisEnde);
 		dateiManager->speicherInKonfigurationsdatei();
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT,CODE_FBM_2, SCHNELL_RUNTER_2);
 		new (this) Ruhezustand;
@@ -326,6 +356,15 @@ void ServiceMode::pulseFBM2(int value){
 }
 void ServiceMode::durchlassen(int anlage){
 	this_thread::sleep_for(chrono::milliseconds(1000));
+	if(anlage==1){
+		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS);
+	}
+	else{
+		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS);
+	}
+}
+void ServiceMode::aussortieren(int anlage){
+	this_thread::sleep_for(chrono::milliseconds(100));
 	if(anlage==1){
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, SEP_AUS);
 	}

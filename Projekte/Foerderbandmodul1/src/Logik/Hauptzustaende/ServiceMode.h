@@ -27,6 +27,8 @@ public:
 	unsigned int zeitSepbisEnde;
 	unsigned int zeitEndebisLSA2;
 
+	unsigned int zeitSepbisEnde2;
+
 
 	void handlePulse(int, int) override;
 	void pulseFBM1(int) override;
@@ -36,6 +38,7 @@ public:
 	void updateAuswertung() override;
 	void eStop(int) override;
 	void durchlassen(int);
+	void aussortieren(int);
 };
 
 #endif /* LOGIK_HAUPTZUSTAENDE_SERVICEMODE_H_ */

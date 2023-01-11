@@ -20,8 +20,23 @@ KonfigurationsdateiManager::KonfigurationsdateiManager(std::string filename) {
 		this->set_value_of(Konfi_Codes::ADC_WS_HOCH_LEVEL_2, 2339);
 		this->set_value_of(Konfi_Codes::ADC_BAND_LEVEL_2,3646);
 		this->set_value_of(Konfi_Codes::T_RUTSCHE_VOLL, 1000);
-		this->set_value_of(Konfi_Codes::TOLERANZ_MESSZEITEN, 50);
-		this->set_value_of(Konfi_Codes::FBM1_WS_EINLEGEN_ZEIT, 3000);
+		this->set_value_of(Konfi_Codes::FBM1_WS_EINLEGEN_ZEIT, 2000);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_HS, 3000);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_SEP, 1500);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_RUT, 2400);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_BIS_LS_ENDE, 2800);
+		this->set_value_of(Konfi_Codes::FBM1_LAENGSTE_ZEIT_WS_UEBERGEBEN, 400);
+		this->set_value_of(Konfi_Codes::FBM1_ZEIT_WS_PASSIERT_WEICHE, 1000);
+		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_HS, 3000);
+		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_SEP, 1500);
+		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT, 2400);
+		this->set_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_ENDE, 3000);
+		this->set_value_of(Konfi_Codes::FBM2_ZEIT_WS_PASSIERT_WEICHE, 1000);
+		this->set_value_of(Konfi_Codes::EINLEGE_ZEIT_AUSWERFER, 500);
+		this->set_value_of(Konfi_Codes::EINLEGE_ZEIT_WEICHE, 1550);
+		this->set_value_of(Konfi_Codes::WS_Reihung_Nr_1,1);
+		this->set_value_of(Konfi_Codes::WS_Reihung_Nr_2,2);
+		this->set_value_of(Konfi_Codes::WS_Reihung_Nr_3,3);
 		this->MQTTaddress="tcp://192.168.140.1:1883";
 		this->MQTTclientID="FESTO_Client_Pub";
 		this->MQTTtopic="/Festo/128";
@@ -67,17 +82,17 @@ int KonfigurationsdateiManager::dateieinlesen(){
 			    value = line;
 
 				if(name == MsgCodeStrings[Konfi_Codes::MQTTaddress] ){//etwas uneleganter fix für Mqtt da strings
-					std::cout << "MQTTaddress: "<<value<<std::endl;
+//					std::cout << "MQTTaddress: "<<value<<std::endl;
 					MQTTaddress = value;
 					lkonf.push_back(std::tuple<std::string,int>(name,0));
 				}
 				else if(name == MsgCodeStrings[Konfi_Codes::MQTTclientID] ){
-					std::cout << "MQTTclientID: "<<value<<std::endl;
+//					std::cout << "MQTTclientID: "<<value<<std::endl;
 					MQTTclientID = value;
 					lkonf.push_back(std::tuple<std::string,int>(name,0));
 				}
 				else if(name == MsgCodeStrings[Konfi_Codes::MQTTtopic] ){
-					std::cout << "MQTTtopic: "<<value <<std::endl;
+//					std::cout << "MQTTtopic: "<<value <<std::endl;
 					MQTTtopic = value;
 					lkonf.push_back(std::tuple<std::string,int>(name,0));
 				}
@@ -106,15 +121,15 @@ void KonfigurationsdateiManager::speicherInKonfigurationsdatei(){
 
 	for (auto it = lkonf.begin(); it != lkonf.end(); ++it){
 		if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTaddress] ){//etwas uneleganter fix für Mqtt da strings
-			std::cout << "MQTTaddress"<<std::endl;
+//			std::cout << "MQTTaddress"<<std::endl;
 			file <<std::get<0>(*it)<< "=" << MQTTaddress<<std::endl;
 		}
 		else if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTclientID] ){
-			std::cout << "MQTTclientID"<<std::endl;
+//			std::cout << "MQTTclientID"<<std::endl;
 			file <<std::get<0>(*it)<< "=" << MQTTclientID<<std::endl;
 		}
 		else if(std::get<0>(*it) == MsgCodeStrings[Konfi_Codes::MQTTtopic] ){
-			std::cout << "MQTTtopic"<<std::endl;
+//			std::cout << "MQTTtopic"<<std::endl;
 			file <<std::get<0>(*it)<< "=" << MQTTtopic<<std::endl;
 		}
 		else{
