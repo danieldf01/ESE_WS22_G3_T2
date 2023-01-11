@@ -8,6 +8,8 @@
 #ifndef LOGIK_DEFINES_H_
 #define LOGIK_DEFINES_H_
 
+//#define DEBUG
+
 //Pulse values der Interrupts, unterscheidung durch code
 #define LS_ANFANG_AN 2		//active low+
 #define HS_HOCH_OK_AUS 4	//active high+
@@ -175,7 +177,7 @@
 #define AUSWERTUNG_1				"server_auswertung_1"
 #define AUSWERTUNG_2				"server_auswertung_2"
 #define S_LSANFANG1					"server_lsanfang1"
-#define S_LSANFANG2					"server_lsanfang2" // TODO das hier hinzugefügt
+#define S_LSANFANG2					"server_lsanfang2"
 #define S_MOTORSTEUERUNG			"server_motorsteuerung"
 #define S_LSA_BIS_HS1				"server_lsanfang_bis_hs1"
 #define S_LSA_BIS_HS2				"server_lsanfang_bis_hs2"

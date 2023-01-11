@@ -18,7 +18,6 @@ void WsAufWegZuLSEndeSepBisLSE1::exit(){
 }
 
 void WsAufWegZuLSEndeSepBisLSE1::LsEAn(){
-	cout << "WsAufWegZuLSEndeSepBisLSE1 Recv: LsEAn" <<endl;
 	exit();
 	actions->deleteTimerVerschwunden();
 

@@ -279,7 +279,6 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case HS_AKTIV:
-		// cout << "Zeit HS_AKTIV im Betriebszustand " << zeitFBM1->getTime() << endl;
 		if (MsgSendPulse(fsmLSAbisHS1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -287,7 +286,6 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case WS_IN_HS:
-//		cout << "WS_IN_HS im Betriebzustand: " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
 		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_IN_HS) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -296,8 +294,6 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case WS_TYP:
-		//cout << "Zeit WS_TYP im Betriebzustand " << wsListen->ws_Hoehensensor_1->getTimestamp() << endl;
-		//cout << "Zeit WS_TYP im Betriebzustand " << wsListen->ws_list_LSAnfang_bis_HS.front().getTimestamp() << endl;
 		if (MsgSendPulse(fsmWsErkennung1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_TYP) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -313,7 +309,6 @@ void Betriebszustand::pulseFBM1(int value) {
 		break;
 
 	case WS_PASSIEREN:
-//		cout << "[Betriebszustand] WS soll passieren" << endl;
 		if (MsgSendPulse(fsmPassieren_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_PASSIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -325,12 +320,10 @@ void Betriebszustand::pulseFBM1(int value) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-//		cout << "Betriebszustand start timer ws auf weg zu lse" << endl;
 		zeitFBM1->startMessung(4000 + zeitFBM1->getTime(), FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_list_sep_bis_lsende.back().getiD());
 		break;
 
 	case WS_AUSSORTIEREN:
-//		cout << "[Betriebszustand] WS soll aussortiert werden" << endl;
 		if (MsgSendPulse(fsmSepBisRut1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, WS_AUSSORTIEREN) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -345,13 +338,14 @@ void Betriebszustand::pulseFBM1(int value) {
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_RESET_AUS);
 		fehlerUnquittiert=false;
 		break;
+
 	case UNQUITTIERT:
 		cout <<"UNQUITTIERT"<<endl;
 		MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,	_PULSE_CODE_MINAVAIL, FEHLER_G_UNQUITTIERT);
 		MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, FEHLER_G_UNQUITTIERT);
 		break;
+
 	case WS_NICHT_AUSSORTIERBAR:
-//		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
 		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT,	CODE_FBM_1, WS_NICHT_AUSSORTIERBAR);
 		break;
 
@@ -628,7 +622,6 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case HS_AKTIV:
-		cout << "Betriebszustand recv: HS_AKTIV" << endl;
 		if (MsgSendPulse(fsmLSAbisHS2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, HS_AKTIV) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -651,7 +644,6 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case WS_IN_HS_BIS_SEPERATOR:
-		cout << "WS_IN_HS_BIS_SEPERATOR Betriebzustand" << endl;
 		if (MsgSendPulse(fsmHSbisSep2_ID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL, WS_IN_HS_BIS_SEPERATOR) == -1) {
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
@@ -660,7 +652,6 @@ void Betriebszustand::pulseFBM2(int value) {
 		break;
 
 	case WS_NICHT_AUSSORTIERBAR:
-//		cout << "WS_NICHT_AUSSORTIERBAR Betriebszustand"<<endl;
 		MsgSendPulse(fsmWsNichtAussortierbar_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_NICHT_AUSSORTIERBAR);
 		break;
 
@@ -790,7 +781,6 @@ void Betriebszustand::pulseZeit1(int value){
  *
  */
 void Betriebszustand::pulseZeit2(int value){
-	// TODO missing signals!!!
 	switch(value){
 	case FEHLER_WS_VERSCHWUNDEN_LSA2:
 		if (MsgSendPulse(fsmLSA2_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, FEHLER_WS_VERSCHWUNDEN_LSA2) == -1) {

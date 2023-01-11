@@ -52,7 +52,7 @@ VerarbeitungHoehenmessdaten::~VerarbeitungHoehenmessdaten() {
 
 //als Thread starten
 void VerarbeitungHoehenmessdaten::receivingADCValueFromHAL() { //TODO Unterscheidung Wert von Anlage 1 oder 2
-	bool fehlergeworfen = false;
+	bool fehlergeworfen = false; // TODO unused var
 
 	_pulse msg;
 	while (receivingRunning) {
@@ -144,7 +144,9 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 
 		//Werkstück hat HS durchquert
 		if (messung_mm <= 0 + toleranz_mm) {
-//			cout << "Werkstück hat HS durchquert Timestamp:" << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+
+			// TODO missing check nach legalen WS objekt
+
 			//berechne Arithmetisches mittel
 			for (auto it = mlist.begin(); it != mlist.end(); ++it) {
 				mittlereHohe += *it;
@@ -168,8 +170,9 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			if (WS_Typ == HOCH_OB && hoechste_messung - tiefe_loch_klein_mm > HoheMitteWs) {
 				WS_Typ = UNBEKANNT;
 			}
-			/*=======================Erkenne Werkstück ENDE=======================*/
 
+			/*=======================Erkenne Werkstück ENDE=======================*/
+			cout << "" << endl;
 			//Ausgabe
 			printf("TYP: %d mittlere Höhe: %.2f Höhe Mitte des Werkstücks: %.2f Loch: %d hoechste_messung: %.2f neueMessung %.2f MAX_ADC: %d MIN_ADC: %d\n",
 					WS_Typ, mittlereHohe, HoheMitteWs,loch_tief_cnt, hoechste_messung, messung_mm, hoechster_adc_wert, keinster_adc_wert);
@@ -207,10 +210,10 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			}
 
 			if(anlagen_nr == 1){
-				printf("mittelwert %f", mittlereHohe);
+				printf("mittelwert %f\n", mittlereHohe);
 				wsListen->ws_Hoehensensor_1->setMittlereHoehe(mittlereHohe);
 			} else {
-				printf("hoehe mitte %f", HoheMitteWs);
+				printf("hoehe mitte %f\n", HoheMitteWs);
 				wsListen->ws_Hoehensensor_2->setHoehenmesswert(HoheMitteWs);
 			}
 

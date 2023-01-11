@@ -164,9 +164,8 @@ void SensorikSim::handleInterrupt(void) {
 			if (pin == E_STOP_PIN && current_level == 0){
 				aktorik->eStopp();
 			}
-			//printf("Interrupt on pin %d, now %d\n", pin, current_level);
+			// Hier die Dispatcher GPIO Methode
 			outputDispatcher->dispatchOutput(pin, current_level);
-			// TODO Hier die Dispatcher GPIO Methode
 		}
 	}
 }
@@ -179,7 +178,7 @@ void SensorikSim::handleADCInterrupt(_pulse *msg) {
 
 	if (count == 100) {
 		adcAverage = adcSum / count;
-		// TODO Hier die Dispatcher ADC Schnittstelle von der HAL aus
+		//Hier die Dispatcher ADC Schnittstelle von der HAL aus
 		outputDispatcher->dispatchADC(adcAverage,1);
 		//cout << adcAverage << endl;
 		// reset count and adcSum

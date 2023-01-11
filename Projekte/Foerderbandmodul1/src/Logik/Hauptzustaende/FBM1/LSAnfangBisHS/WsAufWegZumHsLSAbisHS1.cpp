@@ -21,7 +21,7 @@ void WsAufWegZumHsLSAbisHS1::WSinLSAbisHS(){
 
 void WsAufWegZumHsLSAbisHS1::HSaktiv(){
 	exit();
-	// TODO Hier muss die Zeit mit einem DEFINE oder mit der Konfig eingefügt werden!
+	// TODO Config
 	if(zeitmanager->getTime() < (1800 + wsListen->ws_list_LSAnfang_bis_HS.front().getTimestamp())){
 		new (this) FehlerWsZuFruehLSAbisHS1;
 	} else{
