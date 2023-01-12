@@ -34,16 +34,16 @@ void ActionsWsErkennung1::schnellRunter(){
 
 void ActionsWsErkennung1::WSinHSbisSeperator(){
 //	cout << "ActionsWsErkennung1::WSinHSbisSeperator" << endl;
-	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_1.getiD());
 
 //	wsListen->ws_Hoehensensor_1->setTimestamp(zeitmanager->getTime());
 //	wsListen->ws_list_HS_bis_Seperator.push_back(*(wsListen->ws_Hoehensensor_1));
 //	wsListen->ws_Hoehensensor_1 = nullptr;
 
-	Werkstueck wsTemp = *wsListen->ws_Hoehensensor_1;
+	Werkstueck wsTemp = wsListen->ws_Hoehensensor_1;
 	wsTemp.setTimestamp(zeitmanager->getTime());
 	wsListen->ws_list_HS_bis_Seperator.push_back(wsTemp);
-	wsListen->ws_Hoehensensor_1 = nullptr;
+	wsListen->ws_Hoehensensor_1.~Werkstueck();
 
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_HS_BIS_SEPERATOR) == -1) {
@@ -68,7 +68,7 @@ void ActionsWsErkennung1::fehlerRunter(){
 
 void ActionsWsErkennung1::deleteWsHoehensensor(){
 	// TODO richtig Löschung des WS?
-	wsListen->ws_Hoehensensor_1 = nullptr;
+	wsListen->ws_Hoehensensor_1.~Werkstueck();
 }
 
 void ActionsWsErkennung1::eStop(){

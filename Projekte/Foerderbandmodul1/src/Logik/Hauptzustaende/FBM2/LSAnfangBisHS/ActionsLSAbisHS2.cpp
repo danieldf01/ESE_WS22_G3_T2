@@ -20,13 +20,13 @@ void ActionsLSAbisHS2::setupConnection() {
 
 void ActionsLSAbisHS2::WSinHS() {
 	//loesche den error timer, da das Werkstueck nicht festhaengt
-	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_bis_hs_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_ls_anfang_bis_hs_2.getiD());
 
 	//gib dem Werkstueck einen aktuellen Timestamp und pack es in die Liste fuer die naechste FSM
-	Werkstueck tempWS = *wsListen->ws_ls_anfang_bis_hs_2;
+	Werkstueck tempWS = wsListen->ws_ls_anfang_bis_hs_2;
 	tempWS.setTimestamp(zeitmanager->getTime());
-	wsListen->ws_Hoehensensor_2 = &tempWS;
-	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
+	wsListen->ws_Hoehensensor_2 = tempWS;
+	wsListen->ws_ls_anfang_bis_hs_2.~Werkstueck();
 
 //	wsListen->ws_ls_anfang_bis_hs_2->setTimestamp(zeitmanager->getTime());
 //	wsListen->ws_Hoehensensor_2 = wsListen->ws_ls_anfang_bis_hs_2;
@@ -57,7 +57,7 @@ void ActionsLSAbisHS2::fehlerRunter() {
 }
 
 void ActionsLSAbisHS2::entferneWsLSAbisHS() {
-	wsListen->ws_ls_anfang_bis_hs_2 = nullptr;
+	wsListen->ws_ls_anfang_bis_hs_2.~Werkstueck();
 }
 
 void ActionsLSAbisHS2::schnellRunter() {
@@ -82,5 +82,5 @@ void ActionsLSAbisHS2::sendFBM2Bereit() {
 }
 
 void ActionsLSAbisHS2::eStop() {
-	wsListen->ws_Hoehensensor_2 = nullptr;
+	wsListen->ws_Hoehensensor_2.~Werkstueck();
 }

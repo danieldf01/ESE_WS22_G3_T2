@@ -146,10 +146,10 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 		if (messung_mm <= 0 + toleranz_mm) {
 
 			// Wenn das aktuelle Werstueck Objekt noch nicht vorhanden ist
-			if(wsListen->ws_Hoehensensor_1 == nullptr && wsListen->ws_Hoehensensor_2 == nullptr){
-				cout << "[FATAL ERROR] Werkstueck unter dem Hoehensensor nicht bekannt!" << endl;
-				// TODO ggf. sicheren Modus betreten E-Stop
-			}
+//			if(wsListen->ws_Hoehensensor_1 == NULL && wsListen->ws_Hoehensensor_2 == nullptr){
+//				cout << "[FATAL ERROR] Werkstueck unter dem Hoehensensor nicht bekannt!" << endl;
+//				// TODO ggf. sicheren Modus betreten E-Stop
+//			}
 
 			//berechne Arithmetisches mittel
 			for (auto it = mlist.begin(); it != mlist.end(); ++it) {
@@ -183,42 +183,42 @@ void VerarbeitungHoehenmessdaten::erkenneWS(double messung_mm){
 			if (WS_Typ == FLACH) {
 				printf("FLACH\n");
 				if (anlagen_nr == 1) {
-					wsListen->ws_Hoehensensor_1->setWsTyp(FLACH);
+					wsListen->ws_Hoehensensor_1.setWsTyp(FLACH);
 				} else {
-					wsListen->ws_Hoehensensor_2->setWsTyp(FLACH);
+					wsListen->ws_Hoehensensor_2.setWsTyp(FLACH);
 				}
 			}
 			if (WS_Typ == HOCH_OB) {
 				printf("HOCH_OHNE_BOHRUNG\n");
 				if (anlagen_nr == 1) {
-					wsListen->ws_Hoehensensor_1->setWsTyp(HOCH_OB);
+					wsListen->ws_Hoehensensor_1.setWsTyp(HOCH_OB);
 				} else {
-					wsListen->ws_Hoehensensor_2->setWsTyp(HOCH_OB);
+					wsListen->ws_Hoehensensor_2.setWsTyp(HOCH_OB);
 				}
 			}
 			if (WS_Typ == HOCH_MB) {
 				printf("HOCH_MIT_BOHRUNG\n");
 				if (anlagen_nr == 1) {
-					wsListen->ws_Hoehensensor_1->setWsTyp(HOCH_MB);
+					wsListen->ws_Hoehensensor_1.setWsTyp(HOCH_MB);
 				} else {
-					wsListen->ws_Hoehensensor_2->setWsTyp(HOCH_MB);
+					wsListen->ws_Hoehensensor_2.setWsTyp(HOCH_MB);
 				}
 			}
 			if (WS_Typ == UNBEKANNT) {
 				printf("UNBEKANNT\n");
 				if (anlagen_nr == 1) {
-					wsListen->ws_Hoehensensor_1->setWsTyp(UNBEKANNT);
+					wsListen->ws_Hoehensensor_1.setWsTyp(UNBEKANNT);
 				} else {
-					wsListen->ws_Hoehensensor_2->setWsTyp(UNBEKANNT);
+					wsListen->ws_Hoehensensor_2.setWsTyp(UNBEKANNT);
 				}
 			}
 
 			if(anlagen_nr == 1){
 				printf("mittelwert %f\n", mittlereHohe);
-				wsListen->ws_Hoehensensor_1->setMittlereHoehe(mittlereHohe);
+				wsListen->ws_Hoehensensor_1.setMittlereHoehe(mittlereHohe);
 			} else {
 				printf("hoehe mitte %f\n", HoheMitteWs);
-				wsListen->ws_Hoehensensor_2->setHoehenmesswert(HoheMitteWs);
+				wsListen->ws_Hoehensensor_2.setHoehenmesswert(HoheMitteWs);
 			}
 
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL + anlagen_nr, WS_TYP);

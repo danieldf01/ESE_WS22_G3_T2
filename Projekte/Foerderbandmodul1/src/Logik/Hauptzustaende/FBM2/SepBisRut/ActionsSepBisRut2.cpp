@@ -58,11 +58,11 @@ void ActionsSepBisRut2::schnellRunter() {
 }
 
 void ActionsSepBisRut2::zerstoereWsAussortieren() {
-	wsListen->ws_aussortieren_2 = nullptr;
+	wsListen->ws_aussortieren_2.~Werkstueck();
 }
 
 void ActionsSepBisRut2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_aussortieren_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_aussortieren_2.getiD());
 }
 
 void ActionsSepBisRut2::sendFBM2Bereit() {

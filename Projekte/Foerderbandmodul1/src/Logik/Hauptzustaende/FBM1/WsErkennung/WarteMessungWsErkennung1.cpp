@@ -26,7 +26,7 @@ void WarteMessungWsErkennung1::WsTyp(){
 	actions->langsamRunter();
 
 	// TODO Config
-	if(zeitmanager->getTime() < 100 + wsListen->ws_Hoehensensor_1->getTimestamp()){
+	if(zeitmanager->getTime() < 100 + wsListen->ws_Hoehensensor_1.getTimestamp()){
 		cout << "[FEHLER] Die Werkstueckmessung auf Foerderband 1 ist zu schnell erfolgt. Bitte das Werkstueck unter dem Hoehensensor entfernen." << endl;
 		new (this) FehlerHoehenmessungWsErkennung1;
 	} else{

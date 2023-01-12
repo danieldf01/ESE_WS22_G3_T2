@@ -33,12 +33,12 @@ void ActionsWsErkennung2::schnellRunter(){
 }
 
 void ActionsWsErkennung2::WSinHSbisSeperator(){
-	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_Hoehensensor_2.getiD());
 
-	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
+	Werkstueck tempWS = wsListen->ws_Hoehensensor_2;
 	tempWS.setTimestamp(zeitmanager->getTime());
-	wsListen->ws_hs_bis_seperator_2 = &tempWS;
-	wsListen->ws_Hoehensensor_2 = nullptr;
+	wsListen->ws_hs_bis_seperator_2 = tempWS;
+	wsListen->ws_Hoehensensor_2.~Werkstueck();
 
 //	wsListen->ws_Hoehensensor_2->setTimestamp(zeitmanager->getTime());
 //	wsListen->ws_hs_bis_seperator_2 = wsListen->ws_Hoehensensor_2;
@@ -65,7 +65,7 @@ void ActionsWsErkennung2::fehlerRunter(){
 }
 
 void ActionsWsErkennung2::deleteWsHoehensensor(){
-	wsListen->ws_Hoehensensor_2 = nullptr;
+	wsListen->ws_Hoehensensor_2.~Werkstueck();
 }
 
 void ActionsWsErkennung2::sendFBM2Bereit() {
@@ -76,21 +76,21 @@ void ActionsWsErkennung2::sendFBM2Bereit() {
 }
 
 void ActionsWsErkennung2::speicherWSTyp() {
-	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
+	Werkstueck tempWS = wsListen->ws_Hoehensensor_2;
 	wsTyp = tempWS.getWsTyp();
 }
 
 void ActionsWsErkennung2::checkWSueberschlagen() {
-	Werkstueck tempWS = *wsListen->ws_Hoehensensor_2;
+	Werkstueck tempWS = wsListen->ws_Hoehensensor_2;
 
 	if(wsTyp == tempWS.getWsTyp()){
 		wsListen->ueberschlagen = false;
 	} else {
 		wsListen->ueberschlagen = true;
 	}
-	wsListen->ws_Hoehensensor_2 = &tempWS;
+	wsListen->ws_Hoehensensor_2 = tempWS;
 }
 
 void ActionsWsErkennung2::eStop(){
-	wsListen->ws_hs_bis_seperator_2 = nullptr;
+	wsListen->ws_hs_bis_seperator_2.~Werkstueck();
 }
