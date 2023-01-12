@@ -69,9 +69,7 @@ void ContextWsNichtAussortierbar::receiveSignal() {
 			// handle name_open calls for this server
 			if ((_IO_BASE <= pulse.type) && (pulse.type <= _IO_MAX)) {
 				if (pulse.type == _IO_CONNECT) {
-					cout << "[" << S_F_WS_NICHT_AUSSORTIERBAR << "]"
-							<< " received _IO_CONNECT via sync. message"
-							<< endl;
+					cout << "[" << S_F_WS_NICHT_AUSSORTIERBAR << "]" << " received _IO_CONNECT via sync. message" << endl;
 					MsgReply(rcvid, EOK, NULL, 0);
 				}
 			}

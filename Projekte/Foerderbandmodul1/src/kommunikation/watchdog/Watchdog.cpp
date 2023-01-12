@@ -43,7 +43,7 @@ void Watchdog::threadWatchdog() {
 			if(msg.value.sival_int == WATCHDOG_INIT){
 				Watchdog::startTimerPeriodisch(TIMER_INTERVAL, attach->chid);
 				coid_kommunikation=qnetHandler->connectServer(SERVER_KOM_MASTER);
-				std::cout << "createWatchdog INIT" << std::endl;
+//				std::cout << "createWatchdog INIT" << std::endl;
 			}
 
 			if(msg.value.sival_int == WATCHDOG_NOTIF/*puls des anderen watchdog*/){
@@ -66,7 +66,6 @@ void Watchdog::threadWatchdog() {
 		}
 	}
 	std::cout << "watchdog left the loop"<< std::endl;
-
 }
 
 void Watchdog::startTimerPeriodisch(int intervalNanoSek, int chid) {

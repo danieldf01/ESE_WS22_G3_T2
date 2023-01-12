@@ -18,7 +18,13 @@ void ActionsSepBisLSE2::setupConnection(){
 }
 
 void ActionsSepBisLSE2::augabeKonsoleMQTT(){
-		Werkstueck ws = *wsListen->ws_passieren_2;
+
+		// update Reihung
+		int temp = wsListen->sortierReihenfolge2.front();
+		wsListen->sortierReihenfolge2.pop_front();
+		wsListen->sortierReihenfolge2.push_back(temp);
+
+		Werkstueck ws = wsListen->ws_passieren_2;
 		int wsId = ws.getiD();
 		int WS_Typ = ws.getWsTyp();
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
@@ -48,7 +54,7 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 		cout << "Werkstueck Typ: " << wsTypAsString << endl;
 		cout.precision(4);
 		cout << "Werkstueck meanhight: " << wsMeanhight<< endl;
-		cout << "Werkstueck hight: " << wsMeanhight<< endl;
+		cout << "Werkstueck hight: " << wsHeight<< endl;
 
 		if(wsListen->ueberschlagen == true){
 			cout << "ist ueberschlagen" << endl;
@@ -67,6 +73,7 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 //		std::string topic="/Festo/128";
 
 		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
+		cout << "Client erstellt" << endl;
 		client->senden(topic, wsId, wsTypAsString, wsMeanhight, wsHeight);
 		client->destroy();
 }
@@ -104,7 +111,7 @@ void ActionsSepBisLSE2::fehlerRunter(){
 }
 
 void ActionsSepBisLSE2::entferneWsPassieren(){
-	wsListen->ws_passieren_2 = nullptr;
+	wsListen->ws_passieren_2.~Werkstueck();
 }
 
 void ActionsSepBisLSE2::schnellRunter(){
@@ -115,7 +122,7 @@ void ActionsSepBisLSE2::schnellRunter(){
 }
 
 void ActionsSepBisLSE2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_passieren_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_passieren_2.getiD());
 }
 
 void ActionsSepBisLSE2::sendFBM2Bereit() {

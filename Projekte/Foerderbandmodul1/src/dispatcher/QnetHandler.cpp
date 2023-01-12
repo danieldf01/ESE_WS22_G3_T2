@@ -25,7 +25,7 @@ name_attach_t* QnetHandler::openServer(const char* server) {
 		perror("name_attach failed");
 		exit(EXIT_FAILURE);
 	}
-	cout << "[" << server << "] successfully attached name" << endl;
+//	cout << "[" << server << "] successfully attached name" << endl;
 	return attach;
 }
 
@@ -35,7 +35,7 @@ int QnetHandler::connectServer(const char* server) {
 		perror("[Client] name_open failed");
 		exit(EXIT_FAILURE);
 	}
-	cout << "[Client] opened name and connected to channel: " << server << endl;
+//	cout << "[Client] opened name and connected to channel: " << server << endl;
 	return server_coid;
 }
 

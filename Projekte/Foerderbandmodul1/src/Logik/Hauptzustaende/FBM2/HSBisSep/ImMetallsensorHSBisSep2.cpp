@@ -48,7 +48,7 @@ void ImMetallsensorHSBisSep2::eStop() {
 
 void ImMetallsensorHSBisSep2::aussortieren1() {
 	//Fehler zu frueh?
-	if (zeitmanager->getTime()< (500 + wsListen->ws_hs_bis_seperator_2->getTimestamp())) {
+	if (zeitmanager->getTime()< (500 + wsListen->ws_hs_bis_seperator_2.getTimestamp())) {
 		new (this) FehlerWsZuFruehHSBisSep2;
 	} else {
 		aussortieren2();
@@ -57,7 +57,7 @@ void ImMetallsensorHSBisSep2::aussortieren1() {
 
 void ImMetallsensorHSBisSep2::aussortieren2() {
 	//ist das aktuelle Werkstueck vom geforderten Typ?
-	if (wsListen->ws_hs_bis_seperator_2->getWsTyp() == wsListen->sortierReihenfolge2.front()) {
+	if (wsListen->ws_hs_bis_seperator_2.getWsTyp() == wsListen->sortierReihenfolge2.front()) {
 		cout << "[FBM2] Werkstueck entspricht der Reihung" << endl;
 		actions->WsPassieren();
 		new (this) WartenHSBisSep2;

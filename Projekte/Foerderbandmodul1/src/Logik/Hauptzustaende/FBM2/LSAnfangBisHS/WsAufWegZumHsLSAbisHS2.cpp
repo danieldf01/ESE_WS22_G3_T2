@@ -21,7 +21,7 @@ void WsAufWegZumHsLSAbisHS2::WSinLSAbisHS(){
 
 void WsAufWegZumHsLSAbisHS2::HSaktiv(){
 	//TODO Zeitwerte ueber Konfig Datei
-	if(zeitmanager->getTime() < (1800 + wsListen->ws_ls_anfang_bis_hs_2->getTimestamp())){
+	if(zeitmanager->getTime() < (1800 + wsListen->ws_ls_anfang_bis_hs_2.getTimestamp())){
 		new (this) FehlerWsZuFruehLSAbisHS2;
 	} else{
 		actions->WSinHS();

@@ -6,16 +6,12 @@
  */
 #include "OutputDispatcher.h"
 
-//global variables
-//QnetHandler?
-//Logik logik
 using namespace std;
 
 OutputDispatcher::OutputDispatcher(){
 	this->qnetHandler = QnetHandler();
 	logikID=0;
 	inputID=0;
-	//TODO mit Kommunikation verbinden
 }
 
 OutputDispatcher::~OutputDispatcher(){
@@ -29,7 +25,7 @@ void OutputDispatcher::init(){
 
 void OutputDispatcher::dispatchADC(int wert, int anlage){
 	if(anlage == 1){
-		//cout << "adc wert erhalten: " << wert << endl;
+//		cout << "adc wert erhalten: " << wert << endl;
 		MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_ADC_1, wert);
 	} else if(anlage == 2){
 //		cout << "OutputDispatcher adc wert von Anlage 2 erhalten: " << wert << endl;
@@ -182,13 +178,11 @@ void OutputDispatcher::dispatchOutput(int pin, int currentlevel){
 		if(currentlevel == 0){
 			MsgSendPulse(logikID, sched_get_priority_max(SCHED_FIFO), CODE_FBM_2, E_STOP_AN);
 			MsgSendPulse(inputID, sched_get_priority_max(SCHED_FIFO), _PULSE_CODE_MINAVAIL, ESTOP_AN_2);
-			//TODO E-Stopp An Signal weiterleiten
 //			cout << "OutputDispatcher estopp2 an" << endl;
 		} else{
 			MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, E_STOP_AUS);
 			MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, ESTOP_AUS_2);
 //			cout << "OutputDispatcher estopp2 aus" << endl;
-			//TODO E-Stopp Aus Signal weiterleiten
 		}
 		break;
 

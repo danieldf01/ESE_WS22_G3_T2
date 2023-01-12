@@ -20,14 +20,12 @@ MQTTClientHandler::MQTTClientHandler(std::string address, std::string clientID) 
 	if ((rc = MQTTClient_create(&client, address.c_str(), clientID.c_str(),
 	MQTTCLIENT_PERSISTENCE_NONE, NULL)) != MQTTCLIENT_SUCCESS) {
 		printf("Failed to create client, return code %d\n", rc);
-		exit(EXIT_FAILURE);
 	}
 
 	conn_opts.keepAliveInterval = 20;
 	conn_opts.cleansession = 1;
 	if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS) {
 		printf("Failed to connect, return code %d\n", rc);
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -48,21 +46,18 @@ void MQTTClientHandler::senden(std::string topic, std::string payload) {
 	pubmsg.qos = QOS;
 	pubmsg.retained = 0;
 
-	if ((rc = MQTTClient_publishMessage(client, topic.c_str(), &pubmsg, &token))
-			!= MQTTCLIENT_SUCCESS) {
+	if ((rc = MQTTClient_publishMessage(client, topic.c_str(), &pubmsg, &token))!= MQTTCLIENT_SUCCESS) {
 		printf("Failed to publish message, return code %d\n", rc);
-		exit(EXIT_FAILURE);
 	}else{
 		printf("[MQTT] SENDEN\n");
+
+		printf("Waiting for up to %d seconds for publication of %s\n on topic %s for client with ClientID: %s\n",
+				(int) (TIMEOUT / 1000), cstr, topic.c_str(), clientID.c_str());
+
+		rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+		printf("Message with delivery token %d delivered\n", token);
+
 	}
-
-	printf("Waiting for up to %d seconds for publication of %s\n"
-			"on topic %s for client with ClientID: %s\n",
-			(int) (TIMEOUT / 1000), cstr, topic.c_str(), clientID.c_str());
-	rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
-	printf("Message with delivery token %d delivered\n", token);
-
-
 }
 
 void MQTTClientHandler::destroy(){

@@ -30,23 +30,19 @@ void Kommunikation::init() {
 		perror("[KommunikationMaster] name_open connect to InputDispatcher failed");
 		exit(EXIT_FAILURE);
 	}
-	cout << "[KommunikationMaster] connected to InputDispatcher" << endl;
+//	cout << "[KommunikationMaster] connected to InputDispatcher" << endl;
 
 	coid_kom_s = qnetHandler->connectServer(SERVER_KOM_SLAVE);
 	if (coid_kom_s == -1) {
 		perror("[KommunikationMaster] name_open connect to KommunikationSlave failed");
 		exit(EXIT_FAILURE);
 	}
-	cout << "[KommunikationMaster] connected to KommunikationSlave" << endl;
+//	cout << "[KommunikationMaster] connected to KommunikationSlave" << endl;
 
 	coid_watchdog = ConnectAttach(0, 0, watchdog->attach->chid, _NTO_SIDE_CHANNEL, 0);
 
-	cout<<"##############################################################"<<endl;
-//	MsgSendPulse(coid_watchdog, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
+//	cout<<"##############################################################"<<endl;
 	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, INIT_NOTIF);
-//	MsgSendPulse(coid_kom_s, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WATCHDOG_INIT);
-
-
 }
 
 

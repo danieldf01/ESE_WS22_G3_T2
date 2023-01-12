@@ -7,10 +7,6 @@
 #include "InputDispatcher.h"
 
 using namespace std;
-//global variables
-//Sensorik senorik
-//Aktorik aktorik
-//QnetHandler?
 
 InputDispatcher::InputDispatcher(HALAktorik &hal) {
 	this->hal = &hal;

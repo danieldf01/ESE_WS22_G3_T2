@@ -181,7 +181,7 @@ void FehlerQuittiert::pulseFBM1(int value){
 		 */
 
 	case WS_ERSTELLT:
-		zeitFBM1->startMessung(2000 + zeitFBM1->getTime(), FEHLER_WS_STECKT_FEST_LSA, wsListen->ws_LSAnfang->getiD());
+		zeitFBM1->startMessung(2000 + zeitFBM1->getTime(), FEHLER_WS_STECKT_FEST_LSA, wsListen->ws_LSAnfang.getiD());
 		break;
 
 	case WS_IN_LS_A_BIS_HS:
@@ -216,7 +216,7 @@ void FehlerQuittiert::pulseFBM1(int value){
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_1->getiD());
+		zeitFBM1->startMessung(1500 + zeitFBM1->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_1.getiD());
 		break;
 
 	case WS_TYP:
@@ -449,7 +449,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM2->startMessung(3500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_ls_anfang_bis_hs_2->getiD());
+		zeitFBM2->startMessung(3500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN, wsListen->ws_ls_anfang_bis_hs_2.getiD());
 		break;
 
 	case HS_AKTIV:
@@ -467,7 +467,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 			perror("[LOGIK_Betriebszustand] MsgSendPulse failed");
 			exit(EXIT_FAILURE);
 		}
-		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_2->getiD());
+		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_HOEHENMESSUNG, wsListen->ws_Hoehensensor_2.getiD());
 		break;
 
 	case WS_TYP:
@@ -486,7 +486,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 			exit(EXIT_FAILURE);
 		}
 		// TODO Timer anpassen ggf.
-		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2->getiD());
+		zeitFBM2->startMessung(1500 + zeitFBM2->getTime(), FEHLER_WS_VERSCHWUNDEN_HS_BIS_SEP, wsListen->ws_hs_bis_seperator_2.getiD());
 		break;
 
 	case WS_NICHT_AUSSORTIERBAR:
@@ -501,7 +501,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 			exit(EXIT_FAILURE);
 		}
 		// TODO Timer anpassen ggf.
-		zeitFBM2->startMessung(4000 + zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_passieren_2->getiD());
+		zeitFBM2->startMessung(4000 + zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_LSE, wsListen->ws_passieren_2.getiD());
 		break;
 
 	case WS_AUSSORTIEREN:
@@ -511,7 +511,7 @@ void FehlerQuittiert::pulseFBM2(int value){
 			exit(EXIT_FAILURE);
 		}
 		// TODO Timer anpassen ggf.
-		zeitFBM2->startMessung(dateiManager->get_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT)+100+ zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,wsListen->ws_aussortieren_2->getiD());
+		zeitFBM2->startMessung(dateiManager->get_value_of(Konfi_Codes::FBM2_LAENGSTE_ZEIT_BIS_LS_RUT)+100+ zeitFBM2->getTime(),FEHLER_WS_VERSCHWUNDEN_SEP_BIS_RUT,wsListen->ws_aussortieren_2.getiD());
 		break;
 
 		/*
