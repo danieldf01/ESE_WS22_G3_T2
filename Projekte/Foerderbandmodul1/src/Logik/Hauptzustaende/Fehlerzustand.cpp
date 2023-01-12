@@ -371,6 +371,13 @@ void Fehlerzustand::pulseFBM2(int value){
 		}
 		break;
 
+	case LS_ENDE_AN:    //active low+
+		MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_ENDE_AN);
+		break;
+	case LS_ENDE_AUS:        //active low+
+		MsgSendPulse(fsmSepBisLSEnde2_ID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, LS_ENDE_AUS);
+		break;
+
 	case SCHNELL_HOCH_2:
 		MsgSendPulse(motorID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, SCHNELL_HOCH_2);
 		break;
@@ -779,7 +786,7 @@ void Fehlerzustand::quittiert(){
 	MsgSendPulse(inputID, SIGEV_PULSE_PRIO_INHERIT,_PULSE_CODE_MINAVAIL,LED_START_AN );
 	MsgSendPulse(kommID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, LED_START_AN);
 	initTimer2();
-	cout << "Fehler Quittiert" << endl;
+	cout << "Der Fehler wurde quittiert" << endl;
 	new (this) FehlerQuittiert;
 	// TODO Implementierung unterschied zu FehlerQuittert?
 	MsgSendPulse(fsmLSA1_ID, SIGEV_PULSE_PRIO_INHERIT, _PULSE_CODE_MINAVAIL, QUITTIERT);

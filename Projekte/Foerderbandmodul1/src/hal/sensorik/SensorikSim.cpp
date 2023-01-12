@@ -51,23 +51,23 @@ int SensorikSim::runHALSteuerung(){
 	setupGPIO(port0BaseAddr);
 
 	uintptr_t gpioBase = mmap_device_io(GPIO_REGISTER_LENGHT, GPIO_PORT0);
-		int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> 14) & 0x1;
-		if(current_level==0){
-			outputDispatcher->dispatchOutput(WEICHE1, 0);
-		}
-		else{
-			outputDispatcher->dispatchOutput(AUSWERFER1, 0);
-		}
+
+	int current_level = (in32((uintptr_t) gpioBase + GPIO_DATAIN) >> 14) & 0x1;
+
+	if(current_level==0){
+		outputDispatcher->dispatchOutput(WEICHE1, 0);
+	}
+	else{
+		outputDispatcher->dispatchOutput(AUSWERFER1, 0);
+	}
+
 	/* ### Start sampling ### */
 	adc_clear_interrupt();		//clear interrupt (just in case)
 	adc_enable_interrupt();		//enable interrupt
 	adc_ctrl_start_sample();	//start sampling
 
-
-
 	/* ### Start thread for handling interrupt messages. */
 	receivingRoutine(chanID);
-
 
 	// ENDE
 	connector->closeConnection(conID);
@@ -132,7 +132,6 @@ void SensorikSim::receivingRoutine(int channelID) {
 				adc_ctrl_start_sample();	//Start next sampling.
 
 				// Handle ein ADC Interrupt
-//				int messung = window(msg.value.sival_int);
 				int messung = value;// Wert direkt
 
 				if(messung != -1){
