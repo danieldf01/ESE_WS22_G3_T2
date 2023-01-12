@@ -18,7 +18,7 @@ void ActionsSepBisLSE2::setupConnection(){
 }
 
 void ActionsSepBisLSE2::augabeKonsoleMQTT(){
-		Werkstueck ws = *wsListen->ws_passieren_2;
+		Werkstueck ws = wsListen->ws_passieren_2;
 		int wsId = ws.getiD();
 		int WS_Typ = ws.getWsTyp();
 		string wsTypAsString = "Fehler WS Typ nicht gesetzt";
@@ -104,7 +104,7 @@ void ActionsSepBisLSE2::fehlerRunter(){
 }
 
 void ActionsSepBisLSE2::entferneWsPassieren(){
-	wsListen->ws_passieren_2 = nullptr;
+	wsListen->ws_passieren_2.~Werkstueck();
 }
 
 void ActionsSepBisLSE2::schnellRunter(){
@@ -115,7 +115,7 @@ void ActionsSepBisLSE2::schnellRunter(){
 }
 
 void ActionsSepBisLSE2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_passieren_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_passieren_2.getiD());
 }
 
 void ActionsSepBisLSE2::sendFBM2Bereit() {

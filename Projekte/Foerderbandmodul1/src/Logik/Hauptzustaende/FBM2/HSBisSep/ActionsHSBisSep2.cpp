@@ -19,10 +19,10 @@ void ActionsHSBisSep2::setupConnection(){
 }
 
 void ActionsHSBisSep2::setMetallTrue(){
-	if(wsListen->ws_hs_bis_seperator_2->getWsTyp() == HOCH_MB){
-		wsListen->ws_hs_bis_seperator_2->setWsTyp(HOCH_MBM);
+	if(wsListen->ws_hs_bis_seperator_2.getWsTyp() == HOCH_MB){
+		wsListen->ws_hs_bis_seperator_2.setWsTyp(HOCH_MBM);
 	} else{
-		wsListen->ws_hs_bis_seperator_2->setWsTyp(UNBEKANNT);
+		wsListen->ws_hs_bis_seperator_2.setWsTyp(UNBEKANNT);
 	}
 }
 
@@ -34,10 +34,10 @@ void ActionsHSBisSep2::WsPassieren(){
 	wsListen->sortierReihenfolge2.push_back(temp);
 
 	// update Werkstuecke
-	Werkstueck temp_ws = *wsListen->ws_hs_bis_seperator_2;
+	Werkstueck temp_ws = wsListen->ws_hs_bis_seperator_2;
 	temp_ws.setTimestamp(zeitmanager->getTime());
-	wsListen->ws_passieren_2 = &temp_ws;
-	wsListen->ws_hs_bis_seperator_2 = nullptr;
+	wsListen->ws_passieren_2 = temp_ws;
+	wsListen->ws_hs_bis_seperator_2.~Werkstueck();
 
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_PASSIEREN) == -1) {
@@ -48,10 +48,10 @@ void ActionsHSBisSep2::WsPassieren(){
 
 void ActionsHSBisSep2::WsAussortieren(){
 	// update Werkstuecke
-	Werkstueck temp_ws = *wsListen->ws_hs_bis_seperator_2;
+	Werkstueck temp_ws = wsListen->ws_hs_bis_seperator_2;
 	temp_ws.setTimestamp(zeitmanager->getTime());
-	wsListen->ws_aussortieren_2 = &temp_ws;
-	wsListen->ws_hs_bis_seperator_2 = nullptr;
+	wsListen->ws_aussortieren_2 = temp_ws;
+	wsListen->ws_hs_bis_seperator_2.~Werkstueck();
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_2, WS_AUSSORTIEREN) == -1) {
 		perror("[FSM_HSbisSeperator2] MsgSendPulse failed");
@@ -81,7 +81,7 @@ void ActionsHSBisSep2::fehlerRunter(){
 }
 
 void ActionsHSBisSep2::entferneWsHSbisSep(){
-	wsListen->ws_hs_bis_seperator_2 = nullptr;
+	wsListen->ws_hs_bis_seperator_2.~Werkstueck();
 }
 
 void ActionsHSBisSep2::schnellRunter(){
@@ -92,7 +92,7 @@ void ActionsHSBisSep2::schnellRunter(){
 }
 
 void ActionsHSBisSep2::deleteTimerVerschwunden(){
-	zeitmanager->deleteTimer(wsListen->ws_hs_bis_seperator_2->getiD());
+	zeitmanager->deleteTimer(wsListen->ws_hs_bis_seperator_2.getiD());
 }
 
 void ActionsHSBisSep2::sendFBM2Bereit() {
@@ -103,6 +103,6 @@ void ActionsHSBisSep2::sendFBM2Bereit() {
 }
 
 void ActionsHSBisSep2::eStop(){
-	wsListen->ws_passieren_2 = nullptr;
-	wsListen->ws_aussortieren_2 = nullptr;
+	wsListen->ws_passieren_2.~Werkstueck();
+	wsListen->ws_aussortieren_2.~Werkstueck();
 }

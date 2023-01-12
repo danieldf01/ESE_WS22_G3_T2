@@ -25,9 +25,10 @@ void ActionsLSAbisHS1::WSinHS() {
 	Werkstueck temp_ws = wsListen->ws_list_LSAnfang_bis_HS.front();
 	wsListen->ws_list_LSAnfang_bis_HS.pop_front();
 	temp_ws.setTimestamp(zeitmanager->getTime());
-	wsListen->ws_Hoehensensor_1 = &temp_ws;
+	wsListen->ws_Hoehensensor_1 = temp_ws;
 
-//	cout << "ActionsLSAbisHS1 WSinHS send time: " << wsListen->getWsHoehensensor1()->getTimestamp() << endl;
+//	cout << "ActionsLSAbisHS1 Ws HS timestamp: " << wsListen->ws_Hoehensensor_1.getTimestamp() << endl;
+//	cout << "ActionsLSAbisHS1 Ws HS ID: " << wsListen->ws_Hoehensensor_1.getiD() << endl;
 
 	if (MsgSendPulse(logikID, SIGEV_PULSE_PRIO_INHERIT, CODE_FBM_1, WS_IN_HS) == -1) {
 		perror("[FSM_LSAnfangBisHS] MsgSendPulse failed");
@@ -72,5 +73,5 @@ void ActionsLSAbisHS1::HSleeren() {
 }
 
 void ActionsLSAbisHS1::eStop() {
-	wsListen->ws_Hoehensensor_1 = nullptr;
+	wsListen->ws_Hoehensensor_1.~Werkstueck();
 }

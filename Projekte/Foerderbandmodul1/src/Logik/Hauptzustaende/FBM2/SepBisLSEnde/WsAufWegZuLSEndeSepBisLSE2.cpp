@@ -21,7 +21,7 @@ void WsAufWegZuLSEndeSepBisLSE2::exit(){
 void WsAufWegZuLSEndeSepBisLSE2::LsEAn(){
 	actions->deleteTimerVerschwunden();
 	//WS zu frueh angekommen?
-	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2->getTimestamp())){
+	if(zeitmanager->getTime() < (1500 + wsListen->ws_passieren_2.getTimestamp())){
 		new (this) FehlerWSZuFruehSepBisLSE2;
 	} else{
 		actions->schnellRunter();

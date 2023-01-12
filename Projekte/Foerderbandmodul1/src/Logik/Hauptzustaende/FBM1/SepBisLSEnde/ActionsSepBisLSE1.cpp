@@ -73,7 +73,7 @@ void ActionsSepBisLSE1::FBM1WsLosgeschickt(){
 void ActionsSepBisLSE1::FBM1WsUebergeben(){
 
 	Werkstueck wsTemp = wsListen->ws_list_sep_bis_lsende.front();
-	wsListen->ws_ls_anfang_2 = &wsTemp;
+	wsListen->ws_ls_anfang_2 = wsTemp;
 	wsListen->ws_list_sep_bis_lsende.pop_front();
 
 //	wsListen->ws_ls_anfang_2 = &(wsListen->ws_list_sep_bis_lsende.front());
@@ -90,5 +90,5 @@ void ActionsSepBisLSE1::deleteTimerVerschwunden(){
 }
 
 void ActionsSepBisLSE1::eStop(){
-	wsListen->ws_ls_anfang_2 = nullptr;
+	wsListen->ws_ls_anfang_2.~Werkstueck();
 }
