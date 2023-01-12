@@ -18,6 +18,12 @@ void ActionsSepBisLSE2::setupConnection(){
 }
 
 void ActionsSepBisLSE2::augabeKonsoleMQTT(){
+
+		// update Reihung
+		int temp = wsListen->sortierReihenfolge2.front();
+		wsListen->sortierReihenfolge2.pop_front();
+		wsListen->sortierReihenfolge2.push_back(temp);
+
 		Werkstueck ws = wsListen->ws_passieren_2;
 		int wsId = ws.getiD();
 		int WS_Typ = ws.getWsTyp();

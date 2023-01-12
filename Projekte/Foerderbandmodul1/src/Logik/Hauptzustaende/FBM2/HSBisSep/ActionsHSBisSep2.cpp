@@ -28,10 +28,7 @@ void ActionsHSBisSep2::setMetallTrue(){
 
 void ActionsHSBisSep2::WsPassieren(){
 
-	// update Reihung
-	int temp = wsListen->sortierReihenfolge2.front();
-	wsListen->sortierReihenfolge2.pop_front();
-	wsListen->sortierReihenfolge2.push_back(temp);
+
 
 	// update Werkstuecke
 	Werkstueck temp_ws = wsListen->ws_hs_bis_seperator_2;
