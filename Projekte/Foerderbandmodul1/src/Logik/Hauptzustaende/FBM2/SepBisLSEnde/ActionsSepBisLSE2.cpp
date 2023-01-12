@@ -54,7 +54,7 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 		cout << "Werkstueck Typ: " << wsTypAsString << endl;
 		cout.precision(4);
 		cout << "Werkstueck meanhight: " << wsMeanhight<< endl;
-		cout << "Werkstueck hight: " << wsMeanhight<< endl;
+		cout << "Werkstueck hight: " << wsHeight<< endl;
 
 		if(wsListen->ueberschlagen == true){
 			cout << "ist ueberschlagen" << endl;
