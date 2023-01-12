@@ -73,6 +73,7 @@ void ActionsSepBisLSE2::augabeKonsoleMQTT(){
 //		std::string topic="/Festo/128";
 
 		MQTTClientHandler *client = new MQTTClientHandler(address, clientID);
+		cout << "Client erstellt" << endl;
 		client->senden(topic, wsId, wsTypAsString, wsMeanhight, wsHeight);
 		client->destroy();
 }
